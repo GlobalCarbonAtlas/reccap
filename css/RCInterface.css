@@ -1,0 +1,6 @@
+@media print {
+    #graph {
+        border:  none !important;
+    }
+}
+

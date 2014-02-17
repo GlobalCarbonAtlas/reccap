@@ -1,0 +1,250 @@
+body {
+    font-family: "Ubuntu", Arial, sans-serif;
+    margin: 0;
+    font-size: 13px;
+    color: #333333;
+}
+
+#pageWrapper {
+    text-align: left;
+    width: 100%;
+    line-height: 1.1em;
+    height: 100%;
+    float: left;
+}
+
+select {
+    background-color: white;
+}
+
+#pageWrapper h2 {
+    color: #464646;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 26px;
+    margin: 0;
+    padding-left: 34px;
+    position: relative;
+    font-family: "Ubuntu", Arial, sans-serif;
+}
+
+/* ============================================== */
+#printable {
+    display: none;
+}
+
+@media print {
+    #non-printable, #leftMenu, #hideOrShowLeftMenu, #rightMenu, #hideOrShowRightMenu {
+        display: none;
+    }
+
+    #printable {
+        display: block;
+    }
+}
+
+/* ============================================== */
+
+select {
+    background-color: white;
+}
+
+/* ******************************************************** */
+/* *********************** SCROLLBAR ********************** */
+/* ******************************************************** */
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track-piece {
+/*Fond*/
+    background: transparent none;
+    border: solid 4px transparent;
+    border-right-width: 8px;
+    margin: 4px;
+    -webkit-box-shadow: inset 1px 1px 0 0 rgb(137, 131, 117), inset -1px -1px 0 0 rgb(224, 220, 210);
+}
+
+::-webkit-scrollbar-thumb {
+/* Barre */
+    border: solid 0 transparent;
+    border-right-width: 4px;
+    -webkit-border-radius: 5px;
+    -webkit-border-top-right-radius: 9px 5px;
+    -webkit-border-bottom-right-radius: 9px 5px;
+    -webkit-box-shadow: inset 0 0 0 1px rgb(79, 79, 79), inset 0 0 0 6px rgb(102, 102, 102);
+}
+
+/****************************************************************/
+
+#clearAll {
+    background: url("../img/clearAll.png") no-repeat scroll 6px 0 #F2F2F2;
+    color: #808080;
+    display: block;
+    margin-top: -21px;
+    width: 110px;
+    font-size: 11px;
+    font-weight: normal;
+    line-height: 20px;
+    padding-left: 30px;
+    text-decoration: none;
+    text-shadow: 1px 1px #FFFFFF;
+    cursor: pointer;
+}
+
+/****************************************************************/
+/************************* BUTTONS ******************************/
+/****************************************************************/
+.orangeButton {
+    background: url("../img/btn_menu_active_middle.png") repeat scroll 0 0 transparent;
+    color: white;
+    font-size: 11px;
+    line-height: 28px;
+    text-shadow: 1px 1px #B3B3B3;
+    text-transform: uppercase;
+    margin: 10px auto -5px;
+    padding: 3px 11px;
+    text-align: center;
+    border-right: 1px solid #b04b15;
+    border-left: 1px solid #b04b15;
+    font-weight: 500;
+    height: 26px;
+    width: 100px;
+    cursor: pointer;
+}
+
+.orangeButton:hover {
+    text-shadow: none;
+    background: none;
+    background-color: #416A8A;
+}
+
+.orangeButton.disabled, .orangeButton.disabled:hover {
+    background: url("../img/btn_menu_disabled_middle.png") repeat scroll 0 0 transparent;
+    color: white;
+    border: none;
+    border-right: 1px solid #777878;
+    border-left: 1px solid #777878;
+    cursor: default;
+}
+
+#submitDeleteMaps .lonelyToolIcon {
+    margin-top: 4px;
+}
+
+#submitcreate[disabled], #submitcreate[disabled]:hover, #submitShowAllLegends[disabled], #submitShowAllLegends[disabled]:hover, #submitHideAllLegends[disabled], #submitHideAllLegends[disabled]:hover {
+    background: -moz-linear-gradient(center top, #7F7F7F -200%, #FFFFFF 80%, #7F7F7F 197%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ccc6c3), color-stop(24%, #828c95), color-stop(41%, #000000), color-stop(100%, #7f7f7f)); /* Chrome, Safari4 + */
+    background: -webkit-linear-gradient(top, #7F7F7F -70%, #FFFFFF 67%, #7F7F7F 113%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #7F7F7F -70%, #FFFFFF 67%, #7F7F7F 113%); /* Opera 11.10+ */
+    background: linear-gradient(#7F7F7F -200%, #FFFFFF 80%, #7F7F7F 197%); /* W3C */
+    color: white;
+    opacity: 0.4;
+}
+
+/* ******************************************************** */
+/* ************************* ERROR ************************ */
+/* ******************************************************** */
+#errors {
+    color: #464646;
+    display: none;
+    min-width: 200px;
+    margin: 10px;
+    position: absolute;
+    z-index: 1;
+    opacity: 0.95;
+}
+
+#errors .containerTitle {
+    background: url("../img/btn_menu_active_middle.png") repeat scroll 0 0 transparent;
+    color: #464646;
+    font-weight: bold;
+    font-size: 14px;
+    height: 18px;
+    padding: 7px;
+    border-radius: 8px 8px 0 0;
+}
+
+#errors .containerTitleText {
+    float: left;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+#errors .containerTitleClose {
+    float: right;
+    margin-right: 2px;
+    cursor: pointer;
+}
+
+#errors .containerContent {
+    background: none repeat scroll 0 0 #faa62e;
+    padding: 10px;
+    border-radius: 0 0 8px 8px;
+}
+
+/* ******************************************************** */
+/* ************************* OTHER ************************ */
+/* ******************************************************** */
+
+/******************** HELP ***********************/
+#helpMenu {
+    float: right;
+    margin-right: -1px;
+    cursor: pointer;
+}
+
+.helpFooter {
+    position: absolute;
+    bottom: 10px;
+    width: 91%;
+    line-height: 55px;
+    vertical-align: middle;
+    color: #CCCCCC;
+    font-weight: bold;
+    font-size: 17px;
+    padding: 0 40px;
+}
+
+.helpFooterContentLeft {
+    float: left;
+}
+
+.helpFooterContentMiddle {
+    float: left;
+    font-size: 11px;
+    margin: 0 70px;
+}
+
+.helpFooterContentRight {
+    float: right;
+}
+
+.helpFooterContentFloat {
+    float: left;
+    margin-left: 10px;
+    text-align: center;
+}
+
+.helpFooterLogo1 {
+    position: relative;
+    top: 4px;
+}
+
+.helpFooterLogo2 {
+    position: relative;
+    top: 16px;
+    margin-right: 30px;
+}
+
+/******************** OTHER ***********************/
+.noticeLSCE {
+/*border-top: 1px solid #CCCCCC;*/
+/*background-color: white;*/
+    text-align: center;
+    color: #464646;
+    font-size: 9px;
+}
+

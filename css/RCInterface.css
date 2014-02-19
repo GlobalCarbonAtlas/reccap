@@ -1,6 +1,95 @@
 @media print {
-    #graph {
-        border:  none !important;
-    }
 }
+
+/* ************** CONTINENTS ************** */
+g.asia path {
+    fill: #ffbb78;
+    stroke: #ffbb78;
+}
+
+g.africa path {
+    fill: #f4d362;
+    stroke: #f4d362;
+}
+
+g.europe path {
+    fill: #f4e8c3;
+    stroke: #f4e8c3;
+}
+
+g.north_america path {
+    fill: #97cc31;
+    stroke: #97cc31;
+}
+
+g.south_america path {
+    fill: #cc9866;
+    stroke: #cc9866;
+}
+
+g.antarctica path {
+    fill: #d3ecfc;
+    stroke: #d3ecfc;
+}
+
+g.oceania path {
+    fill: #aec7e8;
+    stroke: #aec7e8;
+}
+
+/* ************** D3-TIP ************** */
+.d3-tip {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);
+    border-radius: 8px 8px 8px 8px;
+    color: #FFFFFF;
+    font-weight: bold;
+    line-height: 1;
+    padding: 12px;
+}
+
+.d3-tip:after {
+    color: rgba(0, 0, 0, 0.8);
+    content: "▼";
+    display: inline;
+    font-size: 10px;
+    line-height: 1;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+.d3-tip.n:after {
+    left: 0;
+    margin: -1px 0 0;
+    top: 100%;
+}
+
+.d3-tipTitle {
+/*color: #FAA62E;*/
+    color: #FF7F0E;
+}
+
+/* ************** NPP ************** */
+#npp-chart .x.axis text {
+    font: 200 12px "Futura", sans-serif;
+    text-anchor: end;
+}
+
+#npp-chart .axis text {
+    fill: #525252;
+}
+
+#npp-chart .grid-line line {
+    fill: none;
+    opacity: 0.5;
+    shape-rendering: crispedges;
+    stroke: #CCCCCC;
+}
+
+#npp-chart .axis path, .axis line {
+    fill: none;
+    shape-rendering: crispedges;
+    stroke: #DDDDDD;
+}
+
 

@@ -17,6 +17,7 @@
     <title>GCA Reccap</title>
     <link rel="icon" href="img/globe.png" type="image/png">
 
+    <link rel="stylesheet" type="text/css" href="js/dc.js-master/web/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="js/dc.js-master/web/css/dc.css">
     <link rel="stylesheet" type="text/css" href="css/globalCarbonAtlas.css">
     <link rel="stylesheet" type="text/css" href="css/RCInterface.css">
@@ -26,6 +27,7 @@
     <script type="text/javascript" src="js/dc.js-master/web/js/crossfilter.js"></script>
     <script type="text/javascript" src="js/dc.js-master/web/js/dc.js"></script>
     <script type="text/javascript" src="js/library/topojson.v1.min.js"></script>
+    <script type="text/javascript" src="js/library/d3.tip.min.js"></script>
     <script type="text/javascript" src="js/library/jquery.class.js"></script>
 
     <script type="text/javascript" src="js/RCInterface.js"></script>

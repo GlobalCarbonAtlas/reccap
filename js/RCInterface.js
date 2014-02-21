@@ -44,16 +44,41 @@ var RCInterface = Class.create( {
 
             // Groups
             var nppGroup = this.getValuesGroupByBudget( continents, "NPP" );
+            var gppGroup = this.getValuesGroupByBudget( continents, "GPP" );
             var hrGroup = this.getValuesGroupByBudget( continents, "Heterotrophic Respiration" );
             var budgetAmoutGroup = carbonBudgets.group().reduceSum( function ( d )
             {
                 return d["Value"];
             } );
 
-            this.createBarChart( "#npp-chart", continents, nppGroup );
-            this.createBarChart( "#hr-chart", continents, hrGroup );
+            var nppGppGroup = continents.group().reduce(
+                    function ( p, v )
+                    {
+                        if( "NPP" == v["Carbon budget"] )
+                            p.npp += v["Value"];
+                        if( "GPP" == v["Carbon budget"] )
+                            p.gpp += v["Value"];
+                        return p;
+                    },
+                    function ( p, v )
+                    {
+                        if( "NPP" == v["Carbon budget"] )
+                            p.npp -= v["Value"];
+                        if( "GPP" == v["Carbon budget"] )
+                            p.gpp -= v["Value"];
+                        return p;
+                    },
+                    function ()
+                    {
+                        return {npp: "", gpp: ""};
+                    } );
+
+            // Create objects
+            this.createDoubleBarChart( "#npp-gpp-chart", 300, 400, continents, nppGppGroup, "gpp", "GPP", "npp", "NPP" );
+            this.createBarChart( "#hr-chart", 300, 400, continents, hrGroup );
+            this.createPieChart( "#function-pie-chart", carbonBudgets, budgetAmoutGroup );
             this.createFunctionChart( "#function-chart", carbonBudgets, budgetAmoutGroup );
-            this.createDataTable( data, data.groupAll(), continents );
+            this.createDataTable( "#data-count", "#data-table", data, data.groupAll(), continents );
             d3.json( "data/continent-geogame-110m.json", jQuery.proxy( function( error, world )
             {
                 var countries = topojson.feature( world, world.objects.countries );
@@ -64,13 +89,13 @@ var RCInterface = Class.create( {
         }, this ) );
     },
 
-    createDataTable: function( allD, allG, tableD )
+    createDataTable: function( countId, tableId, allD, allG, tableD )
     {
-        dc.dataCount( "#data-count" )
+        dc.dataCount( countId )
                 .dimension( allD )
                 .group( allG );
 
-        dc.dataTable( "#data-table" )
+        dc.dataTable( tableId )
                 .dimension( tableD )
                 .group( function( d )
         {
@@ -97,11 +122,11 @@ var RCInterface = Class.create( {
 
     createFunctionChart: function( chartId, functions, functionsGroup )
     {
-        var functionChart = dc.rowChart( chartId );
-
 //        var expenseColors = ["#fee391","#fec44f","#fe9929","#fd8d3c","#e08214","#fdb863","#fdae6b","#ec7014"];
         var expenseColors = ["#fde0dd","#fa9fb5","#e7e1ef","#d4b9da","#c994c7","#fcc5c0","#df65b0","#e7298a","#ce1256", "#f768a1","#dd3497","#e78ac3","#f1b6da","#c51b7d"];
-        functionChart.width( 500 )
+
+        var functionChart = dc.rowChart( chartId )
+                .width( 500 )
                 .height( 800 )
                 .margins( {top: 20, left: 10, right: 10, bottom: 20} )
                 .transitionDuration( 750 )
@@ -124,8 +149,8 @@ var RCInterface = Class.create( {
                 .translate( [this.mapWidth / 2,  this.mapHeight / 2] )
                 .scale( [90] );
 
-        var mapChart = dc.geoChoroplethChart( "#map-chart" );
-        mapChart.width( this.mapWidth )
+        dc.geoChoroplethChart( "#map-chart" )
+                .width( this.mapWidth )
                 .height( this.mapHeight )
                 .dimension( continentsDimension )
                 .group( continentsGroup )
@@ -140,12 +165,11 @@ var RCInterface = Class.create( {
         } );
     },
 
-    createBarChart: function( chartId, dimension, group )
+    createBarChart: function( chartId, width, height, dimension, group )
     {
-        var barChart = dc.barChart( chartId );
-
-        barChart.height( 400 )
-                .width( 300 )
+        dc.barChart( chartId )
+                .height( height )
+                .width( width )
                 .transitionDuration( 750 )
                 .margins( {top: 20, right: 10, bottom: 80, left: 80} )
                 .dimension( dimension )
@@ -155,9 +179,56 @@ var RCInterface = Class.create( {
                 .colors( ['#FF7F0E'] )
                 .xUnits( dc.units.ordinal )
                 .x( d3.scale.ordinal() )
-                .y( d3.scale.linear() )
+                .y( d3.scale.linear().domain( [0, 1000] ) )
                 .renderHorizontalGridLines( true )
                 .yAxis().tickFormat( d3.format( "s" ) );
+    },
+
+    createDoubleBarChart: function( chartId, width, height, dimension, group, groupValue1, titleGroup1, groupValue2, titleGroup2 )
+    {
+        dc.barChart( chartId )
+                .width( width )
+                .height( height )
+                .margins( {top: 20, right: 10, bottom: 80, left: 80} )
+                .dimension( dimension )
+                .xUnits( dc.units.ordinal )
+                .x( d3.scale.ordinal() )
+                .group( group, titleGroup1 )
+                .valueAccessor( function( d )
+        {
+            return d.value[groupValue1];
+        } )
+                .stack( group, titleGroup2, function( d )
+        {
+            return d.value[groupValue2];
+        } )
+                .legend( dc.legend().x( 250 ).y( 280 ) )
+                .elasticY( true )
+                .title( function( d )
+        {
+            return d.key + "\n" + titleGroup1 + ": " + d.value.gpp + "\n" + titleGroup2 + ": " + d.value.npp;
+        } )
+                .yAxis().tickFormat( d3.format( "s" ) );
+    },
+
+    createPieChart: function( chartId, dimension, group )
+    {
+        var expenseColors = ["#fde0dd","#fa9fb5","#e7e1ef","#d4b9da","#c994c7","#fcc5c0","#df65b0","#e7298a","#ce1256", "#f768a1","#dd3497","#e78ac3","#f1b6da","#c51b7d"];
+
+        dc.pieChart( chartId )
+                .width( 100 )
+                .height( 200 )
+                .transitionDuration( 750 )
+                .radius( 50 )
+                .innerRadius( 30 )
+                .dimension( dimension )
+//                .title( function ( d )
+//        {
+//            return "";
+//        } )
+                .group( group )
+                .colors( d3.scale.category20() );
+//                .renderLabel( false );
     },
 
     updateCharts: function()

@@ -12,15 +12,8 @@ var RCInterface = Class.create( {
 
     initialize: function()
     {
-
-        // Param
-        this.containerMap = $( "#containerMap" );
-        this.mapWidth = 600;
-        this.mapHeight = 300;
-
         // Variable
         this.numberFormat = d3.format( ".2f" );
-        this.continents = new Array;
 
         this.createDCObjects();
     },
@@ -82,76 +75,25 @@ var RCInterface = Class.create( {
             d3.json( "data/continent-geogame-110m.json", jQuery.proxy( function( error, world )
             {
                 var countries = topojson.feature( world, world.objects.countries );
-                this.createChoroplethMap( countries, continents, continents.group() );
+                this.createChoroplethMap( "#map-chart", 600, 300, countries, continents, continents.group() );
                 dc.renderAll();
                 this.updateCharts();
             }, this ) );
         }, this ) );
     },
 
-    createDataTable: function( countId, tableId, allD, allG, tableD )
-    {
-        dc.dataCount( countId )
-                .dimension( allD )
-                .group( allG );
-
-        dc.dataTable( tableId )
-                .dimension( tableD )
-                .group( function( d )
-        {
-//            if( d["Value"] )
-            return d["Continents"];
-        } )
-                .size( 300 )
-                .columns( [
-                function ( d )
-                {
-//                    if( d["Value"] )
-                    return d["Carbon budget"];
-                },
-                function ( d )
-                {
-//                    if( d["Value"] )
-                    return d["Value"];
-                }
-        ] ).renderlet( function ( table )
-        {
-            table.selectAll( ".dc-table-group" ).classed( "info", true );
-        } );
-    },
-
-    createFunctionChart: function( chartId, functions, functionsGroup )
-    {
-//        var expenseColors = ["#fee391","#fec44f","#fe9929","#fd8d3c","#e08214","#fdb863","#fdae6b","#ec7014"];
-        var expenseColors = ["#fde0dd","#fa9fb5","#e7e1ef","#d4b9da","#c994c7","#fcc5c0","#df65b0","#e7298a","#ce1256", "#f768a1","#dd3497","#e78ac3","#f1b6da","#c51b7d"];
-
-        var functionChart = dc.rowChart( chartId )
-                .width( 500 )
-                .height( 800 )
-                .margins( {top: 20, left: 10, right: 10, bottom: 20} )
-                .transitionDuration( 750 )
-                .dimension( functions )
-                .group( functionsGroup )
-                .colors( d3.scale.category20() )
-//                .colors( expenseColors )
-//                .renderLabel( true )
-//                .title( function ( d )
-//        {
-//            return "";
-//        } )
-//                .elasticX( true )
-                .xAxis().ticks( 5 ).tickFormat( d3.format( "s" ) );
-    },
-
-    createChoroplethMap: function( countries, continentsDimension, continentsGroup )
+    /* ******************************************************************** */
+    /* ****************************** CHARTS ****************************** */
+    /* ******************************************************************** */
+    createChoroplethMap: function( chartId, width, height, countries, continentsDimension, continentsGroup )
     {
         var projection = d3.geo.equirectangular()
-                .translate( [this.mapWidth / 2,  this.mapHeight / 2] )
+                .translate( [width / 2,  height / 2] )
                 .scale( [90] );
 
-        dc.geoChoroplethChart( "#map-chart" )
-                .width( this.mapWidth )
-                .height( this.mapHeight )
+        dc.geoChoroplethChart( chartId )
+                .width( width )
+                .height( height )
                 .dimension( continentsDimension )
                 .group( continentsGroup )
                 .projection( projection )
@@ -231,6 +173,64 @@ var RCInterface = Class.create( {
 //                .renderLabel( false );
     },
 
+    createDataTable: function( countId, tableId, allD, allG, tableD )
+    {
+        dc.dataCount( countId )
+                .dimension( allD )
+                .group( allG );
+
+        dc.dataTable( tableId )
+                .dimension( tableD )
+                .group( function( d )
+        {
+//            if( d["Value"] )
+            return d["Continents"];
+        } )
+                .size( 300 )
+                .columns( [
+                function ( d )
+                {
+//                    if( d["Value"] )
+                    return d["Carbon budget"];
+                },
+                function ( d )
+                {
+//                    if( d["Value"] )
+                    return d["Value"];
+                }
+        ] ).renderlet( function ( table )
+        {
+            table.selectAll( ".dc-table-group" ).classed( "info", true );
+        } );
+    },
+
+    createFunctionChart: function( chartId, functions, functionsGroup )
+    {
+//        var expenseColors = ["#fee391","#fec44f","#fe9929","#fd8d3c","#e08214","#fdb863","#fdae6b","#ec7014"];
+        var expenseColors = ["#fde0dd","#fa9fb5","#e7e1ef","#d4b9da","#c994c7","#fcc5c0","#df65b0","#e7298a","#ce1256", "#f768a1","#dd3497","#e78ac3","#f1b6da","#c51b7d"];
+
+        var functionChart = dc.rowChart( chartId )
+                .width( 500 )
+                .height( 800 )
+                .margins( {top: 20, left: 10, right: 10, bottom: 20} )
+                .transitionDuration( 750 )
+                .dimension( functions )
+                .group( functionsGroup )
+                .colors( d3.scale.category20() )
+//                .colors( expenseColors )
+//                .renderLabel( true )
+//                .title( function ( d )
+//        {
+//            return "";
+//        } )
+//                .elasticX( true )
+                .xAxis().ticks( 5 ).tickFormat( d3.format( "s" ) );
+    },
+
+
+    /* ******************************************************************** */
+    /* ****************************** OTHERS ****************************** */
+    /* ******************************************************************** */
     updateCharts: function()
     {
         // Tooltips for bar chart

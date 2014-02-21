@@ -1,7 +1,22 @@
 @media print {
 }
 
-/* ************** CONTINENTS ************** */
+.DCObject {
+    float: left;
+    margin-right: 10px;
+}
+
+.rowWrapper {
+    float: left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* ************** MAP ************** */
+#map-chart {
+/*width: 0%;*/
+}
+
 g.asia path {
     fill: #ffbb78;
     stroke: #ffbb78;
@@ -65,31 +80,65 @@ g.oceania path {
 }
 
 .d3-tipTitle {
-/*color: #FAA62E;*/
     color: #FF7F0E;
 }
 
 /* ************** NPP ************** */
-#npp-chart .x.axis text {
-    font: 200 12px "Futura", sans-serif;
+#npp-chart .x.axis text, #hr-chart .x.axis text {
+    font: 12px "Futura", sans-serif;
     text-anchor: end;
 }
 
-#npp-chart .axis text {
+#npp-chart .axis text, #hr-chart .axis text {
     fill: #525252;
 }
 
-#npp-chart .grid-line line {
+#npp-chart .grid-line line, #hr-chart .grid-line line {
     fill: none;
     opacity: 0.5;
     shape-rendering: crispedges;
     stroke: #CCCCCC;
 }
 
-#npp-chart .axis path, .axis line {
+#npp-chart .axis path, #hr-chart .axis path, .axis line {
     fill: none;
     shape-rendering: crispedges;
     stroke: #DDDDDD;
 }
 
+/* ************** DATA ************** */
+.dc-data-table {
+    fill: #525252;
+    font: 12px "Futura", sans-serif;
+}
 
+.dc-data-table th {
+    fill: #525252;
+    font: 14px "Futura", sans-serif;
+    text-align: right;
+}
+
+.dc-table-column {
+    text-align: right !important;
+}
+
+.dc-chart g.row text {
+    cursor: pointer;
+    fill: #525252;
+    font: 12px "Futura", sans-serif;
+}
+
+.dc-chart .axis path, .axis line {
+    fill: none;
+    shape-rendering: crispedges;
+    stroke: #DDDDDD;
+}
+
+.dc-chart .axis text {
+    fill: #525252;
+    font: 12px "Futura", sans-serif;
+}
+
+.dc-data-count, .dc-data-table {
+    margin-left: 20px;
+}

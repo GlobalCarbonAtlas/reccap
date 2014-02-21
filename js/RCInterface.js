@@ -27,48 +27,95 @@ var RCInterface = Class.create( {
 
     createDCObjects: function()
     {
-        d3.csv( "data/Reccap_data_transpose.csv", jQuery.proxy( function ( error, csv )
+        d3.csv( "data/Reccap_data_rows.csv", jQuery.proxy( function ( error, csv )
         {
             var data = crossfilter( csv );
 
-            // Continents
-            var continentsDimension = data.dimension( jQuery.proxy( function ( d )
+            // Dimensions
+            var continents = data.dimension( jQuery.proxy( function( d )
             {
-                this.continents.push( d["Carbon budget"] );
-                return d["Carbon budget"];
+                return d["Continents"];
             }, this ) );
-            // Empty group, just to use the choropleth function
-            var continentsGroup = continentsDimension.group();
 
-            var bob = continentsDimension.filter( function( d )
+            var carbonBudgets = data.dimension( function( d )
             {
-                return d;
+                return d["Carbon budget"];
             } );
-            // NPP
-            var nppGroup = continentsDimension.group().reduce(
-                    function( p, v )
-                    {
-                        return v["NPP"];
-                    },
-                    function( p, v )
-                    {
-                    },
-                    function( p, v )
-                    {
-                        return 0;
-                    }
-                    );
 
+            // Groups
+            var nppGroup = this.getValuesGroupByBudget( continents, "NPP" );
+            var hrGroup = this.getValuesGroupByBudget( continents, "Heterotrophic Respiration" );
+            var budgetAmoutGroup = carbonBudgets.group().reduceSum( function ( d )
+            {
+                return d["Value"];
+            } );
 
+            this.createBarChart( "#npp-chart", continents, nppGroup );
+            this.createBarChart( "#hr-chart", continents, hrGroup );
+            this.createFunctionChart( "#function-chart", carbonBudgets, budgetAmoutGroup );
+            this.createDataTable( data, data.groupAll(), continents );
             d3.json( "data/continent-geogame-110m.json", jQuery.proxy( function( error, world )
             {
                 var countries = topojson.feature( world, world.objects.countries );
-                this.createChoroplethMap( countries, continentsDimension, continentsGroup );
-                this.createNppChart( continentsDimension, nppGroup );
+                this.createChoroplethMap( countries, continents, continents.group() );
                 dc.renderAll();
                 this.updateCharts();
             }, this ) );
         }, this ) );
+    },
+
+    createDataTable: function( allD, allG, tableD )
+    {
+        dc.dataCount( "#data-count" )
+                .dimension( allD )
+                .group( allG );
+
+        dc.dataTable( "#data-table" )
+                .dimension( tableD )
+                .group( function( d )
+        {
+//            if( d["Value"] )
+            return d["Continents"];
+        } )
+                .size( 300 )
+                .columns( [
+                function ( d )
+                {
+//                    if( d["Value"] )
+                    return d["Carbon budget"];
+                },
+                function ( d )
+                {
+//                    if( d["Value"] )
+                    return d["Value"];
+                }
+        ] ).renderlet( function ( table )
+        {
+            table.selectAll( ".dc-table-group" ).classed( "info", true );
+        } );
+    },
+
+    createFunctionChart: function( chartId, functions, functionsGroup )
+    {
+        var functionChart = dc.rowChart( chartId );
+
+//        var expenseColors = ["#fee391","#fec44f","#fe9929","#fd8d3c","#e08214","#fdb863","#fdae6b","#ec7014"];
+        var expenseColors = ["#fde0dd","#fa9fb5","#e7e1ef","#d4b9da","#c994c7","#fcc5c0","#df65b0","#e7298a","#ce1256", "#f768a1","#dd3497","#e78ac3","#f1b6da","#c51b7d"];
+        functionChart.width( 500 )
+                .height( 800 )
+                .margins( {top: 20, left: 10, right: 10, bottom: 20} )
+                .transitionDuration( 750 )
+                .dimension( functions )
+                .group( functionsGroup )
+                .colors( d3.scale.category20() )
+//                .colors( expenseColors )
+//                .renderLabel( true )
+//                .title( function ( d )
+//        {
+//            return "";
+//        } )
+//                .elasticX( true )
+                .xAxis().ticks( 5 ).tickFormat( d3.format( "s" ) );
     },
 
     createChoroplethMap: function( countries, continentsDimension, continentsGroup )
@@ -78,8 +125,8 @@ var RCInterface = Class.create( {
                 .scale( [90] );
 
         var mapChart = dc.geoChoroplethChart( "#map-chart" );
-        mapChart.width( 800 )
-                .height( 400 )
+        mapChart.width( this.mapWidth )
+                .height( this.mapHeight )
                 .dimension( continentsDimension )
                 .group( continentsGroup )
                 .projection( projection )
@@ -93,30 +140,24 @@ var RCInterface = Class.create( {
         } );
     },
 
-    createNppChart: function( continentsDimension, nppGroup )
+    createBarChart: function( chartId, dimension, group )
     {
-        var nppChart = dc.barChart( "#npp-chart" );
+        var barChart = dc.barChart( chartId );
 
-        nppChart.height( 400 )
+        barChart.height( 400 )
                 .width( 300 )
                 .transitionDuration( 750 )
                 .margins( {top: 20, right: 10, bottom: 80, left: 80} )
-                .dimension( continentsDimension )
-                .group( nppGroup )
+                .dimension( dimension )
+                .group( group )
                 .brushOn( false )
-                .title( function ( d )
-        {
-            return d.value;
-        } )
-                .gap( 1 )
                 .elasticY( true )
                 .colors( ['#FF7F0E'] )
                 .xUnits( dc.units.ordinal )
-                .x( d3.scale.ordinal().domain( this.continents ) )
-                .y( d3.scale.linear().domain( [0, 5500000] ) )
+                .x( d3.scale.ordinal() )
+                .y( d3.scale.linear() )
                 .renderHorizontalGridLines( true )
                 .yAxis().tickFormat( d3.format( "s" ) );
-        nppChart.xAxis();
     },
 
     updateCharts: function()
@@ -140,6 +181,29 @@ var RCInterface = Class.create( {
                 .attr( "class", "campusLabel" )
                 .style( "text-anchor", "end" )
                 .attr( "transform", "translate(-10,0)rotate(315)" );
+    },
+
+    getValuesGroupByBudget: function( dimension, carbonBudget )
+    {
+        return dimension.group().reduce(
+                function ( p, v )
+                {
+                    if( carbonBudget == v["Carbon budget"] )
+                        p += v["Value"];
+                    return p;
+                },
+                function ( p, v )
+                {
+                    if( carbonBudget == v["Carbon budget"] )
+                        p -= v["Value"];
+                    return p;
+                },
+                function ()
+                {
+                    return "";
+                } );
     }
+
+
 
 } );

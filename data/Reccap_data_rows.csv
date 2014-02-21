@@ -1,0 +1,217 @@
+"Continents","Carbon budget","Value"
+"South Asia","GPP",
+"South Asia","NPP",-2213
+"South Asia","Heterotrophic Respiration",1993
+"South Asia","NEP",-220
+"South Asia","Fire",44
+"South Asia","Land use change",-14
+"South Asia","Atmospherica aerosol carbon export",
+"South Asia","NBP",-147
+"South Asia","Live product",
+"South Asia","Livestock consumption",
+"South Asia","Livestock trade",
+"South Asia","Harvest",
+"South Asia","Crop consumption",
+"South Asia","Crop trade",
+"South Asia","Logging",
+"South Asia","Wood decay",
+"South Asia","wood trade",
+"South Asia","C input to river",
+"South Asia","River export to ocean","42,9"
+"South Asia","Outgassing",
+"South Asia","Territorial FF and methane Emissions","444+37"
+"South Asia","FF trade",
+"South Asia","Non-territorial emissions",
+"South Asia","Non-territorial C stocks",
+"South Asia","Atmosphere",
+"South Asia","Units: Tg C/yr",
+"South Asia","A negative value indicates net carbon sink",
+"East Asia","GPP",
+"East Asia","NPP",
+"East Asia","Heterotrophic Respiration",
+"East Asia","NEP",-245
+"East Asia","Fire",18
+"East Asia","Land use change",-13
+"East Asia","Atmospherica aerosol carbon export",
+"East Asia","NBP",-262
+"East Asia","Live product",
+"East Asia","Livestock consumption",
+"East Asia","Livestock trade",
+"East Asia","Harvest",
+"East Asia","Crop consumption",
+"East Asia","Crop trade",
+"East Asia","Logging",
+"East Asia","Wood decay",
+"East Asia","wood trade",
+"East Asia","C input to river",
+"East Asia","River export to ocean",48
+"East Asia","Outgassing",
+"East Asia","Territorial FF and methane Emissions",1500
+"East Asia","FF trade",
+"East Asia","Non-territorial emissions",
+"East Asia","Non-territorial C stocks",
+"East Asia","Atmosphere",
+"East Asia","Units: Tg C/yr",
+"East Asia","A negative value indicates net carbon sink",
+"Russia","GPP",
+"Russia","NPP",-4763
+"Russia","Heterotrophic Respiration",3463
+"Russia","NEP",-1056
+"Russia","Fire",117
+"Russia","Land use change",-34
+"Russia","Atmospherica aerosol carbon export",
+"Russia","NBP","-734,8"
+"Russia","Live product",
+"Russia","Livestock consumption",
+"Russia","Livestock trade",
+"Russia","Harvest",
+"Russia","Crop consumption","170,4"
+"Russia","Crop trade",18
+"Russia","Logging",63
+"Russia","Wood decay",
+"Russia","wood trade",20
+"Russia","C input to river",
+"Russia","River export to ocean","56,37"
+"Russia","Outgassing",
+"Russia","Territorial FF and methane Emissions",454
+"Russia","FF trade",
+"Russia","Non-territorial emissions",
+"Russia","Non-territorial C stocks",
+"Russia","Atmosphere",
+"Russia","Units: Tg C/yr",
+"Russia","A negative value indicates net carbon sink",
+"Europe","GPP",
+"Europe","NPP",
+"Europe","Heterotrophic Respiration",
+"Europe","NEP",-953
+"Europe","Fire","4,3"
+"Europe","Land use change",1
+"Europe","Atmospherica aerosol carbon export",
+"Europe","NBP",-205
+"Europe","Live product",
+"Europe","Livestock consumption",
+"Europe","Livestock trade",
+"Europe","Harvest",
+"Europe","Crop consumption",
+"Europe","Crop trade",
+"Europe","Logging",102
+"Europe","Wood decay",
+"Europe","wood trade",
+"Europe","C input to river",72
+"Europe","River export to ocean",36
+"Europe","Outgassing",66
+"Europe","Territorial FF and methane Emissions",1176
+"Europe","FF trade",
+"Europe","Non-territorial emissions",
+"Europe","Non-territorial C stocks",
+"Europe","Atmosphere",1013
+"Europe","Units: Tg C/yr",
+"Europe","A negative value indicates net carbon sink",
+"South America","GPP",
+"South America","NPP",
+"South America","Heterotrophic Respiration",
+"South America","NEP",
+"South America","Fire",
+"South America","Land use change","215 (Deforestation)"
+"South America","Atmospherica aerosol carbon export",
+"South America","NBP",-500
+"South America","Live product",
+"South America","Livestock consumption",
+"South America","Livestock trade","28,5"
+"South America","Harvest",
+"South America","Crop consumption",
+"South America","Crop trade","12,5"
+"South America","Logging",
+"South America","Wood decay",
+"South America","wood trade",14
+"South America","C input to river",
+"South America","River export to ocean",-70
+"South America","Outgassing",
+"South America","Territorial FF and methane Emissions",260
+"South America","FF trade",
+"South America","Non-territorial emissions",
+"South America","Non-territorial C stocks",
+"South America","Atmosphere",
+"South America","Units: Tg C/yr",
+"South America","A negative value indicates net carbon sink",
+"Australia","GPP",
+"Australia","NPP",-2210
+"Australia","Heterotrophic Respiration",1997
+"Australia","NEP",-213
+"Australia","Fire",127
+"Australia","Land use change",18
+"Australia","Atmospherica aerosol carbon export",1
+"Australia","NBP",-36
+"Australia","Live product",3
+"Australia","Livestock consumption",2
+"Australia","Livestock trade",
+"Australia","Harvest",20
+"Australia","Crop consumption",9
+"Australia","Crop trade",
+"Australia","Logging",6
+"Australia","Wood decay",5
+"Australia","wood trade",
+"Australia","C input to river",
+"Australia","River export to ocean",2
+"Australia","Outgassing",
+"Australia","Territorial FF and methane Emissions",95
+"Australia","FF trade",
+"Australia","Non-territorial emissions",155
+"Australia","Non-territorial C stocks",155
+"Australia","Atmosphere","43+155"
+"Australia","Units: Tg C/yr",
+"Australia","A negative value indicates net carbon sink",
+"Arctic tundra","GPP",-2668
+"Arctic tundra","NPP",-1549
+"Arctic tundra","Heterotrophic Respiration",1386
+"Arctic tundra","NEP",-153
+"Arctic tundra","Fire",78
+"Arctic tundra","Land use change",
+"Arctic tundra","Atmospherica aerosol carbon export",
+"Arctic tundra","NBP",-97
+"Arctic tundra","Live product",
+"Arctic tundra","Livestock consumption",
+"Arctic tundra","Livestock trade",
+"Arctic tundra","Harvest",
+"Arctic tundra","Crop consumption",
+"Arctic tundra","Crop trade",
+"Arctic tundra","Logging",
+"Arctic tundra","Wood decay",
+"Arctic tundra","wood trade",
+"Arctic tundra","C input to river",
+"Arctic tundra","River export to ocean",
+"Arctic tundra","Outgassing",
+"Arctic tundra","Territorial FF and methane Emissions",
+"Arctic tundra","FF trade",
+"Arctic tundra","Non-territorial emissions",
+"Arctic tundra","Non-territorial C stocks",
+"Arctic tundra","Atmosphere",
+"Arctic tundra","Units: Tg C/yr",
+"Arctic tundra","A negative value indicates net carbon sink",
+"Africa","GPP",
+"Africa","NPP",-13785
+"Africa","Heterotrophic Respiration",12050
+"Africa","NEP",-1735
+"Africa","Fire",1020
+"Africa","Land use change",510
+"Africa","Atmospherica aerosol carbon export",
+"Africa","NBP",-697
+"Africa","Live product",
+"Africa","Livestock consumption",
+"Africa","Livestock trade",
+"Africa","Harvest",
+"Africa","Crop consumption",
+"Africa","Crop trade",
+"Africa","Logging",
+"Africa","Wood decay",
+"Africa","wood trade",
+"Africa","C input to river",
+"Africa","River export to ocean",63
+"Africa","Outgassing",
+"Africa","Territorial FF and methane Emissions",340
+"Africa","FF trade",
+"Africa","Non-territorial emissions",
+"Africa","Non-territorial C stocks",
+"Africa","Atmosphere",
+"Africa","Units: Tg C/yr",
+"Africa","A negative value indicates net carbon sink",

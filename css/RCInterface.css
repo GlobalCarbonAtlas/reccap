@@ -112,7 +112,7 @@ g.oceania path {
     stroke: #DDDDDD;
 }
 
-/* ************** DATA ************** */
+/* ************** DATA TABLE ************** */
 .dc-data-table {
     fill: #525252;
     font: 12px "Futura", sans-serif;
@@ -156,3 +156,17 @@ g.oceania path {
     font-size: 12px;
 }
 
+#function-pie-chart {
+    left: 17px;
+    position: relative;
+    top: -41px;
+}
+
+.functionsPie {
+    margin-left: 100px;
+}
+
+/* ************** DATA ROW ************** */
+.functionsRow {
+    float: right;
+}

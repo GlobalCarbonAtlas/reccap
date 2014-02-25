@@ -80,8 +80,8 @@ var RCInterface = Class.create( {
                     } );
 
             // Create objects
-//            this.createDoubleBarChart( "#npp-gpp-chart", 300, 400, continents, nppGppGroup, "gpp", "GPP", "npp", "NPP" );
-            this.createBarChart( "#hr-chart", 300, 400, continents, hrGroup );
+            this.createDoubleBarChart( "#npp-gpp-chart", 300, 400, continents, nppGppGroup, "gpp", "GPP", "npp", "NPP" );
+            this.createBarChart( "#hr-chart", 300, 200, continents, hrGroup );
             this.createPieChart( "#function-pie-chart", carbonBudgets, budgetAmountGroup );
             this.createFunctionChart( "#function-chart", 500, 800, carbonBudgets, budgetAmountGroup );
             this.createDataTable( "#data-count", "#data-table", data, data.groupAll(), continents );

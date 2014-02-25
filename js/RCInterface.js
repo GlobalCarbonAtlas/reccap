@@ -24,24 +24,37 @@ var RCInterface = Class.create( {
         {
             var data = crossfilter( csv );
 
+            // TODO : see why it applies to ALL data
+            data.dimension(
+                    function( d )
+                    {
+                        return d["Value"];
+                    } ).filter(
+                    function( d )
+                    {
+                        if( 0 < Math.abs( d ) )
+                            return d;
+                    } );
+
             // Dimensions
-            var continents = data.dimension( jQuery.proxy( function( d )
+            var continents = data.dimension( function( d )
             {
                 return d["Continents"];
-            }, this ) );
+            } );
 
             var carbonBudgets = data.dimension( function( d )
             {
                 return d["Carbon budget"];
             } );
 
+
             // Groups
             var nppGroup = this.getValuesGroupByBudget( continents, "NPP" );
             var gppGroup = this.getValuesGroupByBudget( continents, "GPP" );
             var hrGroup = this.getValuesGroupByBudget( continents, "Heterotrophic Respiration" );
-            var budgetAmoutGroup = carbonBudgets.group().reduceSum( function ( d )
+            var budgetAmountGroup = carbonBudgets.group().reduceSum( function ( d )
             {
-                return d["Value"];
+                return d3.format( ".2f" )( d["Value"] );
             } );
 
             var nppGppGroup = continents.group().reduce(
@@ -67,10 +80,10 @@ var RCInterface = Class.create( {
                     } );
 
             // Create objects
-            this.createDoubleBarChart( "#npp-gpp-chart", 300, 400, continents, nppGppGroup, "gpp", "GPP", "npp", "NPP" );
+//            this.createDoubleBarChart( "#npp-gpp-chart", 300, 400, continents, nppGppGroup, "gpp", "GPP", "npp", "NPP" );
             this.createBarChart( "#hr-chart", 300, 400, continents, hrGroup );
-            this.createPieChart( "#function-pie-chart", carbonBudgets, budgetAmoutGroup );
-            this.createFunctionChart( "#function-chart", carbonBudgets, budgetAmoutGroup );
+            this.createPieChart( "#function-pie-chart", carbonBudgets, budgetAmountGroup );
+            this.createFunctionChart( "#function-chart", 500, 800, carbonBudgets, budgetAmountGroup );
             this.createDataTable( "#data-count", "#data-table", data, data.groupAll(), continents );
             d3.json( "data/continent-geogame-110m.json", jQuery.proxy( function( error, world )
             {
@@ -121,7 +134,7 @@ var RCInterface = Class.create( {
                 .colors( ['#FF7F0E'] )
                 .xUnits( dc.units.ordinal )
                 .x( d3.scale.ordinal() )
-                .y( d3.scale.linear().domain( [0, 1000] ) )
+//                .y( d3.scale.linear() )
                 .renderHorizontalGridLines( true )
                 .yAxis().tickFormat( d3.format( "s" ) );
     },
@@ -146,6 +159,7 @@ var RCInterface = Class.create( {
         } )
                 .legend( dc.legend().x( 250 ).y( 280 ) )
                 .elasticY( true )
+                .renderHorizontalGridLines( true )
                 .title( function( d )
         {
             return d.key + "\n" + titleGroup1 + ": " + d.value.gpp + "\n" + titleGroup2 + ": " + d.value.npp;
@@ -183,19 +197,16 @@ var RCInterface = Class.create( {
                 .dimension( tableD )
                 .group( function( d )
         {
-//            if( d["Value"] )
             return d["Continents"];
         } )
                 .size( 300 )
                 .columns( [
                 function ( d )
                 {
-//                    if( d["Value"] )
                     return d["Carbon budget"];
                 },
                 function ( d )
                 {
-//                    if( d["Value"] )
                     return d["Value"];
                 }
         ] ).renderlet( function ( table )
@@ -204,14 +215,14 @@ var RCInterface = Class.create( {
         } );
     },
 
-    createFunctionChart: function( chartId, functions, functionsGroup )
+    createFunctionChart: function( chartId, width, height, functions, functionsGroup )
     {
 //        var expenseColors = ["#fee391","#fec44f","#fe9929","#fd8d3c","#e08214","#fdb863","#fdae6b","#ec7014"];
         var expenseColors = ["#fde0dd","#fa9fb5","#e7e1ef","#d4b9da","#c994c7","#fcc5c0","#df65b0","#e7298a","#ce1256", "#f768a1","#dd3497","#e78ac3","#f1b6da","#c51b7d"];
 
         var functionChart = dc.rowChart( chartId )
-                .width( 500 )
-                .height( 800 )
+                .width( width )
+                .height( height )
                 .margins( {top: 20, left: 10, right: 10, bottom: 20} )
                 .transitionDuration( 750 )
                 .dimension( functions )
@@ -223,8 +234,8 @@ var RCInterface = Class.create( {
 //        {
 //            return "";
 //        } )
-//                .elasticX( true )
-                .xAxis().ticks( 5 ).tickFormat( d3.format( "s" ) );
+                .elasticX( true )
+                .xAxis().tickFormat( d3.format( "s" ) );
     },
 
 
@@ -278,3 +289,34 @@ var RCInterface = Class.create( {
 
 
 } );
+
+
+function print_filter( filter )
+{
+    var f = eval( filter );
+    if( typeof(f.length) != "undefined" )
+    {
+    }
+    else
+    {
+    }
+    if( typeof(f.top) != "undefined" )
+    {
+        f = f.top( Infinity );
+    }
+    else
+    {
+    }
+    if( typeof(f.dimension) != "undefined" )
+    {
+        f = f.dimension(
+                function( d )
+                {
+                    return "";
+                } ).top( Infinity );
+    }
+    else
+    {
+    }
+    console.log( filter + "(" + f.length + ") = " + JSON.stringify( f ).replace( "[", "[\n\t" ).replace( /}\,/g, "},\n\t" ).replace( "]", "\n]" ) );
+}

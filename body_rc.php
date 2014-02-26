@@ -8,9 +8,11 @@
         </div>
 
         <div class="DCObject">
-            <h2>Choropleth Map</h2>
+            <div class="">
+                <h2>Choropleth Map</h2>
 
-            <div id="map-chart"></div>
+                <div id="map-chart"></div>
+            </div>
             <div id="reset">Reset All</div>
         </div>
 

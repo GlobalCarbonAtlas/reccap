@@ -16,8 +16,7 @@
     color: #525252;
     cursor: pointer;
     text-align: right;
-    position: relative;
-    top: 10px;
+    margin-right: 15px;
 }
 
 /* ************** MAP ************** */

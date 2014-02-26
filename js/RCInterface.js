@@ -91,7 +91,7 @@ var RCInterface = Class.create( {
             this.createDoubleBarChart( "#npp-gpp-chart", 300, 400, continents, nppGppGroup, "gpp", "GPP", "npp", "NPP" );
             this.createBarChart( "#hr-chart", 300, 200, continents, hrGroup );
             this.createPieChart( "#function-pie-chart", carbonBudgets, budgetAmountGroup );
-            this.createFunctionChart( "#function-chart", 500, 800, carbonBudgets, filteredFunctionAmountGroup );
+            this.createRowChart( "#function-chart", 500, 800, carbonBudgets, filteredFunctionAmountGroup );
             this.createDataTable( "#data-count", "#data-table", data, data.groupAll(), continents );
             d3.json( "data/continent-geogame-110m.json", jQuery.proxy( function( error, world )
             {
@@ -186,13 +186,12 @@ var RCInterface = Class.create( {
             .radius( 50 )
             .innerRadius( 30 )
             .dimension( dimension )
-//                .title( function ( d )
-//        {
-//            return "";
-//        } )
+            .title( function ( d )
+            {
+                return "";
+            } )
             .group( group )
             .colors( d3.scale.category20() );
-//                .renderLabel( false );
     },
 
     createDataTable: function( countId, tableId, allD, allG, tableD )
@@ -223,7 +222,7 @@ var RCInterface = Class.create( {
             } );
     },
 
-    createFunctionChart: function( chartId, width, height, functions, functionsGroup )
+    createRowChart: function( chartId, width, height, functions, functionsGroup )
     {
 //        var expenseColors = ["#fee391","#fec44f","#fe9929","#fd8d3c","#e08214","#fdb863","#fdae6b","#ec7014"];
         var expenseColors = ["#fde0dd","#fa9fb5","#e7e1ef","#d4b9da","#c994c7","#fcc5c0","#df65b0","#e7298a","#ce1256", "#f768a1","#dd3497","#e78ac3","#f1b6da","#c51b7d"];
@@ -258,15 +257,15 @@ var RCInterface = Class.create( {
             .offset( [-10, 0] )
             .html( jQuery.proxy( function ( d )
         {
-            return "<span class='d3-tipTitle'>" + d.data.key + "</span> : " + this.numberFormat( d.y );
+            return "<span class='d3-tipTitle'>" + d.data.key + "</span> : " + this.numberFormat( d.data.value );
         }, this ) );
 
-        d3.selectAll( ".bar" ).call( barTip );
-        d3.selectAll( ".bar" )
+        d3.selectAll( ".bar, .pie-slice" ).call( barTip );
+        d3.selectAll( ".bar, .pie-slice" )
             .on( 'mouseover', barTip.show )
             .on( 'mouseout', barTip.hide );
 
-        // NPP : rotate the x Axis labels
+        // bar chart : rotate the x Axis labels
         d3.selectAll( "g.x g text" )
             .attr( "class", "campusLabel" )
             .style( "text-anchor", "end" )

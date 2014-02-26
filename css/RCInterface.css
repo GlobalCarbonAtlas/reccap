@@ -13,7 +13,7 @@
 }
 
 #reset {
-    color: #888888;
+    color: #525252;
     cursor: pointer;
     text-align: right;
     position: relative;
@@ -160,7 +160,7 @@ g.oceania path {
 /* ************** PIE ************** */
 .dc-chart .pie-slice {
     cursor: pointer;
-    fill: black;
+    fill: #525252;
     font-size: 12px;
 }
 

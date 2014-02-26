@@ -11,6 +11,7 @@
             <h2>Choropleth Map</h2>
 
             <div id="map-chart"></div>
+            <div id="reset">Reset All</div>
         </div>
 
         <div class="DCObject">

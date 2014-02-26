@@ -124,7 +124,7 @@ var RCInterface = Class.create( {
             } )
             .title( function ( d )
             {
-                return d.key + ", " + d.value;
+                return "";
             } );
     },
 
@@ -237,10 +237,10 @@ var RCInterface = Class.create( {
             .colors( d3.scale.category20() )
 //                .colors( expenseColors )
 //                .renderLabel( true )
-//                .title( function ( d )
-//        {
-//            return "";
-//        } )
+            .title( function ( d )
+            {
+                return "";
+            } )
             .elasticX( true )
             .xAxis().tickFormat( d3.format( "s" ) );
     },
@@ -257,11 +257,16 @@ var RCInterface = Class.create( {
             .offset( [-10, 0] )
             .html( jQuery.proxy( function ( d )
         {
-            return "<span class='d3-tipTitle'>" + d.data.key + "</span> : " + this.numberFormat( d.data.value );
+            if(d.properties)
+                return  "<span class='d3-tipTitle'>" + d.properties.continent + "</span>";
+            if(d.data)
+                return "<span class='d3-tipTitle'>" + d.data.key + "</span> : " + this.numberFormat( d.data.value );
+            else
+                return "<span class='d3-tipTitle'>" + d.key + "</span> : " + this.numberFormat( d.value );
         }, this ) );
 
-        d3.selectAll( ".bar, .pie-slice" ).call( barTip );
-        d3.selectAll( ".bar, .pie-slice" )
+        d3.selectAll( ".country, .bar, .pie-slice, .row" ).call( barTip );
+        d3.selectAll( ".country, .bar, .pie-slice, .row" )
             .on( 'mouseover', barTip.show )
             .on( 'mouseout', barTip.hide );
 

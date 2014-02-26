@@ -147,6 +147,7 @@ var RCInterface = Class.create( {
             .yAxis().tickFormat( d3.format( "s" ) );
     },
 
+    // TODO : check the stack calcul
     createDoubleBarChart: function( chartId, width, height, dimension, group, groupValue1, titleGroup1, groupValue2, titleGroup2 )
     {
         dc.barChart( chartId )
@@ -156,21 +157,21 @@ var RCInterface = Class.create( {
             .dimension( dimension )
             .xUnits( dc.units.ordinal )
             .x( d3.scale.ordinal() )
-            .group( group, titleGroup1 )
+            .group( group, titleGroup2 )
             .valueAccessor( function( d )
-            {
-                return d.value[groupValue1];
-            } )
-            .stack( group, titleGroup2, function( d )
-            {
-                return d.value[groupValue2];
-            } )
+        {
+            return d.value[groupValue2] ? parseFloat(d.value[groupValue2]) : 0;
+        } )
+            .stack( group, titleGroup1, function( d )
+        {
+            return d.value[groupValue1] && d.value[groupValue2] ? parseFloat( d.value[groupValue1] ) - parseFloat( d.value[groupValue2] ) : 0;
+        } )
             .legend( dc.legend().x( 250 ).y( 280 ) )
             .elasticY( true )
             .renderHorizontalGridLines( true )
             .title( function( d )
             {
-                return d.key + "\n" + titleGroup1 + ": " + d.value.gpp + "\n" + titleGroup2 + ": " + d.value.npp;
+                return "";
             } )
             .yAxis().tickFormat( d3.format( "s" ) );
     },
@@ -225,9 +226,8 @@ var RCInterface = Class.create( {
     createRowChart: function( chartId, width, height, functions, functionsGroup )
     {
 //        var expenseColors = ["#fee391","#fec44f","#fe9929","#fd8d3c","#e08214","#fdb863","#fdae6b","#ec7014"];
-        var expenseColors = ["#fde0dd","#fa9fb5","#e7e1ef","#d4b9da","#c994c7","#fcc5c0","#df65b0","#e7298a","#ce1256", "#f768a1","#dd3497","#e78ac3","#f1b6da","#c51b7d"];
 
-        var functionChart = dc.rowChart( chartId )
+        dc.rowChart( chartId )
             .width( width )
             .height( height )
             .margins( {top: 20, left: 10, right: 10, bottom: 20} )
@@ -235,8 +235,7 @@ var RCInterface = Class.create( {
             .dimension( functions )
             .group( functionsGroup )
             .colors( d3.scale.category20() )
-//                .colors( expenseColors )
-//                .renderLabel( true )
+//            .colors( expenseColors )
             .title( function ( d )
             {
                 return "";
@@ -258,11 +257,23 @@ var RCInterface = Class.create( {
             .html( jQuery.proxy( function ( d )
         {
             if(d.properties)
+            // Choropleth
                 return  "<span class='d3-tipTitle'>" + d.properties.continent + "</span>";
             if(d.data)
-                return "<span class='d3-tipTitle'>" + d.data.key + "</span> : " + this.numberFormat( d.data.value );
+            {
+                if("object" == jQuery.type(d.data.value))
+                {
+                    // Double Bar chart
+                    var content = this.getToolTipContentForMultipleValues(d.data.value);
+                    return "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + content;
+                }
+                else
+                // Simple Bar chart
+                    return "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.data.value );
+            }
             else
-                return "<span class='d3-tipTitle'>" + d.key + "</span> : " + this.numberFormat( d.value );
+            // Row chart
+                return "<span class='d3-tipTitle'>" + d.key + " : </span>" + this.numberFormat( d.value );
         }, this ) );
 
         d3.selectAll( ".country, .bar, .pie-slice, .row" ).call( barTip );
@@ -275,6 +286,16 @@ var RCInterface = Class.create( {
             .attr( "class", "campusLabel" )
             .style( "text-anchor", "end" )
             .attr( "transform", "translate(-10,0)rotate(315)" );
+    },
+
+    getToolTipContentForMultipleValues: function(valueArray)
+    {
+        var content="";
+        jQuery.each(Object.keys(valueArray), jQuery.proxy(function(i,d)
+        {
+            content += " "+d+ " : "+this.numberFormat( valueArray[d]) + ",";
+        }, this));
+        return content.slice(0,-1);
     },
 
     getValuesGroupByBudget: function( dimension, carbonBudget )

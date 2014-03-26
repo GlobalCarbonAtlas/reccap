@@ -39,7 +39,7 @@
         </div>
 
         <div class="DCObject">
-            <h2>Bubble</h2>
+            <h2>GPP / NPP</h2>
 
             <div id="bubble-chart"></div>
         </div>

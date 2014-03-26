@@ -120,6 +120,7 @@ var RCInterface = Class.create( {
             this.createFluxChart( "#flux-chart", 500, 800, carbonBudgets, filteredFunctionAmountGroup );
             this.createPieChart( "#function-pie-chart", carbonBudgets, budgetAmountGroup );
             this.createRowChart( "#function-chart", 500, 800, carbonBudgets, filteredFunctionAmountGroup );
+            this.createBubbleChart( "#bubble-chart", 400, 500, continents, nppGppGroup );
             this.createDataTable( "#data-count", "#data-table", data, data.groupAll(), continents );
             d3.json( "data/continent-geogame-110m.json", jQuery.proxy( function( error, world )
             {
@@ -289,6 +290,57 @@ var RCInterface = Class.create( {
         } )
                 .elasticX( true )
                 .xAxis().tickFormat( d3.format( "s" ) );
+    },
+
+    createBubbleChart: function( chartId, width, height, functions, functionsGroup )
+    {
+        var bubbleChart = dc.bubbleChart( chartId )
+                .width( width )
+                .height( height )
+                .margins( {top: 0, right: 0, bottom: 70, left: 90} )
+                .dimension( functions )
+                .group( functionsGroup )
+                .colors( d3.scale.category20() )
+                .keyAccessor( function ( p )
+        {
+            return p.value["npp"] ? Math.abs( p.value["npp"] ) : 1;
+        } )
+                .valueAccessor( function( p )
+        {
+            return p.value["gpp"] ? Math.abs( p.value["gpp"] ) : 1;
+        } )
+                .radiusValueAccessor( function ( p )
+        {
+            return p.value["npp"] ? Math.abs( p.value["npp"] ) : 1;
+        } )
+                .x( d3.scale.linear().domain( [0, 20000] ) )
+                .r( d3.scale.linear().domain( [0, 50000] ) )
+//                .minRadiusWithLabel( 15 )
+                .elasticY( false )
+                .yAxisPadding( 100 )
+                .elasticX( false )
+                .xAxisPadding( 100 )
+//                .maxBubbleRelativeSize( 0.07 )
+                .renderHorizontalGridLines( true )
+                .renderVerticalGridLines( true )
+//                .renderLabel( true )
+//                .renderTitle( true )
+                .title( function ( p )
+        {
+            return p.key
+                    + "\n"
+                    + "GPP: " + p.value["gpp"] + "\n"
+                    + "NPP: " + p.value["npp"];
+        } );
+
+        bubbleChart.yAxis().tickFormat( function ( s )
+        {
+            return s + " gpp";
+        } );
+        bubbleChart.xAxis().tickFormat( function ( s )
+        {
+            return s + " npp";
+        } );
     },
 
 

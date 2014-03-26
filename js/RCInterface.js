@@ -117,6 +117,7 @@ var RCInterface = Class.create( {
             this.createBarChart( "#landUse-chart", 300, 250, continents, landUseGroup );
             this.createBarChart( "#riverExport-chart", 300, 250, continents, riverExportGroup );
             this.createBarChart( "#logging-chart", 300, 250, continents, loggingGroup );
+            this.createFluxChart( "#flux-chart", 500, 800, carbonBudgets, filteredFunctionAmountGroup );
             this.createPieChart( "#function-pie-chart", carbonBudgets, budgetAmountGroup );
             this.createRowChart( "#function-chart", 500, 800, carbonBudgets, filteredFunctionAmountGroup );
             this.createDataTable( "#data-count", "#data-table", data, data.groupAll(), continents );
@@ -201,6 +202,25 @@ var RCInterface = Class.create( {
             return "";
         } )
                 .yAxis().tickFormat( d3.format( "s" ) );
+    },
+
+    createFluxChart: function( chartId, width, height, functions, functionsGroup )
+    {
+        dc_lsce.fluxChart( chartId )
+                .width( width )
+                .height( height )
+                .margins( {top: 20, left: 10, right: 10, bottom: 20} )
+                .transitionDuration( 750 )
+                .dimension( functions )
+                .group( functionsGroup )
+                .colors( d3.scale.category20() )
+//            .colors( expenseColors )
+                .title( function ( d )
+        {
+            return "";
+        } )
+                .elasticX( true )
+                .xAxis().tickFormat( d3.format( "s" ) );
     },
 
     createPieChart: function( chartId, dimension, group )

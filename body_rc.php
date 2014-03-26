@@ -32,6 +32,14 @@
 
     <div class="rowWrapper">
         <div class="DCObject">
+            <h2>Flux</h2>
+
+            <div id="flux-chart"></div>
+        </div>
+    </div>
+
+    <div class="rowWrapper">
+        <div class="DCObject">
             <h2>Data</h2>
 
             <div id="data-count" class="dc-data-count dc-chart">

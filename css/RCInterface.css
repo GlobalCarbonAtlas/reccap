@@ -1,6 +1,10 @@
 @media print {
 }
 
+#pageWrapper {
+    /*background: none repeat scroll 0 0 #2C3537;*/
+}
+
 .DCObject {
     float: left;
     margin-right: 10px;

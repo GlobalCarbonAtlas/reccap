@@ -26,6 +26,7 @@
     <script type="text/javascript" src="js/dc.js-master/web/js/d3.js"></script>
     <script type="text/javascript" src="js/dc.js-master/web/js/crossfilter.js"></script>
     <script type="text/javascript" src="js/dc.js-master/web/js/dc.js"></script>
+    <script type="text/javascript" src="js/dc_lsce.js"></script>
     <script type="text/javascript" src="js/library/topojson.v1.min.js"></script>
     <script type="text/javascript" src="js/library/d3.tip.min.js"></script>
     <script type="text/javascript" src="js/library/jquery.class.js"></script>

@@ -34,11 +34,21 @@
         <div class="DCObject">
             <h2>Flux</h2>
 
-            <div id="flux-chart"></div>
+            <img src="img/CarbonBudget_maquette.jpg" width="800px"/>
+            <!--            <div id="flux-chart"></div>-->
         </div>
+
+        <div class="DCObject">
+            <h2>Bubble</h2>
+
+            <div id="bubble-chart"></div>
+        </div>
+
     </div>
 
     <div class="rowWrapper">
+        <BR/> <BR/>
+
         <div class="DCObject">
             <h2>Data</h2>
 

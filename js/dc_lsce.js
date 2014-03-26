@@ -1,6 +1,7 @@
 /**
  The entire dc_lsce.js library is scoped under **dc_lsce** name space and fully depends on dc.js library.
  It's just an add for a specific chart.
+ Test
  **/
 
 dc_lsce = (function()

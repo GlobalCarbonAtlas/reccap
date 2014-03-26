@@ -48,12 +48,34 @@
                 </thead>
             </table>
         </div>
+
+        <div class="DCObject">
+            <div class="smallBar">
+                <h2>Land use change</h2>
+
+                <div id="landUse-chart"></div>
+            </div>
+
+            <div class="smallBar">
+                <h2>River export to ocean</h2>
+
+                <div id="riverExport-chart"></div>
+            </div>
+
+            <div class="smallBar">
+                <h2>Logging</h2>
+
+                <div id="logging-chart"></div>
+            </div>
+        </div>
+
         <div class="DCObject functionsRow">
             <h2>Functions</h2>
 
             <div id="function-chart"></div>
         </div>
     </div>
+
 </div>
 
 <script type="text/javascript">

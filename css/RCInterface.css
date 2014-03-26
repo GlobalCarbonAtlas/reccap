@@ -20,7 +20,11 @@
 
 /* ************** MAP ************** */
 #map-chart {
-    /*width: 0%;*/
+/*width: 0%;*/
+}
+
+g.country {
+    cursor: pointer;
 }
 
 g.asia path {
@@ -175,4 +179,10 @@ g.oceania path {
 /* ************** DATA ROW ************** */
 .functionsRow {
     float: right;
+}
+
+/* ************** BAR ************** */
+.smallBar {
+    min-height: 280px;
+    margin-left: 70px;
 }

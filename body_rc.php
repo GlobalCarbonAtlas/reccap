@@ -4,14 +4,14 @@
         <div class="DCObject">
             <h2>Net Primary Production</h2>
 
-            <div id="npp-gpp-chart"></div>
+<!--            <div id="npp-gpp-chart"></div>-->
         </div>
 
         <div class="DCObject">
             <div class="">
                 <h2>Choropleth Map</h2>
 
-                <div id="map-chart"></div>
+<!--                <div id="map-chart"></div>-->
             </div>
             <div id="reset">Reset All</div>
         </div>
@@ -19,13 +19,13 @@
         <div class="DCObject">
             <h2>Heterotrophic Respiration</h2>
 
-            <div id="hr-chart"></div>
+<!--            <div id="hr-chart"></div>-->
         </div>
 
         <div class="DCObject functionsPie">
             <h2>Functions</h2>
 
-            <div id="function-pie-chart"></div>
+<!--            <div id="function-pie-chart"></div>-->
         </div>
 
     </div>
@@ -34,8 +34,8 @@
         <div class="DCObject">
             <h2>Flux</h2>
 
-            <img src="img/CarbonBudget_maquette.jpg" width="800px"/>
-            <!--            <div id="flux-chart"></div>-->
+<!--            <img src="img/CarbonBudget_maquette.jpg" width="800px"/>-->
+                        <div id="flux-chart"></div>
         </div>
 
         <div class="DCObject">

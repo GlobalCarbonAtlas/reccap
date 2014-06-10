@@ -1,30 +1,46 @@
 @media print {
 }
 
+/*[class*="col"] { background: #EEF; }*/
+/*[class*="col"] [class*="col"] { background: #FEE; }*/
+
+body {
+    font-family: "Lato", Arial;
+}
+
 #pageWrapper {
-    /*background: none repeat scroll 0 0 #2C3537;*/
+    background: none repeat scroll 0 0 #2C3537;
+    color: #FFFFFF;
+    font-size: 13px;
 }
 
-.DCObject {
-    float: left;
-    margin-right: 10px;
+.title {
+    color: #FFFFFF;
+    font-weight: 500;
+    font-size: 36px;
+    text-align: center;
 }
 
-.rowWrapper {
-    float: left;
-    width: 100%;
-}
+/* ************** Object ************** */
+/*.DCObject {*/
+/*margin-right: 10px;*/
+/*background-color: #FFFFFF;*/
+/*}*/
 
-#reset {
-    color: #525252;
-    cursor: pointer;
-    text-align: right;
-    margin-right: 15px;
-}
+/*.rowWrapper {*/
+/*width: 100%;*/
+/*}*/
+
+/*#reset {*/
+/*color: #525252;*/
+/*cursor: pointer;*/
+/*text-align: right;*/
+/*margin-right: 15px;*/
+/*}*/
 
 /* ************** MAP ************** */
 #map-chart {
-/*width: 0%;*/
+    width: 0%;
 }
 
 g.country {
@@ -72,121 +88,131 @@ g.oceania path {
     stroke-width: 0;
 }
 
-/* ************** D3-TIP ************** */
-.d3-tip {
-    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);
-    border-radius: 8px 8px 8px 8px;
-    color: #FFFFFF;
-    font-weight: bold;
-    line-height: 1;
-    padding: 12px;
-}
-
-.d3-tip:after {
-    color: rgba(0, 0, 0, 0.8);
-    content: "▼";
-    display: inline;
-    font-size: 10px;
-    line-height: 1;
-    position: absolute;
-    text-align: center;
-    width: 100%;
-}
-
-.d3-tip.n:after {
-    left: 0;
-    margin: -1px 0 0;
-    top: 100%;
-}
-
-.d3-tipTitle {
-    color: #FF7F0E;
-}
-
-/* ************** NPP ************** */
-#npp-chart .x.axis text, #hr-chart .x.axis text {
-    font: 12px "Futura", sans-serif;
-    text-anchor: end;
-}
-
-#npp-chart .axis text, #hr-chart .axis text {
-    fill: #525252;
-}
-
-#npp-chart .grid-line line, #hr-chart .grid-line line {
-    fill: none;
-    opacity: 0.5;
-    shape-rendering: crispedges;
-    stroke: #CCCCCC;
-}
-
-#npp-chart .axis path, #hr-chart .axis path, .axis line {
+/* ************** FUNCTIONS ************** */
+.dc-chart .axis text {
+    stroke: #FFFFFF;
     fill: none;
     shape-rendering: crispedges;
-    stroke: #DDDDDD;
-}
-
-/* ************** DATA TABLE ************** */
-.dc-data-table {
-    fill: #525252;
-    font: 12px "Futura", sans-serif;
-}
-
-.dc-data-table th {
-    fill: #525252;
-    font: 14px "Futura", sans-serif;
-    text-align: right;
-}
-
-.dc-table-column {
-    text-align: right !important;
-}
-
-.dc-chart g.row text {
-    cursor: pointer;
-    fill: #525252;
-    font: 12px "Futura", sans-serif;
 }
 
 .dc-chart .axis path, .axis line {
-    fill: none;
-    shape-rendering: crispedges;
-    stroke: #DDDDDD;
+    stroke: #FFFFFF;
 }
+/* ************** D3-TIP ************** */
+/*.d3-tip {*/
+/*background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);*/
+/*border-radius: 8px 8px 8px 8px;*/
+/*color: #FFFFFF;*/
+/*font-weight: bold;*/
+/*line-height: 1;*/
+/*padding: 12px;*/
+/*}*/
 
-.dc-chart .axis text {
-    fill: #525252;
-    font: 12px "Futura", sans-serif;
-}
+/*.d3-tip:after {*/
+/*color: rgba(0, 0, 0, 0.8);*/
+/*content: "▼";*/
+/*display: inline;*/
+/*font-size: 10px;*/
+/*line-height: 1;*/
+/*position: absolute;*/
+/*text-align: center;*/
+/*width: 100%;*/
+/*}*/
 
-.dc-data-count, .dc-data-table {
-    margin-left: 20px;
-}
+/*.d3-tip.n:after {*/
+/*left: 0;*/
+/*margin: -1px 0 0;*/
+/*top: 100%;*/
+/*}*/
+
+/*.d3-tipTitle {*/
+/*color: #FF7F0E;*/
+/*}*/
+
+/* ************** NPP ************** */
+/*#npp-chart .x.axis text, #hr-chart .x.axis text {*/
+/*font: 12px "Futura", sans-serif;*/
+/*text-anchor: end;*/
+/*}*/
+
+/*#npp-chart .axis text, #hr-chart .axis text {*/
+/*fill: #525252;*/
+/*}*/
+
+/*#npp-chart .grid-line line, #hr-chart .grid-line line {*/
+/*fill: none;*/
+/*opacity: 0.5;*/
+/*shape-rendering: crispedges;*/
+/*stroke: #CCCCCC;*/
+/*}*/
+
+/*#npp-chart .axis path, #hr-chart .axis path, .axis line {*/
+/*fill: none;*/
+/*shape-rendering: crispedges;*/
+/*stroke: #DDDDDD;*/
+/*}*/
+
+/* ************** DATA TABLE ************** */
+/*.dc-data-table {*/
+/*fill: #525252;*/
+/*font: 12px "Futura", sans-serif;*/
+/*}*/
+
+/*.dc-data-table th {*/
+/*fill: #525252;*/
+/*font: 14px "Futura", sans-serif;*/
+/*text-align: right;*/
+/*}*/
+
+/*.dc-table-column {*/
+/*text-align: right !important;*/
+/*}*/
+
+/*.dc-chart g.row text {*/
+/*cursor: pointer;*/
+/*fill: #525252;*/
+/*font: 12px "Futura", sans-serif;*/
+/*}*/
+
+/*.dc-chart .axis path, .axis line {*/
+/*fill: none;*/
+/*shape-rendering: crispedges;*/
+/*stroke: #DDDDDD;*/
+/*}*/
+
+/*.dc-chart .axis text {*/
+/*fill: #525252;*/
+/*font: 12px "Futura", sans-serif;*/
+/*}*/
+
+/*.dc-data-count, .dc-data-table {*/
+/*margin-left: 20px;*/
+/*}*/
 
 /* ************** PIE ************** */
-.dc-chart .pie-slice {
-    cursor: pointer;
-    fill: #525252;
-    font-size: 12px;
-}
+/*.dc-chart .pie-slice {*/
+/*cursor: pointer;*/
+/*fill: #525252;*/
+/*font-size: 12px;*/
+/*}*/
 
-#function-pie-chart {
-    left: 17px;
-    position: relative;
-    top: -41px;
-}
+/*#function-pie-chart {*/
+/*left: 17px;*/
+/*position: relative;*/
+/*top: -41px;*/
+/*}*/
 
-.functionsPie {
-    margin-left: 100px;
-}
+/*.functionsPie {*/
+/*margin-left: 100px;*/
+/*}*/
 
 /* ************** DATA ROW ************** */
-.functionsRow {
-    float: right;
-}
+/*.functionsRow {*/
+/*float: right;*/
+/*}*/
 
 /* ************** BAR ************** */
-.smallBar {
-    min-height: 280px;
-    margin-left: 70px;
-}
+/*.smallBar {*/
+/*min-height: 280px;*/
+/*margin-left: 70px;*/
+/*}*/

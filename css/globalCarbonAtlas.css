@@ -1,17 +1,17 @@
-body {
-    font-family: "Ubuntu", Arial, sans-serif;
-    margin: 0;
-    font-size: 13px;
-    color: #333333;
-}
+/*body {*/
+    /*font-family: "Ubuntu", Arial, sans-serif;*/
+    /*margin: 0;*/
+    /*font-size: 13px;*/
+    /*color: #333333;*/
+/*}*/
 
-#pageWrapper {
-    text-align: left;
-    width: 100%;
-    line-height: 1.1em;
-    height: 100%;
-    float: left;
-}
+/*#pageWrapper {*/
+    /*text-align: left;*/
+    /*width: 100%;*/
+    /*line-height: 1.1em;*/
+    /*height: 100%;*/
+    /*float: left;*/
+/*}*/
 
 select {
     background-color: white;

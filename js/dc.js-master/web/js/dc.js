@@ -559,7 +559,8 @@ dc.baseMixin = function (_chart) {
     var _renderLabel = false;
 
     var _title = function (d) {
-        return _chart.keyAccessor()(d) + ": " + _chart.valueAccessor()(d);
+//        return _chart.keyAccessor()(d) + ": " + _chart.valueAccessor()(d);
+        return _keyAccessor + " : " + _valueAccessor;
     };
     var _renderTitle = false;
 
@@ -5695,6 +5696,7 @@ dc.rowChart = function (parent, chartGroup) {
     };
 
     _chart.title(function (d) {
+        console.log("row");
         return _chart.cappedKeyAccessor(d) + ": " + _chart.cappedValueAccessor(d);
     });
 

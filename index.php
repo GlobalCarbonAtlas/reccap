@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<HTML lang="en">
+<HTML>
 
 <!--
  ##########################################################################
 
  Vanessa.Maigne@lsce.ipsl.fr    for Global Carbon Atlas
- Patrick.Brockmann@lsce.ipsl.fr for Global Carbon Atlas
- Pascal.Evano@lsce.ipsl.fr      for Global Carbon Atlas
 
  PLEASE DO NOT COPY OR DISTRIBUTE WITHOUT PERMISSION
 

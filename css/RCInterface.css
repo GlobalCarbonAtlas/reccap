@@ -16,8 +16,16 @@ body {
 
 .title {
     color: #FFFFFF;
-    font-weight: 500;
+    font-weight: bold;
     font-size: 36px;
+    text-align: center;
+    /*width: 500px;*/
+    padding: 10px 0 22px;
+    /*margin: auto;*/
+}
+
+h3{
+    color: #09C5CE;
     text-align: center;
 }
 
@@ -41,6 +49,14 @@ body {
 /* ************** MAP ************** */
 #map-chart {
     width: 0%;
+}
+
+#map-chart svg {
+    /*background-color: #444444;*/
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    /*opacity: 1 !important;*/
 }
 
 g.country {
@@ -98,6 +114,25 @@ g.oceania path {
 .dc-chart .axis path, .axis line {
     stroke: #FFFFFF;
 }
+
+/* ************** FLUX IMG ************** */
+#flux-img img{
+    cursor: pointer;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+}
+
+.imageTitle {
+    color: #2C3537;
+    font-weight: bold;
+    font-size: 22px;
+    text-shadow: 2px 2px 2px #999999;
+    position: absolute;
+    top: 22px;
+    left: 40px;
+}
+
 /* ************** D3-TIP ************** */
 /*.d3-tip {*/
 /*background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);*/
@@ -216,3 +251,4 @@ g.oceania path {
 /*min-height: 280px;*/
 /*margin-left: 70px;*/
 /*}*/
+

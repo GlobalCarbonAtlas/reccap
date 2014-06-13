@@ -5,12 +5,12 @@
 /*[class*="col"] [class*="col"] { background: #FEE; }*/
 
 body {
-    font-family: "Lato", Arial;
+    font-family: "Lato", Arial, sans-serif;
 }
 
 #pageWrapper {
-/*background: none repeat scroll 0 0 #2C3537;*/
-    color: #2C3537;
+    background: none repeat scroll 0 0 #2C3537;
+    color: white;
     font-size: 13px;
     padding: 0 20px 0 0;
     position: absolute;
@@ -19,17 +19,16 @@ body {
 }
 
 .title {
-    color: #2C3537;
+    color: white;
     font-size: 36px;
-    text-shadow: 2px 2px 2px #CCCCCC;
-    text-align: right; /*padding: 10px 0 22px; *//*margin: auto;*/
+    text-align: right;
     margin: 21px 0 24px 127px;
     width: 650px;
 }
 
 .bigTitle {
-    font-weight: bold; /*color: #09C5CE;*/
-/*color: #FF7F0E;*/
+    font-weight: bold;
+    color: #FF7F0E;
 }
 
 h3 {
@@ -41,7 +40,7 @@ h3 {
     display: none;
     width: 100%;
     height: 100%;
-    background-color: black;
+    background-color: #555555;
     opacity: 0.7;
     z-index: 1;
     filter: alpha(opacity = 70);
@@ -49,7 +48,7 @@ h3 {
 
 /* ************** TOOLS ************** */
 .tools {
-    border: 2px solid #2C3537;
+    background-color: #FFFFFF;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
@@ -98,6 +97,13 @@ h3 {
 }
 
 /* ************** MAP ************** */
+#map-chart {
+    background-color: white;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
 g.country {
     cursor: pointer;
 }
@@ -162,14 +168,14 @@ g.oceania path {
 /* ************** FLUX IMG ************** */
 #flux-img {
     cursor: pointer;
-    margin: -55px 0 0 -15px;
+    margin: -35px 0 0 -15px;
 }
 
-/*#flux-img img {*/
-/*-webkit-border-radius: 25px;*/
-/*-moz-border-radius: 25px;*/
-/*border-radius: 25px;*/
-/*}*/
+#flux-img img {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
 
 .imageTitle {
     color: #2C3537;
@@ -256,16 +262,17 @@ g.oceania path {
 
 /* ************** D3-TIP ************** */
 .d3-tip {
-    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);
+    background: none repeat scroll 0 0 #777777;
     border-radius: 8px 8px 8px 8px;
     color: #FFFFFF;
     font-weight: bold;
     line-height: 1;
     padding: 12px;
+    opacity: 0.9;
 }
 
 .d3-tip:after {
-    color: rgba(0, 0, 0, 0.8);
+    color: #777777;
     content: "▼";
     display: inline;
     font-size: 10px;
@@ -282,7 +289,7 @@ g.oceania path {
 }
 
 .d3-tipTitle {
-    color: #FF7F0E;
+    color: #09C5CE;
 }
 
 /* ************** NPP ************** */

@@ -5188,6 +5188,7 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
     var _projectionFlag;
 
     var _geoJsons = [];
+    var _boolMultipleSelect = false;
 
     _chart._doRender = function () {
         _chart.resetSvg();
@@ -5296,7 +5297,20 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
         });
     }
 
+    /** CHANGE VMIPSL **/
+    _chart.setMultipleSelect= function( boolValue )
+    {
+        _boolMultipleSelect = boolValue;
+    };
+
     _chart.onClick = function (d, layerIndex) {
+        if(!_boolMultipleSelect)
+        {
+          dc.events.trigger(function () {
+            _chart.filterAll();
+            _chart.redrawGroup();
+          });
+        }
         var selectedRegion = geoJson(layerIndex).keyAccessor(d);
         dc.events.trigger(function () {
             _chart.filter(selectedRegion);
@@ -5639,7 +5653,7 @@ dc.rowChart = function (parent, chartGroup) {
     var _g;
 
     var _labelOffsetX = 10;
-    var _labelOffsetY = 15;
+    var _labelOffsetY = 13;
     var _titleLabelOffsetX = 2;
 
     var _gap = 5;

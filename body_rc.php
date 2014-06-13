@@ -70,6 +70,11 @@
     </table>
 </div>
 
+<div id="synthesisDiv">
+    <div class="synthesisTitle">SYNTHESIS</div>
+    <img src="img/Flux.png" width="1100px"/>
+</div>
+
 <script type="text/javascript">
     $( document ).ready( function ()
     {

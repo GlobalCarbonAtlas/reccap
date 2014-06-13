@@ -18,13 +18,11 @@ body {
     color: #FFFFFF;
     font-weight: bold;
     font-size: 36px;
-    text-align: center;
-    /*width: 500px;*/
-    padding: 10px 0 22px;
-    /*margin: auto;*/
+    text-align: center; /*width: 500px;*/
+    padding: 10px 0 22px; /*margin: auto;*/
 }
 
-h3{
+h3 {
     color: #09C5CE;
     text-align: center;
 }
@@ -52,11 +50,10 @@ h3{
 }
 
 #map-chart svg {
-    /*background-color: #444444;*/
+/*background-color: #444444;*/
     -webkit-border-radius: 25px;
     -moz-border-radius: 25px;
-    border-radius: 25px;
-    /*opacity: 1 !important;*/
+    border-radius: 25px; /*opacity: 1 !important;*/
 }
 
 g.country {
@@ -116,7 +113,7 @@ g.oceania path {
 }
 
 /* ************** FLUX IMG ************** */
-#flux-img img{
+#flux-img img {
     cursor: pointer;
     -webkit-border-radius: 25px;
     -moz-border-radius: 25px;
@@ -134,121 +131,121 @@ g.oceania path {
 }
 
 /* ************** D3-TIP ************** */
-/*.d3-tip {*/
-/*background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);*/
-/*border-radius: 8px 8px 8px 8px;*/
-/*color: #FFFFFF;*/
-/*font-weight: bold;*/
-/*line-height: 1;*/
-/*padding: 12px;*/
-/*}*/
+.d3-tip {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);
+    border-radius: 8px 8px 8px 8px;
+    color: #FFFFFF;
+    font-weight: bold;
+    line-height: 1;
+    padding: 12px;
+}
 
-/*.d3-tip:after {*/
-/*color: rgba(0, 0, 0, 0.8);*/
-/*content: "▼";*/
-/*display: inline;*/
-/*font-size: 10px;*/
-/*line-height: 1;*/
-/*position: absolute;*/
-/*text-align: center;*/
-/*width: 100%;*/
-/*}*/
+.d3-tip:after {
+    color: rgba(0, 0, 0, 0.8);
+    content: "▼";
+    display: inline;
+    font-size: 10px;
+    line-height: 1;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
 
-/*.d3-tip.n:after {*/
-/*left: 0;*/
-/*margin: -1px 0 0;*/
-/*top: 100%;*/
-/*}*/
+.d3-tip.n:after {
+    left: 0;
+    margin: -1px 0 0;
+    top: 100%;
+}
 
-/*.d3-tipTitle {*/
-/*color: #FF7F0E;*/
-/*}*/
+.d3-tipTitle {
+    color: #FF7F0E;
+}
 
-/* ************** NPP ************** */
-/*#npp-chart .x.axis text, #hr-chart .x.axis text {*/
-/*font: 12px "Futura", sans-serif;*/
-/*text-anchor: end;*/
-/*}*/
+/*************** NPP ************** */
+#npp-chart .x.axis text, #hr-chart .x.axis text {
+    font: 12px "Futura", sans-serif;
+    text-anchor: end;
+}
 
-/*#npp-chart .axis text, #hr-chart .axis text {*/
-/*fill: #525252;*/
-/*}*/
+#npp-chart .axis text, #hr-chart .axis text {
+    fill: #525252;
+}
 
-/*#npp-chart .grid-line line, #hr-chart .grid-line line {*/
-/*fill: none;*/
-/*opacity: 0.5;*/
-/*shape-rendering: crispedges;*/
-/*stroke: #CCCCCC;*/
-/*}*/
+#npp-chart .grid-line line, #hr-chart .grid-line line {
+    fill: none;
+    opacity: 0.5;
+    shape-rendering: crispedges;
+    stroke: #CCCCCC;
+}
 
-/*#npp-chart .axis path, #hr-chart .axis path, .axis line {*/
-/*fill: none;*/
-/*shape-rendering: crispedges;*/
-/*stroke: #DDDDDD;*/
-/*}*/
+#npp-chart .axis path, #hr-chart .axis path, .axis line {
+    fill: none;
+    shape-rendering: crispedges;
+    stroke: #DDDDDD;
+}
 
-/* ************** DATA TABLE ************** */
-/*.dc-data-table {*/
-/*fill: #525252;*/
-/*font: 12px "Futura", sans-serif;*/
-/*}*/
+/*************** DATA TABLE ************** */
+.dc-data-table {
+    fill: #525252;
+    font: 12px "Futura", sans-serif;
+}
 
-/*.dc-data-table th {*/
-/*fill: #525252;*/
-/*font: 14px "Futura", sans-serif;*/
-/*text-align: right;*/
-/*}*/
+.dc-data-table th {
+    fill: #525252;
+    font: 14px "Futura", sans-serif;
+    text-align: right;
+}
 
-/*.dc-table-column {*/
-/*text-align: right !important;*/
-/*}*/
+.dc-table-column {
+    text-align: right !important;
+}
 
-/*.dc-chart g.row text {*/
-/*cursor: pointer;*/
-/*fill: #525252;*/
-/*font: 12px "Futura", sans-serif;*/
-/*}*/
+.dc-chart g.row text {
+    cursor: pointer;
+    fill: #525252;
+    font: 12px "Futura", sans-serif;
+}
 
-/*.dc-chart .axis path, .axis line {*/
-/*fill: none;*/
-/*shape-rendering: crispedges;*/
-/*stroke: #DDDDDD;*/
-/*}*/
+.dc-chart .axis path, .axis line {
+    fill: none;
+    shape-rendering: crispedges;
+    stroke: #DDDDDD;
+}
 
-/*.dc-chart .axis text {*/
-/*fill: #525252;*/
-/*font: 12px "Futura", sans-serif;*/
-/*}*/
+.dc-chart .axis text {
+    fill: #525252;
+    font: 12px "Futura", sans-serif;
+}
 
-/*.dc-data-count, .dc-data-table {*/
-/*margin-left: 20px;*/
-/*}*/
+.dc-data-count, .dc-data-table {
+    margin-left: 20px;
+}
 
-/* ************** PIE ************** */
-/*.dc-chart .pie-slice {*/
-/*cursor: pointer;*/
-/*fill: #525252;*/
-/*font-size: 12px;*/
-/*}*/
+/*************** PIE ************** */
+.dc-chart .pie-slice {
+    cursor: pointer;
+    fill: #525252;
+    font-size: 12px;
+}
 
-/*#function-pie-chart {*/
-/*left: 17px;*/
-/*position: relative;*/
-/*top: -41px;*/
-/*}*/
+#function-pie-chart {
+    left: 17px;
+    position: relative;
+    top: -41px;
+}
 
-/*.functionsPie {*/
-/*margin-left: 100px;*/
-/*}*/
+.functionsPie {
+    margin-left: 100px;
+}
 
-/* ************** DATA ROW ************** */
-/*.functionsRow {*/
-/*float: right;*/
-/*}*/
+/*************** DATA ROW ************** */
+.functionsRow {
+    float: right;
+}
 
-/* ************** BAR ************** */
-/*.smallBar {*/
-/*min-height: 280px;*/
-/*margin-left: 70px;*/
-/*}*/
+/*************** BAR ************** */
+.smallBar {
+    min-height: 280px;
+    margin-left: 70px;
+}
 

@@ -1,0 +1,314 @@
+@media print {
+}
+
+/*[class*="col"] { background: #EEF; }*/
+/*[class*="col"] [class*="col"] { background: #FEE; }*/
+
+body {
+    font-family: "Lato", Arial;
+}
+
+#pageWrapper {
+/*background: none repeat scroll 0 0 #2C3537;*/
+    color: #2C3537;
+    font-size: 13px;
+    padding: 0 20px 0 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.title {
+    color: #2C3537;
+    font-size: 36px;
+    text-shadow: 2px 2px 2px #CCCCCC;
+    text-align: right; /*padding: 10px 0 22px; *//*margin: auto;*/
+    margin: 21px 0 24px 127px;
+    width: 650px;
+}
+
+.bigTitle {
+    font-weight: bold; /*color: #09C5CE;*/
+/*color: #FF7F0E;*/
+}
+
+h3 {
+    color: #09C5CE;
+    text-align: center;
+}
+
+#hiddenDiv {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.7;
+    z-index: 1;
+    filter: alpha(opacity = 70);
+}
+
+/* ************** TOOLS ************** */
+.tools {
+    border: 2px solid #2C3537;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    text-align: center;
+    padding-bottom: 8px;
+    margin: 55px 50px 0 49px;
+    height: 205px;
+}
+
+.tools img {
+    cursor: pointer;
+}
+
+#reset {
+    margin-left: -6px;
+}
+
+#regionActive {
+    display: none;
+}
+
+#regionActive, #regionUnActive {
+    position: absolute;
+    top: 75px;
+    left: 18px;
+}
+
+#data {
+    margin-top: 50px;
+}
+
+#synthesis img {
+    margin-top: 12px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+
+#export {
+    margin: 3px 0 0 2px;
+}
+
+/* ************** DC Object ************** */
+.dc-chart g.row text {
+    fill: #2C3537;
+}
+
+/* ************** MAP ************** */
+g.country {
+    cursor: pointer;
+}
+
+g.asia path {
+    fill: #ffbb78;
+    stroke: #ffbb78;
+}
+
+g.africa path {
+    fill: #f4d362;
+    stroke: #f4d362;
+}
+
+g.europe path {
+    fill: #f4e8c3;
+    stroke: #f4e8c3;
+}
+
+g.north_america path {
+    fill: #97cc31;
+    stroke: #97cc31;
+}
+
+g.south_america path {
+    fill: #cc9866;
+    stroke: #cc9866;
+}
+
+g.antarctica path {
+    fill: #d3ecfc;
+    stroke: #d3ecfc;
+}
+
+g.oceania path {
+    fill: #aec7e8;
+    stroke: #aec7e8;
+}
+
+.dc-chart .selected path {
+    fill-opacity: 1;
+    stroke: none !important;
+    stroke-width: 0;
+}
+
+/* ************** FUNCTIONS ************** */
+.function {
+    float: right;
+    margin-top: -10px;
+}
+
+/*.dc-chart .axis text {*/
+/*stroke: #2C3537;*/
+/*fill: none;*/
+/*shape-rendering: crispedges;*/
+/*}*/
+
+/*.dc-chart .axis path, .axis line {*/
+/*stroke: #FFFFFF;*/
+/*}*/
+
+/* ************** FLUX IMG ************** */
+#flux-img {
+    cursor: pointer;
+    margin: -35px 0 0 -15px;
+}
+
+/*#flux-img img {*/
+/*-webkit-border-radius: 25px;*/
+/*-moz-border-radius: 25px;*/
+/*border-radius: 25px;*/
+/*}*/
+
+.imageTitle {
+    color: #2C3537;
+    font-weight: bold;
+    font-size: 22px;
+    text-shadow: 2px 2px 2px #999999;
+    position: relative;
+    top: -251px;
+    left: 58px;
+}
+
+/* ************** DATA TABLE ************** */
+#dataDiv {
+    position: absolute;
+    background: none repeat scroll 0 0 #FFFFFF;
+    margin: auto;
+    width: 50%;
+    padding-right: 37px;
+    display: none;
+    top: 0;
+    left: 25%;
+    opacity: 0.9;
+}
+
+.dc-data-table {
+    fill: #525252;
+    font: 12px "Futura", sans-serif;
+}
+
+.dc-data-table th {
+    fill: #525252;
+    font: 14px "Futura", sans-serif;
+    text-align: right;
+}
+
+.dc-table-column {
+    text-align: right !important;
+}
+
+.dc-chart g.row text {
+    cursor: pointer;
+    fill: #525252;
+    font: 12px "Futura", sans-serif;
+}
+
+.dc-chart .axis path, .axis line {
+    fill: none;
+    shape-rendering: crispedges;
+    stroke: #DDDDDD;
+}
+
+.dc-chart .axis text {
+    fill: #525252;
+    font: 12px "Futura", sans-serif;
+}
+
+.dc-data-count, .dc-data-table {
+    margin-left: 20px;
+}
+
+/* ************** D3-TIP ************** */
+/*.d3-tip {*/
+/*background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);*/
+/*border-radius: 8px 8px 8px 8px;*/
+/*color: #FFFFFF;*/
+/*font-weight: bold;*/
+/*line-height: 1;*/
+/*padding: 12px;*/
+/*}*/
+
+/*.d3-tip:after {*/
+/*color: rgba(0, 0, 0, 0.8);*/
+/*content: "▼";*/
+/*display: inline;*/
+/*font-size: 10px;*/
+/*line-height: 1;*/
+/*position: absolute;*/
+/*text-align: center;*/
+/*width: 100%;*/
+/*}*/
+
+/*.d3-tip.n:after {*/
+/*left: 0;*/
+/*margin: -1px 0 0;*/
+/*top: 100%;*/
+/*}*/
+
+/*.d3-tipTitle {*/
+/*color: #FF7F0E;*/
+/*}*/
+
+/* ************** NPP ************** */
+/*#npp-chart .x.axis text, #hr-chart .x.axis text {*/
+/*font: 12px "Futura", sans-serif;*/
+/*text-anchor: end;*/
+/*}*/
+
+/*#npp-chart .axis text, #hr-chart .axis text {*/
+/*fill: #525252;*/
+/*}*/
+
+/*#npp-chart .grid-line line, #hr-chart .grid-line line {*/
+/*fill: none;*/
+/*opacity: 0.5;*/
+/*shape-rendering: crispedges;*/
+/*stroke: #CCCCCC;*/
+/*}*/
+
+/*#npp-chart .axis path, #hr-chart .axis path, .axis line {*/
+/*fill: none;*/
+/*shape-rendering: crispedges;*/
+/*stroke: #DDDDDD;*/
+/*}*/
+
+/* ************** PIE ************** */
+/*.dc-chart .pie-slice {*/
+/*cursor: pointer;*/
+/*fill: #525252;*/
+/*font-size: 12px;*/
+/*}*/
+
+/*#function-pie-chart {*/
+/*left: 17px;*/
+/*position: relative;*/
+/*top: -41px;*/
+/*}*/
+
+/*.functionsPie {*/
+/*margin-left: 100px;*/
+/*}*/
+
+/* ************** DATA ROW ************** */
+/*.functionsRow {*/
+/*float: right;*/
+/*}*/
+
+/* ************** BAR ************** */
+/*.smallBar {*/
+/*min-height: 280px;*/
+/*margin-left: 70px;*/
+/*}*/
+

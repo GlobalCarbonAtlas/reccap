@@ -161,9 +161,13 @@ g.oceania path {
 
 /* ************** FLUX IMG ************** */
 #flux-img {
-    cursor: pointer;
+/*cursor: pointer;*/
     margin: -55px 0 0 -15px;
 }
+
+/*#flux-img map {*/
+/*margin-left: -20px;*/
+/*}*/
 
 /*#flux-img img {*/
 /*-webkit-border-radius: 25px;*/
@@ -254,37 +258,6 @@ g.oceania path {
     border-radius: 6px;
 }
 
-/* ************** D3-TIP ************** */
-.d3-tip {
-    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);
-    border-radius: 8px 8px 8px 8px;
-    color: #FFFFFF;
-    font-weight: bold;
-    line-height: 1;
-    padding: 12px;
-}
-
-.d3-tip:after {
-    color: rgba(0, 0, 0, 0.8);
-    content: "▼";
-    display: inline;
-    font-size: 10px;
-    line-height: 1;
-    position: absolute;
-    text-align: center;
-    width: 100%;
-}
-
-.d3-tip.n:after {
-    left: 0;
-    margin: -1px 0 0;
-    top: 100%;
-}
-
-.d3-tipTitle {
-    color: #FF7F0E;
-}
-
 /* ************** NPP ************** */
 /*#npp-chart .x.axis text, #hr-chart .x.axis text {*/
 /*font: 12px "Futura", sans-serif;*/
@@ -336,3 +309,50 @@ g.oceania path {
 /*margin-left: 70px;*/
 /*}*/
 
+/* ************** D3-TIP ************** */
+.d3-tip {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);
+    border-radius: 8px 8px 8px 8px;
+    color: #FFFFFF;
+    font-weight: bold;
+    line-height: 1;
+    padding: 12px;
+}
+
+.d3-tip:after {
+    color: rgba(0, 0, 0, 0.8);
+    content: "▼";
+    display: inline;
+    font-size: 10px;
+    line-height: 1;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+.d3-tip.n:after {
+    left: 0;
+    margin: -1px 0 0;
+    top: 100%;
+}
+
+.d3-tipTitle {
+    color: #FF7F0E;
+}
+
+/* ************** MENU-TIP ************** */
+.tooltip-inner {
+    padding: 12px;
+    color: #09C5CE;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    display: block;
+    font-size: 13px;
+}
+
+.tooltip.right .tooltip-arrow {
+    border-right-color: rgba(0, 0, 0, 0.6);
+}

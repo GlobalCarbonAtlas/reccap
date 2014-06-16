@@ -215,6 +215,11 @@ var RCInterface = Class.create( {
     /* ******************************************************************** */
     updateCharts: function()
     {
+        // Tooltips for menu
+        $( ".toolButton img" ).tooltip( {
+            placement: "right",
+            container:'body'} );
+
         // Tooltips for charts
         var toolTip = d3.tip()
                 .attr( 'class', 'd3-tip' )

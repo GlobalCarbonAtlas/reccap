@@ -9,7 +9,7 @@ body {
 }
 
 #pageWrapper {
-/*background: none repeat scroll 0 0 #2C3537;*/
+    /*background: none repeat scroll 0 0 #2C3537;*/
     color: #2C3537;
     font-size: 13px;
     padding: 0 20px 0 0;
@@ -29,7 +29,7 @@ body {
 
 .bigTitle {
     font-weight: bold; /*color: #09C5CE;*/
-/*color: #FF7F0E;*/
+    /*color: #FF7F0E;*/
 }
 
 h3 {
@@ -160,11 +160,14 @@ g.oceania path {
 /*}*/
 
 /* ************** FLUX IMG ************** */
-#flux-img {
-/*cursor: pointer;*/
+#imageFlux{
+    /*cursor: pointer;*/
     margin: -55px 0 0 -15px;
 }
 
+area {
+    cursor:pointer;
+}
 /*#flux-img map {*/
 /*margin-left: -20px;*/
 /*}*/
@@ -185,6 +188,20 @@ g.oceania path {
     left: 58px;
 }
 
+/* ************** DATA & FLUX STYLE ************** */
+.synthesisTitle, .dataTitle {
+    position: absolute;
+    top: 9px;
+    color: #09C5CE;
+    font-size: 26px;
+    font-weight: bold;
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+
 /* ************** DATA TABLE ************** */
 #dataDiv {
     position: absolute;
@@ -196,6 +213,11 @@ g.oceania path {
     top: 0;
     left: 25%;
     opacity: 0.9;
+}
+
+.dataTitle {
+    margin: 291px 0 0 -310px;
+    font-stretch : ultra-expanded;
 }
 
 .dc-data-table {
@@ -242,12 +264,7 @@ g.oceania path {
 }
 
 .synthesisTitle {
-    position: absolute;
-    top: 9px;
-    margin-left: 30px;
-    color: #09C5CE;
-    font-size: 26px;
-    font-weight: bold;
+    margin: 278px 0 0 -83px;
 }
 
 #synthesisDiv img {

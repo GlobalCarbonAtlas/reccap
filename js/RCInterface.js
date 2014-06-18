@@ -16,6 +16,10 @@ var RCInterface = Class.create( {
         this.numberFormat = d3.format( ".2f" );
         this.selectMultipleRegion = false;
 
+        // Responsive image with map/area
+        $("#imageFlux").rwdImageMaps();
+        $('#imageFlux').width("850px");
+
         this.initFileValuesAndCreateDCObjects();
         this.bindActions();
     },
@@ -28,15 +32,15 @@ var RCInterface = Class.create( {
 
             // TODO : see why it applies to ALL data
             this.data.dimension(
-                    function( d )
-                    {
-                        return d["Value"];
-                    } ).filter(
-                    function( d )
-                    {
-                        if( 0 < Math.abs( d ) )
-                            return d;
-                    } );
+                function( d )
+                {
+                    return d["Value"];
+                } ).filter(
+                function( d )
+                {
+                    if( 0 < Math.abs( d ) )
+                        return d;
+                } );
 
             this.continents = this.data.dimension( function( d )
             {
@@ -111,8 +115,8 @@ var RCInterface = Class.create( {
             case "row" : this.createRowChart( chartId, width, height, dimension, group );
                 break;
         }
-//        dc.renderAll();
-//        this.updateCharts();
+        dc.renderAll();
+        this.updateCharts();
     },
     /* ******************************************************************** */
     /* ****************************** CHARTS ****************************** */
@@ -120,23 +124,23 @@ var RCInterface = Class.create( {
     createChoroplethMap: function( chartId, width, height, countries, continentsDimension, continentsGroup )
     {
         var projection = d3.geo.equirectangular()
-                .translate( [width / 2,  height / 2] )
-                .scale( [90] );
+            .translate( [width / 2,  height / 2] )
+            .scale( [90] );
 
         this.geoChoroplethChart = dc.geoChoroplethChart( chartId )
-                .width( width )
-                .height( height )
-                .dimension( continentsDimension )
-                .group( continentsGroup )
-                .projection( projection )
-                .overlayGeoJson( countries.features, "country", function( d )
-        {
-            return d.properties.continent;
-        } )
-                .title( function ( d )
-        {
-            return "";
-        } );
+            .width( width )
+            .height( height )
+            .dimension( continentsDimension )
+            .group( continentsGroup )
+            .projection( projection )
+            .overlayGeoJson( countries.features, "country", function( d )
+            {
+                return d.properties.continent;
+            } )
+            .title( function ( d )
+            {
+                return "";
+            } );
 
         this.geoChoroplethChart.setMultipleSelect( this.selectMultipleRegion );
     },
@@ -144,48 +148,48 @@ var RCInterface = Class.create( {
     createBarChart: function( chartId, width, height, dimension, group )
     {
         dc.barChart( chartId )
-                .height( height )
-                .width( width )
-                .transitionDuration( 750 )
-                .margins( {top: 20, right: 10, bottom: 80, left: 80} )
-                .dimension( dimension )
-                .group( group )
-                .brushOn( false )
-                .elasticY( true )
-                .colors( ['#FF7F0E'] )
-                .xUnits( dc.units.ordinal )
-                .x( d3.scale.ordinal() )
+            .height( height )
+            .width( width )
+            .transitionDuration( 750 )
+            .margins( {top: 20, right: 10, bottom: 80, left: 80} )
+            .dimension( dimension )
+            .group( group )
+            .brushOn( false )
+            .elasticY( true )
+            .colors( ['#FF7F0E'] )
+            .xUnits( dc.units.ordinal )
+            .x( d3.scale.ordinal() )
 //                .y( d3.scale.linear() )
-                .renderHorizontalGridLines( true )
-                .yAxis().tickFormat( d3.format( "s" ) );
+            .renderHorizontalGridLines( true )
+            .yAxis().tickFormat( d3.format( "s" ) );
     },
 
     createDataTable: function( countId, tableId, allD, allG, tableD )
     {
         dc.dataCount( countId )
-                .dimension( allD )
-                .group( allG );
+            .dimension( allD )
+            .group( allG );
 
         dc.dataTable( tableId )
-                .dimension( tableD )
-                .group( function( d )
-        {
-            return d["Continents"];
-        } )
-                .size( allG.value() )
-                .columns( [
-                function ( d )
-                {
-                    return d["Carbon budget"];
-                },
-                function ( d )
-                {
-                    return d["Value"];
-                }
+            .dimension( tableD )
+            .group( function( d )
+            {
+                return d["Continents"];
+            } )
+            .size( allG.value() )
+            .columns( [
+            function ( d )
+            {
+                return d["Carbon budget"];
+            },
+            function ( d )
+            {
+                return d["Value"];
+            }
         ] ).renderlet( function ( table )
-        {
-            table.selectAll( ".dc-table-group" ).classed( "info", true );
-        } );
+            {
+                table.selectAll( ".dc-table-group" ).classed( "info", true );
+            } );
     },
 
     createRowChart: function( chartId, width, height, functions, functionsGroup )
@@ -193,20 +197,20 @@ var RCInterface = Class.create( {
 //        var expenseColors = ["#fee391","#fec44f","#fe9929","#fd8d3c","#e08214","#fdb863","#fdae6b","#ec7014"];
 
         dc.rowChart( chartId )
-                .width( width )
-                .height( height )
-                .margins( {top: 20, left: 10, right: 10, bottom: 20} )
-                .transitionDuration( 750 )
-                .dimension( functions )
-                .group( functionsGroup )
-                .colors( d3.scale.category20() )
+            .width( width )
+            .height( height )
+            .margins( {top: 20, left: 10, right: 10, bottom: 20} )
+            .transitionDuration( 750 )
+            .dimension( functions )
+            .group( functionsGroup )
+            .colors( d3.scale.category20() )
 //            .colors( expenseColors )
-                .title( function ( d )
-        {
-            return "";
-        } )
-                .elasticX( true )
-                .xAxis().tickFormat( d3.format( "s" ) );
+            .title( function ( d )
+            {
+                return "";
+            } )
+            .elasticX( true )
+            .xAxis().tickFormat( d3.format( "s" ) );
     },
 
 
@@ -222,9 +226,9 @@ var RCInterface = Class.create( {
 
         // Tooltips for charts
         var toolTip = d3.tip()
-                .attr( 'class', 'd3-tip' )
-                .offset( [-10, 0] )
-                .html( jQuery.proxy( function ( d )
+            .attr( 'class', 'd3-tip' )
+            .offset( [-10, 0] )
+            .html( jQuery.proxy( function ( d )
         {
             if( d.properties )
             // Choropleth
@@ -246,18 +250,18 @@ var RCInterface = Class.create( {
                 return "<span class='d3-tipTitle'>" + d.key + " : </span>" + this.numberFormat( d.value );
         }, this ) );
 
-        d3.selectAll( ".country, g.row" ).call( toolTip );
+        d3.selectAll( ".country, g.row, .bar" ).call( toolTip );
 //        d3.selectAll( ".country, .bar, .pie-slice, .row" )
-        d3.selectAll( ".country, g.row" )
-                .on( 'mouseover', toolTip.show )
-                .on( 'mouseout', toolTip.hide );
+        d3.selectAll( ".country, g.row, .bar" )
+            .on( 'mouseover', toolTip.show )
+            .on( 'mouseout', toolTip.hide );
 
 
         // Bar chart : rotate the x Axis labels
         d3.selectAll( "g.x g text" )
-                .attr( "class", "campusLabel" )
-                .style( "text-anchor", "end" )
-                .attr( "transform", "translate(-10,0)rotate(315)" );
+            .attr( "class", "campusLabel" )
+            .style( "text-anchor", "end" )
+            .attr( "transform", "translate(-10,0)rotate(315)" );
     },
 
     getToolTipContentForMultipleValues: function( valueArray )
@@ -273,22 +277,22 @@ var RCInterface = Class.create( {
     getValuesGroupByBudget: function( dimension, carbonBudget )
     {
         return dimension.group().reduce(
-                function ( p, v )
-                {
-                    if( carbonBudget == v["Carbon budget"] )
-                        p += v["Value"];
-                    return p;
-                },
-                function ( p, v )
-                {
-                    if( carbonBudget == v["Carbon budget"] )
-                        p -= v["Value"];
-                    return p;
-                },
-                function ()
-                {
-                    return "";
-                } );
+            function ( p, v )
+            {
+                if( carbonBudget == v["Carbon budget"] )
+                    p += v["Value"];
+                return p;
+            },
+            function ( p, v )
+            {
+                if( carbonBudget == v["Carbon budget"] )
+                    p -= v["Value"];
+                return p;
+            },
+            function ()
+            {
+                return "";
+            } );
     },
 
     addBarChart: function( chartId, width, height, dimensionValue, groupValue )
@@ -299,6 +303,16 @@ var RCInterface = Class.create( {
     },
 
     bindActions: function()
+    {
+        this.bindActionsForMenu();
+
+        // Image flux
+        $('area').on('click', jQuery.proxy(function(argument) {
+            this.addBarChart( "#bar-chart", 300, 200, "Continents", argument.target.alt );
+        }, this));
+    },
+
+    bindActionsForMenu: function()
     {
         // Reset button
         $( "#reset" ).on( "click", jQuery.proxy( function()
@@ -329,7 +343,20 @@ var RCInterface = Class.create( {
         $( "#data" ).on( "click", jQuery.proxy( function()
         {
             $( "#hiddenDiv" ).fadeToggle();
-            $( "#dataDiv" ).fadeToggle();
+            $( "#dataDiv" ).fadeToggle(function()
+            {
+                $("#hiddenDiv").height(Math.max($("#dataDiv").height(), $("#pageWrapper").height()));
+            });
+        }, this ) );
+
+        // Synthesis button
+        $( "#synthesis" ).on( "click", jQuery.proxy( function()
+        {
+            $( "#hiddenDiv" ).fadeToggle();
+            $( "#synthesisDiv" ).fadeToggle(function()
+            {
+                $("#hiddenDiv").height(Math.max($("#synthesisDiv").height(), $("#pageWrapper").height()));
+            });
         }, this ) );
 
         $( "#hiddenDiv" ).on( "click", jQuery.proxy( function()
@@ -337,21 +364,7 @@ var RCInterface = Class.create( {
             $( "#dataDiv" ).fadeOut();
             $( "#synthesisDiv" ).fadeOut();
             $( "#hiddenDiv" ).fadeToggle();
-        }, this ) );
-
-        // Synthesis button
-        $( "#synthesis" ).on( "click", jQuery.proxy( function()
-        {
-            $( "#hiddenDiv" ).fadeToggle();
-            $( "#synthesisDiv" ).fadeToggle();
-        }, this ) );
-
-
-        // Image flux
-        $( "#flux-img" ).on( "click", jQuery.proxy( function()
-        {
-            var arrayGroup = ["Heterotrophic Respiration", "Land use change", "NPP", "GPP"];
-            this.addBarChart( "#bar-chart", 300, 200, "Continents", arrayGroup[Math.floor( Math.random() * arrayGroup.length )] );
+            $( "#hiddenDiv" ).height($("#pageWrapper").height());
         }, this ) );
     }
 
@@ -379,10 +392,10 @@ function print_filter( filter )
     if( "undefined" != typeof(f.dimension) )
     {
         f = f.dimension(
-                function( d )
-                {
-                    return "";
-                } ).top( Infinity );
+            function( d )
+            {
+                return "";
+            } ).top( Infinity );
     }
     else
     {

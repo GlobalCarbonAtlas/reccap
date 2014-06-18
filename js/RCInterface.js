@@ -96,7 +96,7 @@ var RCInterface = Class.create( {
         this.createRowChart( "#function-chart", 350, 550, carbonBudgets, filteredFunctionAmountGroup );
     },
 
-    createSimpleDCObject: function( dimensionValue, groupValue, DCObjectValue, chartId, width, height )
+    createSimpleDCObject: function( dimensionValue, groupValue, DCObjectValue, chartId, width, height, chartGroup )
     {
         var dimension = this.data.dimension( function( d )
         {
@@ -108,16 +108,19 @@ var RCInterface = Class.create( {
         switch( DCObjectValue )
         {
             case "bar" :
-                this.createBarChart( chartId, width, height, dimension, group );
+                this.createBarChart( chartId, width, height, dimension, group, chartGroup );
                 break;
             case "flux" : this.createFluxChart( chartId, width, height, dimension, group );
                 break;
             case "row" : this.createRowChart( chartId, width, height, dimension, group );
                 break;
         }
-        dc.renderAll();
+        if(chartGroup)
+            dc.renderAll(chartGroup);
         this.updateCharts();
     },
+
+
     /* ******************************************************************** */
     /* ****************************** CHARTS ****************************** */
     /* ******************************************************************** */
@@ -145,9 +148,9 @@ var RCInterface = Class.create( {
         this.geoChoroplethChart.setMultipleSelect( this.selectMultipleRegion );
     },
 
-    createBarChart: function( chartId, width, height, dimension, group )
+    createBarChart: function( chartId, width, height, dimension, group, chartGroup )
     {
-        dc.barChart( chartId )
+        dc.barChart( chartId, chartGroup )
             .height( height )
             .width( width )
             .transitionDuration( 750 )
@@ -299,7 +302,7 @@ var RCInterface = Class.create( {
     {
         var childrenNumber = $( chartId ).children().length;
         $( chartId ).append( '<div id="bar-chart' + childrenNumber + '"></div>' );
-        this.createSimpleDCObject( dimensionValue, groupValue, "bar", "#bar-chart" + childrenNumber, width, height );
+        this.createSimpleDCObject( dimensionValue, groupValue, "bar", "#bar-chart" + childrenNumber, width, height, "barChart" );
     },
 
     bindActions: function()
@@ -345,7 +348,7 @@ var RCInterface = Class.create( {
             $( "#hiddenDiv" ).fadeToggle();
             $( "#dataDiv" ).fadeToggle(function()
             {
-                $("#hiddenDiv").height(Math.max($("#dataDiv").height(), $("#pageWrapper").height()));
+                $("#hiddenDiv").height(Math.max($("#dataDiv").height(), $("#pageWrapper .container-fluid").height()));
             });
         }, this ) );
 
@@ -355,7 +358,7 @@ var RCInterface = Class.create( {
             $( "#hiddenDiv" ).fadeToggle();
             $( "#synthesisDiv" ).fadeToggle(function()
             {
-                $("#hiddenDiv").height(Math.max($("#synthesisDiv").height(), $("#pageWrapper").height()));
+                $("#hiddenDiv").height(Math.max($("#synthesisDiv").height(), $("#pageWrapper .container-fluid").height()));
             });
         }, this ) );
 
@@ -364,7 +367,7 @@ var RCInterface = Class.create( {
             $( "#dataDiv" ).fadeOut();
             $( "#synthesisDiv" ).fadeOut();
             $( "#hiddenDiv" ).fadeToggle();
-            $( "#hiddenDiv" ).height($("#pageWrapper").height());
+            $( "#hiddenDiv" ).height($("#pageWrapper .container-fluid").height());
         }, this ) );
     }
 

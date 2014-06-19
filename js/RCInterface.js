@@ -344,12 +344,73 @@ var RCInterface = Class.create( {
     bindActions: function()
     {
         this.bindActionsForMenu();
+        this.bindActionsForSlides();
 
         // Image flux
         $( 'area' ).on( 'click', jQuery.proxy( function( argument )
         {
             this.addBarChart( "#bar-chart", 300, 200, "Continents", argument.target.alt );
         }, this ) );
+    },
+
+    bindActionsForSlides: function()
+    {
+        $( "#dataSlide" ).on( "click", jQuery.proxy( function()
+        {
+            if( 0.4 == $( "#synthesisSlide" ).css( "opacity" ) )
+                this.hideSlide();
+            else
+            {
+                $( "#hiddenDivSlide" ).animate( {
+                    width: "1200px"
+                }, 700, function()
+                {
+                    $( "#dataDiv" ).fadeToggle( function()
+                    {
+                        $( "#hiddenDivSlide" ).height( Math.max( $( "#dataDiv" ).height(), $( "#pageWrapper .container-fluid" ).height() ) );
+                    } );
+                } );
+                $( "#synthesisSlide" ).css("opacity", 0.4);
+            }
+        }, this ) );
+
+        $( "#synthesisSlide" ).on( "click", jQuery.proxy( function()
+        {
+            if( 0.4 == $( "#dataSlide" ).css( "opacity" ) )
+                this.hideSlide();
+            else
+            {
+                $( "#hiddenDivSlide" ).animate( {
+                    width: "1200px"
+                }, 700, function()
+                {
+                    $( "#synthesisDiv" ).fadeToggle( function()
+                    {
+                        $( "#hiddenDivSlide" ).height( Math.max( $( "#synthesisDiv" ).height(), $( "#pageWrapper .container-fluid" ).height() ) );
+                    } );
+                } );
+                $( "#dataSlide" ).css("opacity", 0.4);
+            }
+        }, this ) );
+
+        $( "#hiddenDivSlide" ).on( "click", jQuery.proxy( function()
+        {
+            this.hideSlide();
+        }, this ) );
+    },
+
+    hideSlide: function()
+    {
+        $( "#dataDiv" ).fadeOut();
+        $( "#synthesisDiv" ).fadeOut();
+        $( "#hiddenDivSlide" ).animate( {
+            width: "10px"
+        }, 700, function()
+        {
+            $( "#synthesisSlide" ).css("opacity", 1);
+            $( "#dataSlide" ).css("opacity", 1);
+            $( "#hiddenDivSlide" ).height( $( "#pageWrapper .container-fluid" ).height() );
+        } );
     },
 
     bindActionsForMenu: function()
@@ -362,11 +423,13 @@ var RCInterface = Class.create( {
             this.updateCharts();
         }, this ) );
 
+        // Export button
         $( "#export" ).on( "click", function()
         {
             alert( "work in progress" );
         } );
 
+        // Help button
         $( "#help" ).on( "click", function()
         {
             alert( "work in progress" );

@@ -19,6 +19,42 @@ var RCInterface = Class.create( {
         // Responsive image with map/area
         $("#imageFlux").rwdImageMaps();
         $('#imageFlux').width("850px");
+        $('#imageFlux').mapster({
+            fillColor: 'ff0000',
+            fillOpacity: 0.3,
+            stroke: true,
+            render_highlight: {
+                fillColor: '2aff00',
+                strokeWidth: 2
+            }
+        });
+
+//        $('#imageFlux').mapster({
+//            fillOpacity: 0.5,
+//            render_highlight: {
+//                fillColor: '2aff00',
+//                stroke: true
+//            },
+//            render_select: {
+//                fillColor: 'ff000c',
+//                stroke: false
+//            },
+//            fadeInterval: 50,
+//            mapKey: 'data-state',
+//            areas: [
+//                {
+//                    key: 'TX',
+//                    selected: true
+//                },
+//                {
+//                    key: 'ME',
+//                    selected: true
+//                },
+//                {
+//                    key: 'WA',
+//                    staticState: false
+//                }]
+//        });
 
         this.initFileValuesAndCreateDCObjects();
         this.bindActions();

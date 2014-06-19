@@ -161,22 +161,17 @@ g.oceania path {
 
 /* ************** FLUX IMG ************** */
 #imageFlux{
-    /*cursor: pointer;*/
     margin: -55px 0 0 -15px;
+}
+
+#mapFlux {
+    margin: 10px 0 0 100px;
 }
 
 area {
     cursor:pointer;
+    border: 2px solid red;
 }
-/*#flux-img map {*/
-/*margin-left: -20px;*/
-/*}*/
-
-/*#flux-img img {*/
-/*-webkit-border-radius: 25px;*/
-/*-moz-border-radius: 25px;*/
-/*border-radius: 25px;*/
-/*}*/
 
 .imageTitle {
     color: #2C3537;

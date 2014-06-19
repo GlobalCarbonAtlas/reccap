@@ -30,6 +30,9 @@
     <script type="text/javascript" src="js/dc_lsce.js"></script>
     <script type="text/javascript" src="js/library/topojson.v1.min.js"></script>
     <script type="text/javascript" src="js/library/d3.tip.min.js"></script>
+    <script type="text/javascript" src="js/library/jquery.rwdImageMaps.min.js"></script>
+    <script type="text/javascript" src="js/library/jquery.imagemapster.min.js"></script>
+
     <script type="text/javascript" src="js/library/jquery.class.js"></script>
 
     <script type="text/javascript" src="js/RCInterface.js"></script>

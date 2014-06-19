@@ -32,8 +32,9 @@
         <script type="text/javascript" src="js/library/d3.tip.min.js"></script>
 <!--    <script type="text/javascript" src="js/library/d3.tip.js"></script>-->
     <script type="text/javascript" src="js/bootstrap-3.1.1-dist/js/bootstrap.js"></script>
-    <!--    For responsive image with map/area-->
+    <!-- For responsive image with map/area & style for area -->
     <script type="text/javascript" src="js/library/jquery.rwdImageMaps.min.js"></script>
+    <script type="text/javascript" src="js/library/jquery.imagemapster.min.js"></script>
     <script type="text/javascript" src="js/library/jquery.class.js"></script>
     <script type="text/javascript" src="js/RCInterface.js"></script>
 

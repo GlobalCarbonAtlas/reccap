@@ -54,7 +54,7 @@
                         <!--                    <area shape="rect" alt="Gas" title="Gas" coords="444,322,482,349"/>-->
                         <!--                    <area shape="rect" alt="Oil" title="Oil" coords="385,324,419,351"/>-->
                         <!--                    <area shape="rect" alt="Fossil fuel trade" title="Fossil fuel trade" coords="306,388,426,416"/>-->
-                        <area  shape="rect" href="#" alt="NPP" title="NPP" coords="983,129,1069,174"/>
+                        <area shape="rect" href="#" alt="NPP" title="NPP" coords="983,129,1069,174"/>
                         <!--                    <area  shape="rect" alt="weathering" title="weathering" coords="974,216,1060,245"/>-->
                         <!--                    <area shape="rect"  alt="FreshwaterOutgassing" title="FreshwaterOutgassing" coords="1060,211,1146,240"/>-->
                         <!--                    <area shape="rect"  alt="SoilExport" title="SoilExport" coords="820,316,911,341"/>-->
@@ -84,10 +84,14 @@
 <div id="hiddenDiv"></div>
 
 <div id="dataDiv">
-    <div class="dataTitle"><div id="dataTitle">CARBON BUDGETS</div></div>
+    <div class="dataTitle">
+        <div id="dataTitle">CARBON BUDGETS</div>
+    </div>
     <div id="data-count" class="dc-data-count dc-chart">
         <span class="filter-count"></span> selected out of <span class="total-count"></span> records
     </div>
+
+    <div id="exportData" class="toolButton toolsForData"><img src="img/export_small.png" title="Export"/></div>
     <BR/><BR/>
 
     <table id="data-table" class="table table-hover dc-data-table dc-chart">
@@ -101,8 +105,10 @@
 </div>
 
 <div id="synthesisDiv">
-    <div class="synthesisTitle"><div id="synthesisTitle">SYNTHESIS</div></div>
-    <img src="img/Flux.png" width="1100px"/>
+        <div class="synthesisTitle">
+            <div id="synthesisTitle">SYNTHESIS</div><div id="exportSynthesis" class="toolButton toolsForSynthesis"><img src="img/export_small.png" title="Export"/></div>
+        </div>
+    <img id="fluxImage" src="img/Flux.png" width="1100px"/>
 </div>
 
 <script type="text/javascript">

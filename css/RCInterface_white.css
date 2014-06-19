@@ -227,6 +227,18 @@ area {
     margin: 300px 0 0 -154px;
 }
 
+.toolsForData {
+    background-color: #09C5CE;
+    float: left;
+    margin: 10px 0 0 -274px;
+    padding: 5px 3px 5px 5px;
+    border: 2px solid #09C5CE;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
 .dc-data-table {
     fill: #525252;
     font: 12px "Futura", sans-serif;
@@ -271,11 +283,25 @@ area {
 }
 
 .synthesisTitle {
-    margin: 278px 0 10px -103px;
+/*margin: 278px 0 10px -103px;*/
+    margin: 235px 0 10px -164px;
     z-index: 1;
 }
 
-#synthesisDiv img {
+.toolsForSynthesis {
+    background-color: #09C5CE;
+    float: right;
+    margin: 0 0 0 90px;
+    padding: 5px 3px 5px 5px;
+    border: 2px solid #09C5CE;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    transform: rotate(90deg);
+}
+
+#synthesisDiv #fluxImage {
     position: absolute;
     top: 50px;
     -webkit-border-radius: 6px;

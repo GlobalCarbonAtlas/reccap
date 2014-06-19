@@ -351,6 +351,20 @@ var RCInterface = Class.create( {
         {
             this.addBarChart( "#bar-chart", 300, 200, "Continents", argument.target.alt );
         }, this ) );
+
+        // Data
+        $( "#exportData" ).on( "click", function()
+        {
+            alert( "work in progress" );
+        } );
+
+        // Synthesis
+        $( "#synthesisData" ).on( "click", function()
+        {
+            alert( "work in progress" );
+        } );
+
+        $("#synthesis").click();
     },
 
     bindActionsForSlides: function()
@@ -370,7 +384,7 @@ var RCInterface = Class.create( {
                         $( "#hiddenDivSlide" ).height( Math.max( $( "#dataDiv" ).height(), $( "#pageWrapper .container-fluid" ).height() ) );
                     } );
                 } );
-                $( "#synthesisSlide" ).css("opacity", 0.4);
+                $( "#synthesisSlide" ).css( "opacity", 0.4 );
             }
         }, this ) );
 
@@ -389,7 +403,7 @@ var RCInterface = Class.create( {
                         $( "#hiddenDivSlide" ).height( Math.max( $( "#synthesisDiv" ).height(), $( "#pageWrapper .container-fluid" ).height() ) );
                     } );
                 } );
-                $( "#dataSlide" ).css("opacity", 0.4);
+                $( "#dataSlide" ).css( "opacity", 0.4 );
             }
         }, this ) );
 
@@ -407,8 +421,8 @@ var RCInterface = Class.create( {
             width: "10px"
         }, 700, function()
         {
-            $( "#synthesisSlide" ).css("opacity", 1);
-            $( "#dataSlide" ).css("opacity", 1);
+            $( "#synthesisSlide" ).css( "opacity", 1 );
+            $( "#dataSlide" ).css( "opacity", 1 );
             $( "#hiddenDivSlide" ).height( $( "#pageWrapper .container-fluid" ).height() );
         } );
     },

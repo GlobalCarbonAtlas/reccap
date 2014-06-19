@@ -95,6 +95,7 @@
     <div id="data-count" class="dc-data-count dc-chart">
         <span class="filter-count"></span> selected out of <span class="total-count"></span> records
     </div>
+    <div id="exportData" class="toolButton toolsForData"><img src="img/export_small.png" title="Export"/></div>
     <BR/><BR/>
 
     <table id="data-table" class="table table-hover dc-data-table dc-chart">
@@ -111,7 +112,7 @@
     <div class="synthesisTitle">
         <div id="synthesisTitle">SYNTHESIS</div>
     </div>
-    <img src="img/Flux.png" width="1100px"/>
+    <img id="fluxImage" src="img/Flux.png" width="1100px"/>
 </div>
 
 <script type="text/javascript">

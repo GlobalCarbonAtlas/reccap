@@ -90,7 +90,7 @@
 
 <div id="dataDiv">
     <div class="dataTitle">
-        <div id="dataTitle">CARBON BUDGETS</div>
+        <div id="dataTitle">CARBON BUDGET(S)</div>
     </div>
     <div id="data-count" class="dc-data-count dc-chart">
         <span class="filter-count"></span> selected out of <span class="total-count"></span> records

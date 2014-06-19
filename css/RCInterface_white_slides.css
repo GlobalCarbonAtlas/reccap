@@ -22,7 +22,7 @@ body {
     font-size: 36px;
     text-shadow: 2px 2px 2px #CCCCCC;
     text-align: right; /*padding: 10px 0 22px; *//*margin: auto;*/
-    margin: 21px 0 24px 12px;
+    margin: 21px 0 24px 127px;
     width: 650px;
 }
 
@@ -238,7 +238,7 @@ area {
 }
 
 .dataTitle {
-    margin: 300px 0 0 -154px;
+    margin: 300px 0 0 -162px;
 }
 
 .dc-data-table {

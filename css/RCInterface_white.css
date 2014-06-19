@@ -9,7 +9,7 @@ body {
 }
 
 #pageWrapper {
-    /*background: none repeat scroll 0 0 #2C3537;*/
+/*background: none repeat scroll 0 0 #2C3537;*/
     color: #2C3537;
     font-size: 13px;
     padding: 0 20px 0 0;
@@ -29,7 +29,7 @@ body {
 
 .bigTitle {
     font-weight: bold; /*color: #09C5CE;*/
-    /*color: #FF7F0E;*/
+/*color: #FF7F0E;*/
 }
 
 h3 {
@@ -56,7 +56,7 @@ h3 {
     text-align: center;
     padding-bottom: 8px;
     margin: 55px 50px 0 49px;
-    height: 205px;
+    height: 243px;
 }
 
 .tools img {
@@ -73,12 +73,12 @@ h3 {
 
 #regionActive, #regionUnActive {
     position: absolute;
-    top: 75px;
-    left: 18px;
+    top: 112px;
+    left: 19px;
 }
 
 #data {
-    margin-top: 50px;
+    margin: 50px 0 2px 0;
 }
 
 #synthesis img {
@@ -90,6 +90,10 @@ h3 {
 
 #export {
     margin: 3px 0 0 2px;
+}
+
+#help {
+    margin: 11px 0 0 2px;
 }
 
 /* ************** DC Object ************** */
@@ -160,7 +164,7 @@ g.oceania path {
 /*}*/
 
 /* ************** FLUX IMG ************** */
-#imageFlux{
+#imageFlux {
     margin: -55px 0 0 -15px;
 }
 
@@ -169,7 +173,7 @@ g.oceania path {
 }
 
 area {
-    cursor:pointer;
+    cursor: pointer;
     border: 2px solid red;
 }
 
@@ -184,7 +188,7 @@ area {
 }
 
 /* ************** DATA & FLUX STYLE ************** */
-.synthesisTitle, .dataTitle {
+.dataTitle, .synthesisTitle {
     position: absolute;
     top: 9px;
     color: #09C5CE;
@@ -195,6 +199,15 @@ area {
     -ms-transform: rotate(270deg);
     -o-transform: rotate(270deg);
     transform: rotate(270deg);
+}
+
+#dataTitle, #synthesisTitle {
+    display: inline-block;
+    transform: rotate(270deg), scale(2, 4); /* W3C */
+    -webkit-transform: scale(2, 4); /* Safari and Chrome */
+    -moz-transform: scale(2, 4); /* Firefox */
+    -ms-transform: scale(2, 4); /* IE 9 */
+    -o-transform: scale(2, 4); /* Opera */
 }
 
 /* ************** DATA TABLE ************** */
@@ -211,8 +224,7 @@ area {
 }
 
 .dataTitle {
-    margin: 291px 0 0 -310px;
-    font-stretch : ultra-expanded;
+    margin: 300px 0 0 -154px;
 }
 
 .dc-data-table {
@@ -254,12 +266,13 @@ area {
 /* ************** FLUX ************** */
 #synthesisDiv {
     display: none;
-    width: 1100px;
+    width: 1082px;
     margin: auto;
 }
 
 .synthesisTitle {
-    margin: 278px 0 0 -83px;
+    margin: 278px 0 10px -103px;
+    z-index: 1;
 }
 
 #synthesisDiv img {

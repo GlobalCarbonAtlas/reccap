@@ -12,6 +12,7 @@
                     <div class="tools col-md-1">
                         <div id="reset" class="toolButton"><img src="img/reset-icon-614x460.png" width="50px" title="Reset all"/></div>
                         <div id="export" class="toolButton"><img src="img/export_small.png" title="Export"/></div>
+                        <div id="help" class="toolButton"><img src="img/help.png" width="30px" title="Help"/></div>
                         <div id="regionActive" class="toolButton"><img src="img/Globe_Connected.png" width="30px" title="Allow multiple selection for regions"/></div>
                         <div id="regionUnActive" class="toolButton"><img src="img/Globe_Disconnected.png" width="30px" title="Only one selected region"/></div>
                         <div id="data" class="toolButton"><img src="img/Data.png" width="30px" title="Get all data"/></div>
@@ -83,7 +84,7 @@
 <div id="hiddenDiv"></div>
 
 <div id="dataDiv">
-    <div id="dataTitle" class="dataTitle">CARBON BUDGETS FOR SELECTED REGION(S)</div>
+    <div class="dataTitle"><div id="dataTitle">CARBON BUDGETS</div></div>
     <div id="data-count" class="dc-data-count dc-chart">
         <span class="filter-count"></span> selected out of <span class="total-count"></span> records
     </div>
@@ -100,7 +101,7 @@
 </div>
 
 <div id="synthesisDiv">
-    <div class="synthesisTitle">SYNTHESIS</div>
+    <div class="synthesisTitle"><div id="synthesisTitle">SYNTHESIS</div></div>
     <img src="img/Flux.png" width="1100px"/>
 </div>
 

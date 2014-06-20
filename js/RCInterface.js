@@ -352,19 +352,13 @@ var RCInterface = Class.create( {
             this.addBarChart( "#bar-chart", 300, 200, "Continents", argument.target.alt );
         }, this ) );
 
-        // Data
-        $( "#exportData" ).on( "click", function()
-        {
-            alert( "work in progress" );
-        } );
-
         // Synthesis
-        $( "#synthesisData" ).on( "click", function()
+        $( "#exportSynthesis" ).on( "click", function()
         {
             alert( "work in progress" );
         } );
 
-        $("#synthesis").click();
+        $( "#synthesis" ).click();
     },
 
     bindActionsForSlides: function()

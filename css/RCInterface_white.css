@@ -189,11 +189,10 @@ area {
 
 /* ************** DATA & FLUX STYLE ************** */
 .dataTitle, .synthesisTitle {
-    position: absolute;
-    top: 9px;
     color: #09C5CE;
     font-size: 26px;
     font-weight: bold;
+    float: left;
     -webkit-transform: rotate(270deg);
     -moz-transform: rotate(270deg);
     -ms-transform: rotate(270deg);
@@ -203,7 +202,7 @@ area {
 
 #dataTitle, #synthesisTitle {
     display: inline-block;
-    transform: rotate(270deg), scale(2, 4); /* W3C */
+    transform: scale(2, 4); /* W3C */
     -webkit-transform: scale(2, 4); /* Safari and Chrome */
     -moz-transform: scale(2, 4); /* Firefox */
     -ms-transform: scale(2, 4); /* IE 9 */
@@ -223,20 +222,48 @@ area {
     opacity: 0.9;
 }
 
-.dataTitle {
-    margin: 300px 0 0 -154px;
+.dataTitleAndExport {
+    position: absolute;
+    margin: 250px 0 0 -150px;
 }
 
-.toolsForData {
-    background-color: #09C5CE;
+.dataTitle {
+    margin-top: 150px;
+}
+
+#exportData {
     float: left;
-    margin: 10px 0 0 -274px;
+    cursor: pointer;
+    margin: -150px 0 0 -140px;
+}
+
+#exportData .btn-link, #exportData .btn-link:hover, #exportData .btn-link:focus {
+    background-color: #09C5CE;
+    border: 2px solid #09C5CE;
     padding: 5px 3px 5px 5px;
     border: 2px solid #09C5CE;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
-    cursor: pointer;
+}
+
+.exportDataButton {
+    float: left;
+}
+
+.exportDataMenu {
+    float: left;
+    background-color: #09C5CE;
+    position: relative;
+    margin-top: -1px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    min-width: 100px;
+}
+
+.dataTableDiv {
+    margin: 0 5px;
 }
 
 .dc-data-table {
@@ -301,7 +328,7 @@ area {
     transform: rotate(90deg);
 }
 
-#synthesisDiv #fluxImage {
+#fluxImage {
     position: absolute;
     top: 50px;
     -webkit-border-radius: 6px;

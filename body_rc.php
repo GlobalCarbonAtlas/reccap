@@ -84,30 +84,41 @@
 <div id="hiddenDiv"></div>
 
 <div id="dataDiv">
-    <div class="dataTitle">
-        <div id="dataTitle">CARBON BUDGETS</div>
-    </div>
-    <div id="data-count" class="dc-data-count dc-chart">
-        <span class="filter-count"></span> selected out of <span class="total-count"></span> records
+    <div class="row dataTitleAndExport">
+        <div class="dataTitle">
+            <div id="dataTitle">CARBON BUDGETS</div>
+        </div>
+        <div id="exportData" class="toolButton">
+            <button class="exportDataButton btn-link" data-toggle="dropdown"><img src="img/export_small.png" title="Export"/></button>
+            <ul class="exportDataMenu dropdown-menu">
+                <li><a href="#" onClick="$('#data-table').tableExport({type:'csv',escape:'false'});"> <img src='js/htmltable_export/icons/csv.png' width='24px'> CSV</a></li>
+                <li><a href="#" onClick="$('#data-table').tableExport({type:'pdf',pdfFontSize:'10',escape:'false'});"> <img src='js/htmltable_export/icons/pdf.png' width='24px'> PDF</a>
+                </li>
+            </ul>
+        </div>
     </div>
 
-    <div id="exportData" class="toolButton toolsForData"><img src="img/export_small.png" title="Export"/></div>
-    <BR/><BR/>
+    <div class="row dataTableDiv">
+        <div id="data-count" class="dc-data-count dc-chart">
+            <span class="filter-count"></span> selected out of <span class="total-count"></span> records
+        </div>
 
-    <table id="data-table" class="table table-hover dc-data-table dc-chart">
-        <thead>
-        <tr class="header">
-            <th>Carbon budget</th>
-            <th>Value</th>
-        </tr>
-        </thead>
-    </table>
+        <table id="data-table" class="table table-hover dc-data-table dc-chart">
+            <thead>
+            <tr class="header">
+                <th>Carbon budget</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
 </div>
 
 <div id="synthesisDiv">
-        <div class="synthesisTitle">
-            <div id="synthesisTitle">SYNTHESIS</div><div id="exportSynthesis" class="toolButton toolsForSynthesis"><img src="img/export_small.png" title="Export"/></div>
-        </div>
+    <div class="synthesisTitle">
+        <div id="synthesisTitle">SYNTHESIS</div>
+        <div id="exportSynthesis" class="toolButton toolsForSynthesis"><img src="img/export_small.png" title="Export"/></div>
+    </div>
     <img id="fluxImage" src="img/Flux.png" width="1100px"/>
 </div>
 

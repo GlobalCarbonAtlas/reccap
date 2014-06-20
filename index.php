@@ -41,6 +41,20 @@
     <script type="text/javascript" src="js/htmltable_export/jspdf/jspdf.js"></script>
     <script type="text/javascript" src="js/htmltable_export/jspdf/libs/base64.js"></script>
 
+<!--    <script type="text/javascript" src="js/jsPDF-0.9.0rc2/jspdf.js"></script>-->
+<!--    <script type="text/javascript" src="js/jsPDF-0.9.0rc2/libs/Deflate/adler32cs.js"></script>-->
+<!--    <script type="text/javascript" src="js/jsPDF-0.9.0rc2/libs/FileSaver.js/FileSaver.js"></script>-->
+<!--    <script type="text/javascript" src="js/jsPDF-0.9.0rc2/libs/Blob.js/BlobBuilder.js"></script>-->
+<!--<!--    <script type="text/javascript" src="js/jsPDF-0.9.0rc2/"></script>-->
+<!--    <script type="text/javascript" src="js/jsPDF-0.9.0rc2/jspdf.plugin.addimage.js"></script>-->
+<!--    <script type="text/javascript" src="js/jsPDF-0.9.0rc2/jspdf.plugin.standard_fonts_metrics.js"></script>-->
+<!--    <script type="text/javascript" src="js/jsPDF-0.9.0rc2/jspdf.plugin.split_text_to_size.js"></script>-->
+<!--    <script type="text/javascript" src="js/jsPDF-0.9.0rc2/jspdf.plugin.from_html.js"></script>-->
+    <!--        <script type="text/javascript" src="js/jsPDF-0.9.0rc2/js/ba"></script>-->
+    <!--    <script type="text/javascript" src="js/canvg/rgbcolor.js"></script>-->
+    <!--    <script type="text/javascript" src="js/canvg/canvg.js"></script>-->
+    <!--    <script type="text/javascript" src="js/htmltable_export/html2canvas.js"></script>-->
+
     <script type="text/javascript" src="js/library/jquery.class.js"></script>
     <script type="text/javascript" src="js/RCInterface.js"></script>
 

@@ -83,17 +83,20 @@
 
 <div id="hiddenDiv"></div>
 
+<!-- ****************** DATA TABLE AND EXPORT ****************** -->
 <div id="dataDiv">
     <div class="row dataTitleAndExport">
         <div class="dataTitle">
             <div id="dataTitle">CARBON BUDGETS</div>
         </div>
         <div id="exportData" class="toolButton">
-            <button class="exportDataButton btn-link" data-toggle="dropdown"><img src="img/export_small.png" title="Export"/></button>
-            <ul class="exportDataMenu dropdown-menu">
-                <li><a href="#" onClick="$('#data-table').tableExport({type:'csv',escape:'false'});"> <img src='js/htmltable_export/icons/csv.png' width='24px'> CSV</a></li>
-                <li><a href="#" onClick="$('#data-table').tableExport({type:'pdf',pdfFontSize:'10',escape:'false'});"> <img src='js/htmltable_export/icons/pdf.png' width='24px'> PDF</a>
+            <button class="exportButton btn-link" data-toggle="dropdown"><img src="img/export_small.png" title="Export"/></button>
+            <ul class="exportMenu dropdown-menu">
+                <li><a href="#" onClick="$('#data-table').tableExport({type:'pdf',pdfFontSize:'10',escape:'false'});"> <img src='js/htmltable_export/icons/pdf.png' width='24px'>
+                    PDF</a>
                 </li>
+                <li><a href="#" onClick="$('#data-table').tableExport({type:'csv',escape:'false'});"> <img src='js/htmltable_export/icons/csv.png' width='24px'> CSV</a></li>
+                <li><a href="#" onClick="$('#data-table').tableExport({type:'txt',escape:'false'});"> <img src='js/htmltable_export/icons/txt.png' width='24px'> TXT</a></li>
             </ul>
         </div>
     </div>
@@ -114,13 +117,28 @@
     </div>
 </div>
 
+<!-- ****************** SYNTHESIS IMAGE AND EXPORT ****************** -->
 <div id="synthesisDiv">
-    <div class="synthesisTitle">
-        <div id="synthesisTitle">SYNTHESIS</div>
-        <div id="exportSynthesis" class="toolButton toolsForSynthesis"><img src="img/export_small.png" title="Export"/></div>
+    <div class="row synthesisTitleAndExport">
+        <div class="synthesisTitle">
+            <div id="synthesisTitle">SYNTHESIS</div>
+        </div>
+        <div id="exportSynthesis" class="toolButton">
+            <button class="exportButton btn-link" data-toggle="dropdown"><img src="img/export_small.png" title="Export"/></button>
+<!--            <ul class="exportMenu dropdown-menu">-->
+<!--                <li><a href="#" onClick="$('#fluxImage').tableExport({type:'png',escape:'false'});"> <img src='js/htmltable_export/icons/png.png' width='24px'> PNG</a></li>-->
+<!--                <li><a href="#" onClick="$('#data-table').tableExport({type:'pdf',pdfFontSize:'10',escape:'false'});"> <img src='js/htmltable_export/icons/pdf.png' width='24px'>-->
+<!--                    PDF</a>-->
+<!--                </li>-->
+<!--            </ul>-->
+        </div>
     </div>
-    <img id="fluxImage" src="img/Flux.png" width="1100px"/>
+    <div class="row">
+        <img id="fluxImage" src="img/Flux.png" width="1100px"/>
+    </div>
 </div>
+
+<canvas id="svg-canvas" hidden="hidden"></canvas>
 
 <script type="text/javascript">
     $( document ).ready( function ()

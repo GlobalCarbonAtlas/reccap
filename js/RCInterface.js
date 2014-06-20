@@ -357,8 +357,6 @@ var RCInterface = Class.create( {
         {
             alert( "work in progress" );
         } );
-
-        $( "#synthesis" ).click();
     },
 
     bindActionsForSlides: function()

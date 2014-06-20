@@ -201,7 +201,7 @@ area {
 }
 
 #dataTitle, #synthesisTitle {
-    display: inline-block;
+    /*display: inline-block;*/
     transform: scale(2, 4); /* W3C */
     -webkit-transform: scale(2, 4); /* Safari and Chrome */
     -moz-transform: scale(2, 4); /* Firefox */
@@ -209,11 +209,35 @@ area {
     -o-transform: scale(2, 4); /* Opera */
 }
 
+.exportButton.btn-link, .exportButton.btn-link:hover, .exportButton.btn-link:focus {
+    background-color: #09C5CE;
+    border: 2px solid #09C5CE;
+    padding: 5px 3px 5px 5px;
+    border: 2px solid #09C5CE;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+
+.exportButton {
+    float: left;
+}
+
+.exportMenu {
+    float: left;
+    background-color: #09C5CE;
+    position: relative;
+    margin-top: -1px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    min-width: 100px;
+}
+
 /* ************** DATA TABLE ************** */
 #dataDiv {
     position: absolute;
     background: none repeat scroll 0 0 #FFFFFF;
-    margin: auto;
     width: 50%;
     padding-right: 37px;
     display: none;
@@ -235,31 +259,6 @@ area {
     float: left;
     cursor: pointer;
     margin: -150px 0 0 -140px;
-}
-
-#exportData .btn-link, #exportData .btn-link:hover, #exportData .btn-link:focus {
-    background-color: #09C5CE;
-    border: 2px solid #09C5CE;
-    padding: 5px 3px 5px 5px;
-    border: 2px solid #09C5CE;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    border-radius: 6px;
-}
-
-.exportDataButton {
-    float: left;
-}
-
-.exportDataMenu {
-    float: left;
-    background-color: #09C5CE;
-    position: relative;
-    margin-top: -1px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    min-width: 100px;
 }
 
 .dataTableDiv {
@@ -305,35 +304,30 @@ area {
 /* ************** FLUX ************** */
 #synthesisDiv {
     display: none;
-    width: 1082px;
-    margin: auto;
+    position: absolute;
+    top: 15px;
+    left: 113px;
+}
+
+.synthesisTitleAndExport {
+    position: absolute;
 }
 
 .synthesisTitle {
-/*margin: 278px 0 10px -103px;*/
-    margin: 235px 0 10px -164px;
-    z-index: 1;
+    margin: 270px 0 0 -102px;
 }
 
-.toolsForSynthesis {
-    background-color: #09C5CE;
-    float: right;
-    margin: 0 0 0 90px;
-    padding: 5px 3px 5px 5px;
-    border: 2px solid #09C5CE;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    border-radius: 6px;
+#exportSynthesis {
+    float: left;
     cursor: pointer;
-    transform: rotate(90deg);
+    margin: 70px 0 0 -90px;
 }
 
 #fluxImage {
-    position: absolute;
-    top: 50px;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
+    margin-top: 20px;
 }
 
 /* ************** NPP ************** */

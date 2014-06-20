@@ -438,6 +438,11 @@ var RCInterface = Class.create( {
         // Reset button
         $( "#reset" ).on( "click", jQuery.proxy( function()
         {
+            $( ".dynamicArea" ).removeClass( "selected" );
+            $( "#bar-chart div" ).fadeOut( 500, function()
+            {
+                $( "#bar-chart div" ).remove();
+            } );
             dc.filterAll();
             dc.renderAll();
             this.updateCharts();

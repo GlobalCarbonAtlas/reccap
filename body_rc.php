@@ -39,10 +39,10 @@
                     <map id="mapFlux" name="mapFlux">
                         <!--                    <area shape="rect" alt="FossilFuel" title="Fossil Fuel" coords="344,56,423,90"/>-->
                         <!--                    <area shape="rect" alt="Crop + Wood products use" title="Crop + Wood products use" coords="434,54,530,91"/>-->
-                        <area shape="rect" href="#" alt="Land use change" title="Land use change" coords="538,49,601,93" style="border: 2px solid blue"/>
+                        <area shape="rect" href="#" alt="LandUseChange" title="Land use change" coords="538,49,601,93">
                         <area shape="rect" href="#" alt="Fire" title="Fires" coords="629,67,665,91"/>
                         <!--                    <area shape="rect" alt="Natural Fires" title="Natural Fires" coords="750,51,802,91"/>-->
-                        <area shape="rect" href="#" alt="Heterotrophic Respiration" title="Heterotrophic Respiration" coords="831,49,914,92"/>
+                        <area shape="rect" href="#" alt="HeterotrophicRespiration" title="Heterotrophic Respiration" coords="831,49,914,92"/>
                         <!--                    <area shape="rect" alt="Land sink" title="Land sink" coords="929,56,990,76"/>-->
                         <area shape="rect" href="#" alt="GPP" title="Gross primary production" coords="1025,16,1111,46"/>
                         <!--                    <area shape="rect" alt="Plant" title="Plant" coords="761,228,836,279"/>-->
@@ -60,8 +60,9 @@
                         <!--                    <area shape="rect"  alt="SoilExport" title="SoilExport" coords="820,316,911,341"/>-->
                         <!--                    <area shape="rect"  alt="weathering2" title="weathering2" coords="765,371,847,396"/>-->
                         <!--                    <area shape="rect"  alt="FreshwaterEstuaryBurial" title="FreshwaterEstuaryBurial" coords="995,365,1069,414"/>-->
-                        <area shape="rect" href="#" alt="River export to ocean" title="exportToOcean" coords="1075,390,1142,421"/>
+                        <area shape="rect" href="#" alt="RiverExportToOcean" title="exportToOcean" coords="1075,390,1142,421"/>
                     </map>
+                    <div id="dynamicAreas"></div>
                 </div>
                 <div class="imageTitle">Flux</div>
                 Click on one variable to get the bar chart
@@ -125,12 +126,12 @@
         </div>
         <div id="exportSynthesis" class="toolButton">
             <button class="exportButton btn-link" data-toggle="dropdown"><img src="img/export_small.png" title="Export"/></button>
-<!--            <ul class="exportMenu dropdown-menu">-->
-<!--                <li><a href="#" onClick="$('#fluxImage').tableExport({type:'png',escape:'false'});"> <img src='js/htmltable_export/icons/png.png' width='24px'> PNG</a></li>-->
-<!--                <li><a href="#" onClick="$('#data-table').tableExport({type:'pdf',pdfFontSize:'10',escape:'false'});"> <img src='js/htmltable_export/icons/pdf.png' width='24px'>-->
-<!--                    PDF</a>-->
-<!--                </li>-->
-<!--            </ul>-->
+            <!--            <ul class="exportMenu dropdown-menu">-->
+            <!--                <li><a href="#" onClick="$('#fluxImage').tableExport({type:'png',escape:'false'});"> <img src='js/htmltable_export/icons/png.png' width='24px'> PNG</a></li>-->
+            <!--                <li><a href="#" onClick="$('#data-table').tableExport({type:'pdf',pdfFontSize:'10',escape:'false'});"> <img src='js/htmltable_export/icons/pdf.png' width='24px'>-->
+            <!--                    PDF</a>-->
+            <!--                </li>-->
+            <!--            </ul>-->
         </div>
     </div>
     <div class="row">

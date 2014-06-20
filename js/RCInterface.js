@@ -16,45 +16,7 @@ var RCInterface = Class.create( {
         this.numberFormat = d3.format( ".2f" );
         this.selectMultipleRegion = false;
 
-        // Responsive image with map/area
-        $( "#imageFlux" ).rwdImageMaps();
-        $( '#imageFlux' ).width( "850px" );
-        $( '#imageFlux' ).mapster( {
-            fillColor: 'ff0000',
-            fillOpacity: 0.3,
-            stroke: true,
-            render_highlight: {
-                fillColor: '2aff00',
-                strokeWidth: 2
-            }
-        } );
-
-//        $('#imageFlux').mapster({
-//            fillOpacity: 0.5,
-//            render_highlight: {
-//                fillColor: '2aff00',
-//                stroke: true
-//            },
-//            render_select: {
-//                fillColor: 'ff000c',
-//                stroke: false
-//            },
-//            fadeInterval: 50,
-//            mapKey: 'data-state',
-//            areas: [
-//                {
-//                    key: 'TX',
-//                    selected: true
-//                },
-//                {
-//                    key: 'ME',
-//                    selected: true
-//                },
-//                {
-//                    key: 'WA',
-//                    staticState: false
-//                }]
-//        });
+        this.createDynamicAreasForResponsiveMap( 850 );
 
         this.initFileValuesAndCreateDCObjects();
         this.bindActions();
@@ -254,7 +216,7 @@ var RCInterface = Class.create( {
 
 
     /* ******************************************************************** */
-    /* ****************************** OTHERS ****************************** */
+    /* ************************ OTHERS FOR CHARTS ************************* */
     /* ******************************************************************** */
     updateCharts: function()
     {
@@ -303,14 +265,18 @@ var RCInterface = Class.create( {
                 .attr( "transform", "translate(-10,0)rotate(315)" );
     },
 
-    getToolTipContentForMultipleValues: function( valueArray )
+    addBarChart: function( containerId, chartId, width, height, dimensionValue, groupValue )
     {
-        var content = "";
-        jQuery.each( Object.keys( valueArray ), jQuery.proxy( function( i, d )
+        $( containerId ).append( '<div id="' + chartId + '"></div>' );
+        this.createSimpleDCObject( dimensionValue, groupValue, "bar", "#" + chartId, width, height, "barChart" );
+    },
+
+    removeChart: function( chartId )
+    {
+        $( "#" + chartId ).fadeOut( 500, function()
         {
-            content += " " + d + " : " + this.numberFormat( valueArray[d] ) + ",";
-        }, this ) );
-        return content.slice( 0, -1 );
+            $( "#" + chartId ).remove();
+        } );
     },
 
     getValuesGroupByBudget: function( dimension, carbonBudget )
@@ -334,23 +300,71 @@ var RCInterface = Class.create( {
                 } );
     },
 
-    addBarChart: function( chartId, width, height, dimensionValue, groupValue )
+
+    /* ******************************************************************** */
+    /* ****************************** OTHERS ****************************** */
+    /* ******************************************************************** */
+    /**
+     * This method resize the image and create dynamic divs to replace map/areas to get better css styles
+     * @param width
+     */
+    createDynamicAreasForResponsiveMap: function( width )
     {
-        var childrenNumber = $( chartId ).children().length;
-        $( chartId ).append( '<div id="bar-chart' + childrenNumber + '"></div>' );
-        this.createSimpleDCObject( dimensionValue, groupValue, "bar", "#bar-chart" + childrenNumber, width, height, "barChart" );
+        // Responsive image with map/area
+        $( '#imageFlux' ).mapster( {
+            stroke:false,
+            fill:false
+        } );
+        $( '#imageFlux' ).mapster( 'resize', width, 0, 0 );
+
+        // Create "areas" divs
+        $.waitUntil(
+                function()
+                {
+                    return width == $( "#imageFlux" ).width();
+                },
+                jQuery.proxy( function()
+                {
+                    $.each( $( "#mapFlux area" ), jQuery.proxy( function( i, element )
+                    {
+                        var coords = element.coords.split( ',' );
+                        var div = $( '<div id="' + element.alt + '" class="dynamicArea"></div>' );
+                        div.css( "top", coords[1] );
+                        div.css( "left", coords[0] );
+                        div.width( coords[2] - coords[0] );
+                        div.height( coords[3] - coords[1] );
+                        div.on( "click", jQuery.proxy( function( argument )
+                        {
+                            var isAlreadyAChart = $( argument.currentTarget ).hasClass( "selected" );
+                            isAlreadyAChart ? $( argument.currentTarget ).removeClass( "selected" ) : $( argument.currentTarget ).addClass( "selected" );
+                            if( isAlreadyAChart )
+                                this.removeChart( "bar-chart_" + argument.currentTarget.id );
+                            else
+                                this.addBarChart( "#bar-chart", "bar-chart_" + argument.currentTarget.id, 300, 200, "Continents", argument.currentTarget.id );
+                        }, this ) );
+                        $( "#dynamicAreas" ).append( div );
+                    }, this ) );
+
+                    $( "#mapFlux" ).remove();
+                }, this ),
+                null
+                );
+    },
+
+    getToolTipContentForMultipleValues: function( valueArray )
+    {
+        var content = "";
+        jQuery.each( Object.keys( valueArray ), jQuery.proxy( function( i, d )
+        {
+            content += " " + d + " : " + this.numberFormat( valueArray[d] ) + ",";
+        }, this ) );
+        return content.slice( 0, -1 );
     },
 
     bindActions: function()
     {
         this.bindActionsForMenu();
         this.bindActionsForSlides();
-
-        // Image flux
-        $( 'area' ).on( 'click', jQuery.proxy( function( argument )
-        {
-            this.addBarChart( "#bar-chart", 300, 200, "Continents", argument.target.alt );
-        }, this ) );
 
         // Synthesis
         $( "#exportSynthesis" ).on( "click", function()
@@ -490,7 +504,6 @@ var RCInterface = Class.create( {
 
 
 } );
-
 
 function print_filter( filter )
 {

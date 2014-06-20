@@ -164,17 +164,22 @@ g.oceania path {
 /*}*/
 
 /* ************** FLUX IMG ************** */
-#imageFlux {
+/* Style for imageFlux */
+.mapster_el, .dynamicArea {
     margin: -55px 0 0 -15px;
 }
 
-#mapFlux {
-    margin: 10px 0 0 100px;
+.dynamicArea {
+    position: absolute;
+    cursor: pointer;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    margin-left:0;
 }
 
-area {
-    cursor: pointer;
-    border: 2px solid red;
+.dynamicArea.selected{
+    border: 2px dashed grey;
 }
 
 .imageTitle {
@@ -201,7 +206,6 @@ area {
 }
 
 #dataTitle, #synthesisTitle {
-    /*display: inline-block;*/
     transform: scale(2, 4); /* W3C */
     -webkit-transform: scale(2, 4); /* Safari and Chrome */
     -moz-transform: scale(2, 4); /* Firefox */

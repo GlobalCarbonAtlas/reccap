@@ -102,6 +102,11 @@ h3 {
 }
 
 /* ************** MAP ************** */
+.mapText {
+    margin-left: 17px;
+    color: #525252;
+}
+
 g.country {
     cursor: pointer;
 }
@@ -175,11 +180,11 @@ g.oceania path {
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
-    margin-left:0;
+    margin-left: 0;
 }
 
-.dynamicArea.selected{
-    border: 2px dashed grey;
+.dynamicArea.selected {
+    border: 1px dashed #c7c7c7;
 }
 
 .imageTitle {
@@ -188,8 +193,13 @@ g.oceania path {
     font-size: 22px;
     text-shadow: 2px 2px 2px #999999;
     position: relative;
-    top: -251px;
+    top: -300px;
     left: 58px;
+}
+
+.fluxText {
+    color: #525252;
+    margin:-82px 0 0 -13px;
 }
 
 /* ************** DATA & FLUX STYLE ************** */
@@ -333,6 +343,13 @@ g.oceania path {
     border-radius: 6px;
     margin-top: 20px;
 }
+
+/* ************** BAR-CHART ************** */
+#bar-chart .dc-chart{
+    margin: 15px 60px;
+}
+
+
 
 /* ************** NPP ************** */
 /*#npp-chart .x.axis text, #hr-chart .x.axis text {*/

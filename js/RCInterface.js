@@ -328,7 +328,8 @@ var RCInterface = Class.create( {
                     $.each( $( "#mapFlux area" ), jQuery.proxy( function( i, element )
                     {
                         var coords = element.coords.split( ',' );
-                        var div = $( '<div id="' + element.alt + '" class="dynamicArea"></div>' );
+                        var divId = element.alt.replace( / /g, "_" );
+                        var div = $( '<div id="' + divId + '" name="' + element.alt + '" class="dynamicArea"></div>' );
                         div.css( "top", coords[1] );
                         div.css( "left", coords[0] );
                         div.width( coords[2] - coords[0] );
@@ -340,7 +341,7 @@ var RCInterface = Class.create( {
                             if( isAlreadyAChart )
                                 this.removeChart( "bar-chart_" + argument.currentTarget.id );
                             else
-                                this.addBarChart( "#bar-chart", "bar-chart_" + argument.currentTarget.id, 300, 200, "Continents", argument.currentTarget.id );
+                                this.addBarChart( "#bar-chart", "bar-chart_" + argument.currentTarget.id, 300, 200, "Continents", argument.currentTarget.getAttribute( "name" ) );
                         }, this ) );
                         $( "#dynamicAreas" ).append( div );
                     }, this ) );
@@ -371,6 +372,8 @@ var RCInterface = Class.create( {
         {
             alert( "work in progress" );
         } );
+
+        $( ".tools, #map-chart, .function, #bar-chart" ).draggable();
     },
 
     bindActionsForSlides: function()

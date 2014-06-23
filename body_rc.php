@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-md-7">
                         <div id="map-chart"></div>
-                        <div>Click on one region to get the functions</div>
+                        <div class="mapText">Click on a region to get the functions</div>
                     </div>
                 </div>
             </div>
@@ -39,12 +39,12 @@
                     <map id="mapFlux" name="mapFlux">
                         <!--                    <area shape="rect" alt="FossilFuel" title="Fossil Fuel" coords="344,56,423,90"/>-->
                         <!--                    <area shape="rect" alt="Crop + Wood products use" title="Crop + Wood products use" coords="434,54,530,91"/>-->
-                        <area shape="rect" href="#" alt="LandUseChange" title="Land use change" coords="538,49,601,93">
-                        <area shape="rect" href="#" alt="Fire" title="Fires" coords="629,67,665,91"/>
+                        <area shape="rect" href="#" alt="Land use change" title="Land use change" coords="538,49,611,93">
+                        <area shape="rect" href="#" alt="Fire" title="Fires" coords="628,65,667,92"/>
                         <!--                    <area shape="rect" alt="Natural Fires" title="Natural Fires" coords="750,51,802,91"/>-->
-                        <area shape="rect" href="#" alt="HeterotrophicRespiration" title="Heterotrophic Respiration" coords="831,49,914,92"/>
+                        <area shape="rect" href="#" alt="Heterotrophic Respiration" title="Heterotrophic Respiration" coords="831,49,920,92"/>
                         <!--                    <area shape="rect" alt="Land sink" title="Land sink" coords="929,56,990,76"/>-->
-                        <area shape="rect" href="#" alt="GPP" title="Gross primary production" coords="1025,16,1111,46"/>
+                        <area shape="rect" href="#" alt="GPP" title="Gross primary production" coords="1020,14,1111,54"/>
                         <!--                    <area shape="rect" alt="Plant" title="Plant" coords="761,228,836,279"/>-->
                         <!--                    <area shape="rect" alt="Soils" title="Soils" coords="705,290,794,340"/>-->
                         <!--                    <area shape="rect" alt="Wood product storage" title="Wood product storage" coords="516,270,565,328"/>-->
@@ -54,7 +54,7 @@
                         <!--                    <area shape="rect" alt="Gas" title="Gas" coords="444,322,482,349"/>-->
                         <!--                    <area shape="rect" alt="Oil" title="Oil" coords="385,324,419,351"/>-->
                         <!--                    <area shape="rect" alt="Fossil fuel trade" title="Fossil fuel trade" coords="306,388,426,416"/>-->
-                        <area shape="rect" href="#" alt="NPP" title="NPP" coords="983,129,1069,174"/>
+                        <area shape="rect" href="#" alt="NPP" title="NPP" coords="989,129,1069,174"/>
                         <!--                    <area  shape="rect" alt="weathering" title="weathering" coords="974,216,1060,245"/>-->
                         <!--                    <area shape="rect"  alt="FreshwaterOutgassing" title="FreshwaterOutgassing" coords="1060,211,1146,240"/>-->
                         <!--                    <area shape="rect"  alt="SoilExport" title="SoilExport" coords="820,316,911,341"/>-->
@@ -65,7 +65,7 @@
                     <div id="dynamicAreas"></div>
                 </div>
                 <div class="imageTitle">Flux</div>
-                Click on one variable to get the bar chart
+                <div class="fluxText">Click on a flux to display the bar chart</div>
 
             </div>
 

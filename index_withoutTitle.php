@@ -2,11 +2,8 @@
 
 <!--
  ##########################################################################
-
  Vanessa.Maigne@lsce.ipsl.fr    for Global Carbon Atlas
-
  PLEASE DO NOT COPY OR DISTRIBUTE WITHOUT PERMISSION
-
  ##########################################################################
 -->
 
@@ -18,9 +15,9 @@
     <link rel="icon" href="img/globe.png" type="image/png">
 
     <!-- ************************* CSS ************************* -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap-3.1.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-3.1.1-dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="js/dc.js-master/web/css/dc.css">
-    <link rel="stylesheet" type="text/css" href="css/RCInterface_grey.css">
+    <link rel="stylesheet" type="text/css" href="css/RCInterface_withoutTitle.css">
 
 
     <!-- ************************* JS ************************* -->
@@ -54,7 +51,7 @@
 </HEAD>
 <BODY>
 
-<?php include "body_rc.php" ?>
+<?php include "body_rc_withoutTitle.php" ?>
 
 </BODY>
 </HTML>

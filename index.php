@@ -14,12 +14,15 @@
     <title>GCA Reccap</title>
     <link rel="icon" href="img/globe.png" type="image/png">
 
+    <!-- ************************* CSS ************************* -->
     <link rel="stylesheet" type="text/css" href="css/bootstrap-3.1.1-dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="js/dc.js-master/web/css/dc.css">
     <link rel="stylesheet" type="text/css" href="css/RCInterface_white.css">
 
 
+    <!-- ************************* JS ************************* -->
     <script type="text/javascript" src="js/library/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js"></script>
     <script type="text/javascript" src="js/bootstrap-3.1.1-dist/js/bootstrap.js"></script>
 
     <script type="text/javascript" src="js/dc.js-master/web/js/d3.js"></script>

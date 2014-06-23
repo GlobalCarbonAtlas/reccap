@@ -1,9 +1,6 @@
 @media print {
 }
 
-/*[class*="col"] { background: #EEF; }*/
-/*[class*="col"] [class*="col"] { background: #FEE; }*/
-
 body {
     font-family: "Lato", Arial, sans-serif;
 }
@@ -55,7 +52,7 @@ h3 {
     text-align: center;
     padding-bottom: 8px;
     margin: 55px 50px 0 49px;
-    height: 205px;
+    height: 243px;
 }
 
 .tools img {
@@ -72,12 +69,12 @@ h3 {
 
 #regionActive, #regionUnActive {
     position: absolute;
-    top: 75px;
-    left: 18px;
+    top: 112px;
+    left: 19px;
 }
 
 #data {
-    margin-top: 50px;
+    margin: 50px 0 2px 0;
 }
 
 #synthesis img {
@@ -91,6 +88,10 @@ h3 {
     margin: 3px 0 0 2px;
 }
 
+#help {
+    margin: 11px 0 0 2px;
+}
+
 /* ************** DC Object ************** */
 .dc-chart g.row text {
     fill: #2C3537;
@@ -99,9 +100,13 @@ h3 {
 /* ************** MAP ************** */
 #map-chart {
     background-color: white;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+
+.mapText {
+    color: #09C5CE;
 }
 
 g.country {
@@ -152,7 +157,11 @@ g.oceania path {
 /* ************** FUNCTIONS ************** */
 .function {
     float: right;
-    margin-top: -10px;
+    background-color:white;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    padding:0 10px 10px 0;
 }
 
 /*.dc-chart .axis text {*/
@@ -166,15 +175,28 @@ g.oceania path {
 /*}*/
 
 /* ************** FLUX IMG ************** */
-#flux-img {
-    cursor: pointer;
-    margin: -35px 0 0 -15px;
+/* Style for imageFlux */
+.mapster_el {
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
 }
 
-#flux-img img {
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
+.mapster_el, .dynamicArea {
+    margin: -55px 0 0 -15px;
+}
+
+.dynamicArea {
+    position: absolute;
+    cursor: pointer;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    margin-left: 0;
+}
+
+.dynamicArea.selected {
+    border: 1px dashed #c7c7c7;
 }
 
 .imageTitle {
@@ -183,21 +205,90 @@ g.oceania path {
     font-size: 22px;
     text-shadow: 2px 2px 2px #999999;
     position: relative;
-    top: -251px;
+    top: -300px;
     left: 58px;
+}
+
+.fluxText {
+    color: #09C5CE;
+    margin: -82px 0 0 -13px;
+}
+
+/* ************** DATA & FLUX STYLE ************** */
+.dataTitle, .synthesisTitle {
+    color: #09C5CE;
+    font-size: 26px;
+    font-weight: bold;
+    float: left;
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+
+#dataTitle, #synthesisTitle {
+    transform: scale(2, 4); /* W3C */
+    -webkit-transform: scale(2, 4); /* Safari and Chrome */
+    -moz-transform: scale(2, 4); /* Firefox */
+    -ms-transform: scale(2, 4); /* IE 9 */
+    -o-transform: scale(2, 4); /* Opera */
+}
+
+.exportButton.btn-link, .exportButton.btn-link:hover, .exportButton.btn-link:focus {
+    background-color: #09C5CE;
+    border: 2px solid #09C5CE;
+    padding: 5px 3px 5px 5px;
+    border: 2px solid #09C5CE;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+
+.exportButton {
+    float: left;
+}
+
+.exportMenu {
+    float: left;
+    background-color: #09C5CE;
+    position: relative;
+    margin-top: -1px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    min-width: 100px;
 }
 
 /* ************** DATA TABLE ************** */
 #dataDiv {
     position: absolute;
     background: none repeat scroll 0 0 #FFFFFF;
-    margin: auto;
     width: 50%;
     padding-right: 37px;
     display: none;
     top: 0;
     left: 25%;
     opacity: 0.9;
+}
+
+.dataTitleAndExport {
+    position: absolute;
+    margin: 250px 0 0 -150px;
+}
+
+.dataTitle {
+    margin-top: 150px;
+}
+
+#exportData {
+    float: left;
+    cursor: pointer;
+    margin: -150px 0 0 -140px;
+}
+
+.dataTableDiv {
+    margin: 0 5px;
 }
 
 .dc-data-table {
@@ -239,26 +330,42 @@ g.oceania path {
 /* ************** FLUX ************** */
 #synthesisDiv {
     display: none;
-    width: 1100px;
-    margin: auto;
+    position: absolute;
+    top: 15px;
+    left: 113px;
+}
+
+.synthesisTitleAndExport {
+    position: absolute;
 }
 
 .synthesisTitle {
-    position: absolute;
-    top: 9px;
-    margin-left: 30px;
-    color: #09C5CE;
-    font-size: 26px;
-    font-weight: bold;
+    margin: 270px 0 0 -102px;
 }
 
-#synthesisDiv img {
-    position: absolute;
-    top: 50px;
+#exportSynthesis {
+    float: left;
+    cursor: pointer;
+    margin: 70px 0 0 -90px;
+}
+
+#fluxImage {
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
+    margin-top: 20px;
 }
+
+
+/* ************** BAR-CHART ************** */
+#bar-chart .dc-chart{
+    background-color:white;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    margin: 10px 65px;
+}
+
 
 /* ************** D3-TIP ************** */
 .d3-tip {
@@ -289,57 +396,22 @@ g.oceania path {
 }
 
 .d3-tipTitle {
-    color: #09C5CE;
+    color: #FF7F0E;
 }
 
-/* ************** NPP ************** */
-/*#npp-chart .x.axis text, #hr-chart .x.axis text {*/
-/*font: 12px "Futura", sans-serif;*/
-/*text-anchor: end;*/
-/*}*/
+/* ************** MENU-TIP ************** */
+.tooltip-inner {
+    padding: 12px;
+    color: #09C5CE;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    display: block;
+    font-size: 13px;
+}
 
-/*#npp-chart .axis text, #hr-chart .axis text {*/
-/*fill: #525252;*/
-/*}*/
-
-/*#npp-chart .grid-line line, #hr-chart .grid-line line {*/
-/*fill: none;*/
-/*opacity: 0.5;*/
-/*shape-rendering: crispedges;*/
-/*stroke: #CCCCCC;*/
-/*}*/
-
-/*#npp-chart .axis path, #hr-chart .axis path, .axis line {*/
-/*fill: none;*/
-/*shape-rendering: crispedges;*/
-/*stroke: #DDDDDD;*/
-/*}*/
-
-/* ************** PIE ************** */
-/*.dc-chart .pie-slice {*/
-/*cursor: pointer;*/
-/*fill: #525252;*/
-/*font-size: 12px;*/
-/*}*/
-
-/*#function-pie-chart {*/
-/*left: 17px;*/
-/*position: relative;*/
-/*top: -41px;*/
-/*}*/
-
-/*.functionsPie {*/
-/*margin-left: 100px;*/
-/*}*/
-
-/* ************** DATA ROW ************** */
-/*.functionsRow {*/
-/*float: right;*/
-/*}*/
-
-/* ************** BAR ************** */
-/*.smallBar {*/
-/*min-height: 280px;*/
-/*margin-left: 70px;*/
-/*}*/
-
+.tooltip.right .tooltip-arrow {
+    border-right-color: rgba(0, 0, 0, 0.6);
+}

@@ -32,8 +32,8 @@
             <div class="col-md-8">
 
                 <div>
-                    <img id="imageFlux" src="img/FluxEmptyWB.png" usemap="#mapFlux" alt="Image for flux"/>
-                    <map id="mapFlux" name="mapFlux">
+                    <img id="imageFlux" src="img/FluxEmptyWB.png" usemap="#mapForImageFlux" alt="Image for flux"/>
+                    <map id="mapForImageFlux" name="mapForImageFlux">
                         <!--                    <area shape="rect" alt="FossilFuel" title="Fossil Fuel" coords="344,56,423,90"/>-->
                         <!--                    <area shape="rect" alt="Crop + Wood products use" title="Crop + Wood products use" coords="434,54,530,91"/>-->
                         <area shape="rect" href="#" alt="Land use change" title="Land use change" coords="538,49,601,93">
@@ -61,8 +61,8 @@
                     </map>
                     <div id="dynamicAreas"></div>
                 </div>
-                <div class="imageTitle">Flux</div>
-                <div class="fluxText">Click on a flux to display the bar chart</div>
+                <div class="imageFluxTitle">Flux</div>
+                <div class="imageFluxText">Click on a flux to display the bar chart</div>
 
             </div>
 
@@ -121,7 +121,7 @@
         <div id="exportSynthesis" class="toolButton">
             <button class="exportButton btn-link" data-toggle="dropdown"><img src="img/export_small.png" title="Export"/></button>
             <!--            <ul class="exportMenu dropdown-menu">-->
-            <!--                <li><a href="#" onClick="$('#fluxImage').tableExport({type:'png',escape:'false'});"> <img src='js/htmltable_export/icons/png.png' width='24px'> PNG</a></li>-->
+            <!--                <li><a href="#" onClick="$('#imageFluxForSynthesis').tableExport({type:'png',escape:'false'});"> <img src='js/htmltable_export/icons/png.png' width='24px'> PNG</a></li>-->
             <!--                <li><a href="#" onClick="$('#data-table').tableExport({type:'pdf',pdfFontSize:'10',escape:'false'});"> <img src='js/htmltable_export/icons/pdf.png' width='24px'>-->
             <!--                    PDF</a>-->
             <!--                </li>-->
@@ -129,7 +129,7 @@
         </div>
     </div>
     <div class="row">
-        <img id="fluxImage" src="img/Flux.png" width="1100px"/>
+        <img id="imageFluxForSynthesis" src="img/Flux.png" width="1100px"/>
     </div>
 </div>
 

@@ -188,7 +188,7 @@ g.oceania path {
     margin: -55px 0 0 -15px;
 }
 
-/*#mapFlux {*/
+/*#mapForImageFlux {*/
     /*margin: 10px 0 0 100px;*/
 /*}*/
 
@@ -210,7 +210,7 @@ g.oceania path {
     border: 1px dashed #c7c7c7;
 }
 
-.imageTitle {
+.imageFluxTitle {
     color: #2C3537;
     font-weight: bold;
     font-size: 22px;
@@ -220,7 +220,7 @@ g.oceania path {
     left: 58px;
 }
 
-.fluxText {
+.imageFluxText {
     color: #525252;
     margin:-82px 0 0 -13px;
 }
@@ -322,7 +322,7 @@ g.oceania path {
     z-index: 1;
 }
 
-#synthesisDiv #fluxImage {
+#synthesisDiv #imageFluxForSynthesis {
     position: absolute;
     top: 50px;
     -webkit-border-radius: 6px;

@@ -199,7 +199,7 @@ g.oceania path {
     border: 1px dashed #c7c7c7;
 }
 
-.imageTitle {
+.imageFluxTitle {
     color: #2C3537;
     font-weight: bold;
     font-size: 22px;
@@ -209,7 +209,7 @@ g.oceania path {
     left: 58px;
 }
 
-.fluxText {
+.imageFluxText {
     color: #09C5CE;
     margin: -82px 0 0 -13px;
 }
@@ -349,7 +349,7 @@ g.oceania path {
     margin: 70px 0 0 -90px;
 }
 
-#fluxImage {
+#imageFluxForSynthesis {
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;

@@ -169,12 +169,13 @@ g.oceania path {
 /*}*/
 
 /* ************** FLUX IMG ************** */
-/* Style for imageFlux */
-.mapster_el, .dynamicArea {
-    margin: -55px 0 0 -15px;
+#imageFluxDiv {
+    position: absolute;
+    margin-top: -50px;
+    margin-left: -15px;
 }
 
-.dynamicArea {
+#dynamicAreasForImageFlux .dynamicArea {
     position: absolute;
     cursor: pointer;
     -webkit-border-radius: 6px;
@@ -183,26 +184,27 @@ g.oceania path {
     margin-left: 0;
 }
 
-.dynamicArea.selected {
+#dynamicAreasForImageFlux .dynamicArea.selected {
     border: 1px dashed #c7c7c7;
 }
 
-.imageTitle {
+.imageFluxTitle {
     color: #2C3537;
     font-weight: bold;
     font-size: 22px;
     text-shadow: 2px 2px 2px #999999;
     position: relative;
-    top: -300px;
+    top: 10px;
     left: 58px;
 }
 
-.fluxText {
+.imageFluxText {
+    position: relative;
     color: #525252;
-    margin:-82px 0 0 -13px;
+    margin: 234px 0 0 -12px;
 }
 
-/* ************** DATA & FLUX STYLE ************** */
+/* ************** DATA & SYNTHESIS STYLE ************** */
 .dataTitle, .synthesisTitle {
     color: #09C5CE;
     font-size: 26px;
@@ -315,16 +317,17 @@ g.oceania path {
     margin-left: 20px;
 }
 
-/* ************** FLUX ************** */
+/* ************** SYNTHESIS ************** */
 #synthesisDiv {
     display: none;
     position: absolute;
-    top: 15px;
+    top: 15px; /*top: 500px;*/
     left: 113px;
 }
 
 .synthesisTitleAndExport {
     position: absolute;
+    z-index: 1;
 }
 
 .synthesisTitle {
@@ -337,19 +340,27 @@ g.oceania path {
     margin: 70px 0 0 -90px;
 }
 
-#fluxImage {
+#imageFluxForSynthesis {
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
     margin-top: 20px;
 }
 
-/* ************** BAR-CHART ************** */
-#bar-chart .dc-chart{
-    margin: 15px 60px;
+#dynamicAreasForImageFluxForSynthesis .dynamicArea {
+    margin-left: -15px;
+    font-weight: bold;
+    position: absolute;
 }
 
+.redSynthesisText {
+    color: #ea3f40;
+}
 
+/* ************** BAR-CHART ************** */
+#bar-chart .dc-chart {
+    margin: 15px 60px;
+}
 
 /* ************** NPP ************** */
 /*#npp-chart .x.axis text, #hr-chart .x.axis text {*/

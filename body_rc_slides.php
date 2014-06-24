@@ -35,8 +35,8 @@
             <div class="col-md-8">
 
                 <div>
-                    <img id="imageFlux" src="img/FluxEmptyWB.png" usemap="#mapFlux" alt="Image for flux"/>
-                    <map id="mapFlux" name="mapFlux">
+                    <img id="imageFlux" src="img/FluxEmptyWB.png" usemap="#mapForImageFlux" alt="Image for flux"/>
+                    <map id="mapForImageFlux" name="mapForImageFlux">
                         <!--                    <area shape="rect" alt="FossilFuel" title="Fossil Fuel" coords="344,56,423,90"/>-->
                         <!--                    <area shape="rect" alt="Crop + Wood products use" title="Crop + Wood products use" coords="434,54,530,91"/>-->
                         <area shape="rect" href="#" alt="Land use change" title="Land use change" coords="538,49,611,93">
@@ -64,8 +64,8 @@
                     </map>
                     <div id="dynamicAreas"></div>
                 </div>
-                <div class="imageTitle">Flux</div>
-                <div class="fluxText">Click on a flux to display the bar chart</div>
+                <div class="imageFluxTitle">Flux</div>
+                <div class="imageFluxText">Click on a flux to display the bar chart</div>
 
             </div>
 
@@ -113,7 +113,7 @@
     <div class="synthesisTitle">
         <div id="synthesisTitle">SYNTHESIS</div>
     </div>
-    <img id="fluxImage" src="img/Flux.png" width="1100px"/>
+    <img id="imageFluxForSynthesis" src="img/Flux.png" width="1100px"/>
 </div>
 
 <script type="text/javascript">

@@ -16,7 +16,8 @@ var RCInterface = Class.create( {
         this.numberFormat = d3.format( ".2f" );
         this.selectMultipleRegion = false;
 
-        this.createDynamicAreasForResponsiveMap( 850 );
+        this.createDynamicAreasForResponsiveMap( "#imageFlux", "#mapForImageFlux", "#dynamicAreasForImageFlux", 850, true );
+        this.createDynamicAreasForResponsiveMap( "#imageFluxForSynthesis", "#mapForImageFluxForSynthesis", "#dynamicAreasForImageFluxForSynthesis", 1100, false );
 
         this.initFileValuesAndCreateDCObjects();
         this.bindActions();
@@ -252,7 +253,6 @@ var RCInterface = Class.create( {
         }, this ) );
 
         d3.selectAll( ".country, g.row, .bar" ).call( toolTip );
-//        d3.selectAll( ".country, .bar, .pie-slice, .row" )
         d3.selectAll( ".country, g.row, .bar" )
                 .on( 'mouseover', toolTip.show )
                 .on( 'mouseout', toolTip.hide );
@@ -308,45 +308,48 @@ var RCInterface = Class.create( {
      * This method resize the image and create dynamic divs to replace map/areas to get better css styles
      * @param width
      */
-    createDynamicAreasForResponsiveMap: function( width )
+    createDynamicAreasForResponsiveMap: function( imageId, mapId, dynamicAreasId, width, activeClick )
     {
         // Responsive image with map/area
-        $( '#imageFlux' ).mapster( {
+        $( imageId ).mapster( {
             stroke:false,
             fill:false
         } );
-        $( '#imageFlux' ).mapster( 'resize', width, 0, 0 );
+        $( imageId ).mapster( 'resize', width, 0, 0 );
 
         // Create "areas" divs
         $.waitUntil(
                 function()
                 {
-                    return width == $( "#imageFlux" ).width();
+                    return width == $( imageId ).width();
                 },
                 jQuery.proxy( function()
                 {
-                    $.each( $( "#mapFlux area" ), jQuery.proxy( function( i, element )
+                    $.each( $( mapId + " area" ), jQuery.proxy( function( i, element )
                     {
                         var coords = element.coords.split( ',' );
                         var divId = element.alt.replace( / /g, "_" );
                         var div = $( '<div id="' + divId + '" name="' + element.alt + '" class="dynamicArea"></div>' );
+                        if( null != element.getAttribute( "isRed" ) )
+                            div.addClass( "redSynthesisText" );
                         div.css( "top", coords[1] );
                         div.css( "left", coords[0] );
                         div.width( coords[2] - coords[0] );
                         div.height( coords[3] - coords[1] );
-                        div.on( "click", jQuery.proxy( function( argument )
-                        {
-                            var isAlreadyAChart = $( argument.currentTarget ).hasClass( "selected" );
-                            isAlreadyAChart ? $( argument.currentTarget ).removeClass( "selected" ) : $( argument.currentTarget ).addClass( "selected" );
-                            if( isAlreadyAChart )
-                                this.removeChart( "bar-chart_" + argument.currentTarget.id );
-                            else
-                                this.addBarChart( "#bar-chart", "bar-chart_" + argument.currentTarget.id, 300, 200, "Continents", argument.currentTarget.getAttribute( "name" ) );
-                        }, this ) );
-                        $( "#dynamicAreas" ).append( div );
+                        if( activeClick )
+                            div.on( "click", jQuery.proxy( function( argument )
+                            {
+                                var isAlreadyAChart = $( argument.currentTarget ).hasClass( "selected" );
+                                isAlreadyAChart ? $( argument.currentTarget ).removeClass( "selected" ) : $( argument.currentTarget ).addClass( "selected" );
+                                if( isAlreadyAChart )
+                                    this.removeChart( "bar-chart_" + argument.currentTarget.id );
+                                else
+                                    this.addBarChart( "#bar-chart", "bar-chart_" + argument.currentTarget.id, 300, 200, "Continents", argument.currentTarget.getAttribute( "name" ) );
+                            }, this ) );
+                        $( dynamicAreasId ).append( div );
                     }, this ) );
 
-                    $( "#mapFlux" ).remove();
+                    $( mapId ).remove();
                 }, this ),
                 null
                 );
@@ -374,6 +377,7 @@ var RCInterface = Class.create( {
         } );
 
         $( ".tools, #map-chart, .function, #bar-chart" ).draggable();
+//        $( "#synthesis" ).click();
     },
 
     bindActionsForSlides: function()

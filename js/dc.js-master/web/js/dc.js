@@ -5710,7 +5710,6 @@ dc.rowChart = function (parent, chartGroup) {
     };
 
     _chart.title(function (d) {
-        console.log("row");
         return _chart.cappedKeyAccessor(d) + ": " + _chart.cappedValueAccessor(d);
     });
 
@@ -5818,6 +5817,8 @@ dc.rowChart = function (parent, chartGroup) {
     }
 
     function updateLabels(rows) {
+        /* VMIPSL : display values on flux image */
+        $("#dynamicAreasForImageFluxForSynthesis .dynamicArea").empty();
         if (_chart.renderLabel()) {
             var lab = rows.select("text")
                 .attr("x", _labelOffsetX)
@@ -5827,8 +5828,10 @@ dc.rowChart = function (parent, chartGroup) {
                     return _rowCssClass + " _" + i;
                 })
                 .text(function (d) {
-                    return _chart.label()(d);
-                });
+                /* VMIPSL : display values on flux image */
+                $( "#" + d.key + "_value" ).html( d.value );
+                return _chart.label()( d );
+            });
             dc.transition(lab, _chart.transitionDuration())
                 .attr("transform", translateX);
         }

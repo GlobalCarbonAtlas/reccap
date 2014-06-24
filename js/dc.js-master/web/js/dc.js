@@ -5829,7 +5829,8 @@ dc.rowChart = function (parent, chartGroup) {
                 })
                 .text(function (d) {
                 /* VMIPSL : display values on flux image */
-                $( "#" + d.key + "_value" ).html( d.value );
+                var divId = d.key.replace( / /g, "_" );
+                $( "#" + divId + "_value" ).html( d.value );
                 return _chart.label()( d );
             });
             dc.transition(lab, _chart.transitionDuration())

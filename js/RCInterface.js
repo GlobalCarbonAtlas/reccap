@@ -15,12 +15,14 @@ var RCInterface = Class.create( {
         // Variable
         this.numberFormat = d3.format( ".2f" );
         this.selectMultipleRegion = false;
+        this.barChart = false;
 
         this.createDynamicAreasForResponsiveMap( "#imageFlux", "#mapForImageFlux", "#dynamicAreasForImageFlux", 850, true );
         this.createDynamicAreasForResponsiveMap( "#imageFluxForSynthesis", "#mapForImageFluxForSynthesis", "#dynamicAreasForImageFluxForSynthesis", 1100, false );
 
         this.initFileValuesAndCreateDCObjects();
         this.bindActions();
+        this.addToBarChart();
     },
 
     initFileValuesAndCreateDCObjects:function()
@@ -28,6 +30,7 @@ var RCInterface = Class.create( {
         d3.csv( "data/Reccap_data_rows.csv", jQuery.proxy( function ( error, csv )
         {
             this.data = crossfilter( csv );
+
 
             // TODO : see why it applies to ALL data
             this.data.dimension(
@@ -41,10 +44,13 @@ var RCInterface = Class.create( {
                             return d;
                     } );
 
-            this.continents = this.data.dimension( function( d )
+            this.simpleContinents = new Array();
+            this.continents = this.data.dimension( jQuery.proxy( function( d )
             {
+                this.simpleContinents.push( d["Continents"] );
                 return d["Continents"];
-            } );
+            }, this ) );
+            var bob = this.transposeDataFromFile( csv, $.unique( this.simpleContinents ) );
 
             // Create DC Objects
             this.createMap();
@@ -55,19 +61,38 @@ var RCInterface = Class.create( {
         }, this ) );
     },
 
+    transposeDataFromFile: function( csv, dimensionArray )
+    {
+        var result = new Array();
+        $.each( csv, function( i, d )
+        {
+            var object = new Object();
+            object[d["Carbon budget"]] = d["Value"];
+            if( result[d.Continents] )
+                result[d.Continents] = new Array();
+            result[d.Continents].push( object );
+        } );
+        return result;
+    },
+
+
     /* ******************************************************************** */
     /* ******************************** DC ******************************** */
     /* ******************************************************************** */
-    createMap: function()
-    {
-        d3.json( "data/continent-geogame-110m.json", jQuery.proxy( function( error, world )
-        {
-            var countries = topojson.feature( world, world.objects.countries );
-            this.createChoroplethMap( "#map-chart", 600, 300, countries, this.continents, this.continents.group() );
-            dc.renderAll();
-            this.updateCharts();
-        }, this ) );
-    },
+    createMap
+            :
+            function()
+            {
+                d3.json( "data/continent-geogame-110m.json", jQuery.proxy( function( error, world )
+                {
+                    var countries = topojson.feature( world, world.objects.countries );
+                    this.createChoroplethMap( "#map-chart", 600, 300, countries, this.continents, this.continents.group() );
+                    dc.renderAll();
+                    this.updateCharts();
+                }, this ) );
+            }
+
+    ,
 
     createFunctions:function()
     {
@@ -93,7 +118,8 @@ var RCInterface = Class.create( {
         };
 
         this.createRowChart( "#function-chart", 350, 550, carbonBudgets, filteredFunctionAmountGroup );
-    },
+    }
+    ,
 
     createSimpleDCObject: function( dimensionValue, groupValue, DCObjectValue, chartId, width, height, chartGroup )
     {
@@ -104,20 +130,13 @@ var RCInterface = Class.create( {
 
         var group = this.getValuesGroupByBudget( dimension, groupValue );
 
-        switch( DCObjectValue )
-        {
-            case "bar" :
-                this.createBarChart( chartId, width, height, dimension, group, chartGroup );
-                break;
-            case "flux" : this.createFluxChart( chartId, width, height, dimension, group );
-                break;
-            case "row" : this.createRowChart( chartId, width, height, dimension, group );
-                break;
-        }
+        this.createBarChart( chartId, width, height, dimension, group, chartGroup );
+
         if( chartGroup )
             dc.renderAll( chartGroup );
         this.updateCharts();
-    },
+    }
+    ,
 
 
     /* ******************************************************************** */
@@ -145,11 +164,12 @@ var RCInterface = Class.create( {
         } );
 
         this.geoChoroplethChart.setMultipleSelect( this.selectMultipleRegion );
-    },
+    }
+    ,
 
     createBarChart: function( chartId, width, height, dimension, group, chartGroup )
     {
-        dc.barChart( chartId, chartGroup )
+        this.barChart = dc.barChart( chartId, chartGroup )
                 .height( height )
                 .width( width )
                 .transitionDuration( 750 )
@@ -164,7 +184,8 @@ var RCInterface = Class.create( {
 //                .y( d3.scale.linear() )
                 .renderHorizontalGridLines( true )
                 .yAxis().tickFormat( d3.format( "s" ) );
-    },
+    }
+    ,
 
     createDataTable: function( countId, tableId, allD, allG, tableD )
     {
@@ -192,7 +213,8 @@ var RCInterface = Class.create( {
         {
             table.selectAll( ".dc-table-group" ).classed( "info", true );
         } );
-    },
+    }
+    ,
 
     createRowChart: function( chartId, width, height, functions, functionsGroup )
     {
@@ -213,7 +235,8 @@ var RCInterface = Class.create( {
         } )
                 .elasticX( true )
                 .xAxis().tickFormat( d3.format( "s" ) );
-    },
+    }
+    ,
 
 
     /* ******************************************************************** */
@@ -263,13 +286,228 @@ var RCInterface = Class.create( {
                 .attr( "class", "campusLabel" )
                 .style( "text-anchor", "end" )
                 .attr( "transform", "translate(-10,0)rotate(315)" );
-    },
+    }
+    ,
 
-    addBarChart: function( containerId, chartId, width, height, dimensionValue, groupValue )
+    createOrAddToBarChart: function( chartId, width, height, dimensionValue, groupValue )
     {
-        $( containerId ).append( '<div id="' + chartId + '"></div>' );
-        this.createSimpleDCObject( dimensionValue, groupValue, "bar", "#" + chartId, width, height, "barChart" );
-    },
+        var dimension = this.data.dimension( function( d )
+        {
+            return d[dimensionValue];
+        } );
+
+        var group = this.getValuesGroupByBudget( dimension, groupValue );
+
+        if( !this.barChart )
+            this.createBarChart( chartId, width, height, dimension, group, "barChar" );
+        else
+            this.addToBarChart( chartId, dimension, group );
+
+        dc.renderAll( "barChar" );
+        this.updateCharts();
+    }
+    ,
+
+//    http://bl.ocks.org/mbostock/3887051
+//    addToBarChart: function( chartId, dimension, group, chartGroup )
+    addToBarChart: function()
+    {
+        var margin = {top: 20, right: 20, bottom: 60, left: 40},
+                width = 960 - margin.left - margin.right,
+                height = 500 - margin.top - margin.bottom;
+
+        var x0 = d3.scale.ordinal()
+                .rangeRoundBands( [0, width], 0.1 );
+
+        var x1 = d3.scale.ordinal();
+
+        var y = d3.scale.linear().range( [height, 0] );
+
+        var xAxis = d3.svg.axis()
+                .scale( x0 )
+                .orient( "bottom" );
+
+        var yAxis = d3.svg.axis()
+                .scale( y )
+                .orient( "left" )
+                .tickFormat( d3.format( ".2s" ) );
+
+        var color = d3.scale.ordinal()
+                .range( ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"] );
+
+        var svg = d3.select( "body" ).append( "svg" )
+                .attr( "width", width + margin.left + margin.right )
+                .attr( "height", height + margin.top + margin.bottom )
+                .append( "g" )
+                .attr( "transform", "translate(" + margin.left + "," + margin.top + ")" );
+
+        var yBegin;
+
+//        this.innerColumns = {
+//            "0" : ["Heterotrophic Respiration"],
+//            "1" : ["GPP"],
+//            "2" : ["NPP"],
+//            "3" : ["NEP"],
+//            "column5" : ["Fire"],
+//            "column6" : ["Land use change"],
+//            "column7" : ["Atmospherica aerosol carbon export"],
+//            "column8" : ["NBP"],
+//            "column9" : ["Live product"],
+//            "column10" : ["Livestock consumption"],
+//            "column11" : ["Livestock trade"],
+//            "column12" : ["Harvest"]
+//        };
+
+        this.innerColumns = [
+            ["Heterotrophic Respiration"],
+            ["GPP"],
+            ["NPP"],
+            ["NEP"],
+            ["Fire"],
+            ["Land use change"],
+            ["Atmospherica aerosol carbon export"],
+            ["NBP"],
+            ["Live product"],
+            ["Livestock consumption"],
+            ["Livestock trade"],
+            ["Harvest"]
+        ];
+
+//        this.innerColumns
+//        var innerColumns = {
+//            "column1" : ["Under 5 Years","5 to 13 Years","14 to 17 Years"],
+//            "column2" : ["18 to 24 Years"],
+//            "column3" : ["25 to 44 Years"],
+//            "column4" : ["45 to 64 Years", "65 Years and Over"]
+//        };
+
+//        d3.csv( "data/data.csv", function( error, data )
+        d3.csv( "data/Reccap_data_transpose.csv", jQuery.proxy( function( error, data )
+        {
+            var columnHeaders = d3.keys( data[0] ).filter( function( key )
+            {
+                return "Carbon budget" !== key;
+//                return key !== "State";
+            } );
+            color.domain( d3.keys( data[0] ).filter( function( key )
+            {
+                return "Carbon budget" !== key;
+//                return key !== "State";
+            } ) );
+            data.forEach( jQuery.proxy( function( d )
+            {
+                var yColumn = new Array();
+                d.columnDetails = columnHeaders.map( jQuery.proxy( function( name )
+                {
+                    for( ic in this.innerColumns )
+                    {
+                        if( $.inArray( name, this.innerColumns[ic] ) >= 0 )
+                        {
+                            if( !yColumn[ic] )
+                            {
+                                yColumn[ic] = 0;
+                            }
+                            yBegin = yColumn[ic];
+                            yColumn[ic] += +d[name];
+                            return {name: name, column: ic, yBegin: yBegin, yEnd: +d[name] + yBegin};
+                        }
+                    }
+                }, this ) );
+                d.total = d3.max( d.columnDetails, function( d )
+                {
+                    return d ? d.yEnd : 0;
+                } );
+            }, this ) );
+
+            x0.domain( data.map( function( d )
+            {
+                return d["Carbon budget"];
+//                return d.State;
+            } ) );
+            x1.domain( d3.keys( this.innerColumns ) ).rangeRoundBands( [0, x0.rangeBand()] );
+
+            y.domain( [0, d3.max( data, function( d )
+            {
+                return d.total;
+            } )] );
+
+            svg.append( "g" )
+                    .attr( "class", "x axis" )
+                    .attr( "transform", "translate(0," + height + ")" )
+                    .call( xAxis );
+
+            svg.append( "g" )
+                    .attr( "class", "y axis" )
+                    .call( yAxis )
+                    .append( "text" )
+                    .attr( "transform", "rotate(-90)" )
+                    .attr( "y", 6 )
+                    .attr( "dy", ".7em" )
+                    .style( "text-anchor", "end" )
+                    .text( "" );
+
+            var project_stackedbar = svg.selectAll( ".project_stackedbar" )
+                    .data( data )
+                    .enter().append( "g" )
+                    .attr( "class", "g" )
+                    .attr( "transform", function( d )
+            {
+                return "translate(" + x0( d["Carbon budget"] ) + ",0)";
+//                return "translate(" + x0( d.State ) + ",0)";
+            } );
+
+            project_stackedbar.selectAll( "rect" )
+                    .data( function( d )
+            {
+                return d.columnDetails;
+            } )
+                    .enter().append( "rect" )
+                    .attr( "width", x1.rangeBand() )
+                    .attr( "x", function( d )
+            {
+                return d ? x1( d.column ) : 0;
+            } )
+                    .attr( "y", function( d )
+            {
+                return d ? y( d.yEnd ) : 0;
+            } )
+                    .attr( "height", function( d )
+            {
+                return d ? y( d.yBegin ) - y( d.yEnd ) : 0;
+            } )
+                    .style( "fill", function( d )
+            {
+                return d ? color( d.name ) : 0;
+            } );
+
+            var legend = svg.selectAll( ".legend" )
+                    .data( columnHeaders.slice().reverse() )
+                    .enter().append( "g" )
+                    .attr( "class", "legend" )
+                    .attr( "transform", function( d, i )
+            {
+                return "translate(0," + i * 20 + ")";
+            } );
+
+            legend.append( "rect" )
+                    .attr( "x", width - 18 )
+                    .attr( "width", 18 )
+                    .attr( "height", 18 )
+                    .style( "fill", color );
+
+            legend.append( "text" )
+                    .attr( "x", width - 24 )
+                    .attr( "y", 9 )
+                    .attr( "dy", ".35em" )
+                    .style( "text-anchor", "end" )
+                    .text( function( d )
+            {
+                return d;
+            } );
+
+        }, this ) );
+    }
+    ,
 
     removeChart: function( chartId )
     {
@@ -277,7 +515,8 @@ var RCInterface = Class.create( {
         {
             $( "#" + chartId ).remove();
         } );
-    },
+    }
+    ,
 
     getValuesGroupByBudget: function( dimension, carbonBudget )
     {
@@ -298,7 +537,8 @@ var RCInterface = Class.create( {
                 {
                     return "";
                 } );
-    },
+    }
+    ,
 
 
     /* ******************************************************************** */
@@ -344,7 +584,7 @@ var RCInterface = Class.create( {
                                 if( isAlreadyAChart )
                                     this.removeChart( "bar-chart_" + argument.currentTarget.id );
                                 else
-                                    this.addBarChart( "#bar-chart", "bar-chart_" + argument.currentTarget.id, 300, 200, "Continents", argument.currentTarget.getAttribute( "name" ) );
+                                    this.createOrAddToBarChart( "#bar-chart", 300, 200, "Continents", argument.currentTarget.getAttribute( "name" ) );
                             }, this ) );
                         $( dynamicAreasId ).append( div );
                     }, this ) );
@@ -353,7 +593,8 @@ var RCInterface = Class.create( {
                 }, this ),
                 null
                 );
-    },
+    }
+    ,
 
     getToolTipContentForMultipleValues: function( valueArray )
     {
@@ -363,7 +604,8 @@ var RCInterface = Class.create( {
             content += " " + d + " : " + this.numberFormat( valueArray[d] ) + ",";
         }, this ) );
         return content.slice( 0, -1 );
-    },
+    }
+    ,
 
     bindActions: function()
     {
@@ -378,7 +620,8 @@ var RCInterface = Class.create( {
 
         $( ".tools, #map-chart, .function, #bar-chart" ).draggable();
 //        $( "#synthesis" ).click();
-    },
+    }
+    ,
 
     bindActionsForSlides: function()
     {
@@ -424,7 +667,8 @@ var RCInterface = Class.create( {
         {
             this.hideSlide();
         }, this ) );
-    },
+    }
+    ,
 
     hideSlide: function()
     {
@@ -438,7 +682,8 @@ var RCInterface = Class.create( {
             $( "#dataSlide" ).css( "opacity", 1 );
             $( "#hiddenDivSlide" ).height( $( "#pageWrapper .container-fluid" ).height() );
         } );
-    },
+    }
+    ,
 
     bindActionsForMenu: function()
     {
@@ -512,7 +757,6 @@ var RCInterface = Class.create( {
             $( "#hiddenDiv" ).height( $( "#pageWrapper .container-fluid" ).height() );
         }, this ) );
     }
-
 
 
 } );

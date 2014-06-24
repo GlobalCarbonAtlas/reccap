@@ -9,7 +9,7 @@ body {
 }
 
 #pageWrapper {
-/*background: none repeat scroll 0 0 #2C3537;*/
+    display: none;
     color: #2C3537;
     font-size: 13px;
     padding: 0 20px 0 0;

@@ -289,42 +289,58 @@ var RCInterface = Class.create( {
             width = 960 - margin.left - margin.right,
             height = 500 - margin.top - margin.bottom;
 
-        var x0 = d3.scale.ordinal()
-            .rangeRoundBands( [0, width], 0.1 );
+        this.x0 = d3.scale.ordinal().rangeRoundBands( [0, width], 0.1 );
+        this.x0.domain( this.continentsKeys );
 
-        var x1 = d3.scale.ordinal();
+        this.x1 = d3.scale.ordinal();
+        this.y = d3.scale.linear().range( [height, 0] );
 
-        var y = d3.scale.linear().range( [height, 0] );
-
-        var xAxis = d3.svg.axis()
-            .scale( x0 )
+        this.xAxis = d3.svg.axis()
+            .scale( this.x0 )
             .orient( "bottom" );
 
-        var yAxis = d3.svg.axis()
-            .scale( y )
+        this.yAxis = d3.svg.axis()
+            .scale( this.y )
             .orient( "left" )
             .tickFormat( d3.format( ".2s" ) );
 
-        var color = d3.scale.category20();
 
-        var svg = d3.select( "body" ).append( "svg" )
+        this.svg = d3.select( "body" ).append( "svg" )
             .attr( "width", width + margin.left + margin.right )
             .attr( "height", height + margin.top + margin.bottom )
             .append( "g" )
             .attr( "transform", "translate(" + margin.left + "," + margin.top + ")" );
 
-        var columnHeaders = d3.keys( this.transposedData[0] ).filter( function( key )
-        {
-            return "Carbon budget" !== key;
-        } );
-        color.domain( d3.keys( this.transposedData[0] ).filter( function( key )
-        {
-            return "Carbon budget" !== key;
-        } ) );
+        this.svg.append( "g" )
+            .attr( "class", "x axis" )
+            .attr( "transform", "translate(0," + height + ")" )
+            .call( this.xAxis );
+
+        this.svg.append( "g" )
+            .attr( "class", "y axis" )
+            .call( this.yAxis )
+            .append( "text" )
+            .attr( "transform", "rotate(-90)" )
+            .attr( "y", 6 )
+            .attr( "dy", ".7em" )
+            .style( "text-anchor", "end" )
+            .text( "" );
+
+//        this.columnHeaders = ["Heterotrophic Respiration","GPP","NPP","NEP","Land use change"];
+        this.columnHeaders = [];
+        this.addColumn("Fire", height, width);
+//        this.addColumn("Heterotrophic Respiration", height, width);
+        this.addColumn("NPP", height, width);
+    },
+
+    addColumn: function(newColum, height, width)
+    {
+        this.columnHeaders.push(newColum);
+        var color = d3.scale.category20().domain( this.columnHeaders );
 
         this.transposedData.forEach( jQuery.proxy( function( d )
         {
-            d.columnDetails = columnHeaders.map( function( element, index )
+            d.columnDetails = this.columnHeaders.map( function( element, index )
             {
                 return {name: element, column: index.toString(), yBegin: 0, yEnd: +d[element]};
             } );
@@ -334,37 +350,22 @@ var RCInterface = Class.create( {
             } );
         }, this ) );
 
-        x0.domain( this.continentsKeys );
-        x1.domain( d3.keys( columnHeaders) ).rangeRoundBands( [0, x0.rangeBand()] );
+        this.x1.domain( d3.keys( this.columnHeaders) ).rangeRoundBands( [0, this.x0.rangeBand()] );
 
-        y.domain( [0, d3.max( this.transposedData, function( d )
+        this.y.domain( [0, d3.max( this.transposedData, function( d )
         {
             return d.total;
         } )] );
 
-        svg.append( "g" )
-            .attr( "class", "x axis" )
-            .attr( "transform", "translate(0," + height + ")" )
-            .call( xAxis );
 
-        svg.append( "g" )
-            .attr( "class", "y axis" )
-            .call( yAxis )
-            .append( "text" )
-            .attr( "transform", "rotate(-90)" )
-            .attr( "y", 6 )
-            .attr( "dy", ".7em" )
-            .style( "text-anchor", "end" )
-            .text( "" );
-
-        var project_stackedbar = svg.selectAll( ".project_stackedbar" )
+        var project_stackedbar = this.svg.selectAll( ".project_stackedbar" )
             .data( this.transposedData )
             .enter().append( "g" )
             .attr( "class", "g" )
-            .attr( "transform", function( d )
-            {
-                return "translate(" + x0( d["Carbon budget"] ) + ",0)";
-            } );
+            .attr( "transform", jQuery.proxy(function( d )
+        {
+            return "translate(" + this.x0( d["Carbon budget"] ) + ",0)";
+        }, this) );
 
         project_stackedbar.selectAll( "rect" )
             .data( function( d )
@@ -372,26 +373,53 @@ var RCInterface = Class.create( {
                 return d.columnDetails;
             } )
             .enter().append( "rect" )
-            .attr( "width", x1.rangeBand() )
-            .attr( "x", function( d )
-            {
-                return d ? x1( d.column ) : 0;
-            } )
-            .attr( "y", function( d )
-            {
-                return d ? y( d.yEnd ) : 0;
-            } )
-            .attr( "height", function( d )
-            {
-                return d ? y( d.yBegin ) - y( d.yEnd ) : 0;
-            } )
+            .attr( "width", this.x1.rangeBand() )
+            .attr( "x", jQuery.proxy(function( d )
+        {
+            return d ? this.x1( d.column ) : 0;
+        }, this) )
+            .attr( "y", jQuery.proxy(function( d )
+        {
+            return d ? this.y( d.yEnd ) : 0;
+        }, this) )
+            .attr( "height", jQuery.proxy(function( d )
+        {
+            return d ? this.y( d.yBegin ) - this.y( d.yEnd ) : 0;
+        }, this) )
             .style( "fill", function( d )
             {
                 return d ? color( d.name ) : 0;
-            } );
+            } ) ;
 
-        var legend = svg.selectAll( ".legend" )
-            .data( columnHeaders.slice().reverse() )
+        project_stackedbar.selectAll( "text" )
+            .data( function( d )
+            {
+                return d.columnDetails;
+            } )
+            .enter().append("text")
+            .attr("x", jQuery.proxy(function(d) {
+            return d ? this.x1( d.column ) : 0;
+        }, this))
+            .attr("y", function(d,i){
+                return height-i*20;
+            })
+            .attr("dy", ".35em")
+            .text(function(d) {
+                return d.name + ", "+d.yEnd;
+            })
+            .style( "fill", function( d )
+            {
+                return "red";
+//                return d ? color( d.columnDetails[0].name ) : 0;
+            } ) ;
+
+        this.updateLegend(width, color);
+    },
+
+    updateLegend: function(width, color)
+    {
+        var legend = this.svg.selectAll( ".legend" )
+            .data( this.columnHeaders.slice().reverse() )
             .enter().append( "g" )
             .attr( "class", "legend" )
             .attr( "transform", function( d, i )
@@ -414,8 +442,6 @@ var RCInterface = Class.create( {
             {
                 return d;
             } );
-
-//        }, this ) );
     },
 
     removeChart: function( chartId )

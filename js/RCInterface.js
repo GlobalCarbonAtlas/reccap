@@ -416,6 +416,7 @@ var RCInterface = Class.create( {
         this.updateLegend(width, color);
     },
 
+
     updateLegend: function(width, color)
     {
         var legend = this.svg.selectAll( ".legend" )

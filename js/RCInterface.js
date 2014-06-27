@@ -348,14 +348,14 @@ var RCInterface = Class.create( {
 //        } )
 //                .classed( 'zero', true );
 
-        this.columnHeaders = ["Heterotrophic Respiration","GPP","NPP","NEP","Land use change"];
-//        this.columnHeaders = [];
-//        this.addColumn( "Heterotrophic Respiration" );
-//        this.addColumn( "GPP" );
-//        this.addColumn( "NPP" );
-//        this.addColumn( "NEP" );
-//        this.addColumn( "Land use change" );
-        this.addColumn();
+//        this.columnHeaders = ["Heterotrophic Respiration","GPP","NPP","NEP","Land use change"];
+        this.columnHeaders = [];
+        this.addColumn( "Heterotrophic Respiration" );
+        this.addColumn( "GPP" );
+        this.addColumn( "NPP" );
+        this.addColumn( "NEP" );
+        this.addColumn( "Land use change" );
+//        this.addColumn();
     },
 
     addColumn: function( newColumn )
@@ -450,22 +450,41 @@ var RCInterface = Class.create( {
 
     updateGroupedBar2: function( color )
     {
-        var project_stackedbar = this.barChartsvg.selectAll( ".project_stackedbar" )
-                .data( this.transposedData )
-                .enter().append( "g" )
-                .attr( "class", "g" )
+        var groupedBar = this.barChartsvg.selectAll( ".groupedBar" )
+                .data( this.transposedData );
+
+        var groupedBarEnter = groupedBar.enter().append( "g" )
+                .attr( "class", "groupedBar" )
                 .attr( "transform", jQuery.proxy( function( d )
         {
             return "translate(" + this.barChartx0( d["Carbon budget"] ) + ",0)";
         }, this ) );
 
-        project_stackedbar.selectAll( "rect" )
+        groupedBar.selectAll( "rect" )
                 .data( function( d )
         {
             return d.columnDetails;
         } )
                 .enter().append( "rect" )
                 .attr( "width", this.barChartx1.rangeBand() )
+                .attr( "x", jQuery.proxy( function( d )
+        {
+            return this.barChartx1( d.column );
+        }, this ) )
+                .attr( "y", jQuery.proxy( function( d )
+        {
+            return this.barCharty( d.yEnd );
+        }, this ) )
+                .attr( "height", jQuery.proxy( function( d )
+        {
+            return this.barCharty( d.yBegin ) - this.barCharty( d.yEnd );
+        }, this ) )
+                .style( "fill", function( d )
+        {
+            return color( d.name );
+        } );
+
+        groupedBar.selectAll( "rect" ).attr( "width", this.barChartx1.rangeBand() )
                 .attr( "x", jQuery.proxy( function( d )
         {
             return this.barChartx1( d.column );

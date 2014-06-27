@@ -34,15 +34,15 @@ var RCInterface = Class.create( {
 
             // TODO : see why it applies to ALL data
             this.data.dimension(
-                function( d )
-                {
-                    return d["Value"];
-                } ).filter(
-                function( d )
-                {
-                    if( 0 < Math.abs( d ) )
-                        return d;
-                } );
+                    function( d )
+                    {
+                        return d["Value"];
+                    } ).filter(
+                    function( d )
+                    {
+                        if( 0 < Math.abs( d ) )
+                            return d;
+                    } );
 
             this.continents = this.data.dimension( jQuery.proxy( function( d )
             {
@@ -124,23 +124,23 @@ var RCInterface = Class.create( {
     createChoroplethMap: function( chartId, width, height, countries, continentsDimension, continentsGroup )
     {
         var projection = d3.geo.equirectangular()
-            .translate( [width / 2,  height / 2] )
-            .scale( [90] );
+                .translate( [width / 2,  height / 2] )
+                .scale( [90] );
 
         this.geoChoroplethChart = dc.geoChoroplethChart( chartId )
-            .width( width )
-            .height( height )
-            .dimension( continentsDimension )
-            .group( continentsGroup )
-            .projection( projection )
-            .overlayGeoJson( countries.features, "country", function( d )
-            {
-                return d.properties.continent;
-            } )
-            .title( function ( d )
-            {
-                return "";
-            } );
+                .width( width )
+                .height( height )
+                .dimension( continentsDimension )
+                .group( continentsGroup )
+                .projection( projection )
+                .overlayGeoJson( countries.features, "country", function( d )
+        {
+            return d.properties.continent;
+        } )
+                .title( function ( d )
+        {
+            return "";
+        } );
 
         this.geoChoroplethChart.setMultipleSelect( this.selectMultipleRegion );
     },
@@ -148,48 +148,48 @@ var RCInterface = Class.create( {
     createBarChart: function( chartId, width, height, dimension, group, chartGroup )
     {
         this.barChart = dc.barChart( chartId, chartGroup )
-            .height( height )
-            .width( width )
-            .transitionDuration( 750 )
-            .margins( {top: 20, right: 10, bottom: 80, left: 80} )
-            .dimension( dimension )
-            .group( group )
-            .brushOn( false )
-            .elasticY( true )
-            .colors( ['#FF7F0E'] )
-            .xUnits( dc.units.ordinal )
-            .x( d3.scale.ordinal() )
+                .height( height )
+                .width( width )
+                .transitionDuration( 750 )
+                .margins( {top: 20, right: 10, bottom: 80, left: 80} )
+                .dimension( dimension )
+                .group( group )
+                .brushOn( false )
+                .elasticY( true )
+                .colors( ['#FF7F0E'] )
+                .xUnits( dc.units.ordinal )
+                .x( d3.scale.ordinal() )
 //                .y( d3.scale.linear() )
-            .renderHorizontalGridLines( true )
-            .yAxis().tickFormat( d3.format( "s" ) );
+                .renderHorizontalGridLines( true )
+                .yAxis().tickFormat( d3.format( "s" ) );
     },
 
     createDataTable: function( countId, tableId, allD, allG, tableD )
     {
         dc.dataCount( countId )
-            .dimension( allD )
-            .group( allG );
+                .dimension( allD )
+                .group( allG );
 
         dc.dataTable( tableId )
-            .dimension( tableD )
-            .group( function( d )
-            {
-                return d["Continents"];
-            } )
-            .size( allG.value() )
-            .columns( [
-            function ( d )
-            {
-                return d["Carbon budget"];
-            },
-            function ( d )
-            {
-                return d["Value"];
-            }
+                .dimension( tableD )
+                .group( function( d )
+        {
+            return d["Continents"];
+        } )
+                .size( allG.value() )
+                .columns( [
+                function ( d )
+                {
+                    return d["Carbon budget"];
+                },
+                function ( d )
+                {
+                    return d["Value"];
+                }
         ] ).renderlet( function ( table )
-            {
-                table.selectAll( ".dc-table-group" ).classed( "info", true );
-            } );
+        {
+            table.selectAll( ".dc-table-group" ).classed( "info", true );
+        } );
     },
 
     createRowChart: function( chartId, width, height, functions, functionsGroup )
@@ -197,20 +197,20 @@ var RCInterface = Class.create( {
 //        var expenseColors = ["#fee391","#fec44f","#fe9929","#fd8d3c","#e08214","#fdb863","#fdae6b","#ec7014"];
 
         dc.rowChart( chartId )
-            .width( width )
-            .height( height )
-            .margins( {top: 20, left: 10, right: 10, bottom: 20} )
-            .transitionDuration( 750 )
-            .dimension( functions )
-            .group( functionsGroup )
-            .colors( d3.scale.category20() )
+                .width( width )
+                .height( height )
+                .margins( {top: 20, left: 10, right: 10, bottom: 20} )
+                .transitionDuration( 750 )
+                .dimension( functions )
+                .group( functionsGroup )
+                .colors( d3.scale.category20() )
 //            .colors( expenseColors )
-            .title( function ( d )
-            {
-                return "";
-            } )
-            .elasticX( true )
-            .xAxis().tickFormat( d3.format( "s" ) );
+                .title( function ( d )
+        {
+            return "";
+        } )
+                .elasticX( true )
+                .xAxis().tickFormat( d3.format( "s" ) );
     },
 
 
@@ -226,9 +226,9 @@ var RCInterface = Class.create( {
 
         // Tooltips for charts
         var toolTip = d3.tip()
-            .attr( 'class', 'd3-tip' )
-            .offset( [-10, 0] )
-            .html( jQuery.proxy( function ( d )
+                .attr( 'class', 'd3-tip' )
+                .offset( [-10, 0] )
+                .html( jQuery.proxy( function ( d )
         {
             if( d.properties )
             // Choropleth
@@ -252,15 +252,15 @@ var RCInterface = Class.create( {
 
         d3.selectAll( ".country, g.row, .bar" ).call( toolTip );
         d3.selectAll( ".country, g.row, .bar" )
-            .on( 'mouseover', toolTip.show )
-            .on( 'mouseout', toolTip.hide );
+                .on( 'mouseover', toolTip.show )
+                .on( 'mouseout', toolTip.hide );
 
 
         // Bar chart : rotate the x Axis labels
         d3.selectAll( "g.x g text" )
-            .attr( "class", "campusLabel" )
-            .style( "text-anchor", "end" )
-            .attr( "transform", "translate(-10,0)rotate(315)" );
+                .attr( "class", "campusLabel" )
+                .style( "text-anchor", "end" )
+                .attr( "transform", "translate(-10,0)rotate(315)" );
     },
 
     createOrAddToBarChart: function( chartId, width, height, dimensionValue, groupValue )
@@ -272,22 +272,163 @@ var RCInterface = Class.create( {
 
         var group = this.getValuesGroupByBudget( dimension, groupValue );
 
-        if( !this.barChart )
-            this.createBarChart( chartId, width, height, dimension, group, "barChar" );
-        else
-            this.addToBarChart( chartId, dimension, group );
+//        if( !this.barChart )
+//            this.createBarChart( chartId, width, height, dimension, group, "barChar" );
+//        else
+        this.addToBarChart( chartId, dimension, group );
 
         dc.renderAll( "barChar" );
         this.updateCharts();
     },
 
+// http://bl.ocks.org/gencay/4629518
+//    http://cmaurer.github.io/angularjs-nvd3-directives/multi.bar.chart.html
 //    http://bl.ocks.org/mbostock/3887051
 //    addToBarChart: function( chartId, dimension, group, chartGroup )
     addToBarChart: function()
     {
         var margin = {top: 20, right: 20, bottom: 60, left: 40},
-            width = 960 - margin.left - margin.right,
-            height = 500 - margin.top - margin.bottom;
+                width = 960 - margin.left - margin.right,
+                height = 500 - margin.top - margin.bottom;
+
+        var x0 = d3.scale.ordinal()
+                .rangeRoundBands( [0, width], 0.1 );
+
+        var x1 = d3.scale.ordinal();
+
+        var y = d3.scale.linear()
+                .range( [height, 0] );
+
+        var xAxis = d3.svg.axis()
+                .scale( x0 )
+                .orient( "bottom" );
+
+        var yAxis = d3.svg.axis()
+                .scale( y )
+                .orient( "left" )
+                .tickFormat( d3.format( ".2s" ) );
+
+//        var color = d3.scale.ordinal()
+//                .range( ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"] );
+
+        var svg = d3.select( "body" ).append( "svg" )
+                .attr( "width", width + margin.left + margin.right )
+                .attr( "height", height + margin.top + margin.bottom )
+                .append( "g" )
+                .attr( "transform", "translate(" + margin.left + "," + margin.top + ")" );
+
+        var yBegin;
+
+        this.columnHeaders = ["Heterotrophic Respiration","GPP","NPP","NEP","Land use change"];
+        var data = this.transposedData;
+        var color = d3.scale.category20().domain( this.columnHeaders );
+
+        data.forEach( jQuery.proxy( function( d )
+        {
+            d.columnDetails = this.columnHeaders.map( function( element, index )
+            {
+                return {name: element, column: index.toString(), yBegin: 0, yEnd: +d[element]};
+            } );
+            d.total = d3.max( d.columnDetails, function( d )
+            {
+                return d ? d.yEnd : 0;
+            } );
+        }, this ) );
+
+        x1.domain( d3.keys( this.columnHeaders ) ).rangeRoundBands( [0, x0.rangeBand()] );
+
+        y.domain( [0, d3.max( this.transposedData, function( d )
+        {
+            return d.total;
+        } )] );
+
+        x0.domain( this.continentsKeys );
+        x1.domain( d3.keys( this.columnHeaders ) ).rangeRoundBands( [0, x0.rangeBand()] );
+
+        y.domain( [0, d3.max( data, function( d )
+        {
+            return d.total;
+        } )] );
+
+        svg.append( "g" )
+                .attr( "class", "x axis" )
+                .attr( "transform", "translate(0," + height + ")" )
+                .call( xAxis );
+
+        svg.append( "g" )
+                .attr( "class", "y axis" )
+                .call( yAxis )
+                .append( "text" )
+                .attr( "transform", "rotate(-90)" )
+                .attr( "y", 6 )
+                .attr( "dy", ".7em" )
+                .style( "text-anchor", "end" )
+                .text( "" );
+
+        var project_stackedbar = svg.selectAll( ".project_stackedbar" )
+                .data( data )
+                .enter().append( "g" )
+                .attr( "class", "g" )
+                .attr( "transform", function( d )
+        {
+            return "translate(" + x0( d["Carbon budget"] ) + ",0)";
+        } );
+
+        project_stackedbar.selectAll( "rect" )
+                .data( function( d )
+        {
+            return d.columnDetails;
+        } )
+                .enter().append( "rect" )
+                .attr( "width", x1.rangeBand() )
+                .attr( "x", function( d )
+        {
+            return x1( d.column );
+        } )
+                .attr( "y", function( d )
+        {
+            return y( d.yEnd );
+        } )
+                .attr( "height", function( d )
+        {
+            return y( d.yBegin ) - y( d.yEnd );
+        } )
+                .style( "fill", function( d )
+        {
+            return color( d.name );
+        } );
+
+        var legend = svg.selectAll( ".legend" )
+                .data( this.columnHeaders.slice().reverse() )
+                .enter().append( "g" )
+                .attr( "class", "legend" )
+                .attr( "transform", function( d, i )
+        {
+            return "translate(0," + i * 20 + ")";
+        } );
+
+        legend.append( "rect" )
+                .attr( "x", width - 18 )
+                .attr( "width", 18 )
+                .attr( "height", 18 )
+                .style( "fill", color );
+
+        legend.append( "text" )
+                .attr( "x", width - 24 )
+                .attr( "y", 9 )
+                .attr( "dy", ".35em" )
+                .style( "text-anchor", "end" )
+                .text( function( d )
+        {
+            return d;
+        } );
+    },
+
+    bob: function ()
+    {
+        var margin = {top: 20, right: 20, bottom: 60, left: 40},
+                width = 960 - margin.left - margin.right,
+                height = 500 - margin.top - margin.bottom;
 
         this.x0 = d3.scale.ordinal().rangeRoundBands( [0, width], 0.1 );
         this.x0.domain( this.continentsKeys );
@@ -296,46 +437,46 @@ var RCInterface = Class.create( {
         this.y = d3.scale.linear().range( [height, 0] );
 
         this.xAxis = d3.svg.axis()
-            .scale( this.x0 )
-            .orient( "bottom" );
+                .scale( this.x0 )
+                .orient( "bottom" );
 
         this.yAxis = d3.svg.axis()
-            .scale( this.y )
-            .orient( "left" )
-            .tickFormat( d3.format( ".2s" ) );
+                .scale( this.y )
+                .orient( "left" )
+                .tickFormat( d3.format( ".2s" ) );
 
 
         this.svg = d3.select( "body" ).append( "svg" )
-            .attr( "width", width + margin.left + margin.right )
-            .attr( "height", height + margin.top + margin.bottom )
-            .append( "g" )
-            .attr( "transform", "translate(" + margin.left + "," + margin.top + ")" );
+                .attr( "width", width + margin.left + margin.right )
+                .attr( "height", height + margin.top + margin.bottom )
+                .append( "g" )
+                .attr( "transform", "translate(" + margin.left + "," + margin.top + ")" );
 
         this.svg.append( "g" )
-            .attr( "class", "x axis" )
-            .attr( "transform", "translate(0," + height + ")" )
-            .call( this.xAxis );
+                .attr( "class", "x axis" )
+                .attr( "transform", "translate(0," + height + ")" )
+                .call( this.xAxis );
 
         this.svg.append( "g" )
-            .attr( "class", "y axis" )
-            .call( this.yAxis )
-            .append( "text" )
-            .attr( "transform", "rotate(-90)" )
-            .attr( "y", 6 )
-            .attr( "dy", ".7em" )
-            .style( "text-anchor", "end" )
-            .text( "" );
+                .attr( "class", "y axis" )
+                .call( this.yAxis )
+                .append( "text" )
+                .attr( "transform", "rotate(-90)" )
+                .attr( "y", 6 )
+                .attr( "dy", ".7em" )
+                .style( "text-anchor", "end" )
+                .text( "" );
 
 //        this.columnHeaders = ["Heterotrophic Respiration","GPP","NPP","NEP","Land use change"];
         this.columnHeaders = [];
-        this.addColumn("Fire", height, width);
+        this.addColumn( "Fire", height, width );
 //        this.addColumn("Heterotrophic Respiration", height, width);
-        this.addColumn("NPP", height, width);
+        this.addColumn( "NPP", height, width );
     },
 
-    addColumn: function(newColum, height, width)
+    addColumn: function( newColum, height, width )
     {
-        this.columnHeaders.push(newColum);
+        this.columnHeaders.push( newColum );
         var color = d3.scale.category20().domain( this.columnHeaders );
 
         this.transposedData.forEach( jQuery.proxy( function( d )
@@ -350,7 +491,7 @@ var RCInterface = Class.create( {
             } );
         }, this ) );
 
-        this.x1.domain( d3.keys( this.columnHeaders) ).rangeRoundBands( [0, this.x0.rangeBand()] );
+        this.x1.domain( d3.keys( this.columnHeaders ) ).rangeRoundBands( [0, this.x0.rangeBand()] );
 
         this.y.domain( [0, d3.max( this.transposedData, function( d )
         {
@@ -359,90 +500,90 @@ var RCInterface = Class.create( {
 
 
         var project_stackedbar = this.svg.selectAll( ".project_stackedbar" )
-            .data( this.transposedData )
-            .enter().append( "g" )
-            .attr( "class", "g" )
-            .attr( "transform", jQuery.proxy(function( d )
+                .data( this.transposedData )
+                .enter().append( "g" )
+                .attr( "class", "g" )
+                .attr( "transform", jQuery.proxy( function( d )
         {
             return "translate(" + this.x0( d["Carbon budget"] ) + ",0)";
-        }, this) );
+        }, this ) );
 
         project_stackedbar.selectAll( "rect" )
-            .data( function( d )
-            {
-                return d.columnDetails;
-            } )
-            .enter().append( "rect" )
-            .attr( "width", this.x1.rangeBand() )
-            .attr( "x", jQuery.proxy(function( d )
+                .data( function( d )
+        {
+            return d.columnDetails;
+        } )
+                .enter().append( "rect" )
+                .attr( "width", this.x1.rangeBand() )
+                .attr( "x", jQuery.proxy( function( d )
         {
             return d ? this.x1( d.column ) : 0;
-        }, this) )
-            .attr( "y", jQuery.proxy(function( d )
+        }, this ) )
+                .attr( "y", jQuery.proxy( function( d )
         {
             return d ? this.y( d.yEnd ) : 0;
-        }, this) )
-            .attr( "height", jQuery.proxy(function( d )
+        }, this ) )
+                .attr( "height", jQuery.proxy( function( d )
         {
             return d ? this.y( d.yBegin ) - this.y( d.yEnd ) : 0;
-        }, this) )
-            .style( "fill", function( d )
-            {
-                return d ? color( d.name ) : 0;
-            } ) ;
+        }, this ) )
+                .style( "fill", function( d )
+        {
+            return d ? color( d.name ) : 0;
+        } );
 
-        project_stackedbar.selectAll( "text" )
-            .data( function( d )
-            {
-                return d.columnDetails;
-            } )
-            .enter().append("text")
-            .attr("x", jQuery.proxy(function(d) {
-            return d ? this.x1( d.column ) : 0;
-        }, this))
-            .attr("y", function(d,i){
-                return height-i*20;
-            })
-            .attr("dy", ".35em")
-            .text(function(d) {
-                return d.name + ", "+d.yEnd;
-            })
-            .style( "fill", function( d )
-            {
-                return "red";
-//                return d ? color( d.columnDetails[0].name ) : 0;
-            } ) ;
+//        project_stackedbar.selectAll( "text" )
+//            .data( function( d )
+//            {
+//                return d.columnDetails;
+//            } )
+//            .enter().append("text")
+//            .attr("x", jQuery.proxy(function(d) {
+//            return d ? this.x1( d.column ) : 0;
+//        }, this))
+//            .attr("y", function(d,i){
+//                return height-i*20;
+//            })
+//            .attr("dy", ".35em")
+//            .text(function(d) {
+//                return d.name + ", "+d.yEnd;
+//            })
+//            .style( "fill", function( d )
+//            {
+//                return "red";
+////                return d ? color( d.columnDetails[0].name ) : 0;
+//            } ) ;
 
-        this.updateLegend(width, color);
+        this.updateLegend( width, color );
     },
 
 
-    updateLegend: function(width, color)
+    updateLegend: function( width, color )
     {
         var legend = this.svg.selectAll( ".legend" )
-            .data( this.columnHeaders.slice().reverse() )
-            .enter().append( "g" )
-            .attr( "class", "legend" )
-            .attr( "transform", function( d, i )
-            {
-                return "translate(0," + i * 20 + ")";
-            } );
+                .data( this.columnHeaders.slice().reverse() )
+                .enter().append( "g" )
+                .attr( "class", "legend" )
+                .attr( "transform", function( d, i )
+        {
+            return "translate(0," + i * 20 + ")";
+        } );
 
         legend.append( "rect" )
-            .attr( "x", width - 18 )
-            .attr( "width", 18 )
-            .attr( "height", 18 )
-            .style( "fill", color );
+                .attr( "x", width - 18 )
+                .attr( "width", 18 )
+                .attr( "height", 18 )
+                .style( "fill", color );
 
         legend.append( "text" )
-            .attr( "x", width - 24 )
-            .attr( "y", 9 )
-            .attr( "dy", ".35em" )
-            .style( "text-anchor", "end" )
-            .text( function( d )
-            {
-                return d;
-            } );
+                .attr( "x", width - 24 )
+                .attr( "y", 9 )
+                .attr( "dy", ".35em" )
+                .style( "text-anchor", "end" )
+                .text( function( d )
+        {
+            return d;
+        } );
     },
 
     removeChart: function( chartId )
@@ -456,22 +597,22 @@ var RCInterface = Class.create( {
     getValuesGroupByBudget: function( dimension, carbonBudget )
     {
         return dimension.group().reduce(
-            function ( p, v )
-            {
-                if( carbonBudget == v["Carbon budget"] )
-                    p += v["Value"];
-                return p;
-            },
-            function ( p, v )
-            {
-                if( carbonBudget == v["Carbon budget"] )
-                    p -= v["Value"];
-                return p;
-            },
-            function ()
-            {
-                return "";
-            } );
+                function ( p, v )
+                {
+                    if( carbonBudget == v["Carbon budget"] )
+                        p += v["Value"];
+                    return p;
+                },
+                function ( p, v )
+                {
+                    if( carbonBudget == v["Carbon budget"] )
+                        p -= v["Value"];
+                    return p;
+                },
+                function ()
+                {
+                    return "";
+                } );
     },
 
 
@@ -493,40 +634,40 @@ var RCInterface = Class.create( {
 
         // Create "areas" divs
         $.waitUntil(
-            function()
-            {
-                return width == $( imageId ).width();
-            },
-            jQuery.proxy( function()
-            {
-                $.each( $( mapId + " area" ), jQuery.proxy( function( i, element )
+                function()
                 {
-                    var coords = element.coords.split( ',' );
-                    var divId = element.alt.replace( / /g, "_" );
-                    var div = $( '<div id="' + divId + '" name="' + element.alt + '" class="dynamicArea"></div>' );
-                    if( null != element.getAttribute( "isRed" ) )
-                        div.addClass( "redSynthesisText" );
-                    div.css( "top", coords[1] );
-                    div.css( "left", coords[0] );
-                    div.width( coords[2] - coords[0] );
-                    div.height( coords[3] - coords[1] );
-                    if( activeClick )
-                        div.on( "click", jQuery.proxy( function( argument )
-                        {
-                            var isAlreadyAChart = $( argument.currentTarget ).hasClass( "selected" );
-                            isAlreadyAChart ? $( argument.currentTarget ).removeClass( "selected" ) : $( argument.currentTarget ).addClass( "selected" );
-                            if( isAlreadyAChart )
-                                this.removeChart( "bar-chart_" + argument.currentTarget.id );
-                            else
-                                this.createOrAddToBarChart( "#bar-chart", 300, 200, "Continents", argument.currentTarget.getAttribute( "name" ) );
-                        }, this ) );
-                    $( dynamicAreasId ).append( div );
-                }, this ) );
+                    return width == $( imageId ).width();
+                },
+                jQuery.proxy( function()
+                {
+                    $.each( $( mapId + " area" ), jQuery.proxy( function( i, element )
+                    {
+                        var coords = element.coords.split( ',' );
+                        var divId = element.alt.replace( / /g, "_" );
+                        var div = $( '<div id="' + divId + '" name="' + element.alt + '" class="dynamicArea"></div>' );
+                        if( null != element.getAttribute( "isRed" ) )
+                            div.addClass( "redSynthesisText" );
+                        div.css( "top", coords[1] );
+                        div.css( "left", coords[0] );
+                        div.width( coords[2] - coords[0] );
+                        div.height( coords[3] - coords[1] );
+                        if( activeClick )
+                            div.on( "click", jQuery.proxy( function( argument )
+                            {
+                                var isAlreadyAChart = $( argument.currentTarget ).hasClass( "selected" );
+                                isAlreadyAChart ? $( argument.currentTarget ).removeClass( "selected" ) : $( argument.currentTarget ).addClass( "selected" );
+                                if( isAlreadyAChart )
+                                    this.removeChart( "bar-chart_" + argument.currentTarget.id );
+                                else
+                                    this.createOrAddToBarChart( "#bar-chart", 300, 200, "Continents", argument.currentTarget.getAttribute( "name" ) );
+                            }, this ) );
+                        $( dynamicAreasId ).append( div );
+                    }, this ) );
 
-                $( mapId ).remove();
-            }, this ),
-            null
-        );
+                    $( mapId ).remove();
+                }, this ),
+                null
+                );
     },
 
     getToolTipContentForMultipleValues: function( valueArray )
@@ -705,12 +846,12 @@ var RCInterface = Class.create( {
         } );
 
         this.transposedData = new Array();
-        $.each(this.continentsKeys, jQuery.proxy(function(i,key)
+        $.each( this.continentsKeys, jQuery.proxy( function( i, key )
         {
             var object = arrayByContinents[key];
             object["Carbon budget"] = key;
-            this.transposedData.push(object);
-        }, this));
+            this.transposedData.push( object );
+        }, this ) );
     }
 
 
@@ -735,10 +876,10 @@ function print_filter( filter )
     if( "undefined" != typeof(f.dimension) )
     {
         f = f.dimension(
-            function( d )
-            {
-                return "";
-            } ).top( Infinity );
+                function( d )
+                {
+                    return "";
+                } ).top( Infinity );
     }
     else
     {

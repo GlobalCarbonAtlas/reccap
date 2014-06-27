@@ -9,6 +9,7 @@ body {
 }
 
 #pageWrapper {
+    display: none;
     color: #2C3537;
     font-size: 13px;
     padding: 0 20px 0 0;
@@ -381,8 +382,6 @@ g.oceania path {
 .y.axis text, .x.axis text {
     fill: #555555;
 }
-
-
 
 /* ************** NPP ************** */
 /*#npp-chart .x.axis text, #hr-chart .x.axis text {*/

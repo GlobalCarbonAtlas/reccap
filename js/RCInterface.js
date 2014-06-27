@@ -55,6 +55,16 @@ var RCInterface = Class.create( {
             this.createDataTable( "#data-count", "#data-table", this.data, this.data.groupAll(), this.continents );
 
             dc.renderAll();
+            this.columnHeaders = ["Heterotrophic Respiration","GPP","NPP","NEP"];
+            this.createOrAddToBarChart( "body", 900, 500, "Land use change" );
+            $( "#bob" ).on( "click", jQuery.proxy( function()
+            {
+                this.removeToGroupedBarChart( "NPP" );
+            }, this ) );
+            $( "#bib" ).on( "click", jQuery.proxy( function()
+            {
+                this.removeToGroupedBarChart( "Heterotrophic Respiration" );
+            }, this ) );
         }, this ) );
     },
 
@@ -97,22 +107,6 @@ var RCInterface = Class.create( {
         };
 
         this.createRowChart( "#function-chart", 350, 550, carbonBudgets, filteredFunctionAmountGroup );
-    },
-
-    createSimpleDCObject: function( dimensionValue, groupValue, DCObjectValue, chartId, width, height, chartGroup )
-    {
-        var dimension = this.data.dimension( function( d )
-        {
-            return d[dimensionValue];
-        } );
-
-        var group = this.getValuesGroupByBudget( dimension, groupValue );
-
-        this.createBarChart( chartId, width, height, dimension, group, chartGroup );
-
-        if( chartGroup )
-            dc.renderAll( chartGroup );
-        this.updateCharts();
     },
 
 
@@ -194,69 +188,39 @@ var RCInterface = Class.create( {
 
 
     /* ******************************************************************** */
-    /* ************************ OTHERS FOR CHARTS ************************* */
+    /* ************************ GROUPED BAR CHART ************************* */
     /* ******************************************************************** */
-    updateCharts: function()
-    {
-        // Tooltips for menu
-        $( ".toolButton img" ).tooltip( {
-            placement: "right",
-            container:'body'} );
-
-        // Tooltips for charts
-        var toolTip = d3.tip()
-                .attr( 'class', 'd3-tip' )
-                .offset( [-10, 0] )
-                .html( jQuery.proxy( function ( d )
-        {
-            if( d.properties )
-            // Choropleth
-                return  "<span class='d3-tipTitle'>" + d.properties.continent + "</span>";
-            else if( d.data )
-            {
-                if( "object" == jQuery.type( d.data.value ) )
-                {
-                    // Double Bar chart
-                    var content = this.getToolTipContentForMultipleValues( d.data.value );
-                    return "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + content;
-                }
-                else
-                // Simple Bar chart
-                    return "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.data.value );
-            }
-            else
-            // Row chart
-                return "<span class='d3-tipTitle'>" + d.key + " : </span>" + this.numberFormat( d.value );
-        }, this ) );
-
-        d3.selectAll( ".country, g.row, .bar" ).call( toolTip );
-        d3.selectAll( ".country, g.row, .bar" )
-                .on( 'mouseover', toolTip.show )
-                .on( 'mouseout', toolTip.hide );
-
-
-        // Bar chart : rotate the x Axis labels
-        d3.selectAll( "g.x g text" )
-                .attr( "class", "campusLabel" )
-                .style( "text-anchor", "end" )
-                .attr( "transform", "translate(-10,0)rotate(315)" );
-    },
-
-    createOrAddToBarChart: function( chartId, width, height, dimensionValue )
+    /**
+     * This method create and/or add flux's bars in the grouped bar chart
+     * http://bl.ocks.org/mbostock/3887051
+     * http://bl.ocks.org/gencay/4629518
+     * http://cmaurer.github.io/angularjs-nvd3-directives/multi.bar.chart.html
+     * @param containerId
+     * @param width
+     * @param height
+     * @param fluxValue
+     */
+    createOrAddToBarChart: function( containerId, width, height, fluxValue )
     {
         if( 0 >= $( "#bar-chartSvg" ).length )
-            this.createGroupedBarChart( chartId, width, height );
+            this.createGroupedBarChart( containerId, width, height );
         this.columnHeaders = this.columnHeaders ? this.columnHeaders : [];
-        this.addToGroupedBarChart( dimensionValue );
+        this.columnHeaders.push( fluxValue );
+        this.updateGroupedBarChart();
         this.updateCharts();
     },
 
-//    http://bl.ocks.org/mbostock/3887051, http://bl.ocks.org/gencay/4629518, http://cmaurer.github.io/angularjs-nvd3-directives/multi.bar.chart.html
+    /**
+     * This method create the svg container for the grouped bar chart
+     * @param containerId
+     * @param width
+     * @param height
+     */
     createGroupedBarChart: function( containerId, width, height )
     {
         var margin = {top: 20, right: 20, bottom: 80, left: 40};
-        this.barChartWidth = height - margin.left - margin.right;
-        this.barChartHeight = width - margin.top - margin.bottom;
+        this.barChartWidth = width - margin.left - margin.right;
+        this.barChartHeight = height - margin.top - margin.bottom;
 
         this.barChartx0 = d3.scale.ordinal().rangeRoundBands( [0, this.barChartWidth], 0.1 ).domain( this.continentsKeys );
         this.barChartx1 = d3.scale.ordinal();
@@ -292,10 +256,11 @@ var RCInterface = Class.create( {
                 .attr( "transform", "translate(0," + this.barChartHeight + ")" );
     },
 
-    addToGroupedBarChart: function( newColumn )
+    /**
+     * This method update the actual bar chart after an add or a remove of a flux value
+     */
+    updateGroupedBarChart: function()
     {
-        if( newColumn )
-            this.columnHeaders.push( newColumn );
         var color = d3.scale.category20().domain( this.columnHeaders );
 
         // Create details for each column
@@ -358,10 +323,11 @@ var RCInterface = Class.create( {
 
         var legendsEnter = legend.enter().append( "g" )
                 .attr( "class", "legend" )
-                .attr( "transform", function( d, i )
-        {
-            return "translate(0," + i * 20 + ")";
-        } );
+                .attr( "transform",
+                function( d, i )
+                {
+                    return "translate(0," + i * 20 + ")";
+                } );
 
         legendsEnter.append( "rect" )
                 .attr( "x", this.barChartWidth - 18 )
@@ -380,6 +346,14 @@ var RCInterface = Class.create( {
             return d;
         } );
         legend.exit().remove();
+
+        // When remove bar
+        legend.select( "text" )
+                .text( function( d )
+        {
+            return d;
+        } );
+
     },
 
     updateGroupedBar: function( color )
@@ -394,12 +368,13 @@ var RCInterface = Class.create( {
             return "translate(" + this.barChartx0( d["Carbon budget"] ) + ",0)";
         }, this ) );
 
-        groupedBar.selectAll( "rect" )
+        var groupedBarRect = groupedBar.selectAll( "rect" )
                 .data( function( d )
         {
             return d.columnDetails;
-        } )
-                .enter().append( "rect" )
+        } );
+
+        groupedBarRect.enter().append( "rect" )
                 .attr( "width", this.barChartx1.rangeBand() )
                 .attr( "x", jQuery.proxy( function( d )
         {
@@ -417,6 +392,7 @@ var RCInterface = Class.create( {
         {
             return color( d.name );
         } );
+        groupedBarRect.exit().remove();
 
         groupedBar.selectAll( "rect" ).attr( "width", this.barChartx1.rangeBand() )
                 .attr( "x", jQuery.proxy( function( d )
@@ -437,33 +413,53 @@ var RCInterface = Class.create( {
         } );
     },
 
-    removeChart: function( chartId )
+    removeToGroupedBarChart: function( fluxValue )
     {
-        $( "#" + chartId ).fadeOut( 500, function()
-        {
-            $( "#" + chartId ).remove();
-        } );
+        this.columnHeaders.splice( $.inArray( fluxValue, this.columnHeaders ), 1 );
+        this.updateGroupedBarChart();
     },
 
-    getValuesGroupByBudget: function( dimension, carbonBudget )
+
+    /* ******************************************************************** */
+    /* ************************ OTHERS FOR CHARTS ************************* */
+    /* ******************************************************************** */
+    updateCharts: function()
     {
-        return dimension.group().reduce(
-                function ( p, v )
-                {
-                    if( carbonBudget == v["Carbon budget"] )
-                        p += v["Value"];
-                    return p;
-                },
-                function ( p, v )
-                {
-                    if( carbonBudget == v["Carbon budget"] )
-                        p -= v["Value"];
-                    return p;
-                },
-                function ()
-                {
-                    return "";
-                } );
+        // Tooltips for menu
+        $( ".toolButton img" ).tooltip( {
+            placement: "right",
+            container:'body'} );
+
+        // Tooltips for charts
+        var toolTip = d3.tip()
+                .attr( 'class', 'd3-tip' )
+                .offset( [-10, 0] )
+                .html( jQuery.proxy( function ( d )
+        {
+            if( d.properties )
+            // Choropleth
+                return  "<span class='d3-tipTitle'>" + d.properties.continent + "</span>";
+            else if( d.column && d.name )
+            {
+                var value = (d.yBegin != 0 ? d.yBegin : d.yEnd != 0 ? d.yEnd : 0);
+                return "<span class='d3-tipTitle'>" + d.name + " : </span>" + value;
+            }
+            else
+            // Row chart
+                return "<span class='d3-tipTitle'>" + d.key + " : </span>" + this.numberFormat( d.value );
+        }, this ) );
+
+        d3.selectAll( ".country, g.row, .bar, #bar-chartSvg rect" ).call( toolTip );
+        d3.selectAll( ".country, g.row, .bar, #bar-chartSvg rect" )
+                .on( 'mouseover', toolTip.show )
+                .on( 'mouseout', toolTip.hide );
+
+
+        // Bar chart : rotate the x Axis labels
+        d3.selectAll( "g.x g text" )
+                .attr( "class", "campusLabel" )
+                .style( "text-anchor", "end" )
+                .attr( "transform", "translate(-10,0)rotate(315)" );
     },
 
 
@@ -508,7 +504,7 @@ var RCInterface = Class.create( {
                                 var isAlreadyAChart = $( argument.currentTarget ).hasClass( "selected" );
                                 isAlreadyAChart ? $( argument.currentTarget ).removeClass( "selected" ) : $( argument.currentTarget ).addClass( "selected" );
                                 if( isAlreadyAChart )
-                                    this.removeChart( "bar-chart_" + argument.currentTarget.id );
+                                    this.removeToGroupedBarChart( argument.currentTarget.getAttribute( "name" ) );
                                 else
                                     this.createOrAddToBarChart( "#bar-chart", 300, 400, argument.currentTarget.getAttribute( "name" ) );
                             }, this ) );
@@ -543,7 +539,6 @@ var RCInterface = Class.create( {
         } );
 
         $( ".tools, #map-chart, .function, #bar-chart" ).draggable();
-//        $( "#synthesis" ).click();
     },
 
     bindActionsForSlides: function()
@@ -612,10 +607,6 @@ var RCInterface = Class.create( {
         $( "#reset" ).on( "click", jQuery.proxy( function()
         {
             $( ".dynamicArea" ).removeClass( "selected" );
-            $( "#bar-chart div" ).fadeOut( 500, function()
-            {
-                $( "#bar-chart div" ).remove();
-            } );
             dc.filterAll();
             dc.renderAll();
             this.updateCharts();

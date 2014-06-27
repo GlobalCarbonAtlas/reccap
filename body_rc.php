@@ -72,10 +72,7 @@
             </div>
 
             <div class="col-md-4">
-                <!--                <h3>Bar chart</h3>-->
-
                 <div id="bar-chart"></div>
-
             </div>
 
         </div>
@@ -140,7 +137,7 @@
         <img id="imageFluxForSynthesis" src="img/FluxEmpty.png" usemap="#mapForImageFluxForSynthesis" alt="Synthesis for flux"/>
         <map id="mapForImageFluxForSynthesis" name="mapForImageFluxForSynthesis">
             <map id="imgmap2014623132018" name="imgmap2014623132018">
-                <area shape="rect" alt="" title="" coords="405,252,434,273" href=""  isRed/>
+                <area shape="rect" alt="" title="" coords="405,252,434,273" href="" isRed/>
                 <area shape="rect" alt="CropValue" title="" coords="503,248,537,268" href="" isRed/>
                 <area shape="rect" alt="woodValue" title="" coords="525,285,562,314" href="" isRed/>
                 <area shape="rect" alt="Fire_value" title="" coords="665,249,704,275" href="" isRed/>
@@ -170,6 +167,9 @@
 </div>
 
 <canvas id="svg-canvas" hidden="hidden"></canvas>
+
+<div id="bob">NPP</div>
+<div id="bib">Heterotrophic Respiration</div>
 
 <script type="text/javascript">
     $( document ).ready( function ()

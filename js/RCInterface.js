@@ -287,33 +287,85 @@ var RCInterface = Class.create( {
 //    addToBarChart: function( chartId, dimension, group, chartGroup )
     addToBarChart: function()
     {
-        var margin = {top: 20, right: 20, bottom: 60, left: 40},
-                width = 960 - margin.left - margin.right,
-                height = 500 - margin.top - margin.bottom;
+        var margin = {top: 20, right: 20, bottom: 80, left: 40};
+        this.barChartWidth = 960 - margin.left - margin.right;
+        this.barChartHeight = 500 - margin.top - margin.bottom;
 
-        var x0 = d3.scale.ordinal().rangeRoundBands( [0, width], 0.1 );
-        var x1 = d3.scale.ordinal();
-        var y = d3.scale.linear().range( [height, 0] );
+        this.barChartx0 = d3.scale.ordinal().rangeRoundBands( [0, this.barChartWidth], 0.1 ).domain( this.continentsKeys );
+        this.barChartx1 = d3.scale.ordinal();
+        this.barCharty = d3.scale.linear().range( [this.barChartHeight, 0] );
 
-        var xAxis = d3.svg.axis().scale( x0 );
-
-        var yAxis = d3.svg.axis()
-                .scale( y )
+        // Axes
+        this.barChartxAxis = d3.svg.axis().scale( this.barChartx0 );
+        this.barChartyAxis = d3.svg.axis()
+                .scale( this.barCharty )
                 .orient( "left" )
                 .tickFormat( d3.format( ".2s" ) )
-                .tickSize( -width, 0 );
+                .tickSize( -this.barChartWidth, 0 );
 
-        var svg = d3.select( "body" ).append( "svg" )
-                .attr( "width", width + margin.left + margin.right )
-                .attr( "height", height + margin.top + margin.bottom )
+        // BarChart
+        this.barChartsvg = d3.select( "body" ).append( "svg" )
+                .attr( "width", this.barChartWidth + margin.left + margin.right )
+                .attr( "height", this.barChartHeight + margin.top + margin.bottom )
                 .append( "g" )
                 .attr( "transform", "translate(" + margin.left + "," + margin.top + ")" );
 
+        this.barChartsvg.append( "g" )
+                .attr( "class", "y axis" )
+                .append( "text" )
+                .attr( "transform", "rotate(-90)" )
+                .attr( "y", 6 )
+                .attr( "dy", ".7em" )
+                .style( "text-anchor", "end" )
+                .text( "" );
+
+
+        this.barChartsvg.append( "g" )
+                .attr( "class", "x axis" )
+                .attr( "transform", "translate(0," + this.barChartHeight + ")" );
+
+//        this.barChartsvg.append( "g" )
+//                .attr( "class", "x axis" )
+//                .attr( "transform", "translate(0," + height + ")" )
+//                .call( xAxis );
+
+//        this.barChartsvg.append( "g" )
+//                .attr( "class", "y axis" )
+//                .call( yAxis )
+//                .append( "text" )
+//                .attr( "transform", "rotate(-90)" )
+//                .attr( "y", 6 )
+//                .attr( "dy", ".7em" )
+//                .style( "text-anchor", "end" )
+//                .text( "" );
+//
+//        this.barChartsvg.select( '.y.axis' )
+//                .call( yAxis )
+//                .selectAll( 'line' )
+//                .filter( function( d )
+//        {
+//            return !d
+//        } )
+//                .classed( 'zero', true );
+
         this.columnHeaders = ["Heterotrophic Respiration","GPP","NPP","NEP","Land use change"];
-        var data = this.transposedData;
+//        this.columnHeaders = [];
+//        this.addColumn( "Heterotrophic Respiration" );
+//        this.addColumn( "GPP" );
+//        this.addColumn( "NPP" );
+//        this.addColumn( "NEP" );
+//        this.addColumn( "Land use change" );
+        this.addColumn();
+    },
+
+    addColumn: function( newColumn )
+    {
+        if( newColumn )
+            this.columnHeaders.push( newColumn );
         var color = d3.scale.category20().domain( this.columnHeaders );
 
-        data.forEach( jQuery.proxy( function( d )
+        // Create details for each column
+        this.transposedData.forEach( jQuery.proxy( function( d )
         {
             d.columnDetails = this.columnHeaders.map( function( element, index )
             {
@@ -331,33 +383,29 @@ var RCInterface = Class.create( {
             } );
         }, this ) );
 
-        x0.domain( this.continentsKeys );
-        y.domain( [d3.min( data, function( d )
+        this.updateBarChartDomains();
+        this.updateBarChartAxes( color );
+        this.updateGroupedBar2( color );
+        this.updateBarChartLegend( color );
+    },
+
+    updateBarChartDomains: function()
+    {
+        this.barCharty.domain( [d3.min( this.transposedData, function( d )
         {
             return d.negativeTotal;
-        } ), d3.max( data, function( d )
+        } ), d3.max( this.transposedData, function( d )
         {
             return d.positiveTotal;
         } )] );
-        x1.domain( d3.keys( this.columnHeaders ) ).rangeRoundBands( [0, x0.rangeBand()] );
+        this.barChartx1.domain( d3.keys( this.columnHeaders ) ).rangeRoundBands( [0, this.barChartx0.rangeBand()] );
+    },
 
-        svg.append( "g" )
-                .attr( "class", "x axis" )
-                .attr( "transform", "translate(0," + height + ")" )
-                .call( xAxis );
-
-        svg.append( "g" )
-                .attr( "class", "y axis" )
-                .call( yAxis )
-                .append( "text" )
-                .attr( "transform", "rotate(-90)" )
-                .attr( "y", 6 )
-                .attr( "dy", ".7em" )
-                .style( "text-anchor", "end" )
-                .text( "" );
-
-        svg.select( '.y.axis' )
-                .call( yAxis )
+    updateBarChartAxes: function( color )
+    {
+        // Update yAxis
+        this.barChartsvg.select( '.y.axis' )
+                .call( this.barChartyAxis )
                 .selectAll( 'line' )
                 .filter( function( d )
         {
@@ -365,56 +413,30 @@ var RCInterface = Class.create( {
         } )
                 .classed( 'zero', true );
 
-        var project_stackedbar = svg.selectAll( ".project_stackedbar" )
-                .data( data )
-                .enter().append( "g" )
-                .attr( "class", "g" )
-                .attr( "transform", function( d )
-        {
-            return "translate(" + x0( d["Carbon budget"] ) + ",0)";
-        } );
+        // Update xAxis
+        this.barChartsvg.select( '.x.axis' ).call( this.barChartxAxis );
+    },
 
-        project_stackedbar.selectAll( "rect" )
-                .data( function( d )
-        {
-            return d.columnDetails;
-        } )
-                .enter().append( "rect" )
-                .attr( "width", x1.rangeBand() )
-                .attr( "x", function( d )
-        {
-            return x1( d.column );
-        } )
-                .attr( "y", function( d )
-        {
-            return y( d.yEnd );
-        } )
-                .attr( "height", function( d )
-        {
-            return y( d.yBegin ) - y( d.yEnd );
-        } )
-                .style( "fill", function( d )
-        {
-            return color( d.name );
-        } );
+    updateBarChartLegend: function( color )
+    {
+        var legend = this.barChartsvg.selectAll( ".legend" )
+                .data( this.columnHeaders.slice() );
 
-        var legend = svg.selectAll( ".legend" )
-                .data( this.columnHeaders.slice().reverse() )
-                .enter().append( "g" )
+        var legendsEnter = legend.enter().append( "g" )
                 .attr( "class", "legend" )
                 .attr( "transform", function( d, i )
         {
             return "translate(0," + i * 20 + ")";
         } );
 
-        legend.append( "rect" )
-                .attr( "x", width - 18 )
+        legendsEnter.append( "rect" )
+                .attr( "x", this.barChartWidth - 18 )
                 .attr( "width", 18 )
                 .attr( "height", 18 )
                 .style( "fill", color );
 
-        legend.append( "text" )
-                .attr( "x", width - 24 )
+        legendsEnter.append( "text" )
+                .attr( "x", this.barChartWidth - 24 )
                 .attr( "y", 9 )
                 .attr( "dy", ".35em" )
                 .style( "text-anchor", "end" )
@@ -423,170 +445,102 @@ var RCInterface = Class.create( {
         {
             return d;
         } );
+        legend.exit().remove();
     },
 
-    /*    bob: function ()
-     {
-     var margin = {top: 20, right: 20, bottom: 60, left: 40},
-     width = 960 - margin.left - margin.right,
-     height = 500 - margin.top - margin.bottom;
+    updateGroupedBar2: function( color )
+    {
+        var project_stackedbar = this.barChartsvg.selectAll( ".project_stackedbar" )
+                .data( this.transposedData )
+                .enter().append( "g" )
+                .attr( "class", "g" )
+                .attr( "transform", jQuery.proxy( function( d )
+        {
+            return "translate(" + this.barChartx0( d["Carbon budget"] ) + ",0)";
+        }, this ) );
 
-     this.x0 = d3.scale.ordinal().rangeRoundBands( [0, width], 0.1 );
-     this.x0.domain( this.continentsKeys );
+        project_stackedbar.selectAll( "rect" )
+                .data( function( d )
+        {
+            return d.columnDetails;
+        } )
+                .enter().append( "rect" )
+                .attr( "width", this.barChartx1.rangeBand() )
+                .attr( "x", jQuery.proxy( function( d )
+        {
+            return this.barChartx1( d.column );
+        }, this ) )
+                .attr( "y", jQuery.proxy( function( d )
+        {
+            return this.barCharty( d.yEnd );
+        }, this ) )
+                .attr( "height", jQuery.proxy( function( d )
+        {
+            return this.barCharty( d.yBegin ) - this.barCharty( d.yEnd );
+        }, this ) )
+                .style( "fill", function( d )
+        {
+            return color( d.name );
+        } );
+    },
 
-     this.x1 = d3.scale.ordinal();
-     this.y = d3.scale.linear().range( [height, 0] );
+    updateGroupedBar: function( color )
+    {
+        var groupedBar = this.barChartsvg.selectAll( ".groupedBar" )
+                .data( this.transposedData );
 
-     this.xAxis = d3.svg.axis()
-     .scale( this.x0 )
-     .orient( "bottom" );
+        var groupedBarEnter = groupedBar.enter().append( "g" )
+                .attr( "class", "groupedBar" )
+                .attr( "transform", jQuery.proxy( function( d )
+        {
+            return "translate(" + this.barChartx0( d["Carbon budget"] ) + ",0)";
+        }, this ) );
 
-     this.yAxis = d3.svg.axis()
-     .scale( this.y )
-     .orient( "left" )
-     .tickFormat( d3.format( ".2s" ) );
+        var groupedBarRect = groupedBar.selectAll( ".groupedBar rect" )
+                .data(
+                jQuery.proxy( function( d )
+                {
+                    return d.columnDetails;
+                }, this ) )
+                .attr( "width", this.barChartx1.rangeBand() )
+                .attr( "x", jQuery.proxy( function( d )
+        {
+            return this.barChartx1( d.column );
+        }, this ) )
+                .attr( "y", jQuery.proxy( function( d )
+        {
+            return this.barCharty( d.yEnd );
+        }, this ) )
+                .attr( "height", jQuery.proxy( function( d )
+        {
+            return this.barCharty( d.yBegin ) - this.barCharty( d.yEnd );
+        }, this ) )
+                .style( "fill", function( d )
+        {
+            return color( d.name );
+        } );
 
+        var groupedBarRectEnter = groupedBarRect.enter();
+        groupedBarRectEnter.append( "rect" )
+                .attr( "x", jQuery.proxy( function( d )
+        {
+            return this.barChartx1( d.column );
+        }, this ) )
+                .attr( "y", jQuery.proxy( function( d )
+        {
+            return this.barCharty( d.yEnd );
+        }, this ) )
+                .attr( "height", jQuery.proxy( function( d )
+        {
+            return this.barCharty( d.yBegin ) - this.barCharty( d.yEnd );
+        }, this ) )
+                .style( "fill", function( d )
+        {
+            return color( d.name );
+        } );
 
-     this.svg = d3.select( "body" ).append( "svg" )
-     .attr( "width", width + margin.left + margin.right )
-     .attr( "height", height + margin.top + margin.bottom )
-     .append( "g" )
-     .attr( "transform", "translate(" + margin.left + "," + margin.top + ")" );
-
-     this.svg.append( "g" )
-     .attr( "class", "x axis" )
-     .attr( "transform", "translate(0," + height + ")" )
-     .call( this.xAxis );
-
-     this.svg.append( "g" )
-     .attr( "class", "y axis" )
-     .call( this.yAxis )
-     .append( "text" )
-     .attr( "transform", "rotate(-90)" )
-     .attr( "y", 6 )
-     .attr( "dy", ".7em" )
-     .style( "text-anchor", "end" )
-     .text( "" );
-
-     //        this.columnHeaders = ["Heterotrophic Respiration","GPP","NPP","NEP","Land use change"];
-     this.columnHeaders = [];
-     this.addColumn( "Fire", height, width );
-     //        this.addColumn("Heterotrophic Respiration", height, width);
-     this.addColumn( "NPP", height, width );
-     },
-
-     addColumn: function( newColum, height, width )
-     {
-     this.columnHeaders.push( newColum );
-     var color = d3.scale.category20().domain( this.columnHeaders );
-
-     this.transposedData.forEach( jQuery.proxy( function( d )
-     {
-     d.columnDetails = this.columnHeaders.map( function( element, index )
-     {
-     return {name: element, column: index.toString(), yBegin: 0, yEnd: +d[element]};
-     } );
-     d.total = d3.max( d.columnDetails, function( d )
-     {
-     return d ? d.yEnd : 0;
-     } );
-     }, this ) );
-
-     this.x1.domain( d3.keys( this.columnHeaders ) ).rangeRoundBands( [0, this.x0.rangeBand()] );
-
-     this.y.domain( [0, d3.max( this.transposedData, function( d )
-     {
-     return d.total;
-     } )] );
-
-
-     var project_stackedbar = this.svg.selectAll( ".project_stackedbar" )
-     .data( this.transposedData )
-     .enter().append( "g" )
-     .attr( "class", "g" )
-     .attr( "transform", jQuery.proxy( function( d )
-     {
-     return "translate(" + this.x0( d["Carbon budget"] ) + ",0)";
-     }, this ) );
-
-     project_stackedbar.selectAll( "rect" )
-     .data( function( d )
-     {
-     return d.columnDetails;
-     } )
-     .enter().append( "rect" )
-     .attr( "width", this.x1.rangeBand() )
-     .attr( "x", jQuery.proxy( function( d )
-     {
-     return d ? this.x1( d.column ) : 0;
-     }, this ) )
-     .attr( "y", jQuery.proxy( function( d )
-     {
-     return d ? this.y( d.yEnd ) : 0;
-     }, this ) )
-     .attr( "height", jQuery.proxy( function( d )
-     {
-     return d ? this.y( d.yBegin ) - this.y( d.yEnd ) : 0;
-     }, this ) )
-     .style( "fill", function( d )
-     {
-     return d ? color( d.name ) : 0;
-     } );
-
-     //        project_stackedbar.selectAll( "text" )
-     //            .data( function( d )
-     //            {
-     //                return d.columnDetails;
-     //            } )
-     //            .enter().append("text")
-     //            .attr("x", jQuery.proxy(function(d) {
-     //            return d ? this.x1( d.column ) : 0;
-     //        }, this))
-     //            .attr("y", function(d,i){
-     //                return height-i*20;
-     //            })
-     //            .attr("dy", ".35em")
-     //            .text(function(d) {
-     //                return d.name + ", "+d.yEnd;
-     //            })
-     //            .style( "fill", function( d )
-     //            {
-     //                return "red";
-     ////                return d ? color( d.columnDetails[0].name ) : 0;
-     //            } ) ;
-
-     this.updateLegend( width, color );
-     },
-
-
-     updateLegend: function( width, color )
-     {
-     var legend = this.svg.selectAll( ".legend" )
-     .data( this.columnHeaders.slice().reverse() )
-     .enter().append( "g" )
-     .attr( "class", "legend" )
-     .attr( "transform", function( d, i )
-     {
-     return "translate(0," + i * 20 + ")";
-     } );
-
-     legend.append( "rect" )
-     .attr( "x", width - 18 )
-     .attr( "width", 18 )
-     .attr( "height", 18 )
-     .style( "fill", color );
-
-     legend.append( "text" )
-     .attr( "x", width - 24 )
-     .attr( "y", 9 )
-     .attr( "dy", ".35em" )
-     .style( "text-anchor", "end" )
-     .text( function( d )
-     {
-     return d;
-     } );
-     },
-     */
+        groupedBar.exit().remove();
+    },
 
     removeChart: function( chartId )
     {

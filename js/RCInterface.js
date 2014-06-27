@@ -308,16 +308,11 @@ var RCInterface = Class.create( {
                 .orient( "left" )
                 .tickFormat( d3.format( ".2s" ) );
 
-//        var color = d3.scale.ordinal()
-//                .range( ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"] );
-
         var svg = d3.select( "body" ).append( "svg" )
                 .attr( "width", width + margin.left + margin.right )
                 .attr( "height", height + margin.top + margin.bottom )
                 .append( "g" )
                 .attr( "transform", "translate(" + margin.left + "," + margin.top + ")" );
-
-        var yBegin;
 
         this.columnHeaders = ["Heterotrophic Respiration","GPP","NPP","NEP","Land use change"];
         var data = this.transposedData;
@@ -327,28 +322,29 @@ var RCInterface = Class.create( {
         {
             d.columnDetails = this.columnHeaders.map( function( element, index )
             {
-                return {name: element, column: index.toString(), yBegin: 0, yEnd: +d[element]};
+                return {name: element, column: index.toString(), yBegin: (0 > d[element] ? d[element] : 0), yEnd: (0 < d[element] ? d[element] : 0)};
             } );
-            d.total = d3.max( d.columnDetails, function( d )
+
+            d.negativeTotal = d3.min( d.columnDetails, function( d )
+            {
+                return d ? d.yBegin : 0;
+            } );
+
+            d.positiveTotal = d3.max( d.columnDetails, function( d )
             {
                 return d ? d.yEnd : 0;
             } );
         }, this ) );
 
-        x1.domain( d3.keys( this.columnHeaders ) ).rangeRoundBands( [0, x0.rangeBand()] );
-
-        y.domain( [0, d3.max( this.transposedData, function( d )
-        {
-            return d.total;
-        } )] );
-
         x0.domain( this.continentsKeys );
-        x1.domain( d3.keys( this.columnHeaders ) ).rangeRoundBands( [0, x0.rangeBand()] );
-
-        y.domain( [0, d3.max( data, function( d )
+        y.domain( [d3.min( data, function( d )
         {
-            return d.total;
+            return parseInt( d.negativeTotal );
+        } ), d3.max( data, function( d )
+        {
+            return parseInt( d.positiveTotal );
         } )] );
+        x1.domain( d3.keys( this.columnHeaders ) ).rangeRoundBands( [0, x0.rangeBand()] );
 
         svg.append( "g" )
                 .attr( "class", "x axis" )
@@ -424,167 +420,168 @@ var RCInterface = Class.create( {
         } );
     },
 
-    bob: function ()
-    {
-        var margin = {top: 20, right: 20, bottom: 60, left: 40},
-                width = 960 - margin.left - margin.right,
-                height = 500 - margin.top - margin.bottom;
+    /*    bob: function ()
+     {
+     var margin = {top: 20, right: 20, bottom: 60, left: 40},
+     width = 960 - margin.left - margin.right,
+     height = 500 - margin.top - margin.bottom;
 
-        this.x0 = d3.scale.ordinal().rangeRoundBands( [0, width], 0.1 );
-        this.x0.domain( this.continentsKeys );
+     this.x0 = d3.scale.ordinal().rangeRoundBands( [0, width], 0.1 );
+     this.x0.domain( this.continentsKeys );
 
-        this.x1 = d3.scale.ordinal();
-        this.y = d3.scale.linear().range( [height, 0] );
+     this.x1 = d3.scale.ordinal();
+     this.y = d3.scale.linear().range( [height, 0] );
 
-        this.xAxis = d3.svg.axis()
-                .scale( this.x0 )
-                .orient( "bottom" );
+     this.xAxis = d3.svg.axis()
+     .scale( this.x0 )
+     .orient( "bottom" );
 
-        this.yAxis = d3.svg.axis()
-                .scale( this.y )
-                .orient( "left" )
-                .tickFormat( d3.format( ".2s" ) );
-
-
-        this.svg = d3.select( "body" ).append( "svg" )
-                .attr( "width", width + margin.left + margin.right )
-                .attr( "height", height + margin.top + margin.bottom )
-                .append( "g" )
-                .attr( "transform", "translate(" + margin.left + "," + margin.top + ")" );
-
-        this.svg.append( "g" )
-                .attr( "class", "x axis" )
-                .attr( "transform", "translate(0," + height + ")" )
-                .call( this.xAxis );
-
-        this.svg.append( "g" )
-                .attr( "class", "y axis" )
-                .call( this.yAxis )
-                .append( "text" )
-                .attr( "transform", "rotate(-90)" )
-                .attr( "y", 6 )
-                .attr( "dy", ".7em" )
-                .style( "text-anchor", "end" )
-                .text( "" );
-
-//        this.columnHeaders = ["Heterotrophic Respiration","GPP","NPP","NEP","Land use change"];
-        this.columnHeaders = [];
-        this.addColumn( "Fire", height, width );
-//        this.addColumn("Heterotrophic Respiration", height, width);
-        this.addColumn( "NPP", height, width );
-    },
-
-    addColumn: function( newColum, height, width )
-    {
-        this.columnHeaders.push( newColum );
-        var color = d3.scale.category20().domain( this.columnHeaders );
-
-        this.transposedData.forEach( jQuery.proxy( function( d )
-        {
-            d.columnDetails = this.columnHeaders.map( function( element, index )
-            {
-                return {name: element, column: index.toString(), yBegin: 0, yEnd: +d[element]};
-            } );
-            d.total = d3.max( d.columnDetails, function( d )
-            {
-                return d ? d.yEnd : 0;
-            } );
-        }, this ) );
-
-        this.x1.domain( d3.keys( this.columnHeaders ) ).rangeRoundBands( [0, this.x0.rangeBand()] );
-
-        this.y.domain( [0, d3.max( this.transposedData, function( d )
-        {
-            return d.total;
-        } )] );
+     this.yAxis = d3.svg.axis()
+     .scale( this.y )
+     .orient( "left" )
+     .tickFormat( d3.format( ".2s" ) );
 
 
-        var project_stackedbar = this.svg.selectAll( ".project_stackedbar" )
-                .data( this.transposedData )
-                .enter().append( "g" )
-                .attr( "class", "g" )
-                .attr( "transform", jQuery.proxy( function( d )
-        {
-            return "translate(" + this.x0( d["Carbon budget"] ) + ",0)";
-        }, this ) );
+     this.svg = d3.select( "body" ).append( "svg" )
+     .attr( "width", width + margin.left + margin.right )
+     .attr( "height", height + margin.top + margin.bottom )
+     .append( "g" )
+     .attr( "transform", "translate(" + margin.left + "," + margin.top + ")" );
 
-        project_stackedbar.selectAll( "rect" )
-                .data( function( d )
-        {
-            return d.columnDetails;
-        } )
-                .enter().append( "rect" )
-                .attr( "width", this.x1.rangeBand() )
-                .attr( "x", jQuery.proxy( function( d )
-        {
-            return d ? this.x1( d.column ) : 0;
-        }, this ) )
-                .attr( "y", jQuery.proxy( function( d )
-        {
-            return d ? this.y( d.yEnd ) : 0;
-        }, this ) )
-                .attr( "height", jQuery.proxy( function( d )
-        {
-            return d ? this.y( d.yBegin ) - this.y( d.yEnd ) : 0;
-        }, this ) )
-                .style( "fill", function( d )
-        {
-            return d ? color( d.name ) : 0;
-        } );
+     this.svg.append( "g" )
+     .attr( "class", "x axis" )
+     .attr( "transform", "translate(0," + height + ")" )
+     .call( this.xAxis );
 
-//        project_stackedbar.selectAll( "text" )
-//            .data( function( d )
-//            {
-//                return d.columnDetails;
-//            } )
-//            .enter().append("text")
-//            .attr("x", jQuery.proxy(function(d) {
-//            return d ? this.x1( d.column ) : 0;
-//        }, this))
-//            .attr("y", function(d,i){
-//                return height-i*20;
-//            })
-//            .attr("dy", ".35em")
-//            .text(function(d) {
-//                return d.name + ", "+d.yEnd;
-//            })
-//            .style( "fill", function( d )
-//            {
-//                return "red";
-////                return d ? color( d.columnDetails[0].name ) : 0;
-//            } ) ;
+     this.svg.append( "g" )
+     .attr( "class", "y axis" )
+     .call( this.yAxis )
+     .append( "text" )
+     .attr( "transform", "rotate(-90)" )
+     .attr( "y", 6 )
+     .attr( "dy", ".7em" )
+     .style( "text-anchor", "end" )
+     .text( "" );
 
-        this.updateLegend( width, color );
-    },
+     //        this.columnHeaders = ["Heterotrophic Respiration","GPP","NPP","NEP","Land use change"];
+     this.columnHeaders = [];
+     this.addColumn( "Fire", height, width );
+     //        this.addColumn("Heterotrophic Respiration", height, width);
+     this.addColumn( "NPP", height, width );
+     },
+
+     addColumn: function( newColum, height, width )
+     {
+     this.columnHeaders.push( newColum );
+     var color = d3.scale.category20().domain( this.columnHeaders );
+
+     this.transposedData.forEach( jQuery.proxy( function( d )
+     {
+     d.columnDetails = this.columnHeaders.map( function( element, index )
+     {
+     return {name: element, column: index.toString(), yBegin: 0, yEnd: +d[element]};
+     } );
+     d.total = d3.max( d.columnDetails, function( d )
+     {
+     return d ? d.yEnd : 0;
+     } );
+     }, this ) );
+
+     this.x1.domain( d3.keys( this.columnHeaders ) ).rangeRoundBands( [0, this.x0.rangeBand()] );
+
+     this.y.domain( [0, d3.max( this.transposedData, function( d )
+     {
+     return d.total;
+     } )] );
 
 
-    updateLegend: function( width, color )
-    {
-        var legend = this.svg.selectAll( ".legend" )
-                .data( this.columnHeaders.slice().reverse() )
-                .enter().append( "g" )
-                .attr( "class", "legend" )
-                .attr( "transform", function( d, i )
-        {
-            return "translate(0," + i * 20 + ")";
-        } );
+     var project_stackedbar = this.svg.selectAll( ".project_stackedbar" )
+     .data( this.transposedData )
+     .enter().append( "g" )
+     .attr( "class", "g" )
+     .attr( "transform", jQuery.proxy( function( d )
+     {
+     return "translate(" + this.x0( d["Carbon budget"] ) + ",0)";
+     }, this ) );
 
-        legend.append( "rect" )
-                .attr( "x", width - 18 )
-                .attr( "width", 18 )
-                .attr( "height", 18 )
-                .style( "fill", color );
+     project_stackedbar.selectAll( "rect" )
+     .data( function( d )
+     {
+     return d.columnDetails;
+     } )
+     .enter().append( "rect" )
+     .attr( "width", this.x1.rangeBand() )
+     .attr( "x", jQuery.proxy( function( d )
+     {
+     return d ? this.x1( d.column ) : 0;
+     }, this ) )
+     .attr( "y", jQuery.proxy( function( d )
+     {
+     return d ? this.y( d.yEnd ) : 0;
+     }, this ) )
+     .attr( "height", jQuery.proxy( function( d )
+     {
+     return d ? this.y( d.yBegin ) - this.y( d.yEnd ) : 0;
+     }, this ) )
+     .style( "fill", function( d )
+     {
+     return d ? color( d.name ) : 0;
+     } );
 
-        legend.append( "text" )
-                .attr( "x", width - 24 )
-                .attr( "y", 9 )
-                .attr( "dy", ".35em" )
-                .style( "text-anchor", "end" )
-                .text( function( d )
-        {
-            return d;
-        } );
-    },
+     //        project_stackedbar.selectAll( "text" )
+     //            .data( function( d )
+     //            {
+     //                return d.columnDetails;
+     //            } )
+     //            .enter().append("text")
+     //            .attr("x", jQuery.proxy(function(d) {
+     //            return d ? this.x1( d.column ) : 0;
+     //        }, this))
+     //            .attr("y", function(d,i){
+     //                return height-i*20;
+     //            })
+     //            .attr("dy", ".35em")
+     //            .text(function(d) {
+     //                return d.name + ", "+d.yEnd;
+     //            })
+     //            .style( "fill", function( d )
+     //            {
+     //                return "red";
+     ////                return d ? color( d.columnDetails[0].name ) : 0;
+     //            } ) ;
+
+     this.updateLegend( width, color );
+     },
+
+
+     updateLegend: function( width, color )
+     {
+     var legend = this.svg.selectAll( ".legend" )
+     .data( this.columnHeaders.slice().reverse() )
+     .enter().append( "g" )
+     .attr( "class", "legend" )
+     .attr( "transform", function( d, i )
+     {
+     return "translate(0," + i * 20 + ")";
+     } );
+
+     legend.append( "rect" )
+     .attr( "x", width - 18 )
+     .attr( "width", 18 )
+     .attr( "height", 18 )
+     .style( "fill", color );
+
+     legend.append( "text" )
+     .attr( "x", width - 24 )
+     .attr( "y", 9 )
+     .attr( "dy", ".35em" )
+     .style( "text-anchor", "end" )
+     .text( function( d )
+     {
+     return d;
+     } );
+     },
+     */
 
     removeChart: function( chartId )
     {

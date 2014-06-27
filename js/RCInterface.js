@@ -291,22 +291,17 @@ var RCInterface = Class.create( {
                 width = 960 - margin.left - margin.right,
                 height = 500 - margin.top - margin.bottom;
 
-        var x0 = d3.scale.ordinal()
-                .rangeRoundBands( [0, width], 0.1 );
-
+        var x0 = d3.scale.ordinal().rangeRoundBands( [0, width], 0.1 );
         var x1 = d3.scale.ordinal();
+        var y = d3.scale.linear().range( [height, 0] );
 
-        var y = d3.scale.linear()
-                .range( [height, 0] );
-
-        var xAxis = d3.svg.axis()
-                .scale( x0 )
-                .orient( "bottom" );
+        var xAxis = d3.svg.axis().scale( x0 );
 
         var yAxis = d3.svg.axis()
                 .scale( y )
                 .orient( "left" )
-                .tickFormat( d3.format( ".2s" ) );
+                .tickFormat( d3.format( ".2s" ) )
+                .tickSize( -width, 0 );
 
         var svg = d3.select( "body" ).append( "svg" )
                 .attr( "width", width + margin.left + margin.right )
@@ -327,22 +322,22 @@ var RCInterface = Class.create( {
 
             d.negativeTotal = d3.min( d.columnDetails, function( d )
             {
-                return d ? d.yBegin : 0;
+                return d ? parseInt( d.yBegin ) : 0;
             } );
 
             d.positiveTotal = d3.max( d.columnDetails, function( d )
             {
-                return d ? d.yEnd : 0;
+                return d ? parseInt( d.yEnd ) : 0;
             } );
         }, this ) );
 
         x0.domain( this.continentsKeys );
         y.domain( [d3.min( data, function( d )
         {
-            return parseInt( d.negativeTotal );
+            return d.negativeTotal;
         } ), d3.max( data, function( d )
         {
-            return parseInt( d.positiveTotal );
+            return d.positiveTotal;
         } )] );
         x1.domain( d3.keys( this.columnHeaders ) ).rangeRoundBands( [0, x0.rangeBand()] );
 
@@ -360,6 +355,15 @@ var RCInterface = Class.create( {
                 .attr( "dy", ".7em" )
                 .style( "text-anchor", "end" )
                 .text( "" );
+
+        svg.select( '.y.axis' )
+                .call( yAxis )
+                .selectAll( 'line' )
+                .filter( function( d )
+        {
+            return !d
+        } )
+                .classed( 'zero', true );
 
         var project_stackedbar = svg.selectAll( ".project_stackedbar" )
                 .data( data )
@@ -414,6 +418,7 @@ var RCInterface = Class.create( {
                 .attr( "y", 9 )
                 .attr( "dy", ".35em" )
                 .style( "text-anchor", "end" )
+                .style( "fill", color )
                 .text( function( d )
         {
             return d;
@@ -841,6 +846,7 @@ var RCInterface = Class.create( {
         {
             return key;
         } );
+        this.continentsKeys.sort();
 
         this.transposedData = new Array();
         $.each( this.continentsKeys, jQuery.proxy( function( i, key )
@@ -850,7 +856,6 @@ var RCInterface = Class.create( {
             this.transposedData.push( object );
         }, this ) );
     }
-
 
 } );
 

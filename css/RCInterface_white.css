@@ -9,7 +9,7 @@ body {
 }
 
 #pageWrapper {
-    //display: none;
+    display: none;
     color: #2C3537;
     font-size: 13px;
     padding: 0 20px 0 0;
@@ -361,6 +361,29 @@ g.oceania path {
 #bar-chart .dc-chart {
     margin: 15px 60px;
 }
+
+.y.axis path, .x.axis path {
+    fill: none;
+    stroke: grey;
+    shape-rendering: crispEdges;
+}
+
+.y.axis line {
+    fill: none;
+    shape-rendering: crispedges;
+    stroke: #000000;
+    stroke-opacity: 0.1;
+}
+
+.y.axis line.zero {
+    stroke-opacity: 0.5;
+}
+
+.y.axis text, .x.axis text {
+    fill: #555555;
+}
+
+
 
 /* ************** NPP ************** */
 /*#npp-chart .x.axis text, #hr-chart .x.axis text {*/

@@ -1,5 +1,3 @@
-<div id="test"></div>
-
 <div id="pageWrapper">
 
     <div class="container-fluid">
@@ -167,9 +165,6 @@
 </div>
 
 <canvas id="svg-canvas" hidden="hidden"></canvas>
-
-<div id="bob">NPP</div>
-<div id="bib">Heterotrophic Respiration</div>
 
 <script type="text/javascript">
     $( document ).ready( function ()

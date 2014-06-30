@@ -55,16 +55,6 @@ var RCInterface = Class.create( {
             this.createDataTable( "#data-count", "#data-table", this.data, this.data.groupAll(), this.continents );
 
             dc.renderAll();
-            this.columnHeaders = ["Heterotrophic Respiration","GPP","NPP","NEP"];
-            this.createOrAddToBarChart( "body", 900, 500, "Land use change" );
-            $( "#bob" ).on( "click", jQuery.proxy( function()
-            {
-                this.removeToGroupedBarChart( "NPP" );
-            }, this ) );
-            $( "#bib" ).on( "click", jQuery.proxy( function()
-            {
-                this.removeToGroupedBarChart( "Heterotrophic Respiration" );
-            }, this ) );
         }, this ) );
     },
 
@@ -254,6 +244,9 @@ var RCInterface = Class.create( {
         this.barChartsvg.append( "g" )
                 .attr( "class", "x axis" )
                 .attr( "transform", "translate(0," + this.barChartHeight + ")" );
+
+        // xAxis
+        this.barChartsvg.select( '.x.axis' ).call( this.barChartxAxis );
     },
 
     /**
@@ -311,9 +304,6 @@ var RCInterface = Class.create( {
             return !d
         } )
                 .classed( 'zero', true );
-
-        // Update xAxis
-        this.barChartsvg.select( '.x.axis' ).call( this.barChartxAxis );
     },
 
     updateBarChartLegend: function( color )
@@ -417,6 +407,8 @@ var RCInterface = Class.create( {
     {
         this.columnHeaders.splice( $.inArray( fluxValue, this.columnHeaders ), 1 );
         this.updateGroupedBarChart();
+        if( 0 >= this.columnHeaders.length )
+            $( "#bar-chartSvg" ).remove();
     },
 
 
@@ -506,7 +498,7 @@ var RCInterface = Class.create( {
                                 if( isAlreadyAChart )
                                     this.removeToGroupedBarChart( argument.currentTarget.getAttribute( "name" ) );
                                 else
-                                    this.createOrAddToBarChart( "#bar-chart", 300, 400, argument.currentTarget.getAttribute( "name" ) );
+                                    this.createOrAddToBarChart( "#bar-chart", 400, 300, argument.currentTarget.getAttribute( "name" ) );
                             }, this ) );
                         $( dynamicAreasId ).append( div );
                     }, this ) );

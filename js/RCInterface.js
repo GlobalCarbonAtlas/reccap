@@ -15,9 +15,10 @@ var RCInterface = Class.create( {
         // Variable
         this.numberFormat = d3.format( ".2f" );
         this.selectMultipleRegion = false;
-        this.barChart = false;
+        this.initMapWidth = 600;
+        this.initMapScale = 90;
 
-        this.createDynamicAreasForResponsiveMap( "#imageFlux", "#mapForImageFlux", "#dynamicAreasForImageFlux", 850, true );
+        this.createDynamicAreasForResponsiveMap( "#imageFlux", "#mapForImageFlux", "#dynamicAreasForImageFlux", $( "#imageFluxDiv" ).width(), true );
         this.createDynamicAreasForResponsiveMap( "#imageFluxForSynthesis", "#mapForImageFluxForSynthesis", "#dynamicAreasForImageFluxForSynthesis", 1100, false );
 
         this.initFileValuesAndCreateDCObjects();
@@ -67,9 +68,11 @@ var RCInterface = Class.create( {
         d3.json( "data/continent-geogame-110m.json", jQuery.proxy( function( error, world )
         {
             var countries = topojson.feature( world, world.objects.countries );
-            this.createChoroplethMap( "#map-chart", 600, 300, countries, this.continents, this.continents.group() );
+            this.createChoroplethMap( "#map-chart", 300, 300, countries, this.continents, this.continents.group() );
             dc.renderAll();
             this.updateCharts();
+
+            $( "#Fire" ).click();
         }, this ) );
     },
 
@@ -103,11 +106,13 @@ var RCInterface = Class.create( {
     /* ******************************************************************** */
     /* ****************************** CHARTS ****************************** */
     /* ******************************************************************** */
+//    http://www.d3noob.org/2013/03/a-simple-d3js-map-explained.html
     createChoroplethMap: function( chartId, width, height, countries, continentsDimension, continentsGroup )
     {
+        var newScale = this.initMapScale * width / this.initMapWidth;
         var projection = d3.geo.equirectangular()
                 .translate( [width / 2,  height / 2] )
-                .scale( [90] );
+                .scale( [newScale] );
 
         this.geoChoroplethChart = dc.geoChoroplethChart( chartId )
                 .width( width )
@@ -296,7 +301,8 @@ var RCInterface = Class.create( {
     updateBarChartAxes: function( color )
     {
         // Update yAxis
-        this.barChartsvg.select( '.y.axis' )
+        this.barChartsvg
+                .select( '.y.axis' )
                 .call( this.barChartyAxis )
                 .selectAll( 'line' )
                 .filter( function( d )
@@ -384,7 +390,12 @@ var RCInterface = Class.create( {
         } );
         groupedBarRect.exit().remove();
 
-        groupedBar.selectAll( "rect" ).attr( "width", this.barChartx1.rangeBand() )
+        groupedBar
+                .transition()
+                .duration( 200 )
+                .ease( "linear" )
+                .selectAll( "rect" )
+                .attr( "width", this.barChartx1.rangeBand() )
                 .attr( "x", jQuery.proxy( function( d )
         {
             return this.barChartx1( d.column );
@@ -498,7 +509,7 @@ var RCInterface = Class.create( {
                                 if( isAlreadyAChart )
                                     this.removeToGroupedBarChart( argument.currentTarget.getAttribute( "name" ) );
                                 else
-                                    this.createOrAddToBarChart( "#bar-chart", 400, 300, argument.currentTarget.getAttribute( "name" ) );
+                                    this.createOrAddToBarChart( "#bar-chart", $( "#bar-chart" ).width(), $( "#bar-chart" ).height(), argument.currentTarget.getAttribute( "name" ) );
                             }, this ) );
                         $( dynamicAreasId ).append( div );
                     }, this ) );

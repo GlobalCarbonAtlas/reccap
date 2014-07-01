@@ -119,7 +119,6 @@ h3 {
 }
 
 .mapText {
-    margin-left: 17px;
     color: #525252;
 }
 
@@ -185,7 +184,7 @@ g.oceania path {
 /*}*/
 
 /* ************** FLUX IMG ************** */
-.bob {
+.imageFluxDiv {
     float: right;
 }
 

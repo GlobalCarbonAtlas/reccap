@@ -57,7 +57,7 @@
     <div class="col-md-4">
         <div class="row">
             <div id="map-chart"></div>
-            <div class="mapText">Click on a region to get the functions</div>
+            <div class="col-md-12 mapText">Click on a region to get the functions</div>
         </div>
 
         <div class="row function">
@@ -87,7 +87,7 @@
             <div id="bar-chart"></div>
         </div>
 
-        <div class="row bob">
+        <div class="row imageFluxDiv">
             <div id="imageFluxDiv">
                 <img id="imageFlux" src="img/FluxEmptyWB.png" usemap="#mapForImageFlux" alt="Image for flux"/>
                 <map id="mapForImageFlux" name="mapForImageFlux">

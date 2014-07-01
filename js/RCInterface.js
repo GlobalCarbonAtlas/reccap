@@ -68,7 +68,7 @@ var RCInterface = Class.create( {
         d3.json( "data/continent-geogame-110m.json", jQuery.proxy( function( error, world )
         {
             var countries = topojson.feature( world, world.objects.countries );
-            this.createChoroplethMap( "#map-chart", $( "#map-chart" ).width(), $( "#map-chart" ).height(), countries, this.continents, this.continents.group() );
+            this.createChoroplethMap( "#map-chart", $( "#map-chart" ).width(), $( "#map-chart" ).width() / 2, countries, this.continents, this.continents.group() );
             dc.renderAll();
             this.updateCharts();
 
@@ -99,7 +99,7 @@ var RCInterface = Class.create( {
             }
         };
 
-        this.createRowChart( "#function-chart", 350, 550, carbonBudgets, filteredFunctionAmountGroup );
+        this.createRowChart( "#function-chart", $( "#function-chart" ).width(), 550, carbonBudgets, filteredFunctionAmountGroup );
     },
 
 
@@ -509,7 +509,10 @@ var RCInterface = Class.create( {
                                 if( isAlreadyAChart )
                                     this.removeToGroupedBarChart( argument.currentTarget.getAttribute( "name" ) );
                                 else
-                                    this.createOrAddToBarChart( "#bar-chart", $( "#bar-chart" ).width(), $( "#bar-chart" ).height(), argument.currentTarget.getAttribute( "name" ) );
+                                {
+                                    var barChartHeight = $("#pageWrapper").height() - $(".imageFluxDiv").height() - 90;
+                                    this.createOrAddToBarChart( "#bar-chart", $( "#bar-chart" ).width(), barChartHeight, argument.currentTarget.getAttribute( "name" ) );
+                                }
                             }, this ) );
                         $( dynamicAreasId ).append( div );
                     }, this ) );
@@ -540,8 +543,6 @@ var RCInterface = Class.create( {
         {
             alert( "work in progress" );
         } );
-
-        $( ".tools, #map-chart, .function, #bar-chart" ).draggable();
     },
 
     bindActionsForSlides: function()

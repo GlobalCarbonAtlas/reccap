@@ -8,8 +8,12 @@ body {
     font-family: "Lato", Arial;
 }
 
+.row {
+/*border: 2px solid #FF0000 !important;*/
+    margin-left: -10px !important;
+}
+
 #pageWrapper {
-/*display: none;*/
     color: #2C3537;
     font-size: 13px;
     padding: 0 20px 0 0;
@@ -22,14 +26,13 @@ body {
     color: #2C3537;
     font-size: 36px;
     text-shadow: 2px 2px 2px #CCCCCC;
-    text-align: right; /*padding: 10px 0 22px; *//*margin: auto;*/
-    margin: 21px 0 24px 127px;
-    width: 650px;
+    margin: -63px auto 0;
+    width: 900px;
+    padding-left: 28px;
 }
 
 .bigTitle {
-    font-weight: bold; /*color: #09C5CE;*/
-/*color: #FF7F0E;*/
+    font-weight: bold;
 }
 
 h3 {
@@ -48,23 +51,45 @@ h3 {
 }
 
 /* ************** TOOLS ************** */
-.tools {
-    border: 2px solid #2C3537;
+/*.tools {*/
+/*border: 2px solid #2C3537 !important;*/
+/*-webkit-border-radius: 10px;*/
+/*-moz-border-radius: 10px;*/
+/*border-radius: 10px;*/
+/*text-align: center; *//*padding-bottom: 8px;*/
+/*margin: 5px auto;*/
+/*width: 58px;*/
+/*height: 250px;*/
+/*top: 160px;*/
+/*}*/
+
+.leftTools {
+    border: 2px solid #2C3537 !important;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
     text-align: center;
-    padding-bottom: 8px;
-    margin: 55px 50px 0 49px;
-    height: 243px;
+    margin: 14px 0;
+    float: left;
+    width:140px;
 }
 
-.tools img {
+.rightTools {
+    float: right;
+    width:94px;
+    margin: 10px 0;
+}
+
+.leftTools img, .rightTools img {
     cursor: pointer;
 }
 
+.toolButton {
+    float: left;
+}
+
 #reset {
-    margin-left: -6px;
+    margin: 1px 0 0 -6px;
 }
 
 #regionActive {
@@ -73,27 +98,27 @@ h3 {
 
 #regionActive, #regionUnActive {
     position: absolute;
-    top: 112px;
-    left: 19px;
+    top: 20px;
+    left: 103px;
 }
 
-#data {
-    margin: 50px 0 2px 0;
+#data, #synthesis img {
+    margin: 6px 6px 6px;
 }
 
 #synthesis img {
-    margin-top: 12px;
+    /*margin-top: 12px;*/
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
 }
 
 #export {
-    margin: 3px 0 0 2px;
+    margin: 7px 0 0 -6px;
 }
 
 #help {
-    margin: 11px 0 0 2px;
+    margin: 4px 0 0 2px;
 }
 
 /* ************** DC Object ************** */
@@ -102,8 +127,13 @@ h3 {
 }
 
 /* ************** MAP ************** */
+#map-chart {
+    width: 400px;
+    height: 200px;
+    margin-top: 30px;
+}
+
 .mapText {
-    margin-left: 17px;
     color: #525252;
 }
 
@@ -154,8 +184,8 @@ g.oceania path {
 
 /* ************** FUNCTIONS ************** */
 .function {
-    float: right;
-    margin-top: -10px;
+/*float: right;*/
+    margin-top: 10px;
 }
 
 /*.dc-chart .axis text {*/
@@ -169,10 +199,15 @@ g.oceania path {
 /*}*/
 
 /* ************** FLUX IMG ************** */
+.imageFluxDiv {
+/*float: right;*/
+}
+
 #imageFluxDiv {
-    position: absolute;
-    margin-top: -50px;
-    margin-left: -15px;
+/*position: absolute; *//*margin-top: -50px;*/
+/*margin-left: -15px;*/
+/*width: 800px;*/
+/*right: 0;*/
 }
 
 #dynamicAreasForImageFlux .dynamicArea {
@@ -192,16 +227,14 @@ g.oceania path {
     color: #2C3537;
     font-weight: bold;
     font-size: 22px;
-    text-shadow: 2px 2px 2px #999999;
-    position: relative;
-    top: 10px;
-    left: 58px;
+    text-shadow: 2px 2px 2px #999999; /*position: relative;*/
+/*top: 10px;*/
+/*left: 58px;*/
 }
 
 .imageFluxText {
-    position: relative;
-    color: #525252;
-    margin: 234px 0 0 -12px;
+/*position: relative;*/
+    color: #525252; /*margin: 234px 0 0 -12px;*/
 }
 
 /* ************** DATA & SYNTHESIS STYLE ************** */
@@ -359,7 +392,6 @@ g.oceania path {
 
 /* ************** BAR-CHART ************** */
 #bar-chart {
-    width: 400px;
     height: 300px;
 }
 

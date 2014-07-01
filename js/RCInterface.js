@@ -18,7 +18,7 @@ var RCInterface = Class.create( {
         this.initMapWidth = 600;
         this.initMapScale = 90;
 
-        this.createDynamicAreasForResponsiveMap( "#imageFlux", "#mapForImageFlux", "#dynamicAreasForImageFlux", $( "#imageFluxDiv" ).width(), true );
+        this.createDynamicAreasForResponsiveMap( "#imageFlux", "#mapForImageFlux", "#dynamicAreasForImageFlux", $( "#bar-chart" ).width(), true );
         this.createDynamicAreasForResponsiveMap( "#imageFluxForSynthesis", "#mapForImageFluxForSynthesis", "#dynamicAreasForImageFluxForSynthesis", 1100, false );
 
         this.initFileValuesAndCreateDCObjects();

@@ -15,9 +15,9 @@
     <link rel="icon" href="img/globe.png" type="image/png">
 
     <!-- ************************* CSS ************************* -->
-        <link rel="stylesheet" type="text/css" href="css/bootstrap-3.1.1-dist/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="js/dc.js-master/web/css/dc.css">
-        <link rel="stylesheet" type="text/css" href="css/RCInterface_white_v2.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-3.1.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="js/dc.js-master/web/css/dc.css">
+    <link rel="stylesheet" type="text/css" href="css/RCInterface_white_v2.css">
 
 
     <!-- ************************* JS ************************* -->
@@ -52,54 +52,58 @@
 <BODY>
 
 
-<div id="pageWrapper">
-    <div class="container-fluid row">
+<div id="pageWrapper" class="container-fluid row">
 
-        <div class="col-md-5">
-            <div class="row tools">
-                <div id="reset" class="toolButton"><img src="img/reset-icon-614x460.png" width="50px" title="Reset all"/></div>
-                <div id="export" class="toolButton"><img src="img/export_small.png" title="Export"/></div>
-                <div id="help" class="toolButton"><img src="img/help.png" width="30px" title="Help"/></div>
-                <div id="regionActive" class="toolButton"><img src="img/Globe_Connected.png" width="30px" title="Allow multiple selection for regions"/></div>
-                <div id="regionUnActive" class="toolButton"><img src="img/Globe_Disconnected.png" width="30px" title="Only one selected region"/></div>
-                <div id="data" class="toolButton"><img src="img/Data.png" width="30px" title="Get all data"/></div>
-                <div id="synthesis" class="toolButton"><img src="img/FluxEmptyWB_small.png" width="30px" title="Display synthesis"/></div>
-            </div>
-
-            <div class="row">
-                <div id="map-chart"></div>
-                <div class="mapText">Click on a region to get the functions</div>
-            </div>
-
-            <div class="row function">
-                <div id="function-chart"></div>
-            </div>
+    <div class="col-md-4">
+        <div class="row">
+            <div id="map-chart"></div>
+            <div class="mapText">Click on a region to get the functions</div>
         </div>
 
-        <div class="col-md-7">
-            <div class="row">
-                <div id="imageFluxDiv">
-                    <img id="imageFlux" src="img/FluxEmptyWB.png" usemap="#mapForImageFlux" alt="Image for flux"/>
-                    <map id="mapForImageFlux" name="mapForImageFlux">
-                        <area shape="rect" href="#" alt="Land use change" title="Land use change" coords="538,49,611,93">
-                        <area shape="rect" href="#" alt="Fire" title="Fires" coords="628,65,667,92"/>
-                        <area shape="rect" href="#" alt="Heterotrophic Respiration" title="Heterotrophic Respiration" coords="831,49,920,92"/>
-                        <area shape="rect" href="#" alt="GPP" title="Gross primary production" coords="1020,14,1111,54"/>
-                        <area shape="rect" href="#" alt="NPP" title="NPP" coords="989,129,1069,174"/>
-                        <area shape="rect" href="#" alt="RiverExportToOcean" title="exportToOcean" coords="1075,390,1142,421"/>
-                    </map>
-                    <div id="dynamicAreasForImageFlux"></div>
-                </div>
-                <div class="imageFluxTitle">Flux</div>
-                <div class="imageFluxText">Click on a flux to display the bar chart</div>
-            </div>
-
-            <div class="row">
-                <div id="bar-chart"></div>
-            </div>
+        <div class="row function">
+            <div id="function-chart"></div>
         </div>
     </div>
 
+
+    <div class="col-md-1">
+        <div class="row tools">
+            <div id="reset" class="toolButton"><img src="img/reset-icon-614x460.png" width="50px" title="Reset all"/></div>
+            <div id="export" class="toolButton"><img src="img/export_small.png" title="Export"/></div>
+            <div id="help" class="toolButton"><img src="img/help.png" width="30px" title="Help"/></div>
+            <div id="regionActive" class="toolButton"><img src="img/Globe_Connected.png" width="30px" title="Allow multiple selection for regions"/></div>
+            <div id="regionUnActive" class="toolButton"><img src="img/Globe_Disconnected.png" width="30px" title="Only one selected region"/></div>
+            <div id="data" class="toolButton"><img src="img/Data.png" width="30px" title="Get all data"/></div>
+            <div id="synthesis" class="toolButton"><img src="img/FluxEmptyWB_small.png" width="30px" title="Display synthesis"/></div>
+        </div>
+    </div>
+
+
+    <div class="col-md-7">
+        <div class="row title"><span class="bigTitle">RE</span>gional <span class="bigTitle">C</span>arbon <span class="bigTitle">C</span>ycle <span
+                class="bigTitle">A</span>ssessment and <span class="bigTitle">P</span>rocesses&nbsp;&nbsp;&nbsp;&nbsp;</div>
+
+        <div class="row">
+            <div id="bar-chart"></div>
+        </div>
+
+        <div class="row">
+            <div id="imageFluxDiv">
+                <img id="imageFlux" src="img/FluxEmptyWB.png" usemap="#mapForImageFlux" alt="Image for flux"/>
+                <map id="mapForImageFlux" name="mapForImageFlux">
+                    <area shape="rect" href="#" alt="Land use change" title="Land use change" coords="538,49,611,93">
+                    <area shape="rect" href="#" alt="Fire" title="Fires" coords="628,65,667,92"/>
+                    <area shape="rect" href="#" alt="Heterotrophic Respiration" title="Heterotrophic Respiration" coords="831,49,920,92"/>
+                    <area shape="rect" href="#" alt="GPP" title="Gross primary production" coords="1020,14,1111,54"/>
+                    <area shape="rect" href="#" alt="NPP" title="NPP" coords="989,129,1069,174"/>
+                    <area shape="rect" href="#" alt="RiverExportToOcean" title="exportToOcean" coords="1075,390,1142,421"/>
+                </map>
+                <div id="dynamicAreasForImageFlux"></div>
+            </div>
+            <div class="imageFluxTitle">Flux</div>
+            <div class="imageFluxText">Click on a flux to display the bar chart</div>
+        </div>
+    </div>
 
 </div>
 
@@ -186,129 +190,10 @@
 
 
 <script type="text/javascript">
-$( document ).ready( function ()
-{
+    $( document ).ready( function ()
+    {
         new RCInterface();
-
-//    var numberFormat = d3.format( ".2f" );
-////    var stackedbarchart = dc.barChart( "#chart" );
-//    var usChart = dc.geoChoroplethChart( "#bob", "paf" );
-//
-////    var barchart = dc.barChart( "#chart-row-Population_Density" );
-//
-//    d3.csv( "data/helthdata1.csv", function( error, csv )
-//    {
-//
-//        function resize()
-//        {
-//            // adjust things when the window size changes
-//            width = parseInt( d3.select( '#bob' ).style( 'width' ) );
-//            width = width - margin.left - margin.right;
-//            height = width * mapRatio;
-//
-//            // update projection
-//            projection
-//                    .translate( [width / 2, height / 2] )
-//                    .scale( width );
-//
-//            // resize the map container
-//            usChart
-//                    .width( width )
-//                    .height( height );
-//
-//            // resize the map
-//            usChart.selectAll( '.state' ).attr( 'd', path );
-//        }
-//
-//
-//        var data = crossfilter( csv );
-////        var all = data.groupAll();
-//
-//        var barTip = d3.tip()
-//                .attr( 'class', 'd3-tip' )
-//                .offset( [-10, 0] )
-//                .html( function ( d )
-//        {
-//            return "<span style='color: #f0027f'>" + d.data.key + "</span> : " + d.y.toFixed( 0 );
-//        } );
-//
-//        var tip = d3.tip()
-//                .attr( 'class', 'd3-tip' )
-//                .offset( [-10, 0] )
-//                .html( function ( d )
-//        {
-//            return "<span style='color: #f0027f'>" + d.key + "</span> : " + d.value.toFixed( 0 );
-//        } );
-//
-//
-//        var margin = {top: 10, left: 10, bottom: 10, right: 10}
-//                , width = parseInt( d3.select( '#bob' ).style( 'width' ) )
-//                , width = width - margin.left - margin.right
-//                , mapRatio = .6
-//                , height = width * mapRatio;
-//
-//        var projection = d3.geo.albersUsa()
-//                .scale( width )
-//                .translate( [width / 2, height / 2] );
-//
-//        var path = d3.geo.path()
-//                .projection( projection );
-//
-//        d3.select( window ).on( 'resize', resize );
-//
-//
-//        var states = data.dimension( function ( d )
-//        {
-//            return d["State_Id"];
-//        } );
-//
-//
-//        var stateRaisedSum = states.group().reduceSum( function ( d )
-//        {
-//            return d["Population"];
-//        } );
-//
-//
-//        d3.json( "data/us-states.json", function( error, statesJson )
-//        {
-//
-//            usChart.width( width )
-//                    .height( height )
-//                    .dimension( states )
-//                    .group( stateRaisedSum )
-//                    .projection( projection )
-////                    .colors( d3.scale.quantize().range( ["#E2F2FF", "#C4E4FF", "#9ED2FF", "#81C5FF", "#6BBAFF", "#51AEFF", "#36A2FF", "#1E96FF", "#0089FF", "#0061B5"] ) )
-////                    .colorDomain( [0, 200] )
-////                    .colorCalculator( function ( d )
-////            {
-////                return d ? usChart.colors()( d ) : '#ccc';
-////            } )
-//                    .overlayGeoJson( statesJson.features, "state", function ( d )
-//            {
-//                return d.properties.name;
-//            } )
-//                    .title( function ( d )
-//            {
-//                return "State: " + d.key + "\nTotal Population: " + d.value;
-//            } );
-//            dc.renderAll("paf");
-//
-//
-//
-////            dc.renderAll();
-////            d3.selectAll( ".bar" ).call( barTip );
-////            d3.selectAll( ".bar" ).on( 'mouseover', barTip.show )
-////                    .on( 'mouseout', barTip.hide );
-////
-////            d3.selectAll( "g.row" ).call( tip );
-////            d3.selectAll( "g.row" ).on( 'mouseover', tip.show )
-////                    .on( 'mouseout', tip.hide );
-//
-//        } );
-//
-//
-//    } );
-} );
+    } );
 
 </script>
 

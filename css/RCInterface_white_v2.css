@@ -8,9 +8,10 @@ body {
     font-family: "Lato", Arial;
 }
 
-/*.row {*/
-    /*border: 2px solid #FF0000 !important;*/
-/*}*/
+.row {
+/*border: 2px solid #FF0000 !important;*/
+    margin-left: -10px !important;
+}
 
 #pageWrapper {
 /*display: none;*/
@@ -27,7 +28,7 @@ body {
     font-size: 36px;
     text-shadow: 2px 2px 2px #CCCCCC;
     text-align: right; /*padding: 10px 0 22px; *//*margin: auto;*/
-    margin: 21px 0 24px 127px;
+    margin: 21px 0 70px;
     width: 650px;
 }
 
@@ -59,7 +60,9 @@ h3 {
     border-radius: 10px;
     text-align: center; /*padding-bottom: 8px;*/
     margin: 5px auto;
-    width: 250px;
+    width: 58px;
+    height: 250px;
+    top: 160px;
 }
 
 .tools img {
@@ -67,11 +70,11 @@ h3 {
 }
 
 .toolButton {
-    float: left;
+/*float: left;*/
 }
 
 #reset {
-    margin-left: -6px;
+    margin-left: 1px;
 }
 
 #regionActive {
@@ -81,7 +84,7 @@ h3 {
 #regionActive, #regionUnActive {
     position: absolute;
     top: 112px;
-    left: 19px;
+    left: 13px;
 }
 
 #data {
@@ -111,7 +114,8 @@ h3 {
 /* ************** MAP ************** */
 #map-chart {
     width: 400px;
-    height: 300px;
+    height: 200px;
+    margin-top: 30px;
 }
 
 .mapText {
@@ -166,8 +170,8 @@ g.oceania path {
 
 /* ************** FUNCTIONS ************** */
 .function {
-    /*float: right;*/
-    /*margin-top: -10px;*/
+/*float: right;*/
+    margin-top: 10px;
 }
 
 /*.dc-chart .axis text {*/
@@ -182,10 +186,10 @@ g.oceania path {
 
 /* ************** FLUX IMG ************** */
 #imageFluxDiv {
-    /*position: absolute;*/
-    /*margin-top: -50px;*/
-    /*margin-left: -15px;*/
-    /*width: 800px;*/
+    position: absolute; /*margin-top: -50px;*/
+/*margin-left: -15px;*/
+    width: 800px;
+    margin-left: -49px;
 }
 
 #dynamicAreasForImageFlux .dynamicArea {
@@ -205,16 +209,14 @@ g.oceania path {
     color: #2C3537;
     font-weight: bold;
     font-size: 22px;
-    text-shadow: 2px 2px 2px #999999;
-    /*position: relative;*/
-    /*top: 10px;*/
-    /*left: 58px;*/
+    text-shadow: 2px 2px 2px #999999; /*position: relative;*/
+/*top: 10px;*/
+/*left: 58px;*/
 }
 
 .imageFluxText {
-    /*position: relative;*/
-    color: #525252;
-    /*margin: 234px 0 0 -12px;*/
+/*position: relative;*/
+    color: #525252; /*margin: 234px 0 0 -12px;*/
 }
 
 /* ************** DATA & SYNTHESIS STYLE ************** */
@@ -372,8 +374,8 @@ g.oceania path {
 
 /* ************** BAR-CHART ************** */
 #bar-chart {
-    /*width: 400px;*/
-    height: 400px;
+/*width: 400px;*/
+    height: 300px;
 }
 
 #bar-chart .dc-chart {

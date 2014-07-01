@@ -185,11 +185,15 @@ g.oceania path {
 /*}*/
 
 /* ************** FLUX IMG ************** */
+.bob {
+    float: right;
+}
+
 #imageFluxDiv {
     position: absolute; /*margin-top: -50px;*/
 /*margin-left: -15px;*/
     width: 800px;
-    margin-left: -49px;
+    right: 0;
 }
 
 #dynamicAreasForImageFlux .dynamicArea {

@@ -87,7 +87,7 @@
             <div id="bar-chart"></div>
         </div>
 
-        <div class="row">
+        <div class="row bob">
             <div id="imageFluxDiv">
                 <img id="imageFlux" src="img/FluxEmptyWB.png" usemap="#mapForImageFlux" alt="Image for flux"/>
                 <map id="mapForImageFlux" name="mapForImageFlux">

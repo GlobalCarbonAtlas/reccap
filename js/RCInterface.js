@@ -328,15 +328,24 @@ var RCInterface = Class.create( {
         legendsEnter.append( "rect" )
                 .attr( "x", this.barChartWidth - 18 )
                 .attr( "width", 18 )
-                .attr( "height", 18 )
-                .style( "fill", color );
+                .attr( "height", 18 );
+//                .style( "fill", function( d )
+//        {
+//            d.color = d.color ? d.color : color(d);
+//            return d.color;
+//        } );
 
         legendsEnter.append( "text" )
                 .attr( "x", this.barChartWidth - 24 )
                 .attr( "y", 9 )
                 .attr( "dy", ".35em" )
                 .style( "text-anchor", "end" )
-                .style( "fill", color )
+                .style( "fill", function( d )
+        {
+//            d.color = (d.color ? d.color : color( d ));
+//            return d.color;
+            return color(d);
+        } )
                 .text( function( d )
         {
             return d;
@@ -345,11 +354,26 @@ var RCInterface = Class.create( {
 
         // When remove bar
         legend.select( "text" )
-                .text( function( d )
-        {
-            return d;
-        } );
+                .text(
+                function( d )
+                {
+                    return d;
+                } );
 
+        legend.select( "rect" )
+                .style( "fill", function( d )
+        {
+//            if( !d.color )
+//                d.color = "red";
+//            return d.color;
+            return color(d);
+        } )
+                .on( "click", jQuery.proxy( function( d )
+        {
+            var divId = d.replace( / /g, "_" );
+            $( "#" + divId ).removeClass( "selected" );
+            this.removeToGroupedBarChart( d );
+        }, this ) );
     },
 
     updateGroupedBar: function( color )
@@ -429,8 +453,12 @@ var RCInterface = Class.create( {
     updateCharts: function()
     {
         // Tooltips for menu
-        $( ".toolButton img" ).tooltip( {
-            placement: "right",
+        $( ".leftTools .toolButton img" ).tooltip( {
+            placement: "bottom",
+            container:'body'} );
+
+        $( ".rightTools .toolButton img" ).tooltip( {
+            placement: "left",
             container:'body'} );
 
         // Tooltips for charts
@@ -452,8 +480,8 @@ var RCInterface = Class.create( {
                 return "<span class='d3-tipTitle'>" + d.key + " : </span>" + this.numberFormat( d.value );
         }, this ) );
 
-        d3.selectAll( ".country, g.row, .bar, #bar-chartSvg rect" ).call( toolTip );
-        d3.selectAll( ".country, g.row, .bar, #bar-chartSvg rect" )
+        d3.selectAll( ".country, g.row, .bar, #bar-chartSvg .groupedBar rect" ).call( toolTip );
+        d3.selectAll( ".country, g.row, .bar, #bar-chartSvg .groupedBar rect" )
                 .on( 'mouseover', toolTip.show )
                 .on( 'mouseout', toolTip.hide );
 

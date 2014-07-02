@@ -342,22 +342,26 @@ var RCInterface = Class.create( {
 
         // When remove bar
         legend.select( "text" )
-                .style( "fill", jQuery.proxy( function( d )
-        {
-            if( !d.color )
-                d.color = this.color( d.name );
-            return d.color;
-        }, this ) )
+                .style( "fill", "#2C3537" )
+//                .style( "fill", jQuery.proxy( function( d )
+//        {
+//            if( !d.color )
+//                d.color = this.color( d.name );
+//            return d.color;
+//        }, this ) )
                 .text( function( d )
         {
             return d.name;
         } );
 
         legend.select( "rect" )
-                .style( "fill", function( d )
+                .style( "fill", jQuery.proxy( function( d )
         {
+            if( !d.color )
+                d.color = this.color( d.name );
             return d.color;
-        } )
+        }, this ) )
+                .style( "stroke", "#2C3537" )
                 .on( "click", jQuery.proxy( function( d )
         {
             var divId = d.name.replace( / /g, "_" );

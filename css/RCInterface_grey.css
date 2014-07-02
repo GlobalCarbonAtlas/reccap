@@ -8,9 +8,8 @@ body {
 
 #pageWrapper {
     color: white;
-    font-size: 13px;
-    padding: 0 20px 0 0;
-    position: absolute;
+    font-size: 13px; /*padding: 0 10px;*/
+/*position: absolute;*/
     width: 100%;
     height: 100%;
 }
@@ -18,9 +17,9 @@ body {
 .title {
     color: white;
     font-size: 36px;
-    text-align: right;
-    margin: 21px 0 24px 127px;
-    width: 650px;
+    margin: -63px auto 0;
+    width: 900px;
+    padding-left: 28px;
 }
 
 .bigTitle {
@@ -39,28 +38,44 @@ h3 {
     height: 100%;
     background-color: #555555;
     opacity: 0.7;
-    z-index: 1;
+    position: absolute;
+    top: 0;
     filter: alpha(opacity = 70);
 }
 
+.comment {
+    color: #09C5CE;
+}
+
 /* ************** TOOLS ************** */
-.tools {
-    background-color: #FFFFFF;
+.leftTools {
+    border: 2px solid white !important;
+    background-color: #bdbcbc;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
     text-align: center;
-    padding-bottom: 8px;
-    margin: 55px 50px 0 49px;
-    height: 243px;
+    margin: 16px 0;
+    float: left;
+    width: 140px;
 }
 
-.tools img {
+.rightTools {
+    float: right;
+    width: 94px;
+    margin: 12px 0;
+}
+
+.leftTools img, .rightTools img {
     cursor: pointer;
 }
 
+.toolButton {
+    float: left;
+}
+
 #reset {
-    margin-left: -6px;
+    margin: 1px 0 0 -6px;
 }
 
 #regionActive {
@@ -69,27 +84,26 @@ h3 {
 
 #regionActive, #regionUnActive {
     position: absolute;
-    top: 112px;
-    left: 19px;
+    top: 20px;
+    left: 112px;
 }
 
-#data {
-    margin: 50px 0 2px 0;
+#data, #synthesis img {
+    margin: 6px 6px 6px;
 }
 
 #synthesis img {
-    margin-top: 12px;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
 }
 
 #export {
-    margin: 3px 0 0 2px;
+    margin: 7px 0 0 -6px;
 }
 
 #help {
-    margin: 11px 0 0 2px;
+    margin: 4px 0 0 2px;
 }
 
 /* ************** DC Object ************** */
@@ -97,16 +111,20 @@ h3 {
     fill: #2C3537;
 }
 
-/* ************** MAP ************** */
-#map-chart {
+#map-chart, #function-chart, #bar-chart {
     background-color: white;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
 }
 
-.mapText {
-    color: #09C5CE;
+/* ************** MAP ************** */
+.mapAndFunction {
+    width: 80%;
+}
+
+#map-chart {
+    margin-top: 30px;
 }
 
 g.country {
@@ -155,33 +173,16 @@ g.oceania path {
 }
 
 /* ************** FUNCTIONS ************** */
-.function {
-    float: right;
-    background-color:white;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    border-radius: 6px;
-    padding:0 10px 10px 0;
+#function-chart {
+    margin-top: 10px;
 }
-
-/*.dc-chart .axis text {*/
-/*stroke: #2C3537;*/
-/*fill: none;*/
-/*shape-rendering: crispedges;*/
-/*}*/
-
-/*.dc-chart .axis path, .axis line {*/
-/*stroke: #FFFFFF;*/
-/*}*/
 
 /* ************** FLUX IMG ************** */
-#imageFluxDiv {
-    position: absolute;
-    margin-top: -50px;
-    margin-left: -15px;
+.imageFluxDiv {
+    margin-bottom: 15px;
 }
 
-#imageFluxDiv .mapster_el{
+.imageFluxDiv .mapster_el {
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
@@ -205,15 +206,9 @@ g.oceania path {
     font-weight: bold;
     font-size: 22px;
     text-shadow: 2px 2px 2px #999999;
-    position: relative;
-    top: 10px;
-    left: 58px;
-}
-
-.imageFluxText {
-    position: relative;
-    color: #09C5CE;
-    margin: 234px 0 0 -12px;
+    position: absolute;
+    top: 55px;
+    left: 39px;
 }
 
 /* ************** DATA & SYNTHESIS STYLE ************** */
@@ -235,6 +230,7 @@ g.oceania path {
     -moz-transform: scale(2, 4); /* Firefox */
     -ms-transform: scale(2, 4); /* IE 9 */
     -o-transform: scale(2, 4); /* Opera */
+    white-space: nowrap;
 }
 
 .exportButton.btn-link, .exportButton.btn-link:hover, .exportButton.btn-link:focus {
@@ -272,6 +268,7 @@ g.oceania path {
     top: 0;
     left: 25%;
     opacity: 0.9;
+    min-height: 100%;
 }
 
 .dataTitleAndExport {
@@ -330,11 +327,16 @@ g.oceania path {
 }
 
 /* ************** SYNTHESIS ************** */
-#synthesisDiv {
+.synthesisDiv {
+    width: 100%;
     display: none;
     position: absolute;
-    top: 15px;
-    left: 113px;
+    top: 0;
+}
+
+#synthesisDiv {
+    margin: 20px auto;
+    width: 1050px;
 }
 
 .synthesisTitleAndExport {
@@ -359,8 +361,13 @@ g.oceania path {
     margin-top: 20px;
 }
 
+#dynamicAreasForImageFluxForSynthesis {
+    border: 2px solid red;
+    position: absolute;
+    top: 20px;
+}
+
 #dynamicAreasForImageFluxForSynthesis .dynamicArea {
-    margin-left: -15px;
     font-weight: bold;
     position: absolute;
 }
@@ -370,14 +377,34 @@ g.oceania path {
 }
 
 /* ************** BAR-CHART ************** */
-#bar-chart .dc-chart{
-    background-color:white;
+#bar-chart .dc-chart {
+    background-color: white;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
-    margin: 10px 65px;
+    margin: 15px 60px;
 }
 
+.y.axis path, .x.axis path {
+    fill: none;
+    stroke: grey;
+    shape-rendering: crispEdges;
+}
+
+.y.axis line {
+    fill: none;
+    shape-rendering: crispedges;
+    stroke: #000000;
+    stroke-opacity: 0.1;
+}
+
+.y.axis line.zero {
+    stroke-opacity: 0.5;
+}
+
+.y.axis text, .x.axis text {
+    fill: #555555;
+}
 
 /* ************** D3-TIP ************** */
 .d3-tip {

@@ -167,10 +167,6 @@ g.oceania path {
     stroke-width: 0;
 }
 
-/* ************** FUNCTIONS ************** */
-/*.function {*/
-    /*margin-top: 10px;*/
-/*}*/
 
 /* ************** FLUX IMG ************** */
 .imageFluxDiv {
@@ -374,6 +370,10 @@ g.oceania path {
 /* ************** BAR-CHART ************** */
 #bar-chart .dc-chart {
     margin: 15px 60px;
+}
+
+#bar-chart .legend rect{
+    cursor: pointer;
 }
 
 .y.axis path, .x.axis path {

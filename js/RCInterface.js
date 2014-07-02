@@ -17,6 +17,7 @@ var RCInterface = Class.create( {
         this.selectMultipleRegion = false;
         this.initMapWidth = 600;
         this.initMapScale = 90;
+        this.color = d3.scale.category20();
 
         this.createDynamicAreasForResponsiveMap( "#imageFlux", "#mapForImageFlux", "#dynamicAreasForImageFlux", $( "#bar-chart" ).width(), true );
         this.createDynamicAreasForResponsiveMap( "#imageFluxForSynthesis", "#mapForImageFluxForSynthesis", "#dynamicAreasForImageFluxForSynthesis", 1100, false );
@@ -199,8 +200,8 @@ var RCInterface = Class.create( {
     {
         if( 0 >= $( "#bar-chartSvg" ).length )
             this.createGroupedBarChart( containerId, width, height );
-        this.columnHeaders = this.columnHeaders ? this.columnHeaders : [];
-        this.columnHeaders.push( fluxValue );
+        this.variables = this.variables ? this.variables : [];
+        this.variables.push( {name : fluxValue, color: false} );
         this.updateGroupedBarChart();
         this.updateCharts();
     },
@@ -259,15 +260,13 @@ var RCInterface = Class.create( {
      */
     updateGroupedBarChart: function()
     {
-        var color = d3.scale.category20().domain( this.columnHeaders );
-
         // Create details for each column
         this.transposedData.forEach( jQuery.proxy( function( d )
         {
-            d.columnDetails = this.columnHeaders.map( function( element, index )
+            d.columnDetails = this.variables.map( jQuery.proxy( function( element, index )
             {
-                return {name: element, column: index.toString(), yBegin: (0 > d[element] ? d[element] : 0), yEnd: (0 < d[element] ? d[element] : 0)};
-            } );
+                return {name: element.name, column: index.toString(), yBegin: (0 > d[element.name] ? d[element.name] : 0), yEnd: (0 < d[element.name] ? d[element.name] : 0), color:false};
+            }, this ) );
 
             d.negativeTotal = d3.min( d.columnDetails, function( d )
             {
@@ -281,9 +280,9 @@ var RCInterface = Class.create( {
         }, this ) );
 
         this.updateBarChartDomains();
-        this.updateBarChartAxes( color );
-        this.updateGroupedBar( color );
-        this.updateBarChartLegend( color );
+        this.updateBarChartAxes();
+        this.updateGroupedBar();
+        this.updateBarChartLegend();
     },
 
     updateBarChartDomains: function()
@@ -295,10 +294,10 @@ var RCInterface = Class.create( {
         {
             return d.positiveTotal;
         } )] );
-        this.barChartx1.domain( d3.keys( this.columnHeaders ) ).rangeRoundBands( [0, this.barChartx0.rangeBand()] );
+        this.barChartx1.domain( d3.keys( this.variables ) ).rangeRoundBands( [0, this.barChartx0.rangeBand()] );
     },
 
-    updateBarChartAxes: function( color )
+    updateBarChartAxes: function()
     {
         // Update yAxis
         this.barChartsvg
@@ -312,10 +311,10 @@ var RCInterface = Class.create( {
                 .classed( 'zero', true );
     },
 
-    updateBarChartLegend: function( color )
+    updateBarChartLegend: function()
     {
         var legend = this.barChartsvg.selectAll( ".legend" )
-                .data( this.columnHeaders.slice() );
+                .data( this.variables.slice() );
 
         var legendsEnter = legend.enter().append( "g" )
                 .attr( "class", "legend" )
@@ -329,23 +328,12 @@ var RCInterface = Class.create( {
                 .attr( "x", this.barChartWidth - 18 )
                 .attr( "width", 18 )
                 .attr( "height", 18 );
-//                .style( "fill", function( d )
-//        {
-//            d.color = d.color ? d.color : color(d);
-//            return d.color;
-//        } );
 
         legendsEnter.append( "text" )
                 .attr( "x", this.barChartWidth - 24 )
                 .attr( "y", 9 )
                 .attr( "dy", ".35em" )
                 .style( "text-anchor", "end" )
-                .style( "fill", function( d )
-        {
-//            d.color = (d.color ? d.color : color( d ));
-//            return d.color;
-            return color(d);
-        } )
                 .text( function( d )
         {
             return d;
@@ -354,29 +342,31 @@ var RCInterface = Class.create( {
 
         // When remove bar
         legend.select( "text" )
-                .text(
-                function( d )
-                {
-                    return d;
-                } );
+                .style( "fill", jQuery.proxy( function( d )
+        {
+            if( !d.color )
+                d.color = this.color( d.name );
+            return d.color;
+        }, this ) )
+                .text( function( d )
+        {
+            return d.name;
+        } );
 
         legend.select( "rect" )
                 .style( "fill", function( d )
         {
-//            if( !d.color )
-//                d.color = "red";
-//            return d.color;
-            return color(d);
+            return d.color;
         } )
                 .on( "click", jQuery.proxy( function( d )
         {
-            var divId = d.replace( / /g, "_" );
+            var divId = d.name.replace( / /g, "_" );
             $( "#" + divId ).removeClass( "selected" );
-            this.removeToGroupedBarChart( d );
+            this.removeToGroupedBarChart( d.name );
         }, this ) );
     },
 
-    updateGroupedBar: function( color )
+    updateGroupedBar: function()
     {
         var groupedBar = this.barChartsvg.selectAll( ".groupedBar" )
                 .data( this.transposedData );
@@ -389,10 +379,10 @@ var RCInterface = Class.create( {
         }, this ) );
 
         var groupedBarRect = groupedBar.selectAll( "rect" )
-                .data( function( d )
+                .data( jQuery.proxy( function( d )
         {
             return d.columnDetails;
-        } );
+        }, this ) );
 
         groupedBarRect.enter().append( "rect" )
                 .attr( "width", this.barChartx1.rangeBand() )
@@ -407,11 +397,7 @@ var RCInterface = Class.create( {
                 .attr( "height", jQuery.proxy( function( d )
         {
             return this.barCharty( d.yBegin ) - this.barCharty( d.yEnd );
-        }, this ) )
-                .style( "fill", function( d )
-        {
-            return color( d.name );
-        } );
+        }, this ) );
         groupedBarRect.exit().remove();
 
         groupedBar
@@ -432,17 +418,20 @@ var RCInterface = Class.create( {
         {
             return this.barCharty( d.yBegin ) - this.barCharty( d.yEnd );
         }, this ) )
-                .style( "fill", function( d )
+                .style( "fill", jQuery.proxy( function( d )
         {
-            return color( d.name );
-        } );
+            if( !d.color )
+                d.color = this.color( d.name );
+            return d.color;
+        }, this ) );
     },
 
     removeToGroupedBarChart: function( fluxValue )
     {
-        this.columnHeaders.splice( $.inArray( fluxValue, this.columnHeaders ), 1 );
+        var index = getIndexInArray( this.variables, "name", fluxValue );
+        this.variables.splice( index, 1 );
         this.updateGroupedBarChart();
-        if( 0 >= this.columnHeaders.length )
+        if( 0 >= this.variables.length )
             $( "#bar-chartSvg" ).remove();
     },
 

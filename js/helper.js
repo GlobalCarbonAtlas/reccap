@@ -16,3 +16,24 @@ $.waitUntil = function ( delegate, action, timeOutObj )
         param.timeOutObj = setTimeout( _waitUntil, 100, param );
     }
 };
+
+
+/**
+ * This method find the value "valueToFind" in the object's array "array" with the parameter "parameter" and returns its index.
+ * @param array
+ * @param parameter
+ * @param valueToFind
+ */
+function getIndexInArray( array, parameter, valueToFind )
+{
+    var result = false;
+    $.each( array, function( i, d )
+    {
+        if( d[parameter] == valueToFind )
+        {
+            result = i;
+            return false;
+        }
+    } );
+    return result;
+}

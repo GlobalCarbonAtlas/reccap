@@ -118,45 +118,47 @@
     </div>
 
     <!-- ****************** SYNTHESIS IMAGE AND EXPORT ****************** -->
-    <div id="synthesisDiv">
-        <div class="row synthesisTitleAndExport">
-            <div class="synthesisTitle">
-                <div id="synthesisTitle">SYNTHESIS</div>
+    <div class="synthesisDiv">
+        <div id="synthesisDiv">
+            <div class="row synthesisTitleAndExport">
+                <div class="synthesisTitle">
+                    <div id="synthesisTitle">SYNTHESIS</div>
+                </div>
+                <div id="exportSynthesis" class="toolButton">
+                    <button class="exportButton btn-link" data-toggle="dropdown"><img src="img/export_small.png" title="Export"/></button>
+                </div>
             </div>
-            <div id="exportSynthesis" class="toolButton">
-                <button class="exportButton btn-link" data-toggle="dropdown"><img src="img/export_small.png" title="Export"/></button>
-            </div>
-        </div>
-        <div class="row">
-            <img id="imageFluxForSynthesis" src="img/FluxEmpty.png" usemap="#mapForImageFluxForSynthesis" alt="Synthesis for flux"/>
-            <map id="mapForImageFluxForSynthesis" name="mapForImageFluxForSynthesis">
-                <map id="imgmap2014623132018" name="imgmap2014623132018">
-                    <area shape="rect" alt="" title="" coords="405,252,434,273" href="" isRed/>
-                    <area shape="rect" alt="CropValue" title="" coords="503,248,537,268" href="" isRed/>
-                    <area shape="rect" alt="woodValue" title="" coords="525,285,562,314" href="" isRed/>
-                    <area shape="rect" alt="Fire_value" title="" coords="665,249,704,275" href="" isRed/>
-                    <area shape="rect" alt="Land use change_value" title="" coords="601,249,629,276" href="" isRed/>
-                    <area shape="rect" alt="Heterotrophic Respiration_value" title="" coords="834,252,858,274" href="" target=""/>
-                    <area shape="rect" alt="" title="" coords="785,255,817,273" href="" target=""/>
-                    <area shape="rect" alt="" title="" coords="861,252,906,275" href="" target=""/>
-                    <area shape="rect" alt="LandSinkValue" title="" coords="914,252,948,278" href="" target=""/>
-                    <area shape="rect" alt="NPP_value" title="" coords="972,251,1018,275" href="" target=""/>
-                    <area shape="rect" alt="weatheringValue" title="" coords="1011,345,1036,367" href="" target=""/>
-                    <area shape="rect" alt="" title="" coords="1105,368,1141,398" href="" target=""/>
-                    <area shape="rect" alt="" title="" coords="796,365,851,388" href="" target=""/>
-                    <area shape="rect" alt="" title="" coords="752,424,796,450" href="" target=""/>
-                    <area shape="rect" alt="" title="" coords="935,423,967,446" href="" target=""/>
-                    <area shape="rect" alt="weatheringValue" title="" coords="855,503,888,523" href="" target=""/>
-                    <area shape="rect" alt="freshwaterEstuaryValue" title="" coords="1077,495,1105,522" href="" target=""/>
-                    <area shape="rect" alt="exprotToOceanValue" title="" coords="1128,480,1159,505" href="" target=""/>
-                    <area shape="rect" alt="CoalValue" title="" coords="336,461,387,485" href="" target=""/>
-                    <area shape="rect" alt="OilValue" title="" coords="401,458,453,487" href="" target=""/>
-                    <area shape="rect" alt="GasValue" title="" coords="464,458,511,485" href="" target=""/>
-                    <area shape="rect" alt="FossiFuelTradeValue" title="" coords="462,498,516,525" href="" target=""/>
-                    <!-- Created by Online Image Map Editor (http://www.maschek.hu/imagemap/index) --></map>
-            </map>
-            <div id="dynamicAreasForImageFluxForSynthesis"></div>
+            <div class="row">
+                <img id="imageFluxForSynthesis" src="img/FluxEmpty.png" usemap="#mapForImageFluxForSynthesis" alt="Synthesis for flux"/>
+                <map id="mapForImageFluxForSynthesis" name="mapForImageFluxForSynthesis">
+                    <map id="imgmap2014623132018" name="imgmap2014623132018">
+                        <area shape="rect" alt="" title="" coords="405,252,434,273" href="" isRed/>
+                        <area shape="rect" alt="CropValue" title="" coords="503,248,537,268" href="" isRed/>
+                        <area shape="rect" alt="woodValue" title="" coords="525,285,562,314" href="" isRed/>
+                        <area shape="rect" alt="Fire_value" title="" coords="665,249,704,275" href="" isRed/>
+                        <area shape="rect" alt="Land use change_value" title="" coords="601,249,629,276" href="" isRed/>
+                        <area shape="rect" alt="Heterotrophic Respiration_value" title="" coords="834,252,858,274" href="" target=""/>
+                        <area shape="rect" alt="" title="" coords="785,255,817,273" href="" target=""/>
+                        <area shape="rect" alt="" title="" coords="861,252,906,275" href="" target=""/>
+                        <area shape="rect" alt="LandSinkValue" title="" coords="914,252,948,278" href="" target=""/>
+                        <area shape="rect" alt="NPP_value" title="" coords="972,251,1018,275" href="" target=""/>
+                        <area shape="rect" alt="weatheringValue" title="" coords="1011,345,1036,367" href="" target=""/>
+                        <area shape="rect" alt="" title="" coords="1105,368,1141,398" href="" target=""/>
+                        <area shape="rect" alt="" title="" coords="796,365,851,388" href="" target=""/>
+                        <area shape="rect" alt="" title="" coords="752,424,796,450" href="" target=""/>
+                        <area shape="rect" alt="" title="" coords="935,423,967,446" href="" target=""/>
+                        <area shape="rect" alt="weatheringValue" title="" coords="855,503,888,523" href="" target=""/>
+                        <area shape="rect" alt="freshwaterEstuaryValue" title="" coords="1077,495,1105,522" href="" target=""/>
+                        <area shape="rect" alt="exprotToOceanValue" title="" coords="1128,480,1159,505" href="" target=""/>
+                        <area shape="rect" alt="CoalValue" title="" coords="336,461,387,485" href="" target=""/>
+                        <area shape="rect" alt="OilValue" title="" coords="401,458,453,487" href="" target=""/>
+                        <area shape="rect" alt="GasValue" title="" coords="464,458,511,485" href="" target=""/>
+                        <area shape="rect" alt="FossiFuelTradeValue" title="" coords="462,498,516,525" href="" target=""/>
+                        <!-- Created by Online Image Map Editor (http://www.maschek.hu/imagemap/index) --></map>
+                </map>
+                <div id="dynamicAreasForImageFluxForSynthesis"></div>
 
+            </div>
         </div>
     </div>
 

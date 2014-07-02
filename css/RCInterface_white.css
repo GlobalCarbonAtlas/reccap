@@ -8,11 +8,6 @@ body {
     font-family: "Lato", Arial;
 }
 
-/*.row {*/
-/*border: 2px solid #FF0000 !important;*/
-/*margin-left: -10px !important;*/
-/*}*/
-
 #pageWrapper {
     color: #2C3537;
     font-size: 13px; /*padding: 0 10px;*/
@@ -45,7 +40,8 @@ h3 {
     height: 100%;
     background-color: black;
     opacity: 0.7;
-    z-index: 1;
+    position: absolute;
+    top: 0;
     filter: alpha(opacity = 70);
 }
 
@@ -229,6 +225,7 @@ g.oceania path {
     -moz-transform: scale(2, 4); /* Firefox */
     -ms-transform: scale(2, 4); /* IE 9 */
     -o-transform: scale(2, 4); /* Opera */
+    white-space: nowrap;
 }
 
 .exportButton.btn-link, .exportButton.btn-link:hover, .exportButton.btn-link:focus {
@@ -266,6 +263,7 @@ g.oceania path {
     top: 0;
     left: 25%;
     opacity: 0.9;
+    min-height: 100%;
 }
 
 .dataTitleAndExport {
@@ -324,11 +322,16 @@ g.oceania path {
 }
 
 /* ************** SYNTHESIS ************** */
-#synthesisDiv {
+.synthesisDiv {
+    width: 100%;
     display: none;
     position: absolute;
-    top: 15px; /*top: 500px;*/
-    left: 113px;
+    top: 0;
+}
+
+#synthesisDiv {
+    margin: 20px auto;
+    width: 1050px;
 }
 
 .synthesisTitleAndExport {
@@ -353,8 +356,13 @@ g.oceania path {
     margin-top: 20px;
 }
 
+#dynamicAreasForImageFluxForSynthesis {
+    border: 2px solid red;
+    position: absolute;
+    top: 20px;
+}
+
 #dynamicAreasForImageFluxForSynthesis .dynamicArea {
-    margin-left: -15px;
     font-weight: bold;
     position: absolute;
 }

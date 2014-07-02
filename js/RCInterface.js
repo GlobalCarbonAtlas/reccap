@@ -510,7 +510,7 @@ var RCInterface = Class.create( {
                                     this.removeToGroupedBarChart( argument.currentTarget.getAttribute( "name" ) );
                                 else
                                 {
-                                    var barChartHeight = $("#pageWrapper").height() - $(".imageFluxDiv").height() - 90;
+                                    var barChartHeight = $( "#pageWrapper" ).height() - $( ".imageFluxDiv" ).height() - 90;
                                     this.createOrAddToBarChart( "#bar-chart", $( "#bar-chart" ).width(), barChartHeight, argument.currentTarget.getAttribute( "name" ) );
                                 }
                             }, this ) );
@@ -651,7 +651,7 @@ var RCInterface = Class.create( {
             $( "#hiddenDiv" ).fadeToggle();
             $( "#dataDiv" ).fadeToggle( function()
             {
-                $( "#hiddenDiv" ).height( Math.max( $( "#dataDiv" ).height(), $( "#pageWrapper .container-fluid" ).height() ) );
+                $( "#hiddenDiv" ).height( Math.max( $( "#dataDiv" ).height(), $( "#pageWrapper" ).height() ) );
             } );
         }, this ) );
 
@@ -659,19 +659,19 @@ var RCInterface = Class.create( {
         $( "#synthesis" ).on( "click", jQuery.proxy( function()
         {
             $( "#hiddenDiv" ).fadeToggle();
-            $( "#synthesisDiv" ).fadeToggle( function()
+            $( ".synthesisDiv" ).fadeToggle( function()
             {
-                $( "#hiddenDiv" ).height( Math.max( $( "#synthesisDiv" ).height(), $( "#pageWrapper .container-fluid" ).height() ) );
+                $( "#hiddenDiv" ).height( Math.max( $( "#synthesisDiv" ).height(), $( "#pageWrapper" ).height() ) );
             } );
         }, this ) );
 
-        $( "#hiddenDiv" ).on( "click", jQuery.proxy( function()
+        $( "#hiddenDiv, #synthesisDiv #imageFluxForSynthesis" ).on( "click", function()
         {
             $( "#dataDiv" ).fadeOut();
-            $( "#synthesisDiv" ).fadeOut();
+            $( ".synthesisDiv" ).fadeOut();
             $( "#hiddenDiv" ).fadeToggle();
             $( "#hiddenDiv" ).height( $( "#pageWrapper .container-fluid" ).height() );
-        }, this ) );
+        } );
     },
 
     transposeDataFromFile: function( csv )

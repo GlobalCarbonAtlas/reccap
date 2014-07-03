@@ -77,6 +77,9 @@ var RCInterface = Class.create( {
             this.createDataTable( "#data-count", "#data-table", this.data, this.data.groupAll(), this.continents );
 
             dc.renderAll();
+//            console.log("fin "+this.rowChart.selectAll( "text" ));
+//            alert("paf");
+//            this.rowChart.selectAll( "text" ).attr( "class", "bob" );
         }, this ) );
     },
 
@@ -199,7 +202,41 @@ var RCInterface = Class.create( {
 
         this.rowChart.xAxis().tickFormat( d3.format( "s" ) );
         this.rowChart.setCallBackOnClick( jQuery.proxy( this.onClickRowChart, this ) );
+
+//        legendsEnter.append( 'foreignObject' )
+//                .attr( 'x', 10 )
+//                .attr( 'y', -11 )
+//                .attr( 'width', this.legendSvgWidth - 40 )
+//                .attr( 'height', 20 )
+//                .append( "xhtml:body" )
+//                .html( '<div class="legendText"></div>' )
+//
+//        // Update width, text and title when remove legend & two columns
+//        legends.select( '.legendText' )
+//                .attr( 'style', jQuery.proxy( function()
+//        {
+//            var widthValue = this.isTwoColumns ? this.legendSvgWidth / 2 - 50 : this.legendSvgWidth - 40;
+//            return "width:" + widthValue;
+//        }, this ) )
+//                .attr( "title", jQuery.proxy( function( d, i )
+//        {
+//            var textWidth = getTextWidth( this.graphContainerId, d.label );
+//            var legendWidth = this.isTwoColumns ? this.legendSvgWidth / 2 - 10 : this.legendSvgWidth;
+//            return textWidth + 31 > legendWidth ? d.label : "";
+//        }, this ) )
+//                .html( jQuery.proxy( function( d, i )
+//        {
+//            return d.label;
+//        }, this ) );
+
     },
+
+    onClickRowChart: function( element )
+    {
+        var dynamicAreaDivId = element.key.replace( / /g, "_" );
+        this.addOrRemoveToGroupedBarChart( $( "#" + dynamicAreaDivId ), element.key );
+    },
+
 
 
     /* ******************************************************************** */
@@ -500,12 +537,6 @@ var RCInterface = Class.create( {
                 .attr( "class", "campusLabel" )
                 .style( "text-anchor", "end" )
                 .attr( "transform", "translate(-10,0)rotate(315)" );
-    },
-
-    onClickRowChart: function( element )
-    {
-        var dynamicAreaDivId = element.key.replace( / /g, "_" );
-        this.addOrRemoveToGroupedBarChart( $( "#" + dynamicAreaDivId ), element.key );
     },
 
 

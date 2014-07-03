@@ -17,7 +17,7 @@ var RCInterface = Class.create( {
         this.selectMultipleRegion = false;
         this.initMapWidth = 600;
         this.initMapScale = 90;
-        this.color = d3.scale.category20();
+        this.color = d3.scale.category20c();
 
         // Tooltips for charts
         this.toolTip = d3.tip()
@@ -183,25 +183,22 @@ var RCInterface = Class.create( {
 
     createRowChart: function( chartId, width, height, functions, functionsGroup )
     {
-//        var expenseColors = ["#fee391","#fec44f","#fe9929","#fd8d3c","#e08214","#fdb863","#fdae6b","#ec7014"];
-
-        var rowChart = dc.rowChart( chartId )
+        this.rowChart = dc.rowChart( chartId )
                 .width( width )
                 .height( height )
                 .margins( {top: 20, left: 10, right: 10, bottom: 20} )
                 .transitionDuration( 750 )
                 .dimension( functions )
                 .group( functionsGroup )
-                .colors( d3.scale.category20() )
-//            .colors( expenseColors )
+                .colors( this.color )
                 .title( function ( d )
         {
             return "";
         } )
                 .elasticX( true );
 
-        rowChart.xAxis().tickFormat( d3.format( "s" ) );
-        rowChart.setCallBackOnClick( jQuery.proxy( this.onClickRowChart, this ) );
+        this.rowChart.xAxis().tickFormat( d3.format( "s" ) );
+        this.rowChart.setCallBackOnClick( jQuery.proxy( this.onClickRowChart, this ) );
     },
 
 
@@ -210,9 +207,8 @@ var RCInterface = Class.create( {
     /* ******************************************************************** */
     addOrRemoveToGroupedBarChart: function( dynamicAreaDiv, fluxName )
     {
-//        var isAlreadyAChart = $( dynamicAreaDiv ).hasClass( "selected" );
-        this.variables = this.variables ? this.variables : [];
-        var isAlreadyAChart = (0 <= getIndexInArray( this.variables, "name", fluxName ));
+        this.displayedVariables = this.displayedVariables ? this.displayedVariables : [];
+        var isAlreadyAChart = (0 <= getIndexInArray( this.displayedVariables, "name", fluxName ));
         isAlreadyAChart ? $( dynamicAreaDiv ).removeClass( "selected" ) : $( dynamicAreaDiv ).addClass( "selected" );
         if( isAlreadyAChart )
             this.removeToGroupedBarChart( fluxName );
@@ -237,7 +233,7 @@ var RCInterface = Class.create( {
     {
         if( 0 >= $( "#bar-chartSvg" ).length )
             this.createGroupedBarChart( containerId, width, height );
-        this.variables.push( {name : fluxValue, color: false} );
+        this.displayedVariables.push( {name : fluxValue, color: false} );
         this.updateGroupedBarChart();
         this.updateCharts();
     },
@@ -299,7 +295,7 @@ var RCInterface = Class.create( {
         // Create details for each column
         this.transposedData.forEach( jQuery.proxy( function( d )
         {
-            d.columnDetails = this.variables.map( jQuery.proxy( function( element, index )
+            d.columnDetails = this.displayedVariables.map( jQuery.proxy( function( element, index )
             {
                 return {name: element.name, column: index.toString(), yBegin: (0 > d[element.name] ? d[element.name] : 0), yEnd: (0 < d[element.name] ? d[element.name] : 0), color:false};
             }, this ) );
@@ -330,7 +326,7 @@ var RCInterface = Class.create( {
         {
             return d.positiveTotal;
         } )] );
-        this.barChartx1.domain( d3.keys( this.variables ) ).rangeRoundBands( [0, this.barChartx0.rangeBand()] );
+        this.barChartx1.domain( d3.keys( this.displayedVariables ) ).rangeRoundBands( [0, this.barChartx0.rangeBand()] );
     },
 
     updateBarChartAxes: function()
@@ -350,7 +346,7 @@ var RCInterface = Class.create( {
     updateBarChartLegend: function()
     {
         var legend = this.barChartsvg.selectAll( ".legend" )
-                .data( this.variables.slice() );
+                .data( this.displayedVariables.slice() );
 
         var legendsEnter = legend.enter().append( "g" )
                 .attr( "class", "legend" )
@@ -403,6 +399,7 @@ var RCInterface = Class.create( {
             var divId = d.name.replace( / /g, "_" );
             $( "#" + divId ).removeClass( "selected" );
             this.removeToGroupedBarChart( d.name );
+            this.rowChart.onClick( {key: d.name} );
         }, this ) );
     },
 
@@ -468,12 +465,12 @@ var RCInterface = Class.create( {
 
     removeToGroupedBarChart: function( fluxName )
     {
-        var index = getIndexInArray( this.variables, "name", fluxName );
+        var index = getIndexInArray( this.displayedVariables, "name", fluxName );
         if( 0 > index )
             return;
-        this.variables.splice( index, 1 );
+        this.displayedVariables.splice( index, 1 );
         this.updateGroupedBarChart();
-        if( 0 >= this.variables.length )
+        if( 0 >= this.displayedVariables.length )
             $( "#bar-chartSvg" ).remove();
     },
 
@@ -551,6 +548,7 @@ var RCInterface = Class.create( {
                             div.on( "click", jQuery.proxy( function( argument )
                             {
                                 this.addOrRemoveToGroupedBarChart( argument.currentTarget, argument.currentTarget.getAttribute( "name" ) );
+                                this.rowChart.onClick( {key: argument.currentTarget.getAttribute( "name" )} );
                             }, this ) );
                         $( dynamicAreasId ).append( div );
                     }, this ) );
@@ -648,7 +646,10 @@ var RCInterface = Class.create( {
         // Reset button
         $( "#reset" ).on( "click", jQuery.proxy( function()
         {
-            $( ".dynamicArea" ).removeClass( "selected" );
+            $( "#dynamicAreasForImageFlux .dynamicArea" ).removeClass( "selected" );
+            $( "#bar-chart" ).empty();
+            this.displayedVariables = [];
+
             dc.filterAll();
             dc.renderAll();
             this.updateCharts();

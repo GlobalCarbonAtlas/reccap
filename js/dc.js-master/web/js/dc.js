@@ -5677,6 +5677,7 @@ dc.rowChart = function (parent, chartGroup) {
     var _xAxis = d3.svg.axis().orient("bottom");
 
     var _rowData;
+    var _callbackOnClick = false;
 
     _chart.rowsCap = _chart.cap;
 
@@ -5859,6 +5860,12 @@ dc.rowChart = function (parent, chartGroup) {
         }
     }
 
+    /** CHANGE VMIPSL **/
+    _chart.setCallBackOnClick = function( callback )
+    {
+        _callbackOnClick = callback;
+    };
+
     /**
     #### .renderTitleLabel(boolean)
     Turn on/off Title label rendering (values) using SVG style of text-anchor 'end'
@@ -5872,6 +5879,8 @@ dc.rowChart = function (parent, chartGroup) {
 
     function onClick(d) {
         _chart.onClick(d);
+        if( _callbackOnClick )
+            _callbackOnClick( d );
     }
 
     function translateX(d) {

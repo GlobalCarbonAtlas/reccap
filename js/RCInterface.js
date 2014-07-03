@@ -19,6 +19,26 @@ var RCInterface = Class.create( {
         this.initMapScale = 90;
         this.color = d3.scale.category20();
 
+        // Tooltips for charts
+        this.toolTip = d3.tip()
+                .attr( 'class', 'd3-tip' )
+                .offset( [-10, 0] )
+                .html( jQuery.proxy( function ( d )
+        {
+            if( d.properties )
+            // Choropleth
+                return  "<span class='d3-tipTitle'>" + d.properties.continent + "</span>";
+            else if( d.column && d.name )
+            {
+                var value = (0 != d.yBegin ? d.yBegin : 0 != d.yEnd ? d.yEnd : 0);
+                return "<span class='d3-tipTitle'>" + d.name + " : </span>" + value;
+            }
+            else
+            // Row chart
+                return "<span class='d3-tipTitle'>" + d.key + " : </span>" + this.numberFormat( d.value );
+        }, this ) );
+
+
         this.createDynamicAreasForResponsiveMap( "#imageFlux", "#mapForImageFlux", "#dynamicAreasForImageFlux", $( "#bar-chart" ).width(), true );
         this.createDynamicAreasForResponsiveMap( "#imageFluxForSynthesis", "#mapForImageFluxForSynthesis", "#dynamicAreasForImageFluxForSynthesis", 1100, false );
 
@@ -165,7 +185,7 @@ var RCInterface = Class.create( {
     {
 //        var expenseColors = ["#fee391","#fec44f","#fe9929","#fd8d3c","#e08214","#fdb863","#fdae6b","#ec7014"];
 
-        dc.rowChart( chartId )
+        var rowChart = dc.rowChart( chartId )
                 .width( width )
                 .height( height )
                 .margins( {top: 20, left: 10, right: 10, bottom: 20} )
@@ -178,14 +198,31 @@ var RCInterface = Class.create( {
         {
             return "";
         } )
-                .elasticX( true )
-                .xAxis().tickFormat( d3.format( "s" ) );
+                .elasticX( true );
+
+        rowChart.xAxis().tickFormat( d3.format( "s" ) );
+        rowChart.setCallBackOnClick( jQuery.proxy( this.onClickRowChart, this ) );
     },
 
 
     /* ******************************************************************** */
     /* ************************ GROUPED BAR CHART ************************* */
     /* ******************************************************************** */
+    addOrRemoveToGroupedBarChart: function( dynamicAreaDiv, fluxName )
+    {
+//        var isAlreadyAChart = $( dynamicAreaDiv ).hasClass( "selected" );
+        this.variables = this.variables ? this.variables : [];
+        var isAlreadyAChart = (0 <= getIndexInArray( this.variables, "name", fluxName ));
+        isAlreadyAChart ? $( dynamicAreaDiv ).removeClass( "selected" ) : $( dynamicAreaDiv ).addClass( "selected" );
+        if( isAlreadyAChart )
+            this.removeToGroupedBarChart( fluxName );
+        else
+        {
+            var barChartHeight = $( "#pageWrapper" ).height() - $( ".imageFluxDiv" ).height() - 90;
+            this.createOrAddToBarChart( "#bar-chart", $( "#bar-chart" ).width(), barChartHeight, fluxName );
+        }
+    },
+
     /**
      * This method create and/or add flux's bars in the grouped bar chart
      * http://bl.ocks.org/mbostock/3887051
@@ -200,7 +237,6 @@ var RCInterface = Class.create( {
     {
         if( 0 >= $( "#bar-chartSvg" ).length )
             this.createGroupedBarChart( containerId, width, height );
-        this.variables = this.variables ? this.variables : [];
         this.variables.push( {name : fluxValue, color: false} );
         this.updateGroupedBarChart();
         this.updateCharts();
@@ -430,9 +466,11 @@ var RCInterface = Class.create( {
         }, this ) );
     },
 
-    removeToGroupedBarChart: function( fluxValue )
+    removeToGroupedBarChart: function( fluxName )
     {
-        var index = getIndexInArray( this.variables, "name", fluxValue );
+        var index = getIndexInArray( this.variables, "name", fluxName );
+        if( 0 > index )
+            return;
         this.variables.splice( index, 1 );
         this.updateGroupedBarChart();
         if( 0 >= this.variables.length )
@@ -454,29 +492,10 @@ var RCInterface = Class.create( {
             placement: "left",
             container:'body'} );
 
-        // Tooltips for charts
-        var toolTip = d3.tip()
-                .attr( 'class', 'd3-tip' )
-                .offset( [-10, 0] )
-                .html( jQuery.proxy( function ( d )
-        {
-            if( d.properties )
-            // Choropleth
-                return  "<span class='d3-tipTitle'>" + d.properties.continent + "</span>";
-            else if( d.column && d.name )
-            {
-                var value = (d.yBegin != 0 ? d.yBegin : d.yEnd != 0 ? d.yEnd : 0);
-                return "<span class='d3-tipTitle'>" + d.name + " : </span>" + value;
-            }
-            else
-            // Row chart
-                return "<span class='d3-tipTitle'>" + d.key + " : </span>" + this.numberFormat( d.value );
-        }, this ) );
-
-        d3.selectAll( ".country, g.row, .bar, #bar-chartSvg .groupedBar rect" ).call( toolTip );
+        d3.selectAll( ".country, g.row, .bar, #bar-chartSvg .groupedBar rect" ).call( this.toolTip );
         d3.selectAll( ".country, g.row, .bar, #bar-chartSvg .groupedBar rect" )
-                .on( 'mouseover', toolTip.show )
-                .on( 'mouseout', toolTip.hide );
+                .on( 'mouseover', this.toolTip.show )
+                .on( 'mouseout', this.toolTip.hide );
 
 
         // Bar chart : rotate the x Axis labels
@@ -484,6 +503,12 @@ var RCInterface = Class.create( {
                 .attr( "class", "campusLabel" )
                 .style( "text-anchor", "end" )
                 .attr( "transform", "translate(-10,0)rotate(315)" );
+    },
+
+    onClickRowChart: function( element )
+    {
+        var dynamicAreaDivId = element.key.replace( / /g, "_" );
+        this.addOrRemoveToGroupedBarChart( $( "#" + dynamicAreaDivId ), element.key );
     },
 
 
@@ -525,15 +550,7 @@ var RCInterface = Class.create( {
                         if( activeClick )
                             div.on( "click", jQuery.proxy( function( argument )
                             {
-                                var isAlreadyAChart = $( argument.currentTarget ).hasClass( "selected" );
-                                isAlreadyAChart ? $( argument.currentTarget ).removeClass( "selected" ) : $( argument.currentTarget ).addClass( "selected" );
-                                if( isAlreadyAChart )
-                                    this.removeToGroupedBarChart( argument.currentTarget.getAttribute( "name" ) );
-                                else
-                                {
-                                    var barChartHeight = $( "#pageWrapper" ).height() - $( ".imageFluxDiv" ).height() - 90;
-                                    this.createOrAddToBarChart( "#bar-chart", $( "#bar-chart" ).width(), barChartHeight, argument.currentTarget.getAttribute( "name" ) );
-                                }
+                                this.addOrRemoveToGroupedBarChart( argument.currentTarget, argument.currentTarget.getAttribute( "name" ) );
                             }, this ) );
                         $( dynamicAreasId ).append( div );
                     }, this ) );

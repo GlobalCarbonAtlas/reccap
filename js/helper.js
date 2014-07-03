@@ -26,7 +26,7 @@ $.waitUntil = function ( delegate, action, timeOutObj )
  */
 function getIndexInArray( array, parameter, valueToFind )
 {
-    var result = false;
+    var result = -1;
     $.each( array, function( i, d )
     {
         if( d[parameter] == valueToFind )

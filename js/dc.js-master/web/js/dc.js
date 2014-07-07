@@ -3619,12 +3619,6 @@ dc.barChart = function (parent, chartGroup) {
         });
     };
 
-//    /* VMIPSL */
-//    function addBar()
-//    {
-//        var pif = "paf";
-//    }
-
     function barHeight(d) {
         return dc.utils.safeNumber(Math.abs(_chart.y()(d.y + d.y0) - _chart.y()(d.y0)));
     }

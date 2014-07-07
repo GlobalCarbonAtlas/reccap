@@ -123,7 +123,7 @@ var RCInterface = Class.create( {
             }
         };
 
-        this.createRowChart( "#function-chart", $( "#function-chart" ).width(), 550, carbonBudgets, filteredFunctionAmountGroup );
+        this.createRowChart( "#function-chart", $( "#function-chart" ).width(), 550, carbonBudgets, budgetAmountGroup );
     },
 
 

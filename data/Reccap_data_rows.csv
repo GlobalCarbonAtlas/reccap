@@ -24,8 +24,6 @@
 "South Asia","Non-territorial emissions",
 "South Asia","Non-territorial C stocks",
 "South Asia","Atmosphere",
-"South Asia","Units: Tg C/yr",
-"South Asia","A negative value indicates net carbon sink",
 "East Asia","GPP",
 "East Asia","NPP",
 "East Asia","Heterotrophic Respiration",
@@ -51,8 +49,6 @@
 "East Asia","Non-territorial emissions",
 "East Asia","Non-territorial C stocks",
 "East Asia","Atmosphere",
-"East Asia","Units: Tg C/yr",
-"East Asia","A negative value indicates net carbon sink",
 "Russia","GPP",
 "Russia","NPP",-4763
 "Russia","Heterotrophic Respiration",3463
@@ -78,8 +74,6 @@
 "Russia","Non-territorial emissions",
 "Russia","Non-territorial C stocks",
 "Russia","Atmosphere",
-"Russia","Units: Tg C/yr",
-"Russia","A negative value indicates net carbon sink",
 "Europe","GPP",
 "Europe","NPP",
 "Europe","Heterotrophic Respiration",
@@ -105,8 +99,6 @@
 "Europe","Non-territorial emissions",
 "Europe","Non-territorial C stocks",
 "Europe","Atmosphere",1013
-"Europe","Units: Tg C/yr",
-"Europe","A negative value indicates net carbon sink",
 "South America","GPP",
 "South America","NPP",
 "South America","Heterotrophic Respiration",
@@ -132,8 +124,6 @@
 "South America","Non-territorial emissions",
 "South America","Non-territorial C stocks",
 "South America","Atmosphere",
-"South America","Units: Tg C/yr",
-"South America","A negative value indicates net carbon sink",
 "Australia","GPP",
 "Australia","NPP",-2210
 "Australia","Heterotrophic Respiration",1997
@@ -159,8 +149,6 @@
 "Australia","Non-territorial emissions",155
 "Australia","Non-territorial C stocks",155
 "Australia","Atmosphere","43+155"
-"Australia","Units: Tg C/yr",
-"Australia","A negative value indicates net carbon sink",
 "Arctic tundra","GPP",-2668
 "Arctic tundra","NPP",-1549
 "Arctic tundra","Heterotrophic Respiration",1386
@@ -186,8 +174,6 @@
 "Arctic tundra","Non-territorial emissions",
 "Arctic tundra","Non-territorial C stocks",
 "Arctic tundra","Atmosphere",
-"Arctic tundra","Units: Tg C/yr",
-"Arctic tundra","A negative value indicates net carbon sink",
 "Africa","GPP",
 "Africa","NPP",-13785
 "Africa","Heterotrophic Respiration",12050
@@ -213,5 +199,3 @@
 "Africa","Non-territorial emissions",
 "Africa","Non-territorial C stocks",
 "Africa","Atmosphere",
-"Africa","Units: Tg C/yr",
-"Africa","A negative value indicates net carbon sink",

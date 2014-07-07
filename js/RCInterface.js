@@ -77,7 +77,8 @@ var RCInterface = Class.create( {
             this.createFunctions();
             this.createDataTable( "#data-count", "#data-table", this.data, this.data.groupAll(), this.continents );
 
-            dc.renderAll();
+//            console.log("init : Render All");
+//            dc.renderAll();
         }, this ) );
     },
 
@@ -121,7 +122,11 @@ var RCInterface = Class.create( {
             }
         };
 
-        this.createRowChart( "#function-chart", $( "#function-chart" ).width(), this.functionChartHeight, carbonBudgets, budgetAmountGroup );
+//        this.createBarChart( "#function-chart", 400, this.functionChartHeight, carbonBudgets, budgetAmountGroup );
+//        this.createRowChart( "#function-chart2", 400, this.functionChartHeight, carbonBudgets, budgetAmountGroup );
+
+        this.createBarChart( "#function-chart", $( "#function-chart" ).width(), this.functionChartHeight, carbonBudgets, budgetAmountGroup );
+//        this.createRowChart( "#function-chart2", $( "#function-chart" ).width(), this.functionChartHeight, carbonBudgets, budgetAmountGroup );
     },
 
 
@@ -182,6 +187,27 @@ var RCInterface = Class.create( {
         } );
     },
 
+    createBarChart: function( chartId, width, height, dimension, group )
+    {
+        this.functionChart = dc.barChart( chartId )
+            .height( height )
+            .width( width )
+            .transitionDuration( 750 )
+            .margins( {top: 20, right: 10, bottom: 80, left: 80} )
+            .dimension( dimension )
+            .group( group )
+            .brushOn( false )
+            .elasticY( true )
+//            .colors( this.color )
+            .xUnits( dc.units.ordinal )
+            .x( d3.scale.ordinal() )
+//                .y( d3.scale.linear() )
+            .renderHorizontalGridLines( true );
+
+        this.functionChart.yAxis().tickFormat( d3.format( "s" ) );
+        this.functionChart.setCallBackOnClick( jQuery.proxy( this.onClickRowChart, this ) );
+    },
+
     createRowChart: function( chartId, width, height, functions, functionsGroup )
     {
         this.rowChart = dc.rowChart( chartId )
@@ -200,6 +226,7 @@ var RCInterface = Class.create( {
 
         this.rowChart.xAxis().tickFormat( d3.format( "s" ) );
         this.rowChart.setCallBackOnClick( jQuery.proxy( this.onClickRowChart, this ) );
+        this.rowChart.setCallBackOnCompleteDisplay( jQuery.proxy( this.onCompleteDisplayRowChart, this ) );
 
 //        legendsEnter.append( 'foreignObject' )
 //                .attr( 'x', 10 )
@@ -235,6 +262,10 @@ var RCInterface = Class.create( {
         this.addOrRemoveToGroupedBarChart( $( "#" + dynamicAreaDivId ), element.key );
     },
 
+    onCompleteDisplayRowChart: function()
+    {
+//               alert("youhouuu");
+    },
 
 
     /* ******************************************************************** */
@@ -681,6 +712,7 @@ var RCInterface = Class.create( {
             this.displayedVariables = [];
 
             dc.filterAll();
+            console.log("reset : Render All");
             dc.renderAll();
             this.updateCharts();
         }, this ) );

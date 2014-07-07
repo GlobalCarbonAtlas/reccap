@@ -34,6 +34,7 @@
 
             <div class="row mapAndFunction">
                 <div id="function-chart"></div>
+                <div id="function-chart2"></div>
             </div>
         </div>
 

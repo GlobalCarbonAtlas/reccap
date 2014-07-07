@@ -5674,7 +5674,8 @@ dc.rowChart = function (parent, chartGroup) {
     var _g;
 
     var _labelOffsetX = 10;
-    var _labelOffsetY = 13;
+//    var _labelOffsetY = 13;
+    var _labelOffsetY = 0;
     var _titleLabelOffsetX = 2;
 
     var _gap = 5;
@@ -5693,6 +5694,7 @@ dc.rowChart = function (parent, chartGroup) {
 
     var _rowData;
     var _callbackOnClick = false;
+    var _callbackOnCompleteDisplay = false;
 
     _chart.rowsCap = _chart.cap;
 
@@ -5771,6 +5773,8 @@ dc.rowChart = function (parent, chartGroup) {
         createElements(rows);
         removeElements(rows);
         updateElements(rows);
+        if(_callbackOnCompleteDisplay)
+            _callbackOnCompleteDisplay();
     }
 
     function createElements(rows) {
@@ -5799,7 +5803,9 @@ dc.rowChart = function (parent, chartGroup) {
                 return "translate(0," + ((i + 1) * _gap + i * height) + ")";
             }).select("rect")
             .attr("height", height)
-            .attr("fill", _chart.getColor)
+            .attr("fill",function(d){
+             return             _chart.getColor(d);
+            })
             .on("click", onClick)
             .classed("deselected", function (d) {
                 return (_chart.hasFilter()) ? !isSelectedRow(d) : false;
@@ -5816,7 +5822,7 @@ dc.rowChart = function (parent, chartGroup) {
             .attr("transform", translateX);
 
         createTitles(rows);
-        updateLabels(rows);
+        updateLabels(rows, height);
     }
 
     function createTitles(rows) {
@@ -5828,8 +5834,8 @@ dc.rowChart = function (parent, chartGroup) {
 
     function createLabels(rowEnter) {
         if (_chart.renderLabel()) {
-            rowEnter.append("text")
-                .on("click", onClick);
+            rowEnter.append("text").on("click", onClick);
+            rowEnter.append("foreignObject").append( "xhtml:body" ).html( '<div class="rowChartText"></div>' );
         }
         if (_chart.renderTitleLabel()) {
             rowEnter.append("text")
@@ -5838,24 +5844,43 @@ dc.rowChart = function (parent, chartGroup) {
         }
     }
 
-    function updateLabels(rows) {
+    function updateLabels(rows, height) {
         /* VMIPSL : display values on flux image */
         $("#dynamicAreasForImageFluxForSynthesis .dynamicArea").empty();
         if (_chart.renderLabel()) {
-            var lab = rows.select("text")
+//            var lab = rows.select("text")
+//                .attr("x", _labelOffsetX)
+//                .attr("y", _labelOffsetY)
+//                .on("click", onClick)
+//                .attr("class", function (d, i) {
+//                    return _rowCssClass + " _" + i;
+//                })
+//                .text(function (d) {
+//                /* VMIPSL : display values on flux image */
+//                var divId = d.key.replace( / /g, "_" );
+//                $( "#" + divId + "_value" ).html( d.value );
+//                return _chart.label()( d );
+//            });
+
+
+            var foreignLab = rows.select("foreignObject")
                 .attr("x", _labelOffsetX)
                 .attr("y", _labelOffsetY)
+                .attr( 'width', 100 )
+                .attr( 'height', height )
                 .on("click", onClick)
                 .attr("class", function (d, i) {
                     return _rowCssClass + " _" + i;
-                })
-                .text(function (d) {
-                /* VMIPSL : display values on flux image */
-                var divId = d.key.replace( / /g, "_" );
-                $( "#" + divId + "_value" ).html( d.value );
-                return _chart.label()( d );
-            });
-            dc.transition(lab, _chart.transitionDuration())
+                });
+            foreignLab.select( ".rowChartText" )
+                .html( function(d)
+                {
+                     return _chart.label()( d );
+                });
+
+//            dc.transition(lab, _chart.transitionDuration())
+//                .attr("transform", translateX);
+            dc.transition(foreignLab, _chart.transitionDuration())
                 .attr("transform", translateX);
         }
         if (_chart.renderTitleLabel()) {
@@ -5879,6 +5904,11 @@ dc.rowChart = function (parent, chartGroup) {
     _chart.setCallBackOnClick = function( callback )
     {
         _callbackOnClick = callback;
+    };
+
+    _chart.setCallBackOnCompleteDisplay = function( callback )
+    {
+        _callbackOnCompleteDisplay = callback;
     };
 
     /**

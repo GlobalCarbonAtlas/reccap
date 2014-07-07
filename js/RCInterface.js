@@ -17,6 +17,7 @@ var RCInterface = Class.create( {
         this.selectMultipleRegion = false;
         this.initMapWidth = 600;
         this.initMapScale = 90;
+        this.functionChartHeight = 550;
         this.color = d3.scale.category20c();
 
         // Tooltips for charts
@@ -77,9 +78,6 @@ var RCInterface = Class.create( {
             this.createDataTable( "#data-count", "#data-table", this.data, this.data.groupAll(), this.continents );
 
             dc.renderAll();
-//            console.log("fin "+this.rowChart.selectAll( "text" ));
-//            alert("paf");
-//            this.rowChart.selectAll( "text" ).attr( "class", "bob" );
         }, this ) );
     },
 
@@ -123,7 +121,7 @@ var RCInterface = Class.create( {
             }
         };
 
-        this.createRowChart( "#function-chart", $( "#function-chart" ).width(), 550, carbonBudgets, budgetAmountGroup );
+        this.createRowChart( "#function-chart", $( "#function-chart" ).width(), this.functionChartHeight, carbonBudgets, budgetAmountGroup );
     },
 
 
@@ -251,7 +249,8 @@ var RCInterface = Class.create( {
             this.removeToGroupedBarChart( fluxName );
         else
         {
-            var barChartHeight = $( "#pageWrapper" ).height() - $( ".imageFluxDiv" ).height() - 90;
+//            var barChartHeight = $( "#pageWrapper" ).height() - $( ".imageFluxDiv" ).height() - 90;
+            var barChartHeight = this.functionChartHeight - 50;
             this.createOrAddToBarChart( "#bar-chart", $( "#bar-chart" ).width(), barChartHeight, fluxName );
         }
     },

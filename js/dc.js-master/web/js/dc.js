@@ -1548,7 +1548,7 @@ dc.colorMixin = function(_chart) {
     **/
     _chart.getColor = function(d, i){
         /* VMIPSL : Color for barchart */
-        if(!_colorAccessor.call(this,d, i))
+        if(d && !_colorAccessor.call(this,d, i))
             return _colors(d.key);
         else
             return _colors(_colorAccessor.call(this,d, i));

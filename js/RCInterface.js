@@ -198,7 +198,7 @@ var RCInterface = Class.create( {
             .group( group )
             .brushOn( false )
             .elasticY( true )
-//            .colors( this.color )
+            .colors( this.color )
             .xUnits( dc.units.ordinal )
             .x( d3.scale.ordinal() )
 //                .y( d3.scale.linear() )

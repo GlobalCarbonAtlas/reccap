@@ -1,0 +1,91 @@
+"Continents","Carbon budget","Value"
+"South Asia","Fossil fuel CO2 emissions",
+"South Asia","Land use change",-14
+"South Asia","NPP",-2213
+"South Asia","Heterotrophic Respiration",1993
+"South Asia","Fire",44
+"South Asia","Wood product decay",
+"South Asia","Crop product consumption",
+"South Asia","Soil C export",
+"South Asia","Freshwater outgasing",
+"South Asia","River export to ocean",42,9
+"East Asia","Fossil fuel CO2 emissions",
+"East Asia","Land use change",-13
+"East Asia","NPP",
+"East Asia","Heterotrophic Respiration",
+"East Asia","Fire",18
+"East Asia","Wood product decay",
+"East Asia","Crop product consumption",
+"East Asia","Soil C export",
+"East Asia","Freshwater outgasing",
+"East Asia","River export to ocean",48
+"SouthEast Asia","Fossil fuel CO2 emissions",
+"SouthEast Asia","Land use change",
+"SouthEast Asia","NPP",
+"SouthEast Asia","Heterotrophic Respiration",
+"SouthEast Asia","Fire",
+"SouthEast Asia","Wood product decay",
+"SouthEast Asia","Crop product consumption",
+"SouthEast Asia","Soil C export",
+"SouthEast Asia","Freshwater outgasing",
+"SouthEast Asia","River export to ocean",
+"Russia","Fossil fuel CO2 emissions",
+"Russia","Land use change",-34
+"Russia","NPP",-4763
+"Russia","Heterotrophic Respiration",3463
+"Russia","Fire",117
+"Russia","Wood product decay",
+"Russia","Crop product consumption",
+"Russia","Soil C export",
+"Russia","Freshwater outgasing",
+"Russia","River export to ocean",56,37
+"Europe","Fossil fuel CO2 emissions",
+"Europe","Land use change",1
+"Europe","NPP",
+"Europe","Heterotrophic Respiration",
+"Europe","Fire",4,3
+"Europe","Wood product decay",
+"Europe","Crop product consumption",170,4
+"Europe","Soil C export",
+"Europe","Freshwater outgasing",
+"Europe","River export to ocean",36
+"South America","Fossil fuel CO2 emissions",
+"South America","Land use change",
+"South America","NPP",
+"South America","Heterotrophic Respiration",
+"South America","Fire",
+"South America","Wood product decay",
+"South America","Crop product consumption",
+"South America","Soil C export",
+"South America","Freshwater outgasing",
+"South America","River export to ocean",-70
+"Australia","Fossil fuel CO2 emissions",
+"Australia","Land use change",-36
+"Australia","NPP",-213
+"Australia","Heterotrophic Respiration",127
+"Australia","Fire",1
+"Australia","Wood product decay",
+"Australia","Crop product consumption",6
+"Australia","Soil C export",
+"Australia","Freshwater outgasing",
+"Australia","River export to ocean",95
+"Arctic tundra","Fossil fuel CO2 emissions",
+"Arctic tundra","Land use change",-97
+"Arctic tundra","NPP",-153
+"Arctic tundra","Heterotrophic Respiration",78
+"Arctic tundra","Fire",
+"Arctic tundra","Wood product decay",
+"Arctic tundra","Crop product consumption",
+"Arctic tundra","Soil C export",
+"Arctic tundra","Freshwater outgasing",
+"Arctic tundra","River export to ocean",
+"Africa","Fossil fuel CO2 emissions",
+"Africa","Land use change",-697
+"Africa","NPP",-1735
+"Africa","Heterotrophic Respiration",1020
+"Africa","Fire",
+"Africa","Wood product decay",
+"Africa","Crop product consumption",
+"Africa","Soil C export",
+"Africa","Freshwater outgasing",
+"Africa","River export to ocean",340

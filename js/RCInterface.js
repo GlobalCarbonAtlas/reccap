@@ -34,6 +34,9 @@ var RCInterface = Class.create( {
                 var value = (0 != d.yBegin ? d.yBegin : 0 != d.yEnd ? d.yEnd : 0);
                 return "<span class='d3-tipTitle'>" + d.name + " : </span>" + value;
             }
+            else if( d.data )
+            // Bar chart
+                return "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.data.value );
             else
             // Row chart
                 return "<span class='d3-tipTitle'>" + d.key + " : </span>" + this.numberFormat( d.value );
@@ -49,7 +52,7 @@ var RCInterface = Class.create( {
 
     initFileValuesAndCreateDCObjects:function()
     {
-        d3.csv( "data/Reccap_data_rows.csv", jQuery.proxy( function ( error, csv )
+        d3.csv( "data/Reccap_data_rows2.csv", jQuery.proxy( function ( error, csv )
         {
             this.data = crossfilter( csv );
             // Init this.transposedData & this.continentsKeys
@@ -76,9 +79,6 @@ var RCInterface = Class.create( {
             this.createMap();
             this.createFunctions();
             this.createDataTable( "#data-count", "#data-table", this.data, this.data.groupAll(), this.continents );
-
-//            console.log("init : Render All");
-//            dc.renderAll();
         }, this ) );
     },
 
@@ -122,11 +122,7 @@ var RCInterface = Class.create( {
             }
         };
 
-//        this.createBarChart( "#function-chart", 400, this.functionChartHeight, carbonBudgets, budgetAmountGroup );
-//        this.createRowChart( "#function-chart2", 400, this.functionChartHeight, carbonBudgets, budgetAmountGroup );
-
         this.createBarChart( "#function-chart", $( "#function-chart" ).width(), this.functionChartHeight, carbonBudgets, budgetAmountGroup );
-//        this.createRowChart( "#function-chart2", $( "#function-chart" ).width(), this.functionChartHeight, carbonBudgets, budgetAmountGroup );
     },
 
 
@@ -190,73 +186,46 @@ var RCInterface = Class.create( {
     createBarChart: function( chartId, width, height, dimension, group )
     {
         this.functionChart = dc.barChart( chartId )
-            .height( height )
-            .width( width )
-            .transitionDuration( 750 )
-            .margins( {top: 20, right: 10, bottom: 80, left: 80} )
-            .dimension( dimension )
-            .group( group )
-            .brushOn( false )
-            .elasticY( true )
-            .colors( this.color )
-            .xUnits( dc.units.ordinal )
-            .x( d3.scale.ordinal() )
+                .height( height )
+                .width( width )
+                .transitionDuration( 750 )
+                .margins( {top: 20, right: 10, bottom: 80, left: 80} )
+                .dimension( dimension )
+                .group( group )
+                .brushOn( false )
+                .elasticY( true )
+                .colors( this.color )
+                .xUnits( dc.units.ordinal )
+                .x( d3.scale.ordinal() )
 //                .y( d3.scale.linear() )
-            .renderHorizontalGridLines( true );
+                .renderHorizontalGridLines( true );
 
         this.functionChart.yAxis().tickFormat( d3.format( "s" ) );
-        this.functionChart.setCallBackOnClick( jQuery.proxy( this.onClickRowChart, this ) );
+        this.functionChart.setCallBackOnClick( jQuery.proxy( this.onClickFunctionChart, this ) );
     },
 
-    createRowChart: function( chartId, width, height, functions, functionsGroup )
-    {
-        this.rowChart = dc.rowChart( chartId )
-                .width( width )
-                .height( height )
-                .margins( {top: 20, left: 10, right: 10, bottom: 20} )
-                .transitionDuration( 750 )
-                .dimension( functions )
-                .group( functionsGroup )
-                .colors( this.color )
-                .title( function ( d )
-        {
-            return "";
-        } )
-                .elasticX( true );
-
-        this.rowChart.xAxis().tickFormat( d3.format( "s" ) );
-        this.rowChart.setCallBackOnClick( jQuery.proxy( this.onClickRowChart, this ) );
-        this.rowChart.setCallBackOnCompleteDisplay( jQuery.proxy( this.onCompleteDisplayRowChart, this ) );
-
-//        legendsEnter.append( 'foreignObject' )
-//                .attr( 'x', 10 )
-//                .attr( 'y', -11 )
-//                .attr( 'width', this.legendSvgWidth - 40 )
-//                .attr( 'height', 20 )
-//                .append( "xhtml:body" )
-//                .html( '<div class="legendText"></div>' )
+//    createRowChart: function( chartId, width, height, functions, functionsGroup )
+//    {
+//        this.rowChart = dc.rowChart( chartId )
+//                .width( width )
+//                .height( height )
+//                .margins( {top: 20, left: 10, right: 10, bottom: 20} )
+//                .transitionDuration( 750 )
+//                .dimension( functions )
+//                .group( functionsGroup )
+//                .colors( this.color )
+//                .title( function ( d )
+//        {
+//            return "";
+//        } )
+//                .elasticX( true );
 //
-//        // Update width, text and title when remove legend & two columns
-//        legends.select( '.legendText' )
-//                .attr( 'style', jQuery.proxy( function()
-//        {
-//            var widthValue = this.isTwoColumns ? this.legendSvgWidth / 2 - 50 : this.legendSvgWidth - 40;
-//            return "width:" + widthValue;
-//        }, this ) )
-//                .attr( "title", jQuery.proxy( function( d, i )
-//        {
-//            var textWidth = getTextWidth( this.graphContainerId, d.label );
-//            var legendWidth = this.isTwoColumns ? this.legendSvgWidth / 2 - 10 : this.legendSvgWidth;
-//            return textWidth + 31 > legendWidth ? d.label : "";
-//        }, this ) )
-//                .html( jQuery.proxy( function( d, i )
-//        {
-//            return d.label;
-//        }, this ) );
+//        this.rowChart.xAxis().tickFormat( d3.format( "s" ) );
+//        this.rowChart.setCallBackOnClick( jQuery.proxy( this.onClickRowChart, this ) );
+//        this.rowChart.setCallBackOnCompleteDisplay( jQuery.proxy( this.onCompleteDisplayRowChart, this ) );
+//    },
 
-    },
-
-    onClickRowChart: function( element )
+    onClickFunctionChart: function( element )
     {
         var dynamicAreaDivId = element.key.replace( / /g, "_" );
         this.addOrRemoveToGroupedBarChart( $( "#" + dynamicAreaDivId ), element.key );
@@ -442,12 +411,6 @@ var RCInterface = Class.create( {
         // When remove bar
         legend.select( "text" )
                 .style( "fill", "#2C3537" )
-//                .style( "fill", jQuery.proxy( function( d )
-//        {
-//            if( !d.color )
-//                d.color = this.color( d.name );
-//            return d.color;
-//        }, this ) )
                 .text( function( d )
         {
             return d.name;
@@ -466,7 +429,7 @@ var RCInterface = Class.create( {
             var divId = d.name.replace( / /g, "_" );
             $( "#" + divId ).removeClass( "selected" );
             this.removeToGroupedBarChart( d.name );
-            this.rowChart.onClick( {key: d.name} );
+            this.functionChart.onClick( {key: d.name} );
         }, this ) );
     },
 
@@ -609,7 +572,7 @@ var RCInterface = Class.create( {
                             div.on( "click", jQuery.proxy( function( argument )
                             {
                                 this.addOrRemoveToGroupedBarChart( argument.currentTarget, argument.currentTarget.getAttribute( "name" ) );
-                                this.rowChart.onClick( {key: argument.currentTarget.getAttribute( "name" )} );
+                                this.functionChart.onClick( {key: argument.currentTarget.getAttribute( "name" )} );
                             }, this ) );
                         $( dynamicAreasId ).append( div );
                     }, this ) );
@@ -712,7 +675,6 @@ var RCInterface = Class.create( {
             this.displayedVariables = [];
 
             dc.filterAll();
-            console.log("reset : Render All");
             dc.renderAll();
             this.updateCharts();
         }, this ) );

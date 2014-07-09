@@ -37,3 +37,23 @@ function getIndexInArray( array, parameter, valueToFind )
     } );
     return result;
 }
+
+
+// **************************************************************
+// ************************* BROWSER ****************************
+// **************************************************************
+function getUserAgengt()
+{
+    return navigator.userAgent.toLowerCase();
+}
+
+function testBrowser()
+{
+    var userAgent = getUserAgengt();
+    var isChrome = /chrome/.test( userAgent );
+    var isFirefox = /mozilla/.test( userAgent ) && !/(compatible|webkit)/.test( userAgent );
+    var isSafari = /safari/.test( userAgent );
+    if( !isChrome && !isFirefox && !isSafari )
+        alert( "This application was created for Google Chrome, Mozilla Firefox and Safari. If you use another browser some operations may not be working !" );
+}
+

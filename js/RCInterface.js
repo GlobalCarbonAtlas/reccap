@@ -17,7 +17,9 @@ var RCInterface = Class.create( {
         this.selectMultipleRegion = false;
         this.initMapWidth = 600;
         this.initMapScale = 90;
-        this.functionChartHeight = 550;
+        this.chartHeight = 0;
+        this.chartWidth = $( "#bar-chart" ).width();
+        this.imageHeight = 0;
         this.color = d3.scale.category20c();
 
         // Tooltips for charts
@@ -43,10 +45,9 @@ var RCInterface = Class.create( {
         }, this ) );
 
 
-        this.createDynamicAreasForResponsiveMap( "#imageFlux", "#mapForImageFlux", "#dynamicAreasForImageFlux", $( "#bar-chart" ).width(), true );
+        this.createDynamicAreasForResponsiveMap( "#imageFlux", "#mapForImageFlux", "#dynamicAreasForImageFlux", this.chartWidth, true );
         this.createDynamicAreasForResponsiveMap( "#imageFluxForSynthesis", "#mapForImageFluxForSynthesis", "#dynamicAreasForImageFluxForSynthesis", 1100, false );
 
-        this.initFileValuesAndCreateDCObjects();
         this.bindActions();
     },
 
@@ -91,11 +92,12 @@ var RCInterface = Class.create( {
         d3.json( "data/continent-geogame-110m.json", jQuery.proxy( function( error, world )
         {
             var countries = topojson.feature( world, world.objects.countries );
-            this.createChoroplethMap( "#map-chart", $( "#map-chart" ).width(), $( "#map-chart" ).width() / 2, countries, this.continents, this.continents.group() );
+            var mapWidth = Math.min( this.imageHeight * 2, this.chartWidth );
+            this.createChoroplethMap( "#map-chart", mapWidth, mapWidth / 2, countries, this.continents, this.continents.group() );
             dc.renderAll();
             this.updateCharts();
 
-            $( "#Fire" ).click();
+            $( "#NPP" ).click();
         }, this ) );
     },
 
@@ -122,7 +124,7 @@ var RCInterface = Class.create( {
             }
         };
 
-        this.createBarChart( "#function-chart", $( "#function-chart" ).width(), this.functionChartHeight, carbonBudgets, budgetAmountGroup );
+        this.createBarChart( "#function-chart", this.chartWidth, this.chartHeight, carbonBudgets, budgetAmountGroup );
     },
 
 
@@ -189,7 +191,7 @@ var RCInterface = Class.create( {
                 .height( height )
                 .width( width )
                 .transitionDuration( 750 )
-                .margins( {top: 20, right: 10, bottom: 80, left: 80} )
+                .margins( {top: 20, right: 80, bottom: 200, left: 50} )
                 .dimension( dimension )
                 .group( group )
                 .brushOn( false )
@@ -250,8 +252,8 @@ var RCInterface = Class.create( {
         else
         {
 //            var barChartHeight = $( "#pageWrapper" ).height() - $( ".imageFluxDiv" ).height() - 90;
-            var barChartHeight = this.functionChartHeight - 50;
-            this.createOrAddToBarChart( "#bar-chart", $( "#bar-chart" ).width(), barChartHeight, fluxName );
+            var barChartHeight = this.chartHeight - 50;
+            this.createOrAddToBarChart( "#bar-chart", this.chartWidth, barChartHeight, fluxName );
         }
     },
 
@@ -404,7 +406,7 @@ var RCInterface = Class.create( {
                 .style( "text-anchor", "end" )
                 .text( function( d )
         {
-            return d;
+            return jQuery.i18n.prop( d );
         } );
         legend.exit().remove();
 
@@ -413,7 +415,7 @@ var RCInterface = Class.create( {
                 .style( "fill", "#2C3537" )
                 .text( function( d )
         {
-            return d.name;
+            return jQuery.i18n.prop( d.name );
         } );
 
         legend.select( "rect" )
@@ -557,30 +559,39 @@ var RCInterface = Class.create( {
                 },
                 jQuery.proxy( function()
                 {
-                    $.each( $( mapId + " area" ), jQuery.proxy( function( i, element )
-                    {
-                        var coords = element.coords.split( ',' );
-                        var divId = element.alt.replace( / /g, "_" );
-                        var div = $( '<div id="' + divId + '" name="' + element.alt + '" class="dynamicArea"></div>' );
-                        if( null != element.getAttribute( "isRed" ) )
-                            div.addClass( "redSynthesisText" );
-                        div.css( "top", coords[1] );
-                        div.css( "left", coords[0] );
-                        div.width( coords[2] - coords[0] );
-                        div.height( coords[3] - coords[1] );
-                        if( activeClick )
-                            div.on( "click", jQuery.proxy( function( argument )
-                            {
-                                this.addOrRemoveToGroupedBarChart( argument.currentTarget, argument.currentTarget.getAttribute( "name" ) );
-                                this.functionChart.onClick( {key: argument.currentTarget.getAttribute( "name" )} );
-                            }, this ) );
-                        $( dynamicAreasId ).append( div );
-                    }, this ) );
-
-                    $( mapId ).remove();
+                    this.createAreas( mapId, activeClick, dynamicAreasId );
+                    this.chartHeight = $( "#pageWrapper" ).height() - $( "#imageFlux" ).height() - $( ".container-fluid" ).height();
+                    this.imageHeight = $( "#imageFlux" ).height();
+                    if( activeClick )
+                        this.initFileValuesAndCreateDCObjects();
                 }, this ),
                 null
                 );
+    },
+
+    createAreas : function( mapId, activeClick, dynamicAreasId )
+    {
+        $.each( $( mapId + " area" ), jQuery.proxy( function( i, element )
+        {
+            var coords = element.coords.split( ',' );
+            var divId = element.alt.replace( / /g, "_" );
+            var div = $( '<div id="' + divId + '" name="' + element.alt + '" class="dynamicArea"></div>' );
+            if( null != element.getAttribute( "isRed" ) )
+                div.addClass( "redSynthesisText" );
+            div.css( "top", coords[1] );
+            div.css( "left", coords[0] );
+            div.width( coords[2] - coords[0] );
+            div.height( coords[3] - coords[1] );
+            if( activeClick )
+                div.on( "click", jQuery.proxy( function( argument )
+                {
+                    this.addOrRemoveToGroupedBarChart( argument.currentTarget, argument.currentTarget.getAttribute( "name" ) );
+                    this.functionChart.onClick( {key: argument.currentTarget.getAttribute( "name" )} );
+                }, this ) );
+            $( dynamicAreasId ).append( div );
+        }, this ) );
+
+        $( mapId ).remove();
     },
 
     getToolTipContentForMultipleValues: function( valueArray )
@@ -594,78 +605,6 @@ var RCInterface = Class.create( {
     },
 
     bindActions: function()
-    {
-        this.bindActionsForMenu();
-        this.bindActionsForSlides();
-
-        // Synthesis
-        $( "#exportSynthesis" ).on( "click", function()
-        {
-            alert( "work in progress" );
-        } );
-    },
-
-    bindActionsForSlides: function()
-    {
-        $( "#dataSlide" ).on( "click", jQuery.proxy( function()
-        {
-            if( 0.4 == $( "#synthesisSlide" ).css( "opacity" ) )
-                this.hideSlide();
-            else
-            {
-                $( "#hiddenDivSlide" ).animate( {
-                    width: "1200px"
-                }, 700, function()
-                {
-                    $( "#dataDiv" ).fadeToggle( function()
-                    {
-                        $( "#hiddenDivSlide" ).height( Math.max( $( "#dataDiv" ).height(), $( "#pageWrapper .container-fluid" ).height() ) );
-                    } );
-                } );
-                $( "#synthesisSlide" ).css( "opacity", 0.4 );
-            }
-        }, this ) );
-
-        $( "#synthesisSlide" ).on( "click", jQuery.proxy( function()
-        {
-            if( 0.4 == $( "#dataSlide" ).css( "opacity" ) )
-                this.hideSlide();
-            else
-            {
-                $( "#hiddenDivSlide" ).animate( {
-                    width: "1200px"
-                }, 700, function()
-                {
-                    $( "#synthesisDiv" ).fadeToggle( function()
-                    {
-                        $( "#hiddenDivSlide" ).height( Math.max( $( "#synthesisDiv" ).height(), $( "#pageWrapper .container-fluid" ).height() ) );
-                    } );
-                } );
-                $( "#dataSlide" ).css( "opacity", 0.4 );
-            }
-        }, this ) );
-
-        $( "#hiddenDivSlide" ).on( "click", jQuery.proxy( function()
-        {
-            this.hideSlide();
-        }, this ) );
-    },
-
-    hideSlide: function()
-    {
-        $( "#dataDiv" ).fadeOut();
-        $( "#synthesisDiv" ).fadeOut();
-        $( "#hiddenDivSlide" ).animate( {
-            width: "10px"
-        }, 700, function()
-        {
-            $( "#synthesisSlide" ).css( "opacity", 1 );
-            $( "#dataSlide" ).css( "opacity", 1 );
-            $( "#hiddenDivSlide" ).height( $( "#pageWrapper .container-fluid" ).height() );
-        } );
-    },
-
-    bindActionsForMenu: function()
     {
         // Reset button
         $( "#reset" ).on( "click", jQuery.proxy( function()
@@ -734,6 +673,13 @@ var RCInterface = Class.create( {
             $( ".synthesisDiv" ).fadeOut();
             $( "#hiddenDiv" ).fadeToggle();
             $( "#hiddenDiv" ).height( $( "#pageWrapper .container-fluid" ).height() );
+        } );
+
+
+        // Synthesis
+        $( "#exportSynthesis" ).on( "click", function()
+        {
+            alert( "work in progress" );
         } );
     },
 

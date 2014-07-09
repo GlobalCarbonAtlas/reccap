@@ -24,6 +24,7 @@
     <script type="text/javascript" src="js/library/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="js/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js"></script>
     <script type="text/javascript" src="js/bootstrap-3.1.1-dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/library/jquery.i18n.properties-1.0.9.js"></script>
 
     <script type="text/javascript" src="js/dc.js-master/web/js/d3.js"></script>
     <script type="text/javascript" src="js/dc.js-master/web/js/crossfilter.js"></script>

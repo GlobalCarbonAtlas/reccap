@@ -22,7 +22,7 @@ var RCInterface = Class.create( {
         this.initMapWidth = 600;
         this.initMapScale = 90;
         this.chartHeight = 0;
-        this.chartWidth = $( "#bar-chart" ).width();
+        this.chartWidth = $( "#groupedBarChart" ).width();
         this.imageHeight = 0;
         this.color = d3.scale.category20c();
         this.selectMultipleRegion = false;
@@ -100,8 +100,8 @@ var RCInterface = Class.create( {
         {
             var countries = topojson.feature( world, world.objects.countries );
             var mapWidth = Math.min( this.imageHeight * 2, this.chartWidth );
-            this.createChoroplethMap( "#map-chart", mapWidth, mapWidth / 2, countries, this.continents, this.continents.group() );
-            $( "#map-chart" ).addClass( "countryWithPointer" );
+            this.createChoroplethMap( "#mapChart", mapWidth, mapWidth / 2, countries, this.continents, this.continents.group() );
+            $( "#mapChart" ).addClass( "countryWithPointer" );
             dc.renderAll();
             this.updateCharts();
 
@@ -133,7 +133,7 @@ var RCInterface = Class.create( {
             }
         };
 
-        this.createBarChart( "#function-chart", this.chartWidth, this.chartHeight, carbonBudgets, budgetAmountGroup );
+        this.createBarChart( "#functionBarChart", this.chartWidth, this.chartHeight, carbonBudgets, budgetAmountGroup );
     },
 
 
@@ -241,7 +241,7 @@ var RCInterface = Class.create( {
         else
         {
             var barChartHeight = this.chartHeight - 50;
-            this.createOrAddToBarChart( "#bar-chart", this.chartWidth, barChartHeight, fluxName );
+            this.createOrAddToBarChart( "#groupedBarChart", this.chartWidth, barChartHeight, fluxName );
         }
     },
 
@@ -257,7 +257,7 @@ var RCInterface = Class.create( {
      */
     createOrAddToBarChart: function( containerId, width, height, fluxValue )
     {
-        if( 0 >= $( "#bar-chartSvg" ).length )
+        if( 0 >= $( "#groupedBarChartSvg" ).length )
             this.createGroupedBarChart( containerId, width, height );
         this.displayedVariables.push( {name : fluxValue, color: false} );
         this.updateGroupedBarChart();
@@ -273,30 +273,30 @@ var RCInterface = Class.create( {
     createGroupedBarChart: function( containerId, width, height )
     {
         var margin = {top: 20, right: 20, bottom: 80, left: 40};
-        this.barChartWidth = width - margin.left - margin.right;
-        this.barChartHeight = height - margin.top - margin.bottom;
+        this.groupedBarChartWidth = width - margin.left - margin.right;
+        this.groupedBarChartHeight = height - margin.top - margin.bottom;
 
-        this.barChartx0 = d3.scale.ordinal().rangeRoundBands( [0, this.barChartWidth], 0.1 ).domain( this.regionsKeys );
-        this.barChartx1 = d3.scale.ordinal();
-        this.barCharty = d3.scale.linear().range( [this.barChartHeight, 0] );
+        this.groupedBarChartx0 = d3.scale.ordinal().rangeRoundBands( [0, this.groupedBarChartWidth], 0.1 ).domain( this.regionsKeys );
+        this.groupedBarChartx1 = d3.scale.ordinal();
+        this.groupedBarCharty = d3.scale.linear().range( [this.groupedBarChartHeight, 0] );
 
         // Axes
-        this.barChartxAxis = d3.svg.axis().scale( this.barChartx0 );
-        this.barChartyAxis = d3.svg.axis()
-                .scale( this.barCharty )
+        this.groupedBarChartxAxis = d3.svg.axis().scale( this.groupedBarChartx0 );
+        this.groupedBarChartyAxis = d3.svg.axis()
+                .scale( this.groupedBarCharty )
                 .orient( "left" )
                 .tickFormat( d3.format( ".2s" ) )
-                .tickSize( -this.barChartWidth, 0 );
+                .tickSize( -this.groupedBarChartWidth, 0 );
 
         // BarChart
-        this.barChartsvg = d3.select( containerId ).append( "svg" )
-                .attr( "id", "bar-chartSvg" )
-                .attr( "width", this.barChartWidth + margin.left + margin.right )
-                .attr( "height", this.barChartHeight + margin.top + margin.bottom )
+        this.groupedBarChartsvg = d3.select( containerId ).append( "svg" )
+                .attr( "id", "groupedBarChartSvg" )
+                .attr( "width", this.groupedBarChartWidth + margin.left + margin.right )
+                .attr( "height", this.groupedBarChartHeight + margin.top + margin.bottom )
                 .append( "g" )
                 .attr( "transform", "translate(" + margin.left + "," + margin.top + ")" );
 
-        this.barChartsvg.append( "g" )
+        this.groupedBarChartsvg.append( "g" )
                 .attr( "class", "y axis" )
                 .append( "text" )
                 .attr( "transform", "rotate(-90)" )
@@ -305,12 +305,12 @@ var RCInterface = Class.create( {
                 .style( "text-anchor", "end" )
                 .text( "" );
 
-        this.barChartsvg.append( "g" )
+        this.groupedBarChartsvg.append( "g" )
                 .attr( "class", "x axis" )
-                .attr( "transform", "translate(0," + this.barChartHeight + ")" );
+                .attr( "transform", "translate(0," + this.groupedBarChartHeight + ")" );
 
         // xAxis
-        this.barChartsvg.select( '.x.axis' ).call( this.barChartxAxis );
+        this.groupedBarChartsvg.select( '.x.axis' ).call( this.groupedBarChartxAxis );
     },
 
     /**
@@ -345,22 +345,22 @@ var RCInterface = Class.create( {
 
     updateBarChartDomains: function()
     {
-        this.barCharty.domain( [d3.min( this.transposedData, function( d )
+        this.groupedBarCharty.domain( [d3.min( this.transposedData, function( d )
         {
             return d.negativeTotal;
         } ), d3.max( this.transposedData, function( d )
         {
             return d.positiveTotal;
         } )] );
-        this.barChartx1.domain( d3.keys( this.displayedVariables ) ).rangeRoundBands( [0, this.barChartx0.rangeBand()] );
+        this.groupedBarChartx1.domain( d3.keys( this.displayedVariables ) ).rangeRoundBands( [0, this.groupedBarChartx0.rangeBand()] );
     },
 
     updateBarChartAxes: function()
     {
         // Update yAxis
-        this.barChartsvg
+        this.groupedBarChartsvg
                 .select( '.y.axis' )
-                .call( this.barChartyAxis )
+                .call( this.groupedBarChartyAxis )
                 .selectAll( 'line' )
                 .filter( function( d )
         {
@@ -371,7 +371,7 @@ var RCInterface = Class.create( {
 
     updateBarChartLegend: function()
     {
-        var legend = this.barChartsvg.selectAll( ".legend" )
+        var legend = this.groupedBarChartsvg.selectAll( ".legend" )
                 .data( this.displayedVariables.slice() );
 
         var legendsEnter = legend.enter().append( "g" )
@@ -383,12 +383,12 @@ var RCInterface = Class.create( {
                 } );
 
         legendsEnter.append( "rect" )
-                .attr( "x", this.barChartWidth - 18 )
+                .attr( "x", this.groupedBarChartWidth - 18 )
                 .attr( "width", 18 )
                 .attr( "height", 18 );
 
         legendsEnter.append( "text" )
-                .attr( "x", this.barChartWidth - 24 )
+                .attr( "x", this.groupedBarChartWidth - 24 )
                 .attr( "y", 9 )
                 .attr( "dy", ".35em" )
                 .style( "text-anchor", "end" );
@@ -421,14 +421,14 @@ var RCInterface = Class.create( {
 
     updateGroupedBar: function()
     {
-        var groupedBar = this.barChartsvg.selectAll( ".groupedBar" )
+        var groupedBar = this.groupedBarChartsvg.selectAll( ".groupedBar" )
                 .data( this.transposedData );
 
         var groupedBarEnter = groupedBar.enter().append( "g" )
                 .attr( "class", "groupedBar" )
                 .attr( "transform", jQuery.proxy( function( d )
         {
-            return "translate(" + this.barChartx0( d[this.fluxColName] ) + ",0)";
+            return "translate(" + this.groupedBarChartx0( d[this.fluxColName] ) + ",0)";
         }, this ) );
 
         var groupedBarRect = groupedBar.selectAll( "rect" )
@@ -438,18 +438,18 @@ var RCInterface = Class.create( {
         }, this ) );
 
         groupedBarRect.enter().append( "rect" )
-                .attr( "width", this.barChartx1.rangeBand() )
+                .attr( "width", this.groupedBarChartx1.rangeBand() )
                 .attr( "x", jQuery.proxy( function( d )
         {
-            return this.barChartx1( d.column );
+            return this.groupedBarChartx1( d.column );
         }, this ) )
                 .attr( "y", jQuery.proxy( function( d )
         {
-            return this.barCharty( d.yEnd );
+            return this.groupedBarCharty( d.yEnd );
         }, this ) )
                 .attr( "height", jQuery.proxy( function( d )
         {
-            return this.barCharty( d.yBegin ) - this.barCharty( d.yEnd );
+            return this.groupedBarCharty( d.yBegin ) - this.groupedBarCharty( d.yEnd );
         }, this ) );
         groupedBarRect.exit().remove();
 
@@ -458,18 +458,18 @@ var RCInterface = Class.create( {
                 .duration( 200 )
                 .ease( "linear" )
                 .selectAll( "rect" )
-                .attr( "width", this.barChartx1.rangeBand() )
+                .attr( "width", this.groupedBarChartx1.rangeBand() )
                 .attr( "x", jQuery.proxy( function( d )
         {
-            return this.barChartx1( d.column );
+            return this.groupedBarChartx1( d.column );
         }, this ) )
                 .attr( "y", jQuery.proxy( function( d )
         {
-            return this.barCharty( d.yEnd );
+            return this.groupedBarCharty( d.yEnd );
         }, this ) )
                 .attr( "height", jQuery.proxy( function( d )
         {
-            return this.barCharty( d.yBegin ) - this.barCharty( d.yEnd );
+            return this.groupedBarCharty( d.yBegin ) - this.groupedBarCharty( d.yEnd );
         }, this ) )
                 .style( "fill", jQuery.proxy( function( d )
         {
@@ -487,7 +487,7 @@ var RCInterface = Class.create( {
         this.displayedVariables.splice( index, 1 );
         this.updateGroupedBarChart();
         if( 0 >= this.displayedVariables.length )
-            $( "#bar-chartSvg" ).remove();
+            $( "#groupedBarChartSvg" ).remove();
     },
 
 
@@ -509,8 +509,8 @@ var RCInterface = Class.create( {
             placement: "right",
             container:'body'} );
 
-        d3.selectAll( ".country, g.row, .bar, #bar-chartSvg .groupedBar rect" ).call( this.toolTip );
-        d3.selectAll( ".country, g.row, .bar, #bar-chartSvg .groupedBar rect" )
+        d3.selectAll( ".country, g.row, .bar, #groupedBarChartSvg .groupedBar rect" ).call( this.toolTip );
+        d3.selectAll( ".country, g.row, .bar, #groupedBarChartSvg .groupedBar rect" )
                 .on( 'mouseover', this.toolTip.show )
                 .on( 'mouseout', this.toolTip.hide );
 
@@ -598,7 +598,7 @@ var RCInterface = Class.create( {
         $( "#reset" ).on( "click", jQuery.proxy( function()
         {
             $( "#dynamicAreasForImageFlux .dynamicArea" ).removeClass( "selected" );
-            $( "#bar-chart" ).empty();
+            $( "#groupedBarChart" ).empty();
             this.displayedVariables = [];
 
             dc.filterAll();
@@ -621,7 +621,7 @@ var RCInterface = Class.create( {
         // Region select button
         $( "#regionUnActive" ).on( "click", jQuery.proxy( function()
         {
-            $( "#map-chart" ).addClass( "countryWithPointer" );
+            $( "#mapChart" ).addClass( "countryWithPointer" );
             this.geoChoroplethChart.setMultipleSelect( true );
             this.geoChoroplethChart.setSelect( true );
             $( "#regionUnActive" ).fadeOut();
@@ -632,7 +632,7 @@ var RCInterface = Class.create( {
 
         $( "#regionActive" ).on( "click", jQuery.proxy( function()
         {
-            $( "#map-chart" ).removeClass( "countryWithPointer" );
+            $( "#mapChart" ).removeClass( "countryWithPointer" );
             this.geoChoroplethChart.setSelect( false );
             $( "#reset" ).click();
             $( "#regionUnActive" ).fadeOut();
@@ -643,7 +643,7 @@ var RCInterface = Class.create( {
 
         $( "#globeActive" ).on( "click", jQuery.proxy( function()
         {
-            $( "#map-chart" ).addClass( "countryWithPointer" );
+            $( "#mapChart" ).addClass( "countryWithPointer" );
             this.geoChoroplethChart.setMultipleSelect( false );
             this.geoChoroplethChart.setSelect( true );
             $( "#regionUnActive" ).fadeIn();

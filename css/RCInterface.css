@@ -45,11 +45,11 @@ h3 {
 /*}*/
 
 /* ************** MAP ************** */
-#map-chart {
+#mapChart {
     width: 0%;
 }
 
-#map-chart svg {
+#mapChart svg {
 /*background-color: #444444;*/
     -webkit-border-radius: 25px;
     -moz-border-radius: 25px;

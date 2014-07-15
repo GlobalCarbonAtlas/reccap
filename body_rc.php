@@ -34,14 +34,13 @@
                 </div>
 
                 <div id="mapChartAndComment">
-                    <div id="map-chart"></div>
+                    <div id="mapChart"></div>
                     <div class="comment mapChartComment">Select a region to get the functions</div>
                 </div>
             </div>
 
             <div class="row basicCell">
-                <div id="function-chart"></div>
-                <div id="function-chart2"></div>
+                <div id="functionBarChart"></div>
             </div>
         </div>
 
@@ -68,7 +67,7 @@
             </div>
 
             <div class="row">
-                <div id="bar-chart"></div>
+                <div id="groupedBarChart"></div>
             </div>
 
         </div>

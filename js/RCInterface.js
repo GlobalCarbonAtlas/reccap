@@ -104,7 +104,8 @@ var RCInterface = Class.create( {
             dc.renderAll();
             this.updateCharts();
 
-            $( "#NPP" ).click();
+            // Home with selected flux
+            $( "#" + jQuery.i18n.prop( "selectedFluxForHome" ) ).click();
         }, this ) );
     },
 
@@ -237,7 +238,7 @@ var RCInterface = Class.create( {
 
     onClickFunctionChart: function( element )
     {
-        var dynamicAreaDivId = element.key.replace( / /g, "_" );
+        var dynamicAreaDivId = this.getI18nPropertiesKeyFromValue( element.key );
         this.addOrRemoveToGroupedBarChart( $( "#" + dynamicAreaDivId ), element.key );
     },
 
@@ -411,11 +412,7 @@ var RCInterface = Class.create( {
                 .attr( "x", this.barChartWidth - 24 )
                 .attr( "y", 9 )
                 .attr( "dy", ".35em" )
-                .style( "text-anchor", "end" )
-                .text( function( d )
-        {
-            return jQuery.i18n.prop( d );
-        } );
+                .style( "text-anchor", "end" );
         legend.exit().remove();
 
         // When remove bar
@@ -423,7 +420,7 @@ var RCInterface = Class.create( {
                 .style( "fill", "#2C3537" )
                 .text( function( d )
         {
-            return jQuery.i18n.prop( d.name );
+            return jQuery.i18n.prop( d.name ).replace( "[", "" ).replace( "]", "" );
         } );
 
         legend.select( "rect" )
@@ -436,8 +433,8 @@ var RCInterface = Class.create( {
                 .style( "stroke", "#2C3537" )
                 .on( "click", jQuery.proxy( function( d )
         {
-            var divId = d.name.replace( / /g, "_" );
-            $( "#" + divId ).removeClass( "selected" );
+            var dynamicAreaDivId = this.getI18nPropertiesKeyFromValue( d.name );
+            $( "#" + dynamicAreaDivId ).removeClass( "selected" );
             this.removeToGroupedBarChart( d.name );
             this.functionChart.onClick( {key: d.name} );
         }, this ) );
@@ -586,8 +583,7 @@ var RCInterface = Class.create( {
         $.each( $( mapId + " area" ), jQuery.proxy( function( i, element )
         {
             var coords = element.coords.split( ',' );
-            var divId = element.alt.replace( / /g, "_" );
-            var div = $( '<div id="' + divId + '" name="' + element.alt + '" class="dynamicArea"></div>' );
+            var div = $( '<div id="' + element.alt + '" name="' + element.alt + '" class="dynamicArea"></div>' );
             if( null != element.getAttribute( "isRed" ) )
                 div.addClass( "redSynthesisText" );
             div.css( "top", coords[1] );
@@ -597,8 +593,9 @@ var RCInterface = Class.create( {
             if( activeClick )
                 div.on( "click", jQuery.proxy( function( argument )
                 {
-                    this.addOrRemoveToGroupedBarChart( argument.currentTarget, argument.currentTarget.getAttribute( "name" ) );
-                    this.functionChart.onClick( {key: argument.currentTarget.getAttribute( "name" )} );
+                    var fluxName = jQuery.i18n.prop( argument.currentTarget.getAttribute( "name" ) );
+                    this.addOrRemoveToGroupedBarChart( argument.currentTarget, fluxName );
+                    this.functionChart.onClick( {key: fluxName} );
                 }, this ) );
             $( dynamicAreasId ).append( div );
         }, this ) );
@@ -737,6 +734,20 @@ var RCInterface = Class.create( {
             object[this.fluxColName] = key;
             this.transposedData.push( object );
         }, this ) );
+    },
+
+    getI18nPropertiesKeyFromValue: function( value )
+    {
+        var result = false;
+        $.each( jQuery.i18n.map, function( i, d )
+        {
+            if( jQuery.i18n.prop( i ) == value )
+            {
+                result = i;
+                return false;
+            }
+        } );
+        return result;
     }
 
 } );

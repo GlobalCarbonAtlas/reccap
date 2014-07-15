@@ -12,15 +12,20 @@ var RCInterface = Class.create( {
 
     initialize: function()
     {
-        // Variable
+        // File variables
         this.numberFormat = d3.format( ".2f" );
-        this.selectMultipleRegion = false;
+        this.regionColName = jQuery.i18n.prop( "regionColName" );
+        this.fluxColName = jQuery.i18n.prop( "fluxColName" );
+        this.valueColName = jQuery.i18n.prop( "valueColName" );
+
+        // Variables
         this.initMapWidth = 600;
         this.initMapScale = 90;
         this.chartHeight = 0;
         this.chartWidth = $( "#bar-chart" ).width();
         this.imageHeight = 0;
         this.color = d3.scale.category20c();
+        this.selectMultipleRegion = false;
 
         // Tooltips for charts
         this.toolTip = d3.tip()
@@ -45,6 +50,7 @@ var RCInterface = Class.create( {
         }, this ) );
 
 
+        // Areas for maps
         this.createDynamicAreasForResponsiveMap( "#imageFlux", "#mapForImageFlux", "#dynamicAreasForImageFlux", this.chartWidth, true );
         this.createDynamicAreasForResponsiveMap( "#imageFluxForSynthesis", "#mapForImageFluxForSynthesis", "#dynamicAreasForImageFluxForSynthesis", 1100, false );
 
@@ -53,18 +59,18 @@ var RCInterface = Class.create( {
 
     initFileValuesAndCreateDCObjects:function()
     {
-        d3.csv( "data/Reccap_data_rows2.csv", jQuery.proxy( function ( error, csv )
+        d3.csv( "data/Reccap_data_rows3.csv", jQuery.proxy( function ( error, csv )
         {
             this.data = crossfilter( csv );
-            // Init this.transposedData & this.continentsKeys
+            // Init this.transposedData & this.regionsKeys
             this.transposeDataFromFile( csv );
 
             // TODO : see why it applies to ALL data
             this.data.dimension(
-                    function( d )
+                    jQuery.proxy( function( d )
                     {
-                        return d["Value"];
-                    } ).filter(
+                        return d[this.valueColName];
+                    }, this ) ).filter(
                     function( d )
                     {
                         if( 0 < Math.abs( d ) )
@@ -73,7 +79,7 @@ var RCInterface = Class.create( {
 
             this.continents = this.data.dimension( jQuery.proxy( function( d )
             {
-                return d["Continents"];
+                return d[this.regionColName];
             }, this ) );
 
             // Create DC Objects
@@ -94,7 +100,7 @@ var RCInterface = Class.create( {
             var countries = topojson.feature( world, world.objects.countries );
             var mapWidth = Math.min( this.imageHeight * 2, this.chartWidth );
             this.createChoroplethMap( "#map-chart", mapWidth, mapWidth / 2, countries, this.continents, this.continents.group() );
-            $("#map-chart").addClass("countryWithPointer");
+            $( "#map-chart" ).addClass( "countryWithPointer" );
             dc.renderAll();
             this.updateCharts();
 
@@ -104,15 +110,15 @@ var RCInterface = Class.create( {
 
     createFunctions:function()
     {
-        var carbonBudgets = this.data.dimension( function( d )
+        var carbonBudgets = this.data.dimension( jQuery.proxy( function ( d )
         {
-            return d["Carbon budget"];
-        } );
+            return d[this.fluxColName];
+        }, this ) );
 
-        var budgetAmountGroup = carbonBudgets.group().reduceSum( function ( d )
+        var budgetAmountGroup = carbonBudgets.group().reduceSum( jQuery.proxy( function ( d )
         {
-            return d3.format( ".2f" )( d["Value"] );
-        } );
+            return this.numberFormat( d[this.valueColName] );
+        }, this ) );
 
         // Hack because this functionality is not yet available in dc.js
         var filteredFunctionAmountGroup = {
@@ -166,21 +172,22 @@ var RCInterface = Class.create( {
 
         dc.dataTable( tableId )
                 .dimension( tableD )
-                .group( function( d )
+                .group( jQuery.proxy( function( d )
         {
-            return d["Continents"];
-        } )
+            return d[this.regionColName];
+        }, this ) )
                 .size( allG.value() )
                 .columns( [
-                function ( d )
-                {
-                    return d["Carbon budget"];
-                },
-                function ( d )
-                {
-                    return d["Value"];
-                }
-        ] ).renderlet( function ( table )
+            jQuery.proxy( function( d )
+            {
+                return d[this.fluxColName];
+            }, this ),
+            jQuery.proxy( function( d )
+            {
+                return d[this.valueColName];
+            }, this )
+        ] ).
+                renderlet( function ( table )
         {
             table.selectAll( ".dc-table-group" ).classed( "info", true );
         } );
@@ -289,7 +296,7 @@ var RCInterface = Class.create( {
         this.barChartWidth = width - margin.left - margin.right;
         this.barChartHeight = height - margin.top - margin.bottom;
 
-        this.barChartx0 = d3.scale.ordinal().rangeRoundBands( [0, this.barChartWidth], 0.1 ).domain( this.continentsKeys );
+        this.barChartx0 = d3.scale.ordinal().rangeRoundBands( [0, this.barChartWidth], 0.1 ).domain( this.regionsKeys );
         this.barChartx1 = d3.scale.ordinal();
         this.barCharty = d3.scale.linear().range( [this.barChartHeight, 0] );
 
@@ -445,7 +452,7 @@ var RCInterface = Class.create( {
                 .attr( "class", "groupedBar" )
                 .attr( "transform", jQuery.proxy( function( d )
         {
-            return "translate(" + this.barChartx0( d["Carbon budget"] ) + ",0)";
+            return "translate(" + this.barChartx0( d[this.fluxColName] ) + ",0)";
         }, this ) );
 
         var groupedBarRect = groupedBar.selectAll( "rect" )
@@ -638,7 +645,7 @@ var RCInterface = Class.create( {
         // Region select button
         $( "#regionUnActive" ).on( "click", jQuery.proxy( function()
         {
-            $("#map-chart").addClass("countryWithPointer");
+            $( "#map-chart" ).addClass( "countryWithPointer" );
             this.geoChoroplethChart.setMultipleSelect( true );
             this.geoChoroplethChart.setSelect( true );
             $( "#regionUnActive" ).fadeOut();
@@ -649,9 +656,9 @@ var RCInterface = Class.create( {
 
         $( "#regionActive" ).on( "click", jQuery.proxy( function()
         {
-            $("#map-chart").removeClass("countryWithPointer");
+            $( "#map-chart" ).removeClass( "countryWithPointer" );
             this.geoChoroplethChart.setSelect( false );
-            $("#reset").click();
+            $( "#reset" ).click();
             $( "#regionUnActive" ).fadeOut();
             $( "#regionActive" ).fadeOut();
             $( "#globeActive" ).fadeIn();
@@ -660,7 +667,7 @@ var RCInterface = Class.create( {
 
         $( "#globeActive" ).on( "click", jQuery.proxy( function()
         {
-            $("#map-chart").addClass("countryWithPointer");
+            $( "#map-chart" ).addClass( "countryWithPointer" );
             this.geoChoroplethChart.setMultipleSelect( false );
             this.geoChoroplethChart.setSelect( true );
             $( "#regionUnActive" ).fadeIn();
@@ -709,25 +716,25 @@ var RCInterface = Class.create( {
     {
         var arrayByContinents = new Array();
         // First we group all values by continents
-        $.each( csv, function( i, d )
+        $.each( csv, jQuery.proxy( function( i, d )
         {
-            if( arrayByContinents[d.Continents] == undefined )
-                arrayByContinents[d.Continents] = new Object();
-            arrayByContinents[d.Continents][d["Carbon budget"]] = d["Value"];
-        } );
+            if( arrayByContinents[d[this.regionColName]] == undefined )
+                arrayByContinents[d[this.regionColName]] = new Object();
+            arrayByContinents[d[this.regionColName]][d[this.fluxColName]] = d[this.valueColName];
+        }, this ) );
 
         // Then we create a more simple array (no associative) to avoid tu use array's functions
-        this.continentsKeys = d3.keys( arrayByContinents ).filter( function( key )
+        this.regionsKeys = d3.keys( arrayByContinents ).filter( function( key )
         {
             return key;
         } );
-        this.continentsKeys.sort();
+        this.regionsKeys.sort();
 
         this.transposedData = new Array();
-        $.each( this.continentsKeys, jQuery.proxy( function( i, key )
+        $.each( this.regionsKeys, jQuery.proxy( function( i, key )
         {
             var object = arrayByContinents[key];
-            object["Carbon budget"] = key;
+            object[this.fluxColName] = key;
             this.transposedData.push( object );
         }, this ) );
     }

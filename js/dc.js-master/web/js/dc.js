@@ -5210,6 +5210,7 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
 
     var _geoJsons = [];
     var _boolMultipleSelect = false;
+    var _boolSelect = true;
 
     _chart._doRender = function () {
         _chart.resetSvg();
@@ -5324,7 +5325,15 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
         _boolMultipleSelect = boolValue;
     };
 
+    _chart.setSelect= function( boolValue )
+    {
+        _boolSelect = boolValue;
+    };
+
     _chart.onClick = function (d, layerIndex) {
+        if(!_boolSelect)
+            return;
+
         if(!_boolMultipleSelect)
         {
           dc.events.trigger(function () {

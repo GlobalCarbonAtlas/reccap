@@ -98,17 +98,13 @@ h3 {
     margin-top: 15px;
 }
 
-#regionActive, #regionUnActive {
+#regionActive, #regionUnActive, #globeActive {
     position: absolute;
-    margin-top: 44px;
-}
-
-#globeActive {
-    position: relative;
+    margin-top: 10px;
 }
 
 #mapTitle {
-    margin: 96px 0 0 20px;
+    margin: 69px 0 0 20px;
     transform: scale(1.5, 1.2); /* W3C */
     -webkit-transform: scale(2, 2); /* Safari and Chrome */
     -moz-transform: scale(1.5, 1.2); /* Firefox */
@@ -157,7 +153,7 @@ h3 {
 /*text-align: right;*/
 /*}*/
 
-g.country {
+.countryWithPointer g.country{
     cursor: pointer;
 }
 

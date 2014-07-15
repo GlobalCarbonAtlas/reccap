@@ -27,9 +27,9 @@
         <div class="col-md-6">
             <div class="row basicCell">
                 <div id="regionSelect">
-                    <div id="globeActive" class="toolButton"><img src="img/Globe_Connected.png" width="40px" title="Allow multiple selection for regions"/></div>
-                    <div id="regionUnActive" class="toolButton"><img src="img/Globe_Disconnected.png" width="40px" title="Only one selected region"/></div>
-                    <div id="regionActive" class="toolButton"><img src="img/Globe_RegionConnected.png" width="40px" title="Only one selected region"/></div>
+                    <div id="globeActive" class="toolButton"><img src="img/Globe_Connected.png" width="40px" title="See all regions"/></div>
+                    <div id="regionUnActive" class="toolButton"><img src="img/Globe_Disconnected.png" width="40px" title="See only one region"/></div>
+                    <div id="regionActive" class="toolButton"><img src="img/Globe_RegionConnected.png" width="40px" title="See multiple regions"/></div>
                     <div id="mapTitle">R<BR/>E<BR/>G<BR/>I<BR/>O<BR/>N<BR/>S</div>
                 </div>
 

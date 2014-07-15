@@ -94,6 +94,7 @@ var RCInterface = Class.create( {
             var countries = topojson.feature( world, world.objects.countries );
             var mapWidth = Math.min( this.imageHeight * 2, this.chartWidth );
             this.createChoroplethMap( "#map-chart", mapWidth, mapWidth / 2, countries, this.continents, this.continents.group() );
+            $("#map-chart").addClass("countryWithPointer");
             dc.renderAll();
             this.updateCharts();
 
@@ -521,6 +522,10 @@ var RCInterface = Class.create( {
             placement: "left",
             container:'body'} );
 
+        $( "#regionSelect .toolButton img" ).tooltip( {
+            placement: "right",
+            container:'body'} );
+
         d3.selectAll( ".country, g.row, .bar, #bar-chartSvg .groupedBar rect" ).call( this.toolTip );
         d3.selectAll( ".country, g.row, .bar, #bar-chartSvg .groupedBar rect" )
                 .on( 'mouseover', this.toolTip.show )
@@ -631,19 +636,36 @@ var RCInterface = Class.create( {
         } );
 
         // Region select button
-        $( "#regionActive" ).on( "click", jQuery.proxy( function()
+        $( "#regionUnActive" ).on( "click", jQuery.proxy( function()
         {
-            this.geoChoroplethChart.setMultipleSelect( false );
-            $( "#regionActive" ).fadeToggle();
-            $( "#regionUnActive" ).fadeToggle();
+            $("#map-chart").addClass("countryWithPointer");
+            this.geoChoroplethChart.setMultipleSelect( true );
+            this.geoChoroplethChart.setSelect( true );
+            $( "#regionUnActive" ).fadeOut();
+            $( "#regionActive" ).fadeIn();
+            $( "#globeActive" ).fadeOut();
             this.updateCharts();
         }, this ) );
 
-        $( "#regionUnActive" ).on( "click", jQuery.proxy( function()
+        $( "#regionActive" ).on( "click", jQuery.proxy( function()
         {
-            this.geoChoroplethChart.setMultipleSelect( true );
-            $( "#regionActive" ).fadeToggle();
-            $( "#regionUnActive" ).fadeToggle();
+            $("#map-chart").removeClass("countryWithPointer");
+            this.geoChoroplethChart.setSelect( false );
+            $("#reset").click();
+            $( "#regionUnActive" ).fadeOut();
+            $( "#regionActive" ).fadeOut();
+            $( "#globeActive" ).fadeIn();
+            this.updateCharts();
+        }, this ) );
+
+        $( "#globeActive" ).on( "click", jQuery.proxy( function()
+        {
+            $("#map-chart").addClass("countryWithPointer");
+            this.geoChoroplethChart.setMultipleSelect( false );
+            this.geoChoroplethChart.setSelect( true );
+            $( "#regionUnActive" ).fadeIn();
+            $( "#regionActive" ).fadeOut();
+            $( "#globeActive" ).fadeOut();
             this.updateCharts();
         }, this ) );
 

@@ -26,6 +26,7 @@ var RCInterface = Class.create( {
         this.imageHeight = 0;
         this.color = d3.scale.category20c();
         this.selectMultipleRegion = false;
+        this.orderForFlux = JSON.parse( jQuery.i18n.prop( "orderForFlux" ) );
 
         // Tooltips for charts
         this.toolTip = d3.tip()
@@ -207,34 +208,13 @@ var RCInterface = Class.create( {
                 .elasticY( true )
                 .colors( this.color )
                 .xUnits( dc.units.ordinal )
-                .x( d3.scale.ordinal() )
-//                .y( d3.scale.linear() )
+                .x( d3.scale.ordinal().domain( this.orderForFlux ) )
                 .renderHorizontalGridLines( true );
 
         this.functionChart.yAxis().tickFormat( d3.format( "s" ) );
         this.functionChart.setCallBackOnClick( jQuery.proxy( this.onClickFunctionChart, this ) );
-    },
-
-//    createRowChart: function( chartId, width, height, functions, functionsGroup )
-//    {
-//        this.rowChart = dc.rowChart( chartId )
-//                .width( width )
-//                .height( height )
-//                .margins( {top: 20, left: 10, right: 10, bottom: 20} )
-//                .transitionDuration( 750 )
-//                .dimension( functions )
-//                .group( functionsGroup )
-//                .colors( this.color )
-//                .title( function ( d )
-//        {
-//            return "";
-//        } )
-//                .elasticX( true );
-//
-//        this.rowChart.xAxis().tickFormat( d3.format( "s" ) );
-//        this.rowChart.setCallBackOnClick( jQuery.proxy( this.onClickRowChart, this ) );
 //        this.rowChart.setCallBackOnCompleteDisplay( jQuery.proxy( this.onCompleteDisplayRowChart, this ) );
-//    },
+    },
 
     onClickFunctionChart: function( element )
     {
@@ -260,7 +240,6 @@ var RCInterface = Class.create( {
             this.removeToGroupedBarChart( fluxName );
         else
         {
-//            var barChartHeight = $( "#pageWrapper" ).height() - $( ".imageFluxDiv" ).height() - 90;
             var barChartHeight = this.chartHeight - 50;
             this.createOrAddToBarChart( "#bar-chart", this.chartWidth, barChartHeight, fluxName );
         }

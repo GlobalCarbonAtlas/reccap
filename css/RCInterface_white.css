@@ -6,12 +6,11 @@
 
 body {
     font-family: "Lato", Arial;
+    font-size: 13px;
 }
 
 #pageWrapper {
     color: #2C3537;
-    font-size: 13px; /*padding: 0 10px;*/
-/*position: absolute;*/
     width: 100%;
     height: 100%;
 }
@@ -138,22 +137,64 @@ h3 {
     fill: #2C3537;
 }
 
-/* ************** MAP ************** */
-/*.mapAndFunction {*/
-/*width: 100%;*/
-/*margin-bottom:20px;*/
-/*}*/
+.dc-chart .selected path {
+    fill-opacity: 1;
+    stroke: none !important;
+    stroke-width: 0;
+}
 
+.dc-chart .axis path, .axis line {
+    fill: none;
+    shape-rendering: crispedges;
+    stroke: #DDDDDD;
+}
+
+/* DO NOT CHANGE !! STYLE USE IN "getTextWidth" */
+.dc-chart .axis text {
+    fill: #525252;
+    font: 12px "Futura", sans-serif;
+}
+
+.dc-chart .legend text {
+    fill: #525252;
+    font: 12px "Futura", sans-serif;
+}
+
+.y.axis path, .x.axis path {
+    fill: none;
+    stroke: grey;
+    shape-rendering: crispEdges;
+}
+
+.y.axis line {
+    fill: none;
+    shape-rendering: crispedges;
+    stroke: #000000;
+    stroke-opacity: 0.1;
+}
+
+.y.axis line.zero {
+    stroke-opacity: 0.5;
+}
+
+/* ************** FUNCTION BARCHART ************** */
+
+/* ************** GROUPED BARCHART ************** */
+#groupedBarChart .dc-chart {
+    margin: 15px 60px;
+}
+
+#groupedBarChart .legend rect {
+    cursor: pointer;
+}
+
+/* ************** MAP ************** */
 #mapChartAndComment {
     margin-right: 30px;
     float: right;
 }
 
-/*.mapChartComment {*/
-/*text-align: right;*/
-/*}*/
-
-.countryWithPointer g.country{
+.countryWithPointer g.country {
     cursor: pointer;
 }
 
@@ -192,12 +233,6 @@ g.oceania path {
     stroke: #aec7e8;
 }
 
-.dc-chart .selected path {
-    fill-opacity: 1;
-    stroke: none !important;
-    stroke-width: 0;
-}
-
 /* ************** FLUX IMG ************** */
 .imageFluxDiv {
     margin-bottom: 15px;
@@ -229,8 +264,7 @@ g.oceania path {
     text-shadow: 2px 2px 2px #999999;
     position: absolute;
     top: 37px;
-    right: 60px;
-    /*left: 39px;*/
+    right: 60px; /*left: 39px;*/
 }
 
 /* ************** DATA & SYNTHESIS STYLE ************** */
@@ -327,11 +361,9 @@ g.oceania path {
     text-align: right !important;
 }
 
-/*.dc-chart g.row text {*/
-/*cursor: pointer;*/
-/*fill: #525252;*/
-/*font: 12px "Futura", sans-serif;*/
-/*}*/
+.dc-data-count, .dc-data-table {
+    margin-left: 20px;
+}
 
 foreignObject {
     background-color: blue;
@@ -341,21 +373,6 @@ foreignObject {
     cursor: pointer;
     color: #525252;
     font: 12px "Futura", sans-serif;
-}
-
-.dc-chart .axis path, .axis line {
-    fill: none;
-    shape-rendering: crispedges;
-    stroke: #DDDDDD;
-}
-
-.dc-chart .axis text {
-    fill: #525252;
-    font: 12px "Futura", sans-serif;
-}
-
-.dc-data-count, .dc-data-table {
-    margin-left: 20px;
 }
 
 /* ************** SYNTHESIS ************** */
@@ -407,87 +424,6 @@ foreignObject {
 .redSynthesisText {
     color: #ea3f40;
 }
-
-/* ************** BAR-CHART ************** */
-#bar-chart .dc-chart {
-    margin: 15px 60px;
-}
-
-#bar-chart .legend rect {
-    cursor: pointer;
-}
-
-.y.axis path, .x.axis path {
-    fill: none;
-    stroke: grey;
-    shape-rendering: crispEdges;
-}
-
-.y.axis line {
-    fill: none;
-    shape-rendering: crispedges;
-    stroke: #000000;
-    stroke-opacity: 0.1;
-}
-
-.y.axis line.zero {
-    stroke-opacity: 0.5;
-}
-
-.y.axis text, .x.axis text {
-    fill: #555555;
-}
-
-/* ************** NPP ************** */
-/*#npp-chart .x.axis text, #hr-chart .x.axis text {*/
-/*font: 12px "Futura", sans-serif;*/
-/*text-anchor: end;*/
-/*}*/
-
-/*#npp-chart .axis text, #hr-chart .axis text {*/
-/*fill: #525252;*/
-/*}*/
-
-/*#npp-chart .grid-line line, #hr-chart .grid-line line {*/
-/*fill: none;*/
-/*opacity: 0.5;*/
-/*shape-rendering: crispedges;*/
-/*stroke: #CCCCCC;*/
-/*}*/
-
-/*#npp-chart .axis path, #hr-chart .axis path, .axis line {*/
-/*fill: none;*/
-/*shape-rendering: crispedges;*/
-/*stroke: #DDDDDD;*/
-/*}*/
-
-/* ************** PIE ************** */
-/*.dc-chart .pie-slice {*/
-/*cursor: pointer;*/
-/*fill: #525252;*/
-/*font-size: 12px;*/
-/*}*/
-
-/*#function-pie-chart {*/
-/*left: 17px;*/
-/*position: relative;*/
-/*top: -41px;*/
-/*}*/
-
-/*.functionsPie {*/
-/*margin-left: 100px;*/
-/*}*/
-
-/* ************** DATA ROW ************** */
-/*.functionsRow {*/
-/*float: right;*/
-/*}*/
-
-/* ************** BAR ************** */
-/*.smallBar {*/
-/*min-height: 280px;*/
-/*margin-left: 70px;*/
-/*}*/
 
 /* ************** D3-TIP ************** */
 .d3-tip {

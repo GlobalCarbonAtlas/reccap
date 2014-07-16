@@ -28,6 +28,16 @@ var RCInterface = Class.create( {
         this.selectMultipleRegion = false;
         this.orderForFlux = JSON.parse( jQuery.i18n.prop( "orderForFlux" ) );
 
+        // Areas for maps
+        this.createDynamicAreasForResponsiveMap( "#imageFlux", "#mapForImageFlux", "#dynamicAreasForImageFlux", this.chartWidth, true );
+        this.createDynamicAreasForResponsiveMap( "#imageFluxForSynthesis", "#mapForImageFluxForSynthesis", "#dynamicAreasForImageFluxForSynthesis", 1100, false );
+
+        this.initToolTips();
+        this.bindActions();
+    },
+
+    initToolTips: function()
+    {
         // Tooltips for charts
         this.toolTip = d3.tip()
                 .attr( 'class', 'd3-tip' )
@@ -50,12 +60,18 @@ var RCInterface = Class.create( {
                 return "<span class='d3-tipTitle'>" + d.key + " : </span>" + this.numberFormat( d.value );
         }, this ) );
 
+        // Tooltips for menu
+        $( ".leftTools .toolButton img" ).tooltip( {
+            placement: "bottom",
+            container:'body'} );
 
-        // Areas for maps
-        this.createDynamicAreasForResponsiveMap( "#imageFlux", "#mapForImageFlux", "#dynamicAreasForImageFlux", this.chartWidth, true );
-        this.createDynamicAreasForResponsiveMap( "#imageFluxForSynthesis", "#mapForImageFluxForSynthesis", "#dynamicAreasForImageFluxForSynthesis", 1100, false );
+        $( ".rightTools .toolButton img" ).tooltip( {
+            placement: "left",
+            container:'body'} );
 
-        this.bindActions();
+        $( "#regionSelect .toolButton img" ).tooltip( {
+            placement: "right",
+            container:'body'} );
     },
 
     initFileValuesAndCreateDCObjects:function()
@@ -201,7 +217,7 @@ var RCInterface = Class.create( {
                 .height( height )
                 .width( width )
                 .transitionDuration( 750 )
-                .margins( {top: 20, right: 80, bottom: 200, left: 50} )
+                .margins( {top: 20, right: 80, bottom: 100, left: 50} )
                 .dimension( dimension )
                 .group( group )
                 .brushOn( false )
@@ -288,6 +304,7 @@ var RCInterface = Class.create( {
                 .tickFormat( d3.format( ".2s" ) )
                 .tickSize( -this.groupedBarChartWidth, 0 );
 
+        $( containerId ).addClass( "dc-chart" );
         // BarChart
         this.groupedBarChartsvg = d3.select( containerId ).append( "svg" )
                 .attr( "id", "groupedBarChartSvg" )
@@ -396,7 +413,6 @@ var RCInterface = Class.create( {
 
         // When remove bar
         legend.select( "text" )
-                .style( "fill", "#2C3537" )
                 .text( function( d )
         {
             return jQuery.i18n.prop( d.name ).replace( "[", "" ).replace( "]", "" );
@@ -496,30 +512,27 @@ var RCInterface = Class.create( {
     /* ******************************************************************** */
     updateCharts: function()
     {
-        // Tooltips for menu
-        $( ".leftTools .toolButton img" ).tooltip( {
-            placement: "bottom",
-            container:'body'} );
-
-        $( ".rightTools .toolButton img" ).tooltip( {
-            placement: "left",
-            container:'body'} );
-
-        $( "#regionSelect .toolButton img" ).tooltip( {
-            placement: "right",
-            container:'body'} );
-
+        // Tooltips
         d3.selectAll( ".country, g.row, .bar, #groupedBarChartSvg .groupedBar rect" ).call( this.toolTip );
         d3.selectAll( ".country, g.row, .bar, #groupedBarChartSvg .groupedBar rect" )
                 .on( 'mouseover', this.toolTip.show )
                 .on( 'mouseout', this.toolTip.hide );
 
-
-        // Bar chart : rotate the x Axis labels
-        d3.selectAll( "g.x g text" )
+        // Grouped Bar chart : rotate the x Axis labels
+        d3.selectAll( "#groupedBarChartSvg g.x g text" )
                 .attr( "class", "campusLabel" )
                 .style( "text-anchor", "end" )
                 .attr( "transform", "translate(-10,0)rotate(315)" );
+
+        // Function Bar chart : rotate the x Axis labels
+        d3.selectAll( "#functionBarChart g.x g text" )
+                .attr( "class", "campusLabel" )
+                .style( "text-anchor", "end" )
+                .attr( "transform", function( d )
+        {
+            var textLength = getTextWidth( d, ".dc-chart .axis text", "RCInterface_white.css" ) + 3;
+            return "translate(-10,-" + textLength + ")rotate(270)";
+        } );
     },
 
 

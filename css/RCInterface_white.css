@@ -260,8 +260,8 @@ g.east_asia path {
 }
 
 g.australia path {
-    fill: grey;
-    stroke: grey;
+    fill: #73a9dc;
+    stroke: #73a9dc;
 }
 
 g.asia path, g.oceania path, g.antarctica path {

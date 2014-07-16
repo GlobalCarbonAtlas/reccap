@@ -122,7 +122,7 @@ var RCInterface = Class.create( {
             this.updateCharts();
 
             // Home with selected flux
-            $( "#" + jQuery.i18n.prop( "selectedFluxForHome" ) ).click();
+            $( "#" + jQuery.i18n.prop( "selectedFluxForHomePage" ) ).click();
         }, this ) );
     },
 
@@ -149,7 +149,7 @@ var RCInterface = Class.create( {
             }
         };
 
-        this.createBarChart( "#functionBarChart", this.chartWidth, this.chartHeight, carbonBudgets, budgetAmountGroup );
+        this.createFunctionBarChart( "#functionBarChart", this.chartWidth, this.chartHeight, carbonBudgets, budgetAmountGroup );
     },
 
 
@@ -211,7 +211,7 @@ var RCInterface = Class.create( {
         } );
     },
 
-    createBarChart: function( chartId, width, height, dimension, group )
+    createFunctionBarChart: function( chartId, width, height, dimension, group )
     {
         this.functionChart = dc.barChart( chartId )
                 .height( height )
@@ -513,26 +513,31 @@ var RCInterface = Class.create( {
     updateCharts: function()
     {
         // Tooltips
-        d3.selectAll( ".country, g.row, .bar, #groupedBarChartSvg .groupedBar rect" ).call( this.toolTip );
-        d3.selectAll( ".country, g.row, .bar, #groupedBarChartSvg .groupedBar rect" )
+        d3.selectAll( ".country, #functionBarChart .bar, #groupedBarChart rect" ).call( this.toolTip );
+        d3.selectAll( ".country, #functionBarChart .bar, #groupedBarChart rect" )
                 .on( 'mouseover', this.toolTip.show )
                 .on( 'mouseout', this.toolTip.hide );
 
         // Grouped Bar chart : rotate the x Axis labels
         d3.selectAll( "#groupedBarChartSvg g.x g text" )
-                .attr( "class", "campusLabel" )
                 .style( "text-anchor", "end" )
                 .attr( "transform", "translate(-10,0)rotate(315)" );
 
         // Function Bar chart : rotate the x Axis labels
         d3.selectAll( "#functionBarChart g.x g text" )
-                .attr( "class", "campusLabel" )
                 .style( "text-anchor", "end" )
-                .attr( "transform", function( d )
+                .attr( "transform",
+                function( d )
+                {
+                    var textLength = getTextWidth( d, ".dc-chart .axis text", "RCInterface_white.css" ) + 3;
+                    return "translate(-10,-" + textLength + ")rotate(270)";
+                } )
+                .on( 'click', jQuery.proxy( function( d )
         {
-            var textLength = getTextWidth( d, ".dc-chart .axis text", "RCInterface_white.css" ) + 3;
-            return "translate(-10,-" + textLength + ")rotate(270)";
-        } );
+            // Warning : need to desactivate "  pointer-events: auto;" in css -> .dc-chart g.axis text
+            var dynamicAreaDivId = this.getI18nPropertiesKeyFromValue( d );
+            $( "#" + dynamicAreaDivId ).click();
+        }, this ) );
     },
 
 

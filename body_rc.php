@@ -30,7 +30,7 @@
                     <div id="globeActive" class="toolButton"><img src="img/Globe_Connected.png" width="40px" title="See all regions"/></div>
                     <div id="regionUnActive" class="toolButton"><img src="img/Globe_Disconnected.png" width="40px" title="See only one region"/></div>
                     <div id="regionActive" class="toolButton"><img src="img/Globe_RegionConnected.png" width="40px" title="See multiple regions"/></div>
-<!--                    <div id="mapTitle">R<BR/>E<BR/>G<BR/>I<BR/>O<BR/>N<BR/>S</div>-->
+                    <!--                    <div id="mapTitle">R<BR/>E<BR/>G<BR/>I<BR/>O<BR/>N<BR/>S</div>-->
                 </div>
 
                 <div id="mapChartAndComment">
@@ -157,22 +157,23 @@
     </div>
 
     <canvas id="svg-canvas" hidden="hidden"></canvas>
+</div>
 
 
-    <script type="text/javascript">
-        $( document ).ready( function ()
-        {
-            // Load properties file
-            jQuery.i18n.properties( {
-                name:'flux',
-                path:'',
-                language:null,
-                mode:'both'
-            } );
-
-            testBrowser();
-
-            new RCInterface();
+<script type="text/javascript">
+    $( document ).ready( function ()
+    {
+        // Load properties file
+        jQuery.i18n.properties( {
+            name:'flux',
+            path:'',
+            language:null,
+            mode:'both'
         } );
 
-    </script>
+        testBrowser();
+
+        new RCInterface();
+    } );
+
+</script>

@@ -178,6 +178,11 @@ h3 {
 }
 
 /* ************** FUNCTION BARCHART ************** */
+/* To allow click on axis text */
+#functionBarChart g.axis text {
+    pointer-events: auto;
+    cursor: pointer;
+}
 
 /* ************** GROUPED BARCHART ************** */
 #groupedBarChart .dc-chart {

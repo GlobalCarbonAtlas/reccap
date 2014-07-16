@@ -760,7 +760,7 @@
                     "name":"Brunei",
                     "type":"country",
                     "capital":"Bandar Seri Begawan",
-                    "continent":"South East Asia"
+                    "continent":"SouthEast Asia"
                 }
             },
             {
@@ -1590,7 +1590,7 @@
                     "type":"country",
                     "capital":"Jakarta",
                     "borders":"Surrounding Countries:  Malaysia, Papua New Guinea, East Timor",
-                    "continent":"South East Asia"
+                    "continent":"SouthEast Asia"
                 }
             },
             {
@@ -1798,7 +1798,7 @@
                     "type":"country",
                     "capital":"Phnom Penh",
                     "borders":"Surrounding Countries:  Laos, Thailand, Vietnam",
-                    "continent":"South East Asia"
+                    "continent":"SouthEast Asia"
                 }
             },
             {
@@ -1852,7 +1852,7 @@
                     "type":"country",
                     "capital":"Vientiane",
                     "borders":"Surrounding Countries:  China, Cambodia, Burma, Thailand, Vietnam",
-                    "continent":"South East Asia"
+                    "continent":"SouthEast Asia"
                 }
             },
             {
@@ -2053,7 +2053,7 @@
                     "type":"country",
                     "capital":"Rangoon",
                     "borders":"Surrounding Countries:  Bangladesh, China, India, Laos, Thailand",
-                    "continent":"South East Asia"
+                    "continent":"SouthEast Asia"
                 }
             },
             {
@@ -2141,7 +2141,7 @@
                     "type":"country",
                     "capital":"Kuala Lumpur",
                     "borders":"Surrounding Countries:  Brunei, Indonesia, Thailand",
-                    "continent":"South East Asia"
+                    "continent":"SouthEast Asia"
                 }
             },
             {
@@ -2373,7 +2373,7 @@
                     "type":"country",
                     "capital":"Manila",
                     "borders":"No Surrounding Countries",
-                    "continent":"South East Asia"
+                    "continent":"SouthEast Asia"
                 }
             },
             {
@@ -2849,7 +2849,7 @@
                     "type":"country",
                     "capital":"Bangkok",
                     "borders":"Surrounding Countries:  Cambodia, Laos, Burma, Malaysia",
-                    "continent":"South East Asia"
+                    "continent":"SouthEast Asia"
                 }
             },
             {
@@ -2890,7 +2890,7 @@
                     "name":"East Timor",
                     "type":"country",
                     "capital":"Dili",
-                    "continent":"South East Asia"
+                    "continent":"SouthEast Asia"
                 }
             },
             {
@@ -3090,7 +3090,7 @@
                     "type":"country",
                     "capital":"Hanoi",
                     "borders":"Surrounding Countries:  China, Cambodia, Laos",
-                    "continent":"South East Asia"
+                    "continent":"SouthEast Asia"
                 }
             },
             {

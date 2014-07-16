@@ -545,7 +545,7 @@
                     "type":"country",
                     "capital":"Canberra",
                     "borders":"No Surrounding Countries",
-                    "continent":"Oceania"
+                    "continent":"Australia"
                 }
             },
             {
@@ -646,7 +646,7 @@
                     "type":"country",
                     "capital":"Dhaka",
                     "borders":"Surrounding Countries:  India, Burma",
-                    "continent":"Asia"
+                    "continent":"South Asia"
                 }
             },
             {
@@ -760,7 +760,7 @@
                     "name":"Brunei",
                     "type":"country",
                     "capital":"Bandar Seri Begawan",
-                    "continent":"Asia"
+                    "continent":"South East Asia"
                 }
             },
             {
@@ -773,7 +773,7 @@
                     "name":"Bhutan",
                     "type":"country",
                     "capital":"Thimphu",
-                    "continent":"Asia"
+                    "continent":"South Asia"
                 }
             },
             {
@@ -955,7 +955,7 @@
                     "type":"country",
                     "capital":"Beijing",
                     "borders":"Surrounding Countries:  Afghanistan, Bhutan, India, Kazakhstan, Kyrgyzstan, Laos, Burma, Mongolia, Nepal, Pakistan, North Korea, Russia, Tajikistan, Vietnam",
-                    "continent":"Asia"
+                    "continent":"East Asia"
                 }
             },
             {
@@ -1590,7 +1590,7 @@
                     "type":"country",
                     "capital":"Jakarta",
                     "borders":"Surrounding Countries:  Malaysia, Papua New Guinea, East Timor",
-                    "continent":"Asia"
+                    "continent":"South East Asia"
                 }
             },
             {
@@ -1604,7 +1604,7 @@
                     "type":"country",
                     "capital":"New Delhi",
                     "borders":"Surrounding Countries:  Bangladesh, Bhutan, China, Burma, Nepal, Pakistan",
-                    "continent":"Asia"
+                    "continent":"South Asia"
                 }
             },
             {
@@ -1742,7 +1742,7 @@
                     "type":"country",
                     "capital":"Tokyo",
                     "borders":"No Surrounding Countries",
-                    "continent":"Asia"
+                    "continent":"East Asia"
                 }
             },
             {
@@ -1798,7 +1798,7 @@
                     "type":"country",
                     "capital":"Phnom Penh",
                     "borders":"Surrounding Countries:  Laos, Thailand, Vietnam",
-                    "continent":"Asia"
+                    "continent":"South East Asia"
                 }
             },
             {
@@ -1812,7 +1812,7 @@
                     "type":"country",
                     "capital":"Seoul",
                     "borders":"Surrounding Countries:  North Korea",
-                    "continent":"Asia"
+                    "continent":"East Asia"
                 }
             },
             {
@@ -1852,7 +1852,7 @@
                     "type":"country",
                     "capital":"Vientiane",
                     "borders":"Surrounding Countries:  China, Cambodia, Burma, Thailand, Vietnam",
-                    "continent":"Asia"
+                    "continent":"South East Asia"
                 }
             },
             {
@@ -2053,7 +2053,7 @@
                     "type":"country",
                     "capital":"Rangoon",
                     "borders":"Surrounding Countries:  Bangladesh, China, India, Laos, Thailand",
-                    "continent":"Asia"
+                    "continent":"South East Asia"
                 }
             },
             {
@@ -2080,7 +2080,7 @@
                     "type":"country",
                     "capital":"Ulaanbaatar",
                     "borders":"Surrounding Countries:  China, Russia",
-                    "continent":"Asia"
+                    "continent":"East Asia"
                 }
             },
             {
@@ -2141,7 +2141,7 @@
                     "type":"country",
                     "capital":"Kuala Lumpur",
                     "borders":"Surrounding Countries:  Brunei, Indonesia, Thailand",
-                    "continent":"Asia"
+                    "continent":"South East Asia"
                 }
             },
             {
@@ -2260,7 +2260,7 @@
                     "type":"country",
                     "capital":"Kathmandu",
                     "borders":"Surrounding Countries:  China, India",
-                    "continent":"Asia"
+                    "continent":"South Asia"
                 }
             },
             {
@@ -2312,7 +2312,7 @@
                     "type":"country",
                     "capital":"Islamabad",
                     "borders":"Surrounding Countries:  Afghanistan, China, India, Iran",
-                    "continent":"Asia"
+                    "continent":"South Asia"
                 }
             },
             {
@@ -2373,7 +2373,7 @@
                     "type":"country",
                     "capital":"Manila",
                     "borders":"No Surrounding Countries",
-                    "continent":"Asia"
+                    "continent":"South East Asia"
                 }
             },
             {
@@ -2437,7 +2437,7 @@
                     "type":"country",
                     "capital":"Pyongyang",
                     "borders":"Surrounding Countries:  China, South Korea, Russia",
-                    "continent":"Asia"
+                    "continent":"East Asia"
                 }
             },
             {
@@ -2555,7 +2555,7 @@
                     "type":"country",
                     "capital":"Moscow",
                     "borders":"Surrounding Countries:  Azerbaijan, Belarus, China, Estonia, Finland, Georgia, Kazakhstan, Lithuania, Latvia, Mongolia, Norway, Poland, North Korea, Ukraine",
-                    "continent":"Europe"
+                    "continent":"Russia"
                 }
             },
             {
@@ -2849,7 +2849,7 @@
                     "type":"country",
                     "capital":"Bangkok",
                     "borders":"Surrounding Countries:  Cambodia, Laos, Burma, Malaysia",
-                    "continent":"Asia"
+                    "continent":"South East Asia"
                 }
             },
             {
@@ -2890,7 +2890,7 @@
                     "name":"East Timor",
                     "type":"country",
                     "capital":"Dili",
-                    "continent":"Asia"
+                    "continent":"South East Asia"
                 }
             },
             {
@@ -3090,7 +3090,7 @@
                     "type":"country",
                     "capital":"Hanoi",
                     "borders":"Surrounding Countries:  China, Cambodia, Laos",
-                    "continent":"Asia"
+                    "continent":"South East Asia"
                 }
             },
             {

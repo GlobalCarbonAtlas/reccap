@@ -203,40 +203,56 @@ h3 {
     cursor: pointer;
 }
 
-g.asia path {
-    fill: #ffbb78;
-    stroke: #ffbb78;
-}
-
-g.africa path {
-    fill: #f4d362;
-    stroke: #f4d362;
-}
-
-g.europe path {
-    fill: #f4e8c3;
-    stroke: #f4e8c3;
-}
-
 g.north_america path {
     fill: #97cc31;
     stroke: #97cc31;
 }
 
 g.south_america path {
+    fill: #d4eaa6;
+    stroke: #d4eaa6;
+}
+
+g.africa path {
     fill: #cc9866;
     stroke: #cc9866;
 }
 
-g.antarctica path {
+g.europe path {
     fill: #d3ecfc;
     stroke: #d3ecfc;
 }
 
-g.oceania path {
+.russia path{
     fill: #aec7e8;
     stroke: #aec7e8;
 }
+
+g.south_asia path {
+    fill: #fd8d3c;
+    stroke: #fd8d3c;
+}
+
+g.south_east_asia path {
+    fill: #f4d362;
+    stroke: #f4d362;
+}
+
+g.east_asia path {
+    fill: #ffbb78;
+    stroke: #ffbb78;
+}
+
+g.australia path {
+    fill: grey;
+    stroke: grey;
+}
+
+g.asia path, g.oceania path, g.antarctica path {
+    fill: #f4e8c3;
+    stroke: #f4e8c3;
+}
+
 
 /* ************** FLUX IMG ************** */
 .imageFluxDiv {

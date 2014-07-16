@@ -513,8 +513,10 @@ var RCInterface = Class.create( {
     updateCharts: function()
     {
         // Tooltips
-        d3.selectAll( ".country, #functionBarChart .bar, #groupedBarChart rect" ).call( this.toolTip );
-        d3.selectAll( ".country, #functionBarChart .bar, #groupedBarChart rect" )
+//        d3.selectAll( ".country, #functionBarChart .bar, #functionBarChart text, #groupedBarChart rect" ).call( this.toolTip );
+//        d3.selectAll( ".country, #functionBarChart .bar, #functionBarChart text, #groupedBarChart rect" )
+        d3.selectAll( ".country, #functionBarChart .bar, #groupedBarChart .groupedBar rect" ).call( this.toolTip );
+        d3.selectAll( ".country, #functionBarChart .bar, #groupedBarChart .groupedBar rect" )
                 .on( 'mouseover', this.toolTip.show )
                 .on( 'mouseout', this.toolTip.hide );
 
@@ -622,6 +624,8 @@ var RCInterface = Class.create( {
             dc.filterAll();
             dc.renderAll();
             this.updateCharts();
+
+            $( "#" + jQuery.i18n.prop( "selectedFluxForHomePage" ) ).click();
         }, this ) );
 
         // Export button
@@ -652,7 +656,12 @@ var RCInterface = Class.create( {
         {
             $( "#mapChart" ).removeClass( "countryWithPointer" );
             this.geoChoroplethChart.setSelect( false );
-            $( "#reset" ).click();
+
+            dc.filterAll();
+            dc.renderAll();
+            this.displayedVariables = [];
+            $( "#dynamicAreasForImageFlux .dynamicArea" ).removeClass( "selected" );
+            $( "#dynamicAreasForImageFlux .dynamicArea" ).click();
             $( "#regionUnActive" ).fadeOut();
             $( "#regionActive" ).fadeOut();
             $( "#globeActive" ).fadeIn();

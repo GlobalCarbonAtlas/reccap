@@ -11,16 +11,16 @@ North America,Soil C export,193,,lateral,Mass balance (ignoring burial -SOCCR p 
 North America,Freshwater outgasing,158,,source,Turner et al. - Butmann and Raymond (US only) = 97
 North America,River export to ocean,35,,lateral,SOCCR Tab 3.2 p33
 South Asia,Fossil fuel CO2 emissions,444,,source,Patra et al.
-South Asia,NEE,"82,5",,source,Patra et al.
+South Asia,NEE,82.5,,source,Patra et al.
 South Asia,Land use change,14,,sink,Patra et al.
 South Asia,NPP,2213,,sink,Patra et al.
 South Asia,Soil Heterotrophic Respiration,1993,,source,Patra et al.
 South Asia,Fire,44,,source (neutral - most of these fires are recycled by agricutural activities),Patra et al.
-South Asia,Wood product decay,"31,5",,source,"Peters (7,6 - 0,8 +2,8) x decay function from Earles"
+South Asia,Wood product decay,31.5,,source,"Peters (7,6 - 0,8 +2,8) x decay function from Earles"
 South Asia,Crop product consumption,213,,source,Peters
 South Asia,Soil C export,,,lateral,mass balance (ignoring burial)
 South Asia,Freshwater outgasing,,,source,Raymond et al.
-South Asia,River export to ocean,"54,57",,lateral,Geomap (COSCAT 1340 + 1339 + 1338 +1336 + 1337) ; note Pep proposed 42
+South Asia,River export to ocean,54.57,,lateral,Geomap (COSCAT 1340 + 1339 + 1338 +1336 + 1337) ; note Pep proposed 42
 East Asia,Fossil fuel CO2 emissions,,,,Piao et al.
 East Asia,NEE,,,,Piao et al.
 East Asia,Land use change,,,,Piao et al.
@@ -28,35 +28,35 @@ East Asia,NPP,,,,Piao et al.
 East Asia,Soil Heterotrophic Respiration,,,,Piao et al.
 East Asia,Fire,,,,Piao et al.
 East Asia,Wood product decay,128,,,"Peters (25,5 - 8,5+25,2 ) x decay function from Earles"
-East Asia,Crop product consumption,"374,9",,,Peters
+East Asia,Crop product consumption,374.9,,,Peters
 East Asia,Soil C export,,,lateral,mass balance (ignoring burial)
 East Asia,Freshwater outgasing,,,source,Raymond et al.
-East Asia,River export to ocean,"25,679",,lateral,geomap (MARCAT 39 ) ; note Pep proposed 119
+East Asia,River export to ocean,25.679,,lateral,geomap (MARCAT 39 ) ; note Pep proposed 119
 SouthEast Asia,Fossil fuel CO2 emissions,254,,source,
-SouthEast Asia,NEE,"261,8",,source,LUC-NPP+RH+Fire+ Wood product decay+ Crop product consumption+Freshwater outgassing
+SouthEast Asia,NEE,261.8,,source,LUC-NPP+RH+Fire+ Wood product decay+ Crop product consumption+Freshwater outgassing
 SouthEast Asia,Land use change,194,,source,
 SouthEast Asia,NPP,5125,,sink,
 SouthEast Asia,Soil Heterotrophic Respiration,4775,,source,
 SouthEast Asia,Fire,265,,source,
-SouthEast Asia,Wood product decay,"30,8",,source,"Peters (22,1 - 14,5 +1,8 ) x decay function from Earles"
-SouthEast Asia,Crop product consumption,"152,8",,source,Peters
+SouthEast Asia,Wood product decay,30.8,,source,"Peters (22,1 - 14,5 +1,8 ) x decay function from Earles"
+SouthEast Asia,Crop product consumption,152.8,,source,Peters
 SouthEast Asia,Soil C export,,,,
 SouthEast Asia,Freshwater outgasing,,,source,
-SouthEast Asia,River export to ocean,"38,054",,lateral,geomap COSCAT 1329+1328+1331
+SouthEast Asia,River export to ocean,38.054,,lateral,geomap COSCAT 1329+1328+1331
 Russia,Fossil fuel CO2 emissions,454,,source,Dolman
-Russia,NEE,"-791,2",,sink,LUC-NPP+RH+Fire [+ DEC + insect + consumption plant product in tab 2]+Freshwater outgassing
+Russia,NEE,-791.2,,sink,LUC-NPP+RH+Fire [+ DEC + insect + consumption plant product in tab 2]+Freshwater outgassing
 Russia,Land use change,34,,sink,Dolman (agricultural abandonment)
 Russia,NPP,4763,,sink,iiasa LEA -Dolman
 Russia,Soil Heterotrophic Respiration,3463,,source,iiasa LEA -Dolman
 Russia,Fire,97,,source,iiasa LEA -Dolman ; note additional Disturbance (tab 2) 207 and insect (tab 2) 51
 Russia,Wood product decay,5,,source,"shvidenko Pers. Com, 2010 "
 Russia,Crop product consumption,142,,source,Dolman table 2 ; harvested plant produc minus wood product (check if this contains grazed and forage grass harvest)
-Russia,Soil C export,"68,2",,lateral,mass balance from Dolman (assuming no burial
-Russia,Freshwater outgasing,"11,8",,source,Dolman table 2
-Russia,River export to ocean,"56,4",,lateral,Dolman
+Russia,Soil C export,68.2,,lateral,mass balance from Dolman (assuming no burial
+Russia,Freshwater outgasing,11.8,,source,Dolman table 2
+Russia,River export to ocean,56.4,,lateral,Dolman
 Europe,Fossil fuel CO2 emissions,1140,,source,schulze et al.
-Europe,NEE,"271,5",,sink,LUC-NPP+RH+Fire+ Wood product decay+ Crop product consumption+Freshwater outgassing
-Europe,Land use change,"1,5",,source,schulze et al.
+Europe,NEE,271.5,,sink,LUC-NPP+RH+Fire+ Wood product decay+ Crop product consumption+Freshwater outgassing
+Europe,Land use change,1.5,,source,schulze et al.
 Europe,NPP,2113,,sink,sum of all land use Schulze et al. GCB
 Europe,Soil Heterotrophic Respiration,1367,,source,sum of all land use Schulze et al. GCB
 Europe,Fire,4,,source,luyssaert
@@ -72,10 +72,10 @@ South America,NPP,,,,
 South America,Soil Heterotrophic Respiration,,,,
 South America,Fire,,,,
 South America,Wood product decay,97,,source,"Peters (37,9 - 9,3 +1) x decay function from Earles"
-South America,Crop product consumption,"96,2",,source,Peters
+South America,Crop product consumption,96.2,,source,Peters
 South America,Soil C export,,,,
 South America,Freshwater outgasing,,,source,
-South America,River export to ocean,"83,278",,lateral,geomap (MARCATS 7 )
+South America,River export to ocean,83.278,,lateral,geomap (MARCATS 7 )
 Australia,Fossil fuel CO2 emissions,95,,source,Haverd et al.
 Australia,NEE,47,,sink,LUC-NPP+RH+Fire+ Wood product decay+[ livestock consumption 2] + Crop product consumption+Freshwater outgassing
 Australia,Land use change,18,,source,Haverd et al.
@@ -87,14 +87,14 @@ Australia,Crop product consumption,9,,source,Haverd et al.
 Australia,Soil C export,,,lateral,mass balance (ignoring burial)
 Australia,Freshwater outgasing,,,source,Raymond et al.
 Australia,River export to ocean,2,,lateral,Haverd et al.
-Africa,Fossil fuel CO2 emissions,"340,8781019907",,source,Valentini table 1
-Africa,NEE,"520,81",,source,LUC-NPP+RH+Fire+ Wood product decay+ Crop product consumption+Freshwater outgassing
+Africa,Fossil fuel CO2 emissions,340.8781019907,,source,Valentini table 1
+Africa,NEE,520.81,,source,LUC-NPP+RH+Fire+ Wood product decay+ Crop product consumption+Freshwater outgassing
 Africa,Land use change,510,,source,Valentini table 1 includes degradation
 Africa,NPP,14300,,sink,valentini table 11
 Africa,Soil Heterotrophic Respiration,12000,,source,valentini table 11
 Africa,Fire,1031,,source (close to neutral for net - most of these fires are savannas fires - regrowth included in NPP),valentini table 11
-Africa,Wood product decay,"56,09",,source,"Peters (18,6 -4,1 +2,6) x decay function from Earles"
-Africa,Crop product consumption,"182,1",,source,Peters
+Africa,Wood product decay,56.09,,source,"Peters (18,6 -4,1 +2,6) x decay function from Earles"
+Africa,Crop product consumption,182.1,,source,Peters
 Africa,Soil C export,,,lateral,mass balance (ignoring burial)
 Africa,Freshwater outgasing,,,source,Raymond et al.
 Africa,River export to ocean,63,,lateral,valentini table 11

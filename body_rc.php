@@ -27,10 +27,10 @@
         <div class="col-md-6">
             <div class="row basicCell">
                 <div id="regionSelect">
-                    <div id="globeActive" class="toolButton"><img src="img/Globe_Connected.png" width="40px" title="See all regions"/></div>
-                    <div id="regionUnActive" class="toolButton"><img src="img/Globe_Disconnected.png" width="40px" title="See only one region"/></div>
-                    <div id="regionActive" class="toolButton"><img src="img/Globe_RegionConnected.png" width="40px" title="See multiple regions"/></div>
-                    <!--                    <div id="mapTitle">R<BR/>E<BR/>G<BR/>I<BR/>O<BR/>N<BR/>S</div>-->
+                    <div id="globeActive" class="toolButton"><img src="img/Globe_Connected.png" width="35px" title="See all regions"/></div>
+                    <div id="regionUnActive" class="toolButton"><img src="img/Globe_Disconnected.png" width="35px" title="See only one region"/></div>
+                    <div id="regionActive" class="toolButton"><img src="img/Globe_RegionConnected.png" width="35px" title="See multiple regions"/></div>
+                    <div class="mapTitle"><div id="mapTitle">REGIONS</div></div>
                 </div>
 
                 <div id="mapChartAndComment">
@@ -41,6 +41,7 @@
 
             <div class="row basicCell">
                 <div id="functionBarChart"></div>
+                <div id="resetFunctionBarChart">Reset selection</div>
             </div>
         </div>
 

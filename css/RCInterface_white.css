@@ -102,16 +102,24 @@ h3 {
     margin-top: 10px;
 }
 
-#mapTitle {
-    margin: 69px 0 0 20px;
-    transform: scale(1.5, 1.2); /* W3C */
-    -webkit-transform: scale(2, 2); /* Safari and Chrome */
-    -moz-transform: scale(1.5, 1.2); /* Firefox */
-    -ms-transform: scale(2, 2); /* IE 9 */
-    -o-transform: scale(2, 2); /* Opera */
-    color: #CCCCCC;
-    text-shadow: 2px 2px 2px #DDDDDD;
+.mapTitle {
+    margin: 115px 0 0 -13px;
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    transform: rotate(270deg);
+    color: #DDDDDD;
+    text-shadow: 2px 2px 2px #EEEEEE;
     font-weight: bold;
+}
+
+#mapTitle {
+    transform: scale(2, 3); /* W3C */
+    -webkit-transform: scale(2, 3); /* Safari and Chrome */
+    -moz-transform: scale(2, 3); /* Firefox */
+    -ms-transform: scale(2, 3); /* IE 9 */
+    -o-transform: scale(2, 3); /* Opera */
 }
 
 #data, #synthesis img {
@@ -184,6 +192,14 @@ h3 {
     cursor: pointer;
 }
 
+#resetFunctionBarChart {
+    cursor: pointer;
+    float: right;
+    margin: -50px 50px 0 0;
+    fill: #525252;
+    font: 10px "Futura", sans-serif;
+}
+
 /* ************** GROUPED BARCHART ************** */
 #groupedBarChart .dc-chart {
     margin: 15px 60px;
@@ -223,7 +239,7 @@ g.europe path {
     stroke: #d3ecfc;
 }
 
-.russia path{
+.russia path {
     fill: #aec7e8;
     stroke: #aec7e8;
 }
@@ -251,8 +267,8 @@ g.australia path {
 g.asia path, g.oceania path, g.antarctica path {
     fill: #f4e8c3;
     stroke: #f4e8c3;
+    pointer-events: none;
 }
-
 
 /* ************** FLUX IMG ************** */
 .imageFluxDiv {
@@ -276,6 +292,10 @@ g.asia path, g.oceania path, g.antarctica path {
 
 #dynamicAreasForImageFlux .dynamicArea.selected {
     border: 1px dashed #c7c7c7;
+}
+
+#dynamicAreasForImageFlux #SCE.selected {
+    border: 1px dashed #f5f5f5;
 }
 
 .imageFluxTitle {

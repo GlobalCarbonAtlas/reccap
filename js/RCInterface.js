@@ -24,6 +24,7 @@ var RCInterface = Class.create( {
         this.chartHeight = 0;
         this.chartWidth = $( "#groupedBarChart" ).width();
         this.imageHeight = 0;
+        this.barCharMargin = {top: 80, right: 80, bottom: 75, left: 40};
         this.color = d3.scale.category20c();
         this.selectMultipleRegion = false;
         this.orderForFlux = JSON.parse( jQuery.i18n.prop( "orderForFlux" ) );
@@ -121,6 +122,10 @@ var RCInterface = Class.create( {
             dc.renderAll();
             this.updateCharts();
 
+            // Position of "regionSelect" div
+            var marginLeft = (this.chartWidth - $( "#mapChart" ).width() - $( "#globeActive" ).width()) / 2;
+            $( "#regionSelect" ).css( "margin-left", marginLeft - 30 );
+
             // Home with selected flux
             $( "#" + jQuery.i18n.prop( "selectedFluxForHomePage" ) ).click();
         }, this ) );
@@ -217,7 +222,7 @@ var RCInterface = Class.create( {
                 .height( height )
                 .width( width )
                 .transitionDuration( 750 )
-                .margins( {top: 20, right: 80, bottom: 100, left: 50} )
+                .margins( this.barCharMargin )
                 .dimension( dimension )
                 .group( group )
                 .brushOn( false )
@@ -255,10 +260,7 @@ var RCInterface = Class.create( {
         if( isAlreadyAChart )
             this.removeToGroupedBarChart( fluxName );
         else
-        {
-            var barChartHeight = this.chartHeight - 50;
-            this.createOrAddToBarChart( "#groupedBarChart", this.chartWidth, barChartHeight, fluxName );
-        }
+            this.createOrAddToBarChart( "#groupedBarChart", this.chartWidth, this.chartHeight, fluxName );
     },
 
     /**
@@ -288,7 +290,7 @@ var RCInterface = Class.create( {
      */
     createGroupedBarChart: function( containerId, width, height )
     {
-        var margin = {top: 20, right: 20, bottom: 80, left: 40};
+        var margin = {top: this.barCharMargin.top, right: 20, bottom: this.barCharMargin.bottom, left: this.barCharMargin.left};
         this.groupedBarChartWidth = width - margin.left - margin.right;
         this.groupedBarChartHeight = height - margin.top - margin.bottom;
 
@@ -568,7 +570,7 @@ var RCInterface = Class.create( {
                 jQuery.proxy( function()
                 {
                     this.createAreas( mapId, activeClick, dynamicAreasId );
-                    this.chartHeight = $( "#pageWrapper" ).height() - $( "#imageFlux" ).height() - $( ".container-fluid" ).height();
+                    this.chartHeight = $( "#pageWrapper" ).height() - $( "#imageFlux" ).height() - $( ".container-fluid" ).height() - this.barCharMargin.bottom;
                     this.imageHeight = $( "#imageFlux" ).height();
                     if( activeClick )
                         this.initFileValuesAndCreateDCObjects();
@@ -636,6 +638,11 @@ var RCInterface = Class.create( {
 
         // Help button
         $( "#help" ).on( "click", function()
+        {
+            alert( "work in progress" );
+        } );
+
+        $( "#resetFunctionBarChart" ).on( "click", function()
         {
             alert( "work in progress" );
         } );

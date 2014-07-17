@@ -1633,6 +1633,12 @@ dc.coordinateGridMixin = function (_chart) {
 
     var _useRightYAxis = false;
 
+    /** CHANGE VMIPSL **/
+    _chart.setUseRightYAxis = function ( boolValue )
+    {
+        _useRightYAxis = boolValue;
+    };
+
     _chart.rescale = function () {
         _unitCount = undefined;
     };

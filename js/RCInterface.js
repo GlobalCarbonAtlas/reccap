@@ -134,80 +134,32 @@ var RCInterface = Class.create( {
         }, this ) );
     },
 
-//    http://blog.rusty.io/2012/09/17/crossfilter-tutorial/
+    /**
+     * http://blog.rusty.io/2012/09/17/crossfilter-tutorial/
+     * "... when you filter on a dimension, and then roll-up using said dimension, Crossfilter intentionally ignores any filter an said dimension....
+     * ...The workaround is to create another dimension on the same field, and filter on that:"
+     */
     createFunctions:function()
     {
         var carbonBudgets = this.data.dimension( jQuery.proxy( function ( d )
         {
             return d[this.fluxColName];
         }, this ) );
-        carbonBudgets.filter( jQuery.proxy( function( d )
-        {
-            if( $.inArray( d, this.separatedFlux ) != -1 )
-                return d;
-        }, this ) );
 
-        console.log( "ICI1" );
-        print_filter( carbonBudgets );
-
-        var carbonBudgets2 = this.data.dimension( jQuery.proxy( function ( d )
+        var budgetAmountGroup = this.data.dimension( jQuery.proxy( function ( d )
         {
             return d[this.fluxColName];
-        }, this ) );
-        carbonBudgets2.filter( jQuery.proxy( function( d )
+        }, this ) ).filter( jQuery.proxy( function( d )
         {
             if( $.inArray( d, this.mainFlux ) != -1 )
                 return d;
-        }, this ) );
-
-        console.log( "ICI2" );
-        print_filter( carbonBudgets );
-
-        console.log( "ICI2B" );
-        print_filter( carbonBudgets2 );
-
-        var budgetAmountGroup = carbonBudgets2.group().reduceSum( jQuery.proxy( function ( d )
+        }, this ) ).group().reduceSum( jQuery.proxy( function ( d )
         {
             return this.numberFormat( d[this.valueColName] );
         }, this ) );
 
-        console.log( "ICI3" );
-        print_filter( budgetAmountGroup );
-
-        var bob1 = this.createFunctionBarChart( "#functionBarChart1", $( "#functionBarChart1" ).width(), this.chartHeight, carbonBudgets2, budgetAmountGroup, this.separatedFlux );
-
-
-        carbonBudgets.filterAll();
-        var carbonBudgets3 = this.data.dimension( jQuery.proxy( function ( d )
-        {
-            return d[this.fluxColName];
-        }, this ) );
-        carbonBudgets3.filter( jQuery.proxy( function( d )
-        {
-            if( $.inArray( d, this.separatedFlux ) != -1 )
-                return d;
-        }, this ) );
-
-
-        console.log( "ICI4" );
-        print_filter( carbonBudgets );
-
-        console.log( "ICI5" );
-        print_filter( carbonBudgets2 );
-
-        console.log( "ICI6" );
-        print_filter( carbonBudgets3 );
-
-        var budgetAmountGroup3 = carbonBudgets3.group().reduceSum( jQuery.proxy( function ( d )
-        {
-            return this.numberFormat( d[this.valueColName] );
-        }, this ) );
-
-        console.log( "ICI7" );
-        print_filter( budgetAmountGroup );
-
-        console.log( "ICI8" );
-        print_filter( budgetAmountGroup3 );
+        var bob1 = this.createFunctionBarChart( "#functionBarChart1", $( "#functionBarChart1" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.mainFlux, false );
+        var bob2 = this.createFunctionBarChart( "#functionBarChart2", $( "#functionBarChart2" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.separatedFlux, true );
 
 //        var carbonBudgets2 = this.data.dimension( jQuery.proxy( function ( d )
 //        {
@@ -275,7 +227,7 @@ var RCInterface = Class.create( {
 //        this.createFunctionBarChart( "#functionBarChart2", $( "#functionBarChart2" ).width(), this.chartHeight, carbonBudgets2, budgetAmountGroup);
     },
 
-    createFunctionBarChart: function( chartId, width, height, dimension, group, domain )
+    createFunctionBarChart: function( chartId, width, height, dimension, group, domain, useRightYAxis )
     {
         var barChart = dc.barChart( chartId )
                 .height( height )
@@ -288,11 +240,13 @@ var RCInterface = Class.create( {
                 .elasticY( true )
                 .colors( this.color )
                 .xUnits( dc.units.ordinal )
+//                .x( d3.scale.ordinal() )
                 .x( d3.scale.ordinal().domain( domain ) )
 //                .y( d3.scale.linear().domain( [-500000, 500000] ) )
                 .renderHorizontalGridLines( true );
 
 //        console.log( domain );
+        barChart.setUseRightYAxis(useRightYAxis);
         barChart.yAxis().tickFormat( d3.format( "s" ) );
         barChart.setCallBackOnClick( jQuery.proxy( this.onClickFunctionChart, this ) );
 

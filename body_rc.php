@@ -25,7 +25,7 @@
     <div class="container-fluid">
         <!-- ********************* MAP & FUNCTION ********************* -->
         <div class="col-md-6">
-            <div class="row basicCell">
+            <div class="row">
                 <div id="regionSelect">
                     <div id="globeActive" class="toolButton"><img src="img/Globe_Connected.png" width="35px" title="See all regions"/></div>
                     <div id="regionUnActive" class="toolButton"><img src="img/Globe_Disconnected.png" width="35px" title="See only one region"/></div>
@@ -38,7 +38,7 @@
                 </div>
             </div>
 
-            <div class="bottomBasicCell">
+            <div class="row bottomBasicCell">
                 <div id="functionBarChartUnit">Tg C yr-1</div>
                 <div id="functionBarChartTitle">All regions</div>
                 <div id="functionBarChart"></div>
@@ -48,7 +48,7 @@
 
         <!-- ********************* FLUX & BARCHART ********************* -->
         <div class="col-md-6">
-            <div class="basicCell">
+            <div>
                 <img id="imageFlux" src="img/FluxEmpty2.png" usemap="#mapForImageFlux" alt="Image for flux"/>
                 <map id="mapForImageFlux" name="mapForImageFlux">
                     <area shape="rect" alt="FFE" coords="69,7,155,55" href="" target=""/>

@@ -48,19 +48,13 @@ h3 {
     color: #525252;
 }
 
-.basicCell {
-    /*width: 100%;*/
-    /*margin-bottom: 20px;*/
-}
-
 .bottomBasicCell {
     margin-top: 40px;
-   /*width: 100%;*/
 }
 
-.basicCell, .bottomBasicCell {
-    border: 1px solid red;
-}
+/*.basicCell, .bottomBasicCell {*/
+    /*border: 1px solid red;*/
+/*}*/
 
 /* ************** TOOLS ************** */
 .leftTools {
@@ -184,18 +178,18 @@ h3 {
 #functionBarChartUnit {
     fill: #525252;
     font: 10px "Futura", sans-serif;
-    margin: -10px 0 -30px;
+    margin-top: -10px;
     float: left;
 }
 
 #functionBarChartTitle {
     float: right;
-    margin: -10px 70px -30px 0;
+    margin: -10px 30px 0 0;
     font: 12px "Futura", sans-serif;
     color: #525252;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 100px;
+    width: 80%;
     white-space: nowrap;
     text-align: right;
 }

@@ -1279,7 +1279,7 @@
                     "name":"Fiji",
                     "type":"country",
                     "capital":"Suva",
-                    "continent":"Oceania"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -2166,7 +2166,7 @@
                 ],
                 "properties":{
                     "name":"New Caledonia",
-                    "continent":"Oceania"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -2279,7 +2279,7 @@
                     "type":"country",
                     "capital":"Wellington",
                     "borders":"No Surrounding Countries",
-                    "continent":"Oceania"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -2398,7 +2398,7 @@
                     "type":"country",
                     "capital":"Port Moresby",
                     "borders":"Surrounding Countries:  Indonesia",
-                    "continent":"Oceania"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -2662,7 +2662,7 @@
                     "name":"Solomon Islands",
                     "type":"country",
                     "capital":"Honiara",
-                    "continent":"Oceania"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -3108,7 +3108,7 @@
                     "name":"Vanuatu",
                     "type":"country",
                     "capital":"Port-Vila",
-                    "continent":"Oceania"
+                    "continent":"No data for this region"
                 }
             },
             {

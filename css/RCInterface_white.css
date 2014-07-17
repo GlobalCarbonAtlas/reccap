@@ -49,12 +49,12 @@ h3 {
 }
 
 .bottomBasicCell {
-    /*width:100%;*/
+/*width:100%;*/
     margin-top: 40px;
 }
 
 /*.basicCell, .bottomBasicCell {*/
-    /*border: 1px solid red;*/
+/*border: 1px solid red;*/
 /*}*/
 
 /* ************** TOOLS ************** */
@@ -170,6 +170,14 @@ h3 {
 }
 
 /* ************** FUNCTION BARCHART ************** */
+#functionBarChart1 {
+    width: 50%;
+}
+
+#functionBarChart2 {
+    width: 50%;
+}
+
 /* To allow click on axis text */
 #functionBarChart g.axis text {
     pointer-events: auto;
@@ -219,7 +227,7 @@ h3 {
 }
 
 .mapChartComment {
- margin-left: 15px;
+    margin-left: 15px;
 }
 
 .countryWithPointer g.country {

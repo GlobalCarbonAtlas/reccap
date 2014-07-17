@@ -22,15 +22,16 @@ var RCInterface = Class.create( {
         this.initMapWidth = 600;
         this.initMapScale = 90;
         this.chartHeight = 0;
-        this.chartWidth = $( "#groupedBarChart" ).width();
+        this.groupedBarChartWidth = $( "#groupedBarChart" ).width();
+        this.functionBarChartWidth = $( "#functionBarChart" ).width();
         this.imageHeight = 0;
-        this.barCharMargin = {top: 10, right: 0, bottom: 75, left: 40};
+        this.barCharMargin = {top: 10, right: 20, bottom: 75, left: 30};
         this.color = d3.scale.category20c();
         this.selectMultipleRegion = false;
         this.orderForFlux = JSON.parse( jQuery.i18n.prop( "orderForFlux" ) );
 
         // Areas for maps
-        this.createDynamicAreasForResponsiveMap( "#imageFlux", "#mapForImageFlux", "#dynamicAreasForImageFlux", this.chartWidth, true );
+        this.createDynamicAreasForResponsiveMap( "#imageFlux", "#mapForImageFlux", "#dynamicAreasForImageFlux", this.groupedBarChartWidth, true );
         this.createDynamicAreasForResponsiveMap( "#imageFluxForSynthesis", "#mapForImageFluxForSynthesis", "#dynamicAreasForImageFluxForSynthesis", 1100, false );
 
         this.initToolTips();
@@ -116,15 +117,15 @@ var RCInterface = Class.create( {
         d3.json( "data/continent-geogame-110m.json", jQuery.proxy( function( error, world )
         {
             var countries = topojson.feature( world, world.objects.countries );
-            var mapWidth = Math.min( this.imageHeight * 2, this.chartWidth );
+            var mapWidth = Math.min( this.imageHeight * 2, this.functionBarChartWidth );
             this.createChoroplethMap( "#mapChart", mapWidth, mapWidth / 2, countries, this.continents, this.continents.group() );
             $( "#mapChart" ).addClass( "countryWithPointer" );
             dc.renderAll();
             this.updateCharts();
 
             // Position of "regionSelect" div
-            var marginLeft = (this.chartWidth - $( "#mapChart" ).width() - $( "#globeActive" ).width()) / 2;
-            $( "#regionSelect" ).css( "margin-left", marginLeft - 30 );
+            var marginLeft = (this.functionBarChartWidth - $( "#mapChart" ).width() - $( "#globeActive" ).width()) / 2;
+            $( "#regionSelect" ).css( "margin-left", marginLeft );
 
             // Home with selected flux
             $( "#" + jQuery.i18n.prop( "selectedFluxForHomePage" ) ).click();
@@ -154,7 +155,7 @@ var RCInterface = Class.create( {
             }
         };
 
-        this.createFunctionBarChart( "#functionBarChart", this.chartWidth, this.chartHeight, carbonBudgets, budgetAmountGroup );
+        this.createFunctionBarChart( "#functionBarChart", this.functionBarChartWidth, this.chartHeight, carbonBudgets, budgetAmountGroup );
     },
 
 
@@ -274,7 +275,7 @@ var RCInterface = Class.create( {
         if( isAlreadyAChart )
             this.removeToGroupedBarChart( fluxName );
         else
-            this.createOrAddToBarChart( "#groupedBarChart", this.chartWidth, this.chartHeight, fluxName );
+            this.createOrAddToBarChart( "#groupedBarChart", this.groupedBarChartWidth, this.chartHeight, fluxName );
     },
 
     /**

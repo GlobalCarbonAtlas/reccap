@@ -94,7 +94,7 @@ function getStyleSheetsPropertyValue( selectorText, propertyName, cssFile )
     // search backwards because the last match is more likely the right one
     $.each( document.styleSheets, function( i, styleSheet )
     {
-        if( cssFile && styleSheet.href.indexOf( cssFile ) == -1 )
+        if( !styleSheet || !styleSheet.href || (cssFile && styleSheet.href.indexOf( cssFile ) == -1) )
             return;
 
         var cssRules = styleSheet.cssRules || styleSheet.rules || []; // IE support

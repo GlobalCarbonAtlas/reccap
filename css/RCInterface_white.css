@@ -49,6 +49,7 @@ h3 {
 }
 
 .bottomBasicCell {
+    /*width:100%;*/
     margin-top: 40px;
 }
 
@@ -184,12 +185,12 @@ h3 {
 
 #functionBarChartTitle {
     float: right;
-    margin: -10px 30px 0 0;
+    margin: -10px 100px 0 0;
     font: 12px "Futura", sans-serif;
     color: #525252;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 80%;
+    width: 60%;
     white-space: nowrap;
     text-align: right;
 }
@@ -208,8 +209,17 @@ h3 {
 }
 
 /* ************** MAP ************** */
+#mapChart {
+    margin: 5px 0 -5px;
+}
+
 #mapChartAndComment {
     float: right;
+    padding-right: 15px;
+}
+
+.mapChartComment {
+ margin-left: 15px;
 }
 
 .countryWithPointer g.country {
@@ -289,7 +299,7 @@ g.no_data_for_this_region path {
 }
 
 #dynamicAreasForImageFlux .dynamicArea.selected {
-    border: 1px ridge #DDDDDD;
+    border: 1px double #DDDDDD;
 }
 
 #dynamicAreasForImageFlux #SCE.selected {

@@ -172,6 +172,12 @@ h3 {
     cursor: pointer;
 }
 
+#functionBarChartUnit {
+    fill: #525252;
+    font: 10px "Futura", sans-serif;
+    margin: 20px 0 -30px;
+}
+
 #resetFunctionBarChart {
     cursor: pointer;
     float: right;
@@ -181,10 +187,6 @@ h3 {
 }
 
 /* ************** GROUPED BARCHART ************** */
-#groupedBarChart .dc-chart {
-    margin: 15px 60px;
-}
-
 #groupedBarChart .legend rect {
     cursor: pointer;
 }
@@ -247,7 +249,7 @@ g.australia path {
 g.no_data_for_this_region path {
     fill: #f4e8c3;
     stroke: #f4e8c3;
-    cursor:auto;
+    cursor: auto;
 }
 
 /* ************** FLUX IMG ************** */
@@ -278,7 +280,6 @@ g.no_data_for_this_region path {
 #dynamicAreasForImageFlux #SCE.selected {
     border: 1px ridge #f5f5f5;
 }
-
 
 /* ************** DATA & SYNTHESIS STYLE ************** */
 .dataTitle, .synthesisTitle {

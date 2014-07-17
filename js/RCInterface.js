@@ -24,7 +24,7 @@ var RCInterface = Class.create( {
         this.chartHeight = 0;
         this.chartWidth = $( "#groupedBarChart" ).width();
         this.imageHeight = 0;
-        this.barCharMargin = {top: 80, right: 80, bottom: 75, left: 40};
+        this.barCharMargin = {top: 50, right: 80, bottom: 75, left: 40};
         this.color = d3.scale.category20c();
         this.selectMultipleRegion = false;
         this.orderForFlux = JSON.parse( jQuery.i18n.prop( "orderForFlux" ) );
@@ -185,7 +185,7 @@ var RCInterface = Class.create( {
         } );
 
         this.geoChoroplethChart.setMultipleSelect( this.selectMultipleRegion );
-        this.geoChoroplethChart.setEmptyZoneWithNoData("No data for this region");
+        this.geoChoroplethChart.setEmptyZoneWithNoData( "No data for this region" );
     },
 
     createDataTable: function( countId, tableId, allD, allG, tableD )
@@ -227,10 +227,11 @@ var RCInterface = Class.create( {
                 .dimension( dimension )
                 .group( group )
                 .brushOn( false )
-                .elasticY( true )
+                .elasticY( false )
                 .colors( this.color )
                 .xUnits( dc.units.ordinal )
                 .x( d3.scale.ordinal().domain( this.orderForFlux ) )
+                .y( d3.scale.linear().domain( [-500000, 500000] ) )
                 .renderHorizontalGridLines( true );
 
         this.functionChart.yAxis().tickFormat( d3.format( "s" ) );

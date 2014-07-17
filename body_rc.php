@@ -39,6 +39,7 @@
             </div>
 
             <div class="row basicCell">
+                <div id="functionBarChartUnit">Tg C yr-1</div>
                 <div id="functionBarChart"></div>
                 <div id="resetFunctionBarChart">Reset selection</div>
             </div>
@@ -55,7 +56,7 @@
                     <area shape="rect" alt="LUC" coords="332,12,403,47" href="" target=""/>
                     <area shape="rect" alt="Fires" coords="406,10,453,36" href="" target=""/>
                     <area shape="rect" alt="NPP" coords="502,13,544,36" href="" target=""/>
-                    <area shape="rect" alt="HR" coords="562,13,660,52" href="" target=""/>
+                    <area shape="rect" alt="HR" coords="562,12,660,51" href="" target=""/>
                     <area shape="rect" alt="FO" coords="768,154,847,192" href="" target=""/>
                     <area shape="rect" alt="SCE" coords="633,271,714,293" href="" target=""/>
                     <area shape="rect" alt="ETO" coords="832,242,880,296" href="" target=""/>

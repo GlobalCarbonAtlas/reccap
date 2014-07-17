@@ -49,16 +49,16 @@
             <div class="row basicCell">
                 <img id="imageFlux" src="img/FluxEmpty2.png" usemap="#mapForImageFlux" alt="Image for flux"/>
                 <map id="mapForImageFlux" name="mapForImageFlux">
-                    <area shape="rect" alt="FFE" coords="69,11,152,50" href="" target=""/>
-                    <area shape="rect" alt="WPC" coords="157,49,254,83" href="" target=""/>
-                    <area shape="rect" alt="CPC" coords="258,45,355,82" href="" target=""/>
-                    <area shape="rect" alt="LUC" coords="332,12,401,48" href="" target=""/>
-                    <area shape="rect" alt="Fires" coords="406,10,452,36" href="" target=""/>
-                    <area shape="rect" alt="NPP" coords="502,13,542,36" href="" target=""/>
-                    <area shape="rect" alt="HR" coords="562,13,657,50" href="" target=""/>
-                    <area shape="rect" alt="FO" coords="768,154,843,189" href="" target=""/>
-                    <area shape="rect" alt="SCE" coords="633,271,713,290" href="" target=""/>
-                    <area shape="rect" alt="ETO" coords="832,247,878,294" href="" target=""/>
+                    <area shape="rect" alt="FFE" coords="69,7,155,55" href="" target=""/>
+                    <area shape="rect" alt="WPD" coords="156,48,258,88" href="" target=""/>
+                    <area shape="rect" alt="CPC" coords="258,45,357,84" href="" target=""/>
+                    <area shape="rect" alt="LUC" coords="332,12,403,47" href="" target=""/>
+                    <area shape="rect" alt="Fires" coords="406,10,453,36" href="" target=""/>
+                    <area shape="rect" alt="NPP" coords="502,13,544,36" href="" target=""/>
+                    <area shape="rect" alt="HR" coords="562,13,660,52" href="" target=""/>
+                    <area shape="rect" alt="FO" coords="768,154,847,192" href="" target=""/>
+                    <area shape="rect" alt="SCE" coords="633,271,714,293" href="" target=""/>
+                    <area shape="rect" alt="ETO" coords="832,242,880,296" href="" target=""/>
                 </map>
 
                 <div id="dynamicAreasForImageFlux"></div>

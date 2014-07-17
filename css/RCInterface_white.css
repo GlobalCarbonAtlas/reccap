@@ -102,26 +102,6 @@ h3 {
     margin-top: 10px;
 }
 
-.mapTitle {
-    margin: 115px 0 0 -13px;
-    -webkit-transform: rotate(270deg);
-    -moz-transform: rotate(270deg);
-    -ms-transform: rotate(270deg);
-    -o-transform: rotate(270deg);
-    transform: rotate(270deg);
-    color: #DDDDDD;
-    text-shadow: 2px 2px 2px #EEEEEE;
-    font-weight: bold;
-}
-
-#mapTitle {
-    transform: scale(2, 3); /* W3C */
-    -webkit-transform: scale(2, 3); /* Safari and Chrome */
-    -moz-transform: scale(2, 3); /* Firefox */
-    -ms-transform: scale(2, 3); /* IE 9 */
-    -o-transform: scale(2, 3); /* Opera */
-}
-
 #data, #synthesis img {
     margin: 6px 6px 6px;
 }
@@ -264,10 +244,10 @@ g.australia path {
     stroke: #73a9dc;
 }
 
-g.asia path, g.oceania path, g.antarctica path {
+g.no_data_for_this_region path {
     fill: #f4e8c3;
     stroke: #f4e8c3;
-    pointer-events: none;
+    cursor:auto;
 }
 
 /* ************** FLUX IMG ************** */
@@ -298,15 +278,6 @@ g.asia path, g.oceania path, g.antarctica path {
     border: 1px dashed #f5f5f5;
 }
 
-.imageFluxTitle {
-    color: #2C3537;
-    font-weight: bold;
-    font-size: 22px;
-    text-shadow: 2px 2px 2px #999999;
-    position: absolute;
-    top: 37px;
-    right: 60px; /*left: 39px;*/
-}
 
 /* ************** DATA & SYNTHESIS STYLE ************** */
 .dataTitle, .synthesisTitle {

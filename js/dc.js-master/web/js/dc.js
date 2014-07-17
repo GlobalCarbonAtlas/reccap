@@ -5211,6 +5211,7 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
     var _geoJsons = [];
     var _boolMultipleSelect = false;
     var _boolSelect = true;
+    var _emptyZoneWithNoData = false;
 
     _chart._doRender = function () {
         _chart.resetSvg();
@@ -5310,9 +5311,13 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
                     return currentFill;
                 return "none";
             })
-            .on("click", function (d) {
-                return _chart.onClick(d, layerIndex);
-            });
+                .on( "click", function ( d )
+        {
+            /** CHANGE VMIPSL **/
+            if( _emptyZoneWithNoData == d.properties.continent )
+                return;
+            return _chart.onClick( d, layerIndex );
+        } );
 
         dc.transition(paths, _chart.transitionDuration()).attr("fill", function (d, i) {
             return _chart.getColor(data[geoJson(layerIndex).keyAccessor(d)], i);
@@ -5328,6 +5333,11 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
     _chart.setSelect= function( boolValue )
     {
         _boolSelect = boolValue;
+    };
+
+    _chart.setEmptyZoneWithNoData= function( value )
+    {
+        _emptyZoneWithNoData = value;
     };
 
     _chart.onClick = function (d, layerIndex) {

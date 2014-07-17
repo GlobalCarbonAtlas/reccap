@@ -30,12 +30,11 @@
                     <div id="globeActive" class="toolButton"><img src="img/Globe_Connected.png" width="35px" title="See all regions"/></div>
                     <div id="regionUnActive" class="toolButton"><img src="img/Globe_Disconnected.png" width="35px" title="See only one region"/></div>
                     <div id="regionActive" class="toolButton"><img src="img/Globe_RegionConnected.png" width="35px" title="See multiple regions"/></div>
-                    <div class="mapTitle"><div id="mapTitle">REGIONS</div></div>
                 </div>
 
                 <div id="mapChartAndComment">
                     <div id="mapChart"></div>
-                    <div class="comment mapChartComment">Select a region to get the functions</div>
+                    <div class="comment mapChartComment">Click on a region to show all component CO2 fluxes</div>
                 </div>
             </div>
 
@@ -63,8 +62,7 @@
                 </map>
 
                 <div id="dynamicAreasForImageFlux"></div>
-                <div class="imageFluxTitle">Flux</div>
-                <div class="comment">Select a process</div>
+                <div class="comment">Select a flux name to show its values accross all regions</div>
             </div>
 
             <div class="row">

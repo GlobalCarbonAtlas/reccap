@@ -403,7 +403,7 @@
                     "type":"country",
                     "capital":"Kabul",
                     "borders":"Surrounding Countries:  China, Iran, Pakistan, Tajikistan, Turkmenistan, Uzbekistan",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -448,7 +448,7 @@
                     "name":"United Arab Emirates",
                     "type":"country",
                     "capital":"Abu Dhabi",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -480,7 +480,7 @@
                     "name":"Armenia",
                     "type":"country",
                     "capital":"Yerevan",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -515,7 +515,7 @@
                 "properties":{
                     "name":"Antarctica",
                     "borders":"No Surrounding Countries",
-                    "continent":"Antarctica"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -578,7 +578,7 @@
                     "type":"country",
                     "capital":"Baku",
                     "borders":"Surrounding Countries:  Armenia, Georgia, Iran, Russia",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -1063,7 +1063,7 @@
                 ],
                 "properties":{
                     "name":"Northern Cyprus",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -1076,7 +1076,7 @@
                     "name":"Cyprus",
                     "type":"country",
                     "capital":"Nicosia",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -1189,7 +1189,7 @@
                     "type":"country",
                     "capital":"Cairo",
                     "borders":"Surrounding Countries:  Israel, Libya, Sudan",
-                    "continent":"Africa"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -1358,7 +1358,7 @@
                     "name":"Georgia",
                     "type":"country",
                     "capital":"Tbilisi",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -1456,7 +1456,7 @@
                 "properties":{
                     "name":"Greenland",
                     "borders":"No Surrounding Countries",
-                    "continent":"North America"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -1631,7 +1631,7 @@
                     "type":"country",
                     "capital":"Tehran",
                     "borders":"Surrounding Countries:  Afghanistan, Armenia, Azerbaijan, Iraq, Pakistan, Turkmenistan, Turkey",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -1645,7 +1645,7 @@
                     "type":"country",
                     "capital":"Baghdad",
                     "borders":"Surrounding Countries:  Iran, Jordan, Kuwait, Saudi Arabia, Syria, Turkey",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -1672,7 +1672,7 @@
                     "name":"Israel",
                     "type":"country",
                     "capital":"Jerusalem*",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -1720,7 +1720,7 @@
                     "name":"Jordan",
                     "type":"country",
                     "capital":"Amman",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -1756,7 +1756,7 @@
                     "type":"country",
                     "capital":"Astana",
                     "borders":"Surrounding Countries:  China, Kyrgyzstan, Russia, Turkmenistan, Uzbekistan",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -1784,7 +1784,7 @@
                     "type":"country",
                     "capital":"Bishkek",
                     "borders":"Surrounding Countries:  China, Kazakhstan, Tajikistan, Uzbekistan",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -1838,7 +1838,7 @@
                     "name":"Kuwait",
                     "type":"country",
                     "capital":"Kuwait City",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -1865,7 +1865,7 @@
                     "name":"Lebanon",
                     "type":"country",
                     "capital":"Beirut",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -1905,7 +1905,7 @@
                     "name":"Sri Lanka",
                     "type":"country",
                     "capital":"Colombo",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -2298,7 +2298,7 @@
                     "type":"country",
                     "capital":"Muscat",
                     "borders":"Surrounding Countries:  United Arab Emirates, Saudi Arabia, Yemen",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -2476,7 +2476,7 @@
                 ],
                 "properties":{
                     "name":"Palestine",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -2489,7 +2489,7 @@
                     "name":"Qatar",
                     "type":"country",
                     "capital":"Doha",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -2593,7 +2593,7 @@
                     "type":"country",
                     "capital":"Riyadh",
                     "borders":"Surrounding Countries:  United Arab Emirates, Iraq, Jordan, Kuwait, Oman, Qatar, Yemen",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -2808,7 +2808,7 @@
                     "type":"country",
                     "capital":"Damascus",
                     "borders":"Surrounding Countries:  Iraq, Israel, Jordan, Lebanon, Turkey",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -2863,7 +2863,7 @@
                     "type":"country",
                     "capital":"Dushanbe",
                     "borders":"Surrounding Countries:  Afghanistan, China, Kyrgyzstan, Uzbekistan",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -2877,7 +2877,7 @@
                     "type":"country",
                     "capital":"Ashgabat",
                     "borders":"Surrounding Countries:  Afghanistan, Iran, Kazakhstan, Uzbekistan",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -2936,7 +2936,7 @@
                     "type":"country",
                     "capital":"Ankara",
                     "borders":"Surrounding Countries:  Armenia, Bulgaria, Georgia, Greece, Iran, Iraq, Syria",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -2949,7 +2949,7 @@
                     "name":"Taiwan",
                     "type":"country",
                     "capital":"Taipei",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -3062,7 +3062,7 @@
                     "type":"country",
                     "capital":"Tashkent",
                     "borders":"Surrounding Countries:  Afghanistan, Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {
@@ -3122,7 +3122,7 @@
                     "type":"country",
                     "capital":"Sanaa",
                     "borders":"Surrounding Countries:  Oman, Saudi Arabia",
-                    "continent":"Asia"
+                    "continent":"No data for this region"
                 }
             },
             {

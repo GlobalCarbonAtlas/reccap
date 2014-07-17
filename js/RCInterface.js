@@ -185,6 +185,7 @@ var RCInterface = Class.create( {
         } );
 
         this.geoChoroplethChart.setMultipleSelect( this.selectMultipleRegion );
+        this.geoChoroplethChart.setEmptyZoneWithNoData("No data for this region");
     },
 
     createDataTable: function( countId, tableId, allD, allG, tableD )

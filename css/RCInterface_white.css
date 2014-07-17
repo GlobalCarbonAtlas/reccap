@@ -49,8 +49,17 @@ h3 {
 }
 
 .basicCell {
-    width: 100%;
-    margin-bottom: 20px;
+    /*width: 100%;*/
+    /*margin-bottom: 20px;*/
+}
+
+.bottomBasicCell {
+    margin-top: 40px;
+   /*width: 100%;*/
+}
+
+.basicCell, .bottomBasicCell {
+    border: 1px solid red;
 }
 
 /* ************** TOOLS ************** */
@@ -175,7 +184,20 @@ h3 {
 #functionBarChartUnit {
     fill: #525252;
     font: 10px "Futura", sans-serif;
-    margin: 20px 0 -30px;
+    margin: -10px 0 -30px;
+    float: left;
+}
+
+#functionBarChartTitle {
+    float: right;
+    margin: -10px 70px -30px 0;
+    font: 12px "Futura", sans-serif;
+    color: #525252;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100px;
+    white-space: nowrap;
+    text-align: right;
 }
 
 #resetFunctionBarChart {
@@ -193,7 +215,6 @@ h3 {
 
 /* ************** MAP ************** */
 #mapChartAndComment {
-    margin-right: 30px;
     float: right;
 }
 

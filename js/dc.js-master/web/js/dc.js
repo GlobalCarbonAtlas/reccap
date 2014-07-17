@@ -5212,6 +5212,8 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
     var _boolMultipleSelect = false;
     var _boolSelect = true;
     var _emptyZoneWithNoData = false;
+    var _callbackOnClick = false;
+    var _displayedRegions = [];
 
     _chart._doRender = function () {
         _chart.resetSvg();
@@ -5330,28 +5332,59 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
         _boolMultipleSelect = boolValue;
     };
 
-    _chart.setSelect= function( boolValue )
+    _chart.getMultipleSelect = function()
+    {
+        return _boolMultipleSelect;
+    };
+
+    _chart.setSelect = function( boolValue )
     {
         _boolSelect = boolValue;
     };
 
-    _chart.setEmptyZoneWithNoData= function( value )
+    _chart.getSelect = function()
+    {
+        return _boolSelect;
+    };
+
+    _chart.getDisplayedRegions = function()
+    {
+        return _displayedRegions;
+    };
+
+    _chart.setEmptyZoneWithNoData = function( value )
     {
         _emptyZoneWithNoData = value;
+    };
+
+    _chart.setCallBackOnClick = function( callback )
+    {
+        _callbackOnClick = callback;
     };
 
     _chart.onClick = function (d, layerIndex) {
         if(!_boolSelect)
             return;
 
-        if(!_boolMultipleSelect)
+        if( !_boolMultipleSelect )
         {
-          dc.events.trigger(function () {
-            _chart.filterAll();
-            _chart.redrawGroup();
-          });
+            _displayedRegions = [];
+            dc.events.trigger( function ()
+            {
+                _chart.filterAll();
+                _chart.redrawGroup();
+            } );
         }
-        var selectedRegion = geoJson(layerIndex).keyAccessor(d);
+        var selectedRegion = geoJson( layerIndex ).keyAccessor( d );
+        var index = jQuery.inArray( selectedRegion, _displayedRegions ) ;
+        if( index == -1 )
+            _displayedRegions.push( selectedRegion );
+        else
+            _displayedRegions.splice( index, 1 );
+
+        /** CHANGE VMIPSL **/
+        if( _callbackOnClick )
+            _callbackOnClick( d );
         dc.events.trigger(function () {
             _chart.filter(selectedRegion);
             _chart.redrawGroup();

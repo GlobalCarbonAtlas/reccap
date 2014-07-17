@@ -158,8 +158,9 @@ var RCInterface = Class.create( {
             return this.numberFormat( d[this.valueColName] );
         }, this ) );
 
-        var bob1 = this.createFunctionBarChart( "#functionBarChart1", $( "#functionBarChart1" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.mainFlux, false );
-        var bob2 = this.createFunctionBarChart( "#functionBarChart2", $( "#functionBarChart2" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.separatedFlux, true );
+        var bob1 = this.createFunctionBarChart( "#functionBarChart1", $( "#functionBarChart1" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.mainFlux, false, this.barCharMargin );
+        var marginForRightAxis = {top: this.barCharMargin.top, right: this.barCharMargin.left, bottom: this.barCharMargin.bottom, left:this.barCharMargin.right };
+        var bob2 = this.createFunctionBarChart( "#functionBarChart2", $( "#functionBarChart2" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.separatedFlux, true, marginForRightAxis );
 
 //        var carbonBudgets2 = this.data.dimension( jQuery.proxy( function ( d )
 //        {
@@ -227,13 +228,13 @@ var RCInterface = Class.create( {
 //        this.createFunctionBarChart( "#functionBarChart2", $( "#functionBarChart2" ).width(), this.chartHeight, carbonBudgets2, budgetAmountGroup);
     },
 
-    createFunctionBarChart: function( chartId, width, height, dimension, group, domain, useRightYAxis )
+    createFunctionBarChart: function( chartId, width, height, dimension, group, domain, useRightYAxis, barCharMargin )
     {
         var barChart = dc.barChart( chartId )
                 .height( height )
                 .width( width )
                 .transitionDuration( 750 )
-                .margins( this.barCharMargin )
+                .margins( barCharMargin )
                 .dimension( dimension )
                 .group( group )
                 .brushOn( false )
@@ -246,7 +247,7 @@ var RCInterface = Class.create( {
                 .renderHorizontalGridLines( true );
 
 //        console.log( domain );
-        barChart.setUseRightYAxis(useRightYAxis);
+        barChart.setUseRightYAxis( useRightYAxis );
         barChart.yAxis().tickFormat( d3.format( "s" ) );
         barChart.setCallBackOnClick( jQuery.proxy( this.onClickFunctionChart, this ) );
 

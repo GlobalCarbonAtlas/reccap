@@ -14,6 +14,7 @@ var RCInterface = Class.create( {
     {
         // File variables
         this.numberFormat = d3.format( ".2f" );
+        this.dataFilePath = jQuery.i18n.prop( "dataFilePath" );
         this.regionColName = jQuery.i18n.prop( "regionColName" );
         this.fluxColName = jQuery.i18n.prop( "fluxColName" );
         this.valueColName = jQuery.i18n.prop( "valueColName" );
@@ -21,6 +22,7 @@ var RCInterface = Class.create( {
         this.yDomainForMainFlux = JSON.parse( jQuery.i18n.prop( "yDomainForMainFlux" ) );
         this.separatedFlux = JSON.parse( jQuery.i18n.prop( "separatedFlux" ) );
         this.yDomainForSeparatedFlux = JSON.parse( jQuery.i18n.prop( "yDomainForSeparatedFlux" ) );
+        this.regionFilePath = jQuery.i18n.prop( "regionFilePath" );
 
         // Variables
         this.initMapWidth = 600;
@@ -55,7 +57,7 @@ var RCInterface = Class.create( {
             else if( d.column && d.name )
             {
                 var value = (0 != d.yBegin ? d.yBegin : 0 != d.yEnd ? d.yEnd : 0);
-                return "<span class='d3-tipTitle'>" + d.name + " : </span>" + value;
+                return "<span class='d3-tipTitle'>" + d.name + " : </span>" + this.numberFormat( value );
             }
             else if( d.data )
             // Bar chart
@@ -82,7 +84,7 @@ var RCInterface = Class.create( {
     initFileValuesAndCreateDCObjects:function()
     {
         // To set ',' in separator for .csv file, save first in .ods then in .csv and then fill the asked fiels
-        d3.csv( "data/Reccap_data_rows4.csv", jQuery.proxy( function ( error, csv )
+        d3.csv( this.dataFilePath, jQuery.proxy( function ( error, csv )
         {
             this.data = crossfilter( csv );
 
@@ -118,7 +120,7 @@ var RCInterface = Class.create( {
     /* ******************************************************************** */
     createMapAndUpdateAllAfterRender:function()
     {
-        d3.json( "data/continent-geogame-110m.json", jQuery.proxy( function( error, world )
+        d3.json( this.regionFilePath, jQuery.proxy( function( error, world )
         {
             var countries = topojson.feature( world, world.objects.countries );
             var mapWidth = Math.min( this.imageHeight * 2, this.functionBarChartWidth );
@@ -239,9 +241,9 @@ var RCInterface = Class.create( {
             return this.numberFormat( d["flux"] );
         }, this ) );
 
-        this.createFunctionBarChart( "#functionBarChartForMainFlux", $( "#functionBarChartForMainFlux" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.mainFlux, this.yDomainForMainFlux, false, this.barCharMargin );
+        this.functionBarChartForMainFlux = this.createFunctionBarChart( "#functionBarChartForMainFlux", $( "#functionBarChartForMainFlux" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.mainFlux, this.yDomainForMainFlux, false, this.barCharMargin );
         var rightBarChartMargin = {top: this.barCharMargin.top, right: this.barCharMargin.left, bottom: this.barCharMargin.bottom, left: this.barCharMargin.right};
-        this.createFunctionBarChart( "#functionBarChartForSeparatedFlux", $( "#functionBarChartForSeparatedFlux" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.separatedFlux, this.yDomainForSeparatedFlux, true, rightBarChartMargin );
+        this.functionBarChartForSeparatedFlux = this.createFunctionBarChart( "#functionBarChartForSeparatedFlux", $( "#functionBarChartForSeparatedFlux" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.separatedFlux, this.yDomainForSeparatedFlux, true, rightBarChartMargin );
     },
 
     createFunctionBarChart: function( chartId, width, height, dimension, group, xDomain, yDomain, useRightYAxis, barCharMargin )
@@ -264,7 +266,7 @@ var RCInterface = Class.create( {
 
         barChart.setUseRightYAxis( useRightYAxis );
         barChart.yAxis().tickFormat( d3.format( "s" ) );
-//        barChart.setCallBackOnClick( jQuery.proxy( this.onClickFunctionChart, this ) );
+        barChart.setCallBackOnClick( jQuery.proxy( this.onClickFunctionChart, this ) );
 
 //        this.rowChart.setCallBackOnCompleteDisplay( jQuery.proxy( this.onCompleteDisplayRowChart, this ) );
         return barChart;
@@ -284,13 +286,13 @@ var RCInterface = Class.create( {
         {
             var propertieName = this.getI18nPropertiesKeyFromValue( d );
             return 0 != jQuery.i18n.prop( propertieName + "_shortForAxis" ).indexOf( "[" ) ? jQuery.i18n.prop( propertieName + "_shortForAxis" ) : d;
-        }, this ) )
-                .on( 'click', jQuery.proxy( function( d )
-        {
-            // Warning : need to desactivate "  pointer-events: auto;" in css -> .dc-chart g.axis text
-            var dynamicAreaDivId = this.getI18nPropertiesKeyFromValue( d );
-            $( "#" + dynamicAreaDivId ).click();
         }, this ) );
+//                .on( 'click', jQuery.proxy( function( d )
+//        {
+        // Warning : need to desactivate "  pointer-events: auto;" in css -> .dc-chart g.axis text
+//            var dynamicAreaDivId = this.getI18nPropertiesKeyFromValue( d );
+//            $( "#" + dynamicAreaDivId ).click();
+//        }, this ) );
 
 
         // Test with "foreignObject" if necessary
@@ -509,10 +511,7 @@ var RCInterface = Class.create( {
                 .style( "stroke", "#2C3537" )
                 .on( "click", jQuery.proxy( function( d )
         {
-            var dynamicAreaDivId = this.getI18nPropertiesKeyFromValue( d.name );
-            $( "#" + dynamicAreaDivId ).removeClass( "selected" );
-            this.removeToGroupedBarChart( d.name );
-//            this.functionChart.onClick( {key: d.name} );
+            this.onClickGroupedBarChart( d );
         }, this ) );
     },
 
@@ -547,7 +546,12 @@ var RCInterface = Class.create( {
                 .attr( "height", jQuery.proxy( function( d )
         {
             return this.groupedBarCharty( d.yBegin ) - this.groupedBarCharty( d.yEnd );
+        }, this ) )
+                .on( "click", jQuery.proxy( function( d )
+        {
+            this.onClickGroupedBarChart( d );
         }, this ) );
+
         groupedBarRect.exit().remove();
 
         groupedBar
@@ -579,6 +583,15 @@ var RCInterface = Class.create( {
         d3.selectAll( "#groupedBarChartSvg g.x g text" )
                 .style( "text-anchor", "end" )
                 .attr( "transform", "translate(-10,0)rotate(315)" );
+    },
+
+    onClickGroupedBarChart: function( element )
+    {
+        var dynamicAreaDivId = this.getI18nPropertiesKeyFromValue( element.name );
+        $( "#" + dynamicAreaDivId ).removeClass( "selected" );
+        this.removeToGroupedBarChart( element.name );
+        this.functionBarChartForMainFlux.onClick( {key: element.name} );
+        this.functionBarChartForSeparatedFlux.onClick( {key: element.name} );
     },
 
     removeToGroupedBarChart: function( fluxName )
@@ -656,7 +669,8 @@ var RCInterface = Class.create( {
                 {
                     var fluxName = jQuery.i18n.prop( argument.currentTarget.getAttribute( "name" ) );
                     this.addOrRemoveToGroupedBarChart( argument.currentTarget, fluxName );
-//                    this.functionChart.onClick( {key: fluxName} );
+                    this.functionBarChartForMainFlux.onClick( {key: fluxName} );
+                    this.functionBarChartForSeparatedFlux.onClick( {key: fluxName} );
                 }, this ) );
             $( dynamicAreasId ).append( div );
         }, this ) );

@@ -174,10 +174,10 @@ h3 {
     width: 30%;
 }
 
-/* To allow click on axis text */
+/* To allow click or mouseover on axis text */
 #functionBarChart g.axis text {
     pointer-events: auto;
-    cursor: pointer;
+    /*cursor: pointer;*/
 }
 
 #functionBarChartUnit {

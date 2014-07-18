@@ -81,24 +81,23 @@ var RCInterface = Class.create( {
     initFileValuesAndCreateDCObjects:function()
     {
         // To set ',' in separator for .csv file, save first in .ods then in .csv and then fill the asked fiels
-        d3.csv( "data/Reccap_data_rows5.csv", jQuery.proxy( function ( error, csv )
+        d3.csv( "data/Reccap_data_rows4.csv", jQuery.proxy( function ( error, csv )
         {
             this.data = crossfilter( csv );
-//            this.data2 = crossfilter( csv );
+
             // Init this.transposedData & this.regionsKeys
             this.transposeDataFromFile( csv );
 
-            // TODO : see why it applies to ALL data
-//            this.data.dimension(
-//                    jQuery.proxy( function( d )
-//                    {
-//                        return d[this.valueColName];
-//                    }, this ) ).filter(
-//                    function( d )
-//                    {
-//                        if( 0 < Math.abs( d ) )
-//                            return d;
-//                    } );
+            this.data.dimension(
+                    jQuery.proxy( function( d )
+                    {
+                        return d[this.valueColName];
+                    }, this ) ).filter(
+                    function( d )
+                    {
+                        if( 0 < Math.abs( d ) )
+                            return d;
+                    } );
 
             this.continents = this.data.dimension( jQuery.proxy( function( d )
             {
@@ -141,13 +140,13 @@ var RCInterface = Class.create( {
     /**
      * http://blog.rusty.io/2012/09/17/crossfilter-tutorial/
      * "... when you filter on a dimension, and then roll-up using said dimension, Crossfilter intentionally ignores any filter an said dimension....
-     * ...The workaround is to create another dimension on the same field, and filter on that:"
+     * ...The workaround is to create another dimension on the same field, and filter on that.
+     * ... Dimensions are stateful, so Crossfilter knows about our filter, and will ensure that all future operations are filtered to only work on the filter field
+     * except for any calculations performed directly on the said dimension..."
+     * No way to try with filters !!!
      */
     createFunctions: function()
     {
-//        this.createFunctionsByFluxArray( "#functionBarChart1", this.fluxColNameForMainFlux, this.valueColName, this.mainFlux );
-
-//        this.createFunctionsByFluxArray( "#functionBarChart2", this.fluxColNameForSeparatedFlux, "flux2", this.separatedFlux );
         var carbonBudgets = this.data.dimension( function ( d )
         {
             return d["all units in TgC yr-1"];
@@ -160,134 +159,9 @@ var RCInterface = Class.create( {
         }, this ) );
 
         this.createFunctionBarChart( "#functionBarChart1", $( "#functionBarChart1" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.mainFlux, false, this.barCharMargin );
-        this.createFunctionBarChart( "#functionBarChart2", $( "#functionBarChart2" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.separatedFlux, false, this.barCharMargin );
-    },
+        var rightBarChartMargin = {top: this.barCharMargin.top, right: this.barCharMargin.left, bottom: this.barCharMargin.bottom, left: this.barCharMargin.right};
+        this.createFunctionBarChart( "#functionBarChart2", $( "#functionBarChart2" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.separatedFlux, true, rightBarChartMargin );
 
-    createFunctionsByFluxArray:function( chartId, colName, colValueName, fluxArray )
-    {
-        var carbonBudgets = this.data.dimension( function ( d )
-        {
-            return d[colName];
-        }, this )
-                .filter( jQuery.proxy( function( d )
-        {
-            if( $.inArray( d, fluxArray ) == -1 )
-                return d;
-        }, this ) );
-
-        /** Warning : we need to create another filter on the same dimension "fluxColName", otherwise the group() function doesn't "load" the good filter **/
-        var carbonBudgets2 = this.data.dimension(
-                function ( d )
-                {
-                    return d[colName];
-                } ).filter( jQuery.proxy( function( d )
-        {
-            if( $.inArray( d, fluxArray ) != -1 )
-                return d;
-        }, this ) );
-
-        // group based on carbonBudgets dimension otherwise, a click on a bar hide all others
-        var budgetAmountGroup = carbonBudgets.group().reduceSum( jQuery.proxy( function ( d )
-        {
-            return this.numberFormat( d[colValueName] );
-        }, this ) );
-
-        console.log( "ICICICICI" );
-        console.log( "carbonBudgets" );
-        print_filter( carbonBudgets );
-        console.log( "carbonBudgets2" );
-        print_filter( carbonBudgets2 );
-        console.log( "budgetAmountGroup" );
-        print_filter( budgetAmountGroup );
-        var bob1 = this.createFunctionBarChart( chartId, $( chartId ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, fluxArray, false, this.barCharMargin );
-//        carbonBudgets.filterAll();
-//        var budgetAmountGroup2 = this.data.dimension( jQuery.proxy( function ( d )
-//        {
-//            return d[this.fluxColName];
-//        }, this ) ).filter( jQuery.proxy( function( d )
-//        {
-//            if( $.inArray( d, this.separatedFlux ) != -1 )
-//                return d;
-//        }, this ) ).group().reduceSum( jQuery.proxy( function ( d )
-//        {
-//            return this.numberFormat( d[this.valueColName] );
-//        }, this ) );
-//
-//        console.log( "carbonBudgets " );
-//        print_filter( carbonBudgets );
-//        console.log( "budgetAmountGroup " );
-//        print_filter( budgetAmountGroup );
-//        console.log( "budgetAmountGroup2 " );
-//        print_filter( budgetAmountGroup2 );
-
-//        var carbonBudgets2 = this.data.dimension( jQuery.proxy( function ( d )
-//        {
-//            return d[this.fluxColName];
-//        }, this ) );
-//        carbonBudgets2.filter( jQuery.proxy( function( d )
-//        {
-//            if( $.inArray( d, this.mainFlux ) != -1 )
-//                return d;
-//        }, this ) );
-//
-//        var budgetAmountGroup2 = carbonBudgets2.group().reduceSum( jQuery.proxy( function ( d )
-//        {
-//            return this.numberFormat( d[this.valueColName] );
-//        }, this ) );
-//
-//        print_filter( budgetAmountGroup2 );
-
-//        var marginForRightAxis = {top: this.barCharMargin.top, right: this.barCharMargin.left, bottom: this.barCharMargin.bottom, left:this.barCharMargin.right };
-//        var bob2 = this.createFunctionBarChart( "#functionBarChart2", $( "#functionBarChart2" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup2, this.separatedFlux, true, marginForRightAxis );
-
-//        this.createFunctionBarChart( "#functionBarChart2", $( "#functionBarChart2" ).width(), this.chartHeight, carbonBudgets2, budgetAmountGroup2, this.mainFlux );
-
-//        dc.renderAll( "#functionBarChart1" );
-
-//        this.data.dimension( jQuery.proxy( function ( d )
-//        {
-//            return d[this.fluxColName];
-//        }, this ) )
-//                .filter( jQuery.proxy( function( d )
-//        {
-//            if( $.inArray( d, this.mainFlux ) != -1 )
-//                return d;
-//        }, this ) );
-//
-//        this.createFunctionBarChart( "#functionBarChart2", $( "#functionBarChart2" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.mainFlux );
-//        dc.renderAll( "#functionBarChart2" );
-
-//        print_filter( carbonBudgets2 );
-//        var paf = carbonBudgets2.filter( jQuery.proxy( function( d )
-//        {
-//            if( $.inArray( d, this.separatedFlux ) != -1 )
-//            {
-//                console.log( "OK " + d );
-//                return d;
-//            }
-//        } ) ).group();
-//
-//        print_filter( paf);
-//
-//        var budgetAmountGroup2 = carbonBudgets2.group().reduceSum( jQuery.proxy( function ( d )
-//        {
-//            return this.numberFormat( d[this.valueColName] );
-//        }, this ) );
-//
-////        print_filter( budgetAmountGroup2 );
-//
-//        // Hack because this functionality is not yet available in dc.js
-////        var filteredFunctionAmountGroup = {
-////            all: function ()
-////            {
-////                return budgetAmountGroup.top( Infinity ).filter( function ( d )
-////                {
-////                    return 0 !== d.value;
-////                } );
-////            }
-////        };
-
-//        this.createFunctionBarChart( "#functionBarChart2", $( "#functionBarChart2" ).width(), this.chartHeight, carbonBudgets2, budgetAmountGroup);
     },
 
 

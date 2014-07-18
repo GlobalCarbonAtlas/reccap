@@ -104,7 +104,6 @@ var RCInterface = Class.create( {
             }, this ) );
 
             // Create DC Objects
-            this.createFunctions();
             this.createDataTable( "#data-count", "#data-table", this.data, this.data.groupAll(), this.continents );
             this.createMapAndUpdateAllAfterRender();
         }, this ) );
@@ -122,8 +121,10 @@ var RCInterface = Class.create( {
             var mapWidth = Math.min( this.imageHeight * 2, this.functionBarChartWidth );
             this.createChoroplethMap( "#mapChart", mapWidth, mapWidth / 2, countries, this.continents, this.continents.group() );
             $( "#mapChart" ).addClass( "countryWithPointer" );
-
+            this.createFunctions( "#functionBarChart1", this.mainFlux );
             dc.renderAll();
+//            this.createFunctions();
+//            dc.renderAll();
 
             this.updateToolTipsForCharts();
             this.updateXAxisForFunctionBarChart();
@@ -142,28 +143,72 @@ var RCInterface = Class.create( {
      * "... when you filter on a dimension, and then roll-up using said dimension, Crossfilter intentionally ignores any filter an said dimension....
      * ...The workaround is to create another dimension on the same field, and filter on that:"
      */
-    createFunctions:function()
+    createFunctions:function( chartId, fluxArray )
     {
         var carbonBudgets = this.data.dimension( jQuery.proxy( function ( d )
         {
             return d[this.fluxColName];
+        }, this ) )
+                .filter( jQuery.proxy( function( d )
+        {
+            if( $.inArray( d, fluxArray ) == -1 )
+                return d;
         }, this ) );
 
-        var budgetAmountGroup = this.data.dimension( jQuery.proxy( function ( d )
+        /** Warning : we need to create another filter on the same dimension "fluxColName", otherwise the group() function doesn't "load" the good filter **/
+        var carbonBudgets2 = this.data.dimension( jQuery.proxy( function ( d )
         {
             return d[this.fluxColName];
         }, this ) ).filter( jQuery.proxy( function( d )
         {
-            if( $.inArray( d, this.mainFlux ) != -1 )
+            if( $.inArray( d, fluxArray ) != -1 )
                 return d;
-        }, this ) ).group().reduceSum( jQuery.proxy( function ( d )
+        }, this ) );
+
+        // group based on carbonBudgets dimension otherwise, a click on a bar hide all others
+        var budgetAmountGroup = carbonBudgets.group().reduceSum( jQuery.proxy( function ( d )
         {
             return this.numberFormat( d[this.valueColName] );
         }, this ) );
 
-        var bob1 = this.createFunctionBarChart( "#functionBarChart1", $( "#functionBarChart1" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.mainFlux, false, this.barCharMargin );
-        var marginForRightAxis = {top: this.barCharMargin.top, right: this.barCharMargin.left, bottom: this.barCharMargin.bottom, left:this.barCharMargin.right };
-        var bob2 = this.createFunctionBarChart( "#functionBarChart2", $( "#functionBarChart2" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.separatedFlux, true, marginForRightAxis );
+//        var carbonBudgets2 = this.data.dimension( jQuery.proxy( function ( d )
+//        {
+//            return d[this.fluxColName];
+//        }, this ) );
+//        carbonBudgets2.filter( jQuery.proxy( function( d )
+//        {
+//            if( $.inArray( d, this.mainFlux ) != -1 )
+//                return d;
+//        }, this ) );
+//
+//        var budgetAmountGroup2 = carbonBudgets2.group().reduceSum( jQuery.proxy( function ( d )
+//        {
+//            return this.numberFormat( d[this.valueColName] );
+//        }, this ) );
+//
+
+        print_filter( carbonBudgets );
+        print_filter( budgetAmountGroup );
+        var bob1 = this.createFunctionBarChart( chartId, $( chartId ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, fluxArray, false, this.barCharMargin );
+
+//        var budgetAmountGroup2 = this.data.dimension( jQuery.proxy( function ( d )
+//        {
+//            return d[this.fluxColName];
+//        }, this ) ).filter( jQuery.proxy( function( d )
+//        {
+//            if( $.inArray( d, this.separatedFlux ) != -1 )
+//                return d;
+//        }, this ) ).group().reduceSum( jQuery.proxy( function ( d )
+//        {
+//            return this.numberFormat( d[this.valueColName] );
+//        }, this ) );
+//
+//        console.log( "carbonBudgets " );
+//        print_filter( carbonBudgets );
+//        console.log( "budgetAmountGroup " );
+//        print_filter( budgetAmountGroup );
+//        console.log( "budgetAmountGroup2 " );
+//        print_filter( budgetAmountGroup2 );
 
 //        var carbonBudgets2 = this.data.dimension( jQuery.proxy( function ( d )
 //        {
@@ -181,6 +226,10 @@ var RCInterface = Class.create( {
 //        }, this ) );
 //
 //        print_filter( budgetAmountGroup2 );
+
+//        var marginForRightAxis = {top: this.barCharMargin.top, right: this.barCharMargin.left, bottom: this.barCharMargin.bottom, left:this.barCharMargin.right };
+//        var bob2 = this.createFunctionBarChart( "#functionBarChart2", $( "#functionBarChart2" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup2, this.separatedFlux, true, marginForRightAxis );
+
 //        this.createFunctionBarChart( "#functionBarChart2", $( "#functionBarChart2" ).width(), this.chartHeight, carbonBudgets2, budgetAmountGroup2, this.mainFlux );
 
 //        dc.renderAll( "#functionBarChart1" );
@@ -324,23 +373,16 @@ var RCInterface = Class.create( {
                 .elasticY( true )
                 .colors( this.color )
                 .xUnits( dc.units.ordinal )
-//                .x( d3.scale.ordinal() )
-                .x( d3.scale.ordinal().domain( domain ) )
+                .x( d3.scale.ordinal() )
+//                .x( d3.scale.ordinal().domain( domain ) )
 //                .y( d3.scale.linear().domain( [-500000, 500000] ) )
                 .renderHorizontalGridLines( true );
 
-//        console.log( domain );
         barChart.setUseRightYAxis( useRightYAxis );
         barChart.yAxis().tickFormat( d3.format( "s" ) );
-        barChart.setCallBackOnClick( jQuery.proxy( this.onClickFunctionChart, this ) );
+//        barChart.setCallBackOnClick( jQuery.proxy( this.onClickFunctionChart, this ) );
 
-//        barChart.filter( domain );
-//        barChart.x( d3.scale.ordinal().domain( domain ) );
-//        this.functionChart.yAxis().tickFormat( d3.format( "s" ) );
-//        this.functionChart.setCallBackOnClick( jQuery.proxy( this.onClickFunctionChart, this ) );
 //        this.rowChart.setCallBackOnCompleteDisplay( jQuery.proxy( this.onCompleteDisplayRowChart, this ) );
-//        dc.redrawAll();
-//        dc.renderAll( chartId );
         return barChart;
     },
 

@@ -1755,7 +1755,7 @@ dc.coordinateGridMixin = function (_chart) {
 
     /**
     #### .xUnits([xUnits function])
-    Set or get the xUnits function. xUnits function is the coordinate grid chart uses to calculate number of data
+    Set or get the xUnits function. xUnits function is the coordinate grid chart uses to calculate nuber of data
     projections on x axis such as number bars for a bar chart and number of dots for a line chart. This function is
     expected to return an Javascript array of all data points on x axis. d3 time range functions d3.time.days, d3.time.months,
     and d3.time.years are all valid xUnits function. dc.js also provides a few units function, see [Utilities](#util)
@@ -3637,7 +3637,11 @@ dc.barChart = function (parent, chartGroup) {
     };
 
     function barHeight(d) {
-        return dc.utils.safeNumber(Math.abs(_chart.y()(d.y + d.y0) - _chart.y()(d.y0)));
+        /** CHANGE VMIPSL **/
+        if( _chart.xOriginalDomain().indexOf( d.x ) == -1 )
+            return 0;
+        else
+            return dc.utils.safeNumber( Math.abs( _chart.y()( d.y + d.y0 ) - _chart.y()( d.y0 ) ) );
     }
 
     function renderBars(layer, layerIndex, d) {

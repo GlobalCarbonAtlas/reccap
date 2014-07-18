@@ -42,10 +42,9 @@
                 <div id="functionBarChartUnit">Tg C yr-1</div>
                 <div id="functionBarChartTitle">All regions</div>
                 <div id="functionBarChart">
-                    <div id="functionBarChart1"></div>
-                    <div id="functionBarChart2"></div>
+                    <div id="functionBarChartForMainFlux"></div>
+                    <div id="functionBarChartForSeparatedFlux"></div>
                 </div>
-<!--                <div id="resetFunctionBarChart">Reset selection</div>-->
             </div>
         </div>
 

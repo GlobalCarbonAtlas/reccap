@@ -166,12 +166,12 @@ h3 {
 }
 
 /* ************** FUNCTION BARCHART ************** */
-#functionBarChart1 {
-    width: 60%;
+#functionBarChartForMainFlux {
+    width: 70%;
 }
 
-#functionBarChart2 {
-    width: 40%;
+#functionBarChartForSeparatedFlux {
+    width: 30%;
 }
 
 /* To allow click on axis text */

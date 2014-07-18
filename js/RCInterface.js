@@ -17,6 +17,10 @@ var RCInterface = Class.create( {
         this.regionColName = jQuery.i18n.prop( "regionColName" );
         this.fluxColName = jQuery.i18n.prop( "fluxColName" );
         this.valueColName = jQuery.i18n.prop( "valueColName" );
+        this.mainFlux = JSON.parse( jQuery.i18n.prop( "mainFlux" ) );
+        this.yDomainForMainFlux = JSON.parse( jQuery.i18n.prop( "yDomainForMainFlux" ) );
+        this.separatedFlux = JSON.parse( jQuery.i18n.prop( "separatedFlux" ) );
+        this.yDomainForSeparatedFlux = JSON.parse( jQuery.i18n.prop( "yDomainForSeparatedFlux" ) );
 
         // Variables
         this.initMapWidth = 600;
@@ -28,9 +32,6 @@ var RCInterface = Class.create( {
         this.barCharMargin = {top: 10, right: 20, bottom: 75, left: 35};
         this.color = d3.scale.category20c();
         this.selectMultipleRegion = false;
-        this.orderForFlux = JSON.parse( jQuery.i18n.prop( "orderForFlux" ) );
-        this.separatedFlux = JSON.parse( jQuery.i18n.prop( "separatedFlux" ) );
-        this.mainFlux = JSON.parse( jQuery.i18n.prop( "mainFlux" ) );
 
         // Areas for maps
         this.createDynamicAreasForResponsiveMap( "#imageFlux", "#mapForImageFlux", "#dynamicAreasForImageFlux", this.groupedBarChartWidth, true );
@@ -137,33 +138,6 @@ var RCInterface = Class.create( {
         }, this ) );
     },
 
-    /**
-     * http://blog.rusty.io/2012/09/17/crossfilter-tutorial/
-     * "... when you filter on a dimension, and then roll-up using said dimension, Crossfilter intentionally ignores any filter an said dimension....
-     * ...The workaround is to create another dimension on the same field, and filter on that.
-     * ... Dimensions are stateful, so Crossfilter knows about our filter, and will ensure that all future operations are filtered to only work on the filter field
-     * except for any calculations performed directly on the said dimension..."
-     * No way to try with filters !!!
-     */
-    createFunctions: function()
-    {
-        var carbonBudgets = this.data.dimension( function ( d )
-        {
-            return d["all units in TgC yr-1"];
-        }, this );
-
-        // group based on carbonBudgets dimension otherwise, a click on a bar hide all others
-        var budgetAmountGroup = carbonBudgets.group().reduceSum( jQuery.proxy( function ( d )
-        {
-            return this.numberFormat( d["flux"] );
-        }, this ) );
-
-        this.createFunctionBarChart( "#functionBarChart1", $( "#functionBarChart1" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.mainFlux, false, this.barCharMargin );
-        var rightBarChartMargin = {top: this.barCharMargin.top, right: this.barCharMargin.left, bottom: this.barCharMargin.bottom, left: this.barCharMargin.right};
-        this.createFunctionBarChart( "#functionBarChart2", $( "#functionBarChart2" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.separatedFlux, true, rightBarChartMargin );
-
-    },
-
 
     /* ******************************************************************** */
     /* ******************************* MAP ******************************** */
@@ -244,7 +218,33 @@ var RCInterface = Class.create( {
     /* ******************************************************************** */
     /* ************************ FUNCTIONS BAR CHART ************************* */
     /* ******************************************************************** */
-    createFunctionBarChart: function( chartId, width, height, dimension, group, domain, useRightYAxis, barCharMargin )
+    /**
+     * http://blog.rusty.io/2012/09/17/crossfilter-tutorial/
+     * "... when you filter on a dimension, and then roll-up using said dimension, Crossfilter intentionally ignores any filter an said dimension....
+     * ...The workaround is to create another dimension on the same field, and filter on that.
+     * ... Dimensions are stateful, so Crossfilter knows about our filter, and will ensure that all future operations are filtered to only work on the filter field
+     * except for any calculations performed directly on the said dimension..."
+     * No way to try with filters !!!
+     */
+    createFunctions: function()
+    {
+        var carbonBudgets = this.data.dimension( function ( d )
+        {
+            return d["all units in TgC yr-1"];
+        }, this );
+
+        // group based on carbonBudgets dimension otherwise, a click on a bar hide all others
+        var budgetAmountGroup = carbonBudgets.group().reduceSum( jQuery.proxy( function ( d )
+        {
+            return this.numberFormat( d["flux"] );
+        }, this ) );
+
+        this.createFunctionBarChart( "#functionBarChartForMainFlux", $( "#functionBarChartForMainFlux" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.mainFlux, this.yDomainForMainFlux, false, this.barCharMargin );
+        var rightBarChartMargin = {top: this.barCharMargin.top, right: this.barCharMargin.left, bottom: this.barCharMargin.bottom, left: this.barCharMargin.right};
+        this.createFunctionBarChart( "#functionBarChartForSeparatedFlux", $( "#functionBarChartForSeparatedFlux" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.separatedFlux, this.yDomainForSeparatedFlux, true, rightBarChartMargin );
+    },
+
+    createFunctionBarChart: function( chartId, width, height, dimension, group, xDomain, yDomain, useRightYAxis, barCharMargin )
     {
         var barChart = dc.barChart( chartId )
                 .height( height )
@@ -254,12 +254,11 @@ var RCInterface = Class.create( {
                 .dimension( dimension )
                 .group( group )
                 .brushOn( false )
-                .elasticY( true )
+                .elasticY( false )
                 .colors( this.color )
                 .xUnits( dc.units.ordinal )
-//                .x( d3.scale.ordinal() )
-                .x( d3.scale.ordinal().domain( domain ) )
-//                .y( d3.scale.linear().domain( [-500000, 500000] ) )
+                .x( d3.scale.ordinal().domain( xDomain ) )
+                .y( d3.scale.linear().domain( yDomain ) )
                 .renderHorizontalGridLines( true );
 
         barChart.setUseRightYAxis( useRightYAxis );

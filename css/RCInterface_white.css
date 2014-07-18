@@ -125,10 +125,6 @@ h3 {
 }
 
 /* ************** DC Object ************** */
-.dc-chart g.row text {
-    fill: #2C3537;
-}
-
 .dc-chart .selected path {
     fill-opacity: 1;
     stroke: none !important;
@@ -416,11 +412,6 @@ foreignObject {
     background-color: blue;
 }
 
-.rowChartText {
-    cursor: pointer;
-    color: #525252;
-    font: 12px "Futura", sans-serif;
-}
 
 /* ************** SYNTHESIS ************** */
 .synthesisDiv {

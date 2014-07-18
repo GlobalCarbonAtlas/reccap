@@ -60,8 +60,8 @@ var RCInterface = Class.create( {
             // Bar chart
                 return "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.data.value );
             else
-            // Row chart
-                return "<span class='d3-tipTitle'>" + d.key + " : </span>" + this.numberFormat( d.value );
+            // Function bar chart axis
+                return "<span class='d3-tipTitle'>" + d + "</span>";
         }, this ) );
 
         // Tooltips for menu
@@ -348,21 +348,47 @@ var RCInterface = Class.create( {
     {
         // Function Bar chart : rotate the x Axis labels
         d3.selectAll( "#functionBarChart g.x g text" )
-//                .append( "foreignObject" ).append( "xhtml:body" ).html( '<div class="rowChartText">zzzz</div>' )
                 .style( "text-anchor", "end" )
+                .attr( "title", function( d )
+        {
+            return d;
+        } )
                 .attr( "transform", "translate(-10,0)rotate(315)" )
-//                .attr( "transform",
-//                function( d )
-//                {
-//                    var textLength = getTextWidth( d, ".dc-chart .axis text", "RCInterface_white.css" ) + 3;
-//                    return "translate(-10,-" + textLength + ")rotate(270)";
-//                } )
+                .html( jQuery.proxy( function( d )
+        {
+            var propertieName = this.getI18nPropertiesKeyFromValue( d );
+            return 0 != jQuery.i18n.prop( propertieName + "_shortForAxis" ).indexOf( "[" ) ? jQuery.i18n.prop( propertieName + "_shortForAxis" ) : d;
+        }, this ) )
                 .on( 'click', jQuery.proxy( function( d )
         {
             // Warning : need to desactivate "  pointer-events: auto;" in css -> .dc-chart g.axis text
             var dynamicAreaDivId = this.getI18nPropertiesKeyFromValue( d );
             $( "#" + dynamicAreaDivId ).click();
         }, this ) );
+
+
+        // Test with "foreignObject" if necessary
+//        var barChartData = d3.selectAll( "#functionBarChart g.x g text" )[0];
+//        d3.selectAll( "#functionBarChart g.x g text" ).remove();
+//        d3.selectAll( "#functionBarChart g.x g" )
+//                .data( barChartData )
+//                .append( "foreignObject" )
+//                .style( "text-anchor", "end" )
+//                .attr( "transform", "translate(-10,0)rotate(315)" )
+//                .attr( "x", 0 )
+//                .attr( "y", 9 )
+//                .attr( 'width', 100 )
+//                .attr( 'height', 20 )
+//                .append( "xhtml:body" )
+//                .html( function( d )
+//        {
+//            return '<div class="functionBarChartText">' + d.__data__ + '</div>';
+//        } )
+//                .on( 'click', jQuery.proxy( function( d )
+//        {
+//            var dynamicAreaDivId = this.getI18nPropertiesKeyFromValue( d.__data__ );
+//            $( "#" + dynamicAreaDivId ).click();
+//        }, this ) );
     },
 
     onClickFunctionChart: function( element )
@@ -649,8 +675,8 @@ var RCInterface = Class.create( {
         // Tooltips
 //        d3.selectAll( ".country, #functionBarChart .bar, #functionBarChart text, #groupedBarChart rect" ).call( this.toolTip );
 //        d3.selectAll( ".country, #functionBarChart .bar, #functionBarChart text, #groupedBarChart rect" )
-        d3.selectAll( ".country, #functionBarChart .bar, #groupedBarChart .groupedBar rect" ).call( this.toolTip );
-        d3.selectAll( ".country, #functionBarChart .bar, #groupedBarChart .groupedBar rect" )
+        d3.selectAll( ".country, #functionBarChart .bar, #functionBarChart text, #groupedBarChart .groupedBar rect" ).call( this.toolTip );
+        d3.selectAll( ".country, #functionBarChart .bar, #functionBarChart text, #groupedBarChart .groupedBar rect" )
                 .on( 'mouseover', this.toolTip.show )
                 .on( 'mouseout', this.toolTip.hide );
 

@@ -32,7 +32,9 @@ var RCInterface = Class.create( {
         this.functionBarChartWidth = $( "#functionBarChart" ).width();
         this.imageHeight = 0;
         this.barCharMargin = {top: 10, right: 20, bottom: 75, left: 35};
-        this.color = d3.scale.category20c();
+        var colors = d3.scale.category20c().range();
+        colors[2] = "#555555";
+        this.color = d3.scale.ordinal().range( colors );
         this.selectMultipleRegion = false;
 
         // Areas for maps

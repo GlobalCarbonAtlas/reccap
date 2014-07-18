@@ -176,8 +176,7 @@ h3 {
 
 /* To allow click or mouseover on axis text */
 #functionBarChart g.axis text {
-    pointer-events: auto;
-    /*cursor: pointer;*/
+    pointer-events: auto; /*cursor: pointer;*/
 }
 
 #functionBarChartUnit {
@@ -200,15 +199,15 @@ h3 {
 }
 
 /*#resetFunctionBarChart {*/
-    /*cursor: pointer;*/
-    /*float: right;*/
-    /*margin: -50px 50px 0 0;*/
-    /*fill: #525252;*/
-    /*font: 10px "Futura", sans-serif;*/
+/*cursor: pointer;*/
+/*float: right;*/
+/*margin: -50px 50px 0 0;*/
+/*fill: #525252;*/
+/*font: 10px "Futura", sans-serif;*/
 /*}*/
 
 /* ************** GROUPED BARCHART ************** */
-#groupedBarChart .legend rect {
+#groupedBarChart .legend rect, #groupedBarChart .groupedBar rect {
     cursor: pointer;
 }
 
@@ -411,7 +410,6 @@ g.no_data_for_this_region path {
 foreignObject {
     background-color: blue;
 }
-
 
 /* ************** SYNTHESIS ************** */
 .synthesisDiv {

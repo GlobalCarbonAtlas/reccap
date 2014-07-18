@@ -203,13 +203,13 @@ h3 {
     text-align: right;
 }
 
-#resetFunctionBarChart {
-    cursor: pointer;
-    float: right;
-    margin: -50px 50px 0 0;
-    fill: #525252;
-    font: 10px "Futura", sans-serif;
-}
+/*#resetFunctionBarChart {*/
+    /*cursor: pointer;*/
+    /*float: right;*/
+    /*margin: -50px 50px 0 0;*/
+    /*fill: #525252;*/
+    /*font: 10px "Futura", sans-serif;*/
+/*}*/
 
 /* ************** GROUPED BARCHART ************** */
 #groupedBarChart .legend rect {

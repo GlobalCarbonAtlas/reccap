@@ -45,7 +45,7 @@
                     <div id="functionBarChart1"></div>
                     <div id="functionBarChart2"></div>
                 </div>
-                <div id="resetFunctionBarChart">Reset selection</div>
+<!--                <div id="resetFunctionBarChart">Reset selection</div>-->
             </div>
         </div>
 

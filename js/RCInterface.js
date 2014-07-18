@@ -104,9 +104,9 @@ var RCInterface = Class.create( {
             }, this ) );
 
             // Create DC Objects
-            this.createMap();
             this.createFunctions();
             this.createDataTable( "#data-count", "#data-table", this.data, this.data.groupAll(), this.continents );
+            this.createMapAndUpdateAllAfterRender();
         }, this ) );
     },
 
@@ -114,7 +114,7 @@ var RCInterface = Class.create( {
     /* ******************************************************************** */
     /* ******************************** DC ******************************** */
     /* ******************************************************************** */
-    createMap:function()
+    createMapAndUpdateAllAfterRender:function()
     {
         d3.json( "data/continent-geogame-110m.json", jQuery.proxy( function( error, world )
         {
@@ -122,8 +122,11 @@ var RCInterface = Class.create( {
             var mapWidth = Math.min( this.imageHeight * 2, this.functionBarChartWidth );
             this.createChoroplethMap( "#mapChart", mapWidth, mapWidth / 2, countries, this.continents, this.continents.group() );
             $( "#mapChart" ).addClass( "countryWithPointer" );
+
             dc.renderAll();
-            this.updateCharts();
+
+            this.updateToolTipsForCharts();
+            this.updateXAxisForFunctionBarChart();
 
             // Position of "regionSelect" div
             var marginLeft = (this.functionBarChartWidth - $( "#mapChart" ).width() - $( "#globeActive" ).width()) / 2;
@@ -228,41 +231,9 @@ var RCInterface = Class.create( {
 //        this.createFunctionBarChart( "#functionBarChart2", $( "#functionBarChart2" ).width(), this.chartHeight, carbonBudgets2, budgetAmountGroup);
     },
 
-    createFunctionBarChart: function( chartId, width, height, dimension, group, domain, useRightYAxis, barCharMargin )
-    {
-        var barChart = dc.barChart( chartId )
-                .height( height )
-                .width( width )
-                .transitionDuration( 750 )
-                .margins( barCharMargin )
-                .dimension( dimension )
-                .group( group )
-                .brushOn( false )
-                .elasticY( true )
-                .colors( this.color )
-                .xUnits( dc.units.ordinal )
-//                .x( d3.scale.ordinal() )
-                .x( d3.scale.ordinal().domain( domain ) )
-//                .y( d3.scale.linear().domain( [-500000, 500000] ) )
-                .renderHorizontalGridLines( true );
-
-//        console.log( domain );
-        barChart.setUseRightYAxis( useRightYAxis );
-        barChart.yAxis().tickFormat( d3.format( "s" ) );
-        barChart.setCallBackOnClick( jQuery.proxy( this.onClickFunctionChart, this ) );
-
-//        barChart.filter( domain );
-//        barChart.x( d3.scale.ordinal().domain( domain ) );
-//        this.functionChart.yAxis().tickFormat( d3.format( "s" ) );
-//        this.functionChart.setCallBackOnClick( jQuery.proxy( this.onClickFunctionChart, this ) );
-//        this.rowChart.setCallBackOnCompleteDisplay( jQuery.proxy( this.onCompleteDisplayRowChart, this ) );
-//        dc.redrawAll();
-//        dc.renderAll( chartId );
-        return barChart;
-    },
 
     /* ******************************************************************** */
-    /* ****************************** CHARTS ****************************** */
+    /* ******************************* MAP ******************************** */
     /* ******************************************************************** */
 //    http://www.d3noob.org/2013/03/a-simple-d3js-map-explained.html
     createChoroplethMap: function( chartId, width, height, countries, continentsDimension, continentsGroup )
@@ -303,6 +274,10 @@ var RCInterface = Class.create( {
         }
     },
 
+
+    /* ******************************************************************** */
+    /* *************************** DATA TABLE ***************************** */
+    /* ******************************************************************** */
     createDataTable: function( countId, tableId, allD, allG, tableD )
     {
         dc.dataCount( countId )
@@ -332,6 +307,63 @@ var RCInterface = Class.create( {
         } );
     },
 
+
+    /* ******************************************************************** */
+    /* ************************ FUNCTIONS BAR CHART ************************* */
+    /* ******************************************************************** */
+    createFunctionBarChart: function( chartId, width, height, dimension, group, domain, useRightYAxis, barCharMargin )
+    {
+        var barChart = dc.barChart( chartId )
+                .height( height )
+                .width( width )
+                .transitionDuration( 750 )
+                .margins( barCharMargin )
+                .dimension( dimension )
+                .group( group )
+                .brushOn( false )
+                .elasticY( true )
+                .colors( this.color )
+                .xUnits( dc.units.ordinal )
+//                .x( d3.scale.ordinal() )
+                .x( d3.scale.ordinal().domain( domain ) )
+//                .y( d3.scale.linear().domain( [-500000, 500000] ) )
+                .renderHorizontalGridLines( true );
+
+//        console.log( domain );
+        barChart.setUseRightYAxis( useRightYAxis );
+        barChart.yAxis().tickFormat( d3.format( "s" ) );
+        barChart.setCallBackOnClick( jQuery.proxy( this.onClickFunctionChart, this ) );
+
+//        barChart.filter( domain );
+//        barChart.x( d3.scale.ordinal().domain( domain ) );
+//        this.functionChart.yAxis().tickFormat( d3.format( "s" ) );
+//        this.functionChart.setCallBackOnClick( jQuery.proxy( this.onClickFunctionChart, this ) );
+//        this.rowChart.setCallBackOnCompleteDisplay( jQuery.proxy( this.onCompleteDisplayRowChart, this ) );
+//        dc.redrawAll();
+//        dc.renderAll( chartId );
+        return barChart;
+    },
+
+    updateXAxisForFunctionBarChart: function()
+    {
+        // Function Bar chart : rotate the x Axis labels
+        d3.selectAll( "#functionBarChart g.x g text" )
+//                .append( "foreignObject" ).append( "xhtml:body" ).html( '<div class="rowChartText">zzzz</div>' )
+                .style( "text-anchor", "end" )
+                .attr( "transform", "translate(-10,0)rotate(315)" )
+//                .attr( "transform",
+//                function( d )
+//                {
+//                    var textLength = getTextWidth( d, ".dc-chart .axis text", "RCInterface_white.css" ) + 3;
+//                    return "translate(-10,-" + textLength + ")rotate(270)";
+//                } )
+                .on( 'click', jQuery.proxy( function( d )
+        {
+            // Warning : need to desactivate "  pointer-events: auto;" in css -> .dc-chart g.axis text
+            var dynamicAreaDivId = this.getI18nPropertiesKeyFromValue( d );
+            $( "#" + dynamicAreaDivId ).click();
+        }, this ) );
+    },
 
     onClickFunctionChart: function( element )
     {
@@ -375,7 +407,7 @@ var RCInterface = Class.create( {
             this.createGroupedBarChart( containerId, width, height );
         this.displayedVariables.push( {name : fluxValue, color: false} );
         this.updateGroupedBarChart();
-        this.updateCharts();
+        this.updateToolTipsForCharts();
     },
 
     /**
@@ -590,6 +622,11 @@ var RCInterface = Class.create( {
                 d.color = this.color( d.name );
             return d.color;
         }, this ) );
+
+        // Grouped Bar chart : rotate the x Axis labels
+        d3.selectAll( "#groupedBarChartSvg g.x g text" )
+                .style( "text-anchor", "end" )
+                .attr( "transform", "translate(-10,0)rotate(315)" );
     },
 
     removeToGroupedBarChart: function( fluxName )
@@ -607,7 +644,7 @@ var RCInterface = Class.create( {
     /* ******************************************************************** */
     /* ************************ OTHERS FOR CHARTS ************************* */
     /* ******************************************************************** */
-    updateCharts: function()
+    updateToolTipsForCharts: function()
     {
         // Tooltips
 //        d3.selectAll( ".country, #functionBarChart .bar, #functionBarChart text, #groupedBarChart rect" ).call( this.toolTip );
@@ -617,26 +654,6 @@ var RCInterface = Class.create( {
                 .on( 'mouseover', this.toolTip.show )
                 .on( 'mouseout', this.toolTip.hide );
 
-        // Grouped Bar chart : rotate the x Axis labels
-        d3.selectAll( "#groupedBarChartSvg g.x g text" )
-                .style( "text-anchor", "end" )
-                .attr( "transform", "translate(-10,0)rotate(315)" );
-
-        // Function Bar chart : rotate the x Axis labels
-        d3.selectAll( "#functionBarChart g.x g text" )
-                .style( "text-anchor", "end" )
-                .attr( "transform",
-                function( d )
-                {
-                    var textLength = getTextWidth( d, ".dc-chart .axis text", "RCInterface_white.css" ) + 3;
-                    return "translate(-10,-" + textLength + ")rotate(270)";
-                } )
-                .on( 'click', jQuery.proxy( function( d )
-        {
-            // Warning : need to desactivate "  pointer-events: auto;" in css -> .dc-chart g.axis text
-            var dynamicAreaDivId = this.getI18nPropertiesKeyFromValue( d );
-            $( "#" + dynamicAreaDivId ).click();
-        }, this ) );
     },
 
 
@@ -720,7 +737,7 @@ var RCInterface = Class.create( {
 
             dc.filterAll();
             dc.renderAll();
-            this.updateCharts();
+            this.updateToolTipsForCharts();
 
             $( "#" + jQuery.i18n.prop( "selectedFluxForHomePage" ) ).click();
         }, this ) );
@@ -751,7 +768,7 @@ var RCInterface = Class.create( {
             $( "#regionUnActive" ).fadeOut();
             $( "#regionActive" ).fadeIn();
             $( "#globeActive" ).fadeOut();
-            this.updateCharts();
+            this.updateToolTipsForCharts();
         }, this ) );
 
         $( "#regionActive" ).on( "click", jQuery.proxy( function()
@@ -768,7 +785,7 @@ var RCInterface = Class.create( {
             this.displayedVariables = [];
             $( "#dynamicAreasForImageFlux .dynamicArea" ).removeClass( "selected" );
             $( "#dynamicAreasForImageFlux .dynamicArea" ).click();
-            this.updateCharts();
+            this.updateToolTipsForCharts();
         }, this ) );
 
         $( "#globeActive" ).on( "click", jQuery.proxy( function()
@@ -779,7 +796,7 @@ var RCInterface = Class.create( {
             $( "#regionUnActive" ).fadeIn();
             $( "#regionActive" ).fadeOut();
             $( "#globeActive" ).fadeOut();
-            this.updateCharts();
+            this.updateToolTipsForCharts();
         }, this ) );
 
         // Data button

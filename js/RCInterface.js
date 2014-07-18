@@ -254,6 +254,7 @@ var RCInterface = Class.create( {
                 .dimension( dimension )
                 .group( group )
                 .brushOn( false )
+                .gap( 0 )
                 .elasticY( false )
                 .colors( this.color )
                 .xUnits( dc.units.ordinal )
@@ -597,14 +598,10 @@ var RCInterface = Class.create( {
     /* ******************************************************************** */
     updateToolTipsForCharts: function()
     {
-        // Tooltips
-//        d3.selectAll( ".country, #functionBarChart .bar, #functionBarChart text, #groupedBarChart rect" ).call( this.toolTip );
-//        d3.selectAll( ".country, #functionBarChart .bar, #functionBarChart text, #groupedBarChart rect" )
         d3.selectAll( ".country, #functionBarChart .bar, #functionBarChart text, #groupedBarChart .groupedBar rect" ).call( this.toolTip );
         d3.selectAll( ".country, #functionBarChart .bar, #functionBarChart text, #groupedBarChart .groupedBar rect" )
                 .on( 'mouseover', this.toolTip.show )
                 .on( 'mouseout', this.toolTip.hide );
-
     },
 
 
@@ -689,6 +686,7 @@ var RCInterface = Class.create( {
             dc.filterAll();
             dc.renderAll();
             this.updateToolTipsForCharts();
+            this.updateXAxisForFunctionBarChart();
 
             $( "#" + jQuery.i18n.prop( "selectedFluxForHomePage" ) ).click();
         }, this ) );
@@ -719,7 +717,6 @@ var RCInterface = Class.create( {
             $( "#regionUnActive" ).fadeOut();
             $( "#regionActive" ).fadeIn();
             $( "#globeActive" ).fadeOut();
-            this.updateToolTipsForCharts();
         }, this ) );
 
         $( "#regionActive" ).on( "click", jQuery.proxy( function()
@@ -736,7 +733,7 @@ var RCInterface = Class.create( {
             this.displayedVariables = [];
             $( "#dynamicAreasForImageFlux .dynamicArea" ).removeClass( "selected" );
             $( "#dynamicAreasForImageFlux .dynamicArea" ).click();
-            this.updateToolTipsForCharts();
+            this.updateXAxisForFunctionBarChart();
         }, this ) );
 
         $( "#globeActive" ).on( "click", jQuery.proxy( function()
@@ -747,7 +744,6 @@ var RCInterface = Class.create( {
             $( "#regionUnActive" ).fadeIn();
             $( "#regionActive" ).fadeOut();
             $( "#globeActive" ).fadeOut();
-            this.updateToolTipsForCharts();
         }, this ) );
 
         // Data button

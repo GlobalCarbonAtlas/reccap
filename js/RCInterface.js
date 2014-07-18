@@ -80,9 +80,11 @@ var RCInterface = Class.create( {
 
     initFileValuesAndCreateDCObjects:function()
     {
-        d3.csv( "data/Reccap_data_rows3.csv", jQuery.proxy( function ( error, csv )
+        // To set ',' in separator for .csv file, save first in .ods then in .csv and then fill the asked fiels
+        d3.csv( "data/Reccap_data_rows5.csv", jQuery.proxy( function ( error, csv )
         {
             this.data = crossfilter( csv );
+//            this.data2 = crossfilter( csv );
             // Init this.transposedData & this.regionsKeys
             this.transposeDataFromFile( csv );
 
@@ -104,6 +106,7 @@ var RCInterface = Class.create( {
             }, this ) );
 
             // Create DC Objects
+            this.createFunctions();
             this.createDataTable( "#data-count", "#data-table", this.data, this.data.groupAll(), this.continents );
             this.createMapAndUpdateAllAfterRender();
         }, this ) );
@@ -121,10 +124,7 @@ var RCInterface = Class.create( {
             var mapWidth = Math.min( this.imageHeight * 2, this.functionBarChartWidth );
             this.createChoroplethMap( "#mapChart", mapWidth, mapWidth / 2, countries, this.continents, this.continents.group() );
             $( "#mapChart" ).addClass( "countryWithPointer" );
-            this.createFunctions( "#functionBarChart1", this.mainFlux );
             dc.renderAll();
-//            this.createFunctions();
-//            dc.renderAll();
 
             this.updateToolTipsForCharts();
             this.updateXAxisForFunctionBarChart();
@@ -143,12 +143,32 @@ var RCInterface = Class.create( {
      * "... when you filter on a dimension, and then roll-up using said dimension, Crossfilter intentionally ignores any filter an said dimension....
      * ...The workaround is to create another dimension on the same field, and filter on that:"
      */
-    createFunctions:function( chartId, fluxArray )
+    createFunctions: function()
     {
-        var carbonBudgets = this.data.dimension( jQuery.proxy( function ( d )
+//        this.createFunctionsByFluxArray( "#functionBarChart1", this.fluxColNameForMainFlux, this.valueColName, this.mainFlux );
+
+//        this.createFunctionsByFluxArray( "#functionBarChart2", this.fluxColNameForSeparatedFlux, "flux2", this.separatedFlux );
+        var carbonBudgets = this.data.dimension( function ( d )
         {
-            return d[this.fluxColName];
-        }, this ) )
+            return d["all units in TgC yr-1"];
+        }, this );
+
+        // group based on carbonBudgets dimension otherwise, a click on a bar hide all others
+        var budgetAmountGroup = carbonBudgets.group().reduceSum( jQuery.proxy( function ( d )
+        {
+            return this.numberFormat( d["flux"] );
+        }, this ) );
+
+        this.createFunctionBarChart( "#functionBarChart1", $( "#functionBarChart1" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.mainFlux, false, this.barCharMargin );
+        this.createFunctionBarChart( "#functionBarChart2", $( "#functionBarChart2" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.separatedFlux, false, this.barCharMargin );
+    },
+
+    createFunctionsByFluxArray:function( chartId, colName, colValueName, fluxArray )
+    {
+        var carbonBudgets = this.data.dimension( function ( d )
+        {
+            return d[colName];
+        }, this )
                 .filter( jQuery.proxy( function( d )
         {
             if( $.inArray( d, fluxArray ) == -1 )
@@ -156,10 +176,11 @@ var RCInterface = Class.create( {
         }, this ) );
 
         /** Warning : we need to create another filter on the same dimension "fluxColName", otherwise the group() function doesn't "load" the good filter **/
-        var carbonBudgets2 = this.data.dimension( jQuery.proxy( function ( d )
-        {
-            return d[this.fluxColName];
-        }, this ) ).filter( jQuery.proxy( function( d )
+        var carbonBudgets2 = this.data.dimension(
+                function ( d )
+                {
+                    return d[colName];
+                } ).filter( jQuery.proxy( function( d )
         {
             if( $.inArray( d, fluxArray ) != -1 )
                 return d;
@@ -168,29 +189,18 @@ var RCInterface = Class.create( {
         // group based on carbonBudgets dimension otherwise, a click on a bar hide all others
         var budgetAmountGroup = carbonBudgets.group().reduceSum( jQuery.proxy( function ( d )
         {
-            return this.numberFormat( d[this.valueColName] );
+            return this.numberFormat( d[colValueName] );
         }, this ) );
 
-//        var carbonBudgets2 = this.data.dimension( jQuery.proxy( function ( d )
-//        {
-//            return d[this.fluxColName];
-//        }, this ) );
-//        carbonBudgets2.filter( jQuery.proxy( function( d )
-//        {
-//            if( $.inArray( d, this.mainFlux ) != -1 )
-//                return d;
-//        }, this ) );
-//
-//        var budgetAmountGroup2 = carbonBudgets2.group().reduceSum( jQuery.proxy( function ( d )
-//        {
-//            return this.numberFormat( d[this.valueColName] );
-//        }, this ) );
-//
-
+        console.log( "ICICICICI" );
+        console.log( "carbonBudgets" );
         print_filter( carbonBudgets );
+        console.log( "carbonBudgets2" );
+        print_filter( carbonBudgets2 );
+        console.log( "budgetAmountGroup" );
         print_filter( budgetAmountGroup );
         var bob1 = this.createFunctionBarChart( chartId, $( chartId ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, fluxArray, false, this.barCharMargin );
-
+//        carbonBudgets.filterAll();
 //        var budgetAmountGroup2 = this.data.dimension( jQuery.proxy( function ( d )
 //        {
 //            return d[this.fluxColName];
@@ -373,8 +383,8 @@ var RCInterface = Class.create( {
                 .elasticY( true )
                 .colors( this.color )
                 .xUnits( dc.units.ordinal )
-                .x( d3.scale.ordinal() )
-//                .x( d3.scale.ordinal().domain( domain ) )
+//                .x( d3.scale.ordinal() )
+                .x( d3.scale.ordinal().domain( domain ) )
 //                .y( d3.scale.linear().domain( [-500000, 500000] ) )
                 .renderHorizontalGridLines( true );
 

@@ -1986,10 +1986,12 @@ dc.coordinateGridMixin = function (_chart) {
     };
 
     _chart._prepareYAxis = function(g) {
-        if (_y === undefined || _chart.elasticY()) {
+        if( _y === undefined || _chart.elasticY() )
+        {
             _y = d3.scale.linear();
-            _y.domain([_chart.yAxisMin(), _chart.yAxisMax()]).rangeRound([_chart.yAxisHeight(), 0]);
-        }
+            _y.domain( [_chart.yAxisMin(), _chart.yAxisMax()] ).rangeRound( [_chart.yAxisHeight(), 0] );
+        } else if( _chart.elasticYInDomain() )
+            _y.domain( _chart.y().domain() ).rangeRound( [_chart.yAxisHeight(), 0] );
 
         _y.range([_chart.yAxisHeight(), 0]);
         _yAxis = _yAxis.scale(_y);
@@ -2450,7 +2452,8 @@ dc.coordinateGridMixin = function (_chart) {
         if (_chart.elasticX() || _refocused || render)
             _chart.renderXAxis(_chart.g());
 
-        if (_chart.elasticY() || render)
+        /** CHANGE VMIPSL **/
+        if (_chart.elasticY() || render || _chart.elasticYInDomain())
             _chart.renderYAxis(_chart.g());
 
         if (render)
@@ -3595,6 +3598,7 @@ dc.barChart = function (parent, chartGroup) {
 
     var _barWidth;
     var _callbackOnClick = false;
+    var _yElasticityInDomain = false;
 
     dc.override(_chart, 'rescale', function () {
         _chart._rescale();
@@ -3634,6 +3638,13 @@ dc.barChart = function (parent, chartGroup) {
     _chart.setCallBackOnClick = function( callback )
     {
         _callbackOnClick = callback;
+    };
+
+    /** CHANGE VMIPSL **/
+    _chart.elasticYInDomain = function (_) {
+        if (!arguments.length) return _yElasticityInDomain;
+        _yElasticityInDomain = _;
+        return _chart;
     };
 
     function barHeight(d) {

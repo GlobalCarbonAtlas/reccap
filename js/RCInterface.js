@@ -22,6 +22,7 @@ var RCInterface = Class.create( {
         this.yDomainForMainFlux = JSON.parse( jQuery.i18n.prop( "yDomainForMainFlux" ) );
         this.separatedFlux = JSON.parse( jQuery.i18n.prop( "separatedFlux" ) );
         this.yDomainForSeparatedFlux = JSON.parse( jQuery.i18n.prop( "yDomainForSeparatedFlux" ) );
+        this.needToAdaptDomains = JSON.parse( jQuery.i18n.prop( "needToAdaptDomains" ) );
         this.regionFilePath = jQuery.i18n.prop( "regionFilePath" );
 
         // Variables
@@ -92,6 +93,8 @@ var RCInterface = Class.create( {
 
             // Init this.transposedData & this.regionsKeys
             this.transposeDataFromFile( csv );
+            // Update y domains for function bar chart
+            this.initYDomainsForFunctionBarChart();
 
             this.data.dimension(
                     jQuery.proxy( function( d )
@@ -114,6 +117,31 @@ var RCInterface = Class.create( {
             this.createDataTable( "#data-count", "#data-table", this.data, this.data.groupAll(), this.continents );
             this.createMapAndUpdateAllAfterRender();
         }, this ) );
+    },
+
+    initYDomainsForFunctionBarChart: function()
+    {
+        if( this.needToAdaptDomains )
+        {
+            var max = Math.max( Math.abs( this.yDomainForMainFlux[0] ), Math.abs( this.yDomainForMainFlux[1] ) );
+            this.yDomainForMainFlux = [-max, max];
+            max = Math.max( Math.abs( this.yDomainForSeparatedFlux[0] ), Math.abs( this.yDomainForSeparatedFlux[1] ) );
+            this.yDomainForSeparatedFlux = [-max, max];
+        }
+
+        var globeData = this.transposedData[this.regionsKeys.indexOf( "Globe" )];
+        var mainFluxAllDomain = 0;
+        var separatedFluxAllDomain = 0;
+        $.each( globeData, jQuery.proxy( function( i, d )
+        {
+            if( this.mainFlux.indexOf( i ) != -1 )
+                mainFluxAllDomain = Math.max( mainFluxAllDomain, Math.abs( d ) );
+            else
+            if( this.separatedFlux.indexOf( i ) != -1 )
+                separatedFluxAllDomain = Math.max( separatedFluxAllDomain, Math.abs( d ) );
+        }, this ) );
+        this.yDomainForAllMainFlux = [-mainFluxAllDomain, mainFluxAllDomain];
+        this.yDomainForAllSeparatedFlux = [-separatedFluxAllDomain, separatedFluxAllDomain];
     },
 
 
@@ -177,11 +205,22 @@ var RCInterface = Class.create( {
     onClickGeoChoroplethChart: function( element )
     {
         if( !this.geoChoroplethChart.getSelect() )
+        {
             $( "#functionBarChartTitle" ).html( "All regions" );
+            this.functionBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForAllMainFlux ) );
+            this.functionBarChartForMainFlux._doRedraw();
+            this.functionBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForAllSeparatedFlux ) );
+            this.functionBarChartForSeparatedFlux.redraw();
+        }
         else
         {
             $( "#functionBarChartTitle" ).html( this.geoChoroplethChart.getDisplayedRegions().join( " + " ) );
             $( "#functionBarChartTitle" ).attr( "data-original-title", this.geoChoroplethChart.getDisplayedRegions().join( " + " ) );
+            this.functionBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForMainFlux ) );
+            this.functionBarChartForMainFlux._doRedraw();
+            this.functionBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForSeparatedFlux ) );
+            this.functionBarChartForSeparatedFlux.redraw();
+            this.updateXAxisForFunctionBarChart();
         }
     },
 
@@ -243,9 +282,9 @@ var RCInterface = Class.create( {
             return this.numberFormat( d[this.valueColName] );
         }, this ) );
 
-        this.functionBarChartForMainFlux = this.createFunctionBarChart( "#functionBarChartForMainFlux", $( "#functionBarChartForMainFlux" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.mainFlux, this.yDomainForMainFlux, false, this.barCharMargin );
+        this.functionBarChartForMainFlux = this.createFunctionBarChart( "#functionBarChartForMainFlux", $( "#functionBarChartForMainFlux" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.mainFlux, this.yDomainForAllMainFlux, false, this.barCharMargin );
         var rightBarChartMargin = {top: this.barCharMargin.top, right: this.barCharMargin.left, bottom: this.barCharMargin.bottom, left: this.barCharMargin.right};
-        this.functionBarChartForSeparatedFlux = this.createFunctionBarChart( "#functionBarChartForSeparatedFlux", $( "#functionBarChartForSeparatedFlux" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.separatedFlux, this.yDomainForSeparatedFlux, true, rightBarChartMargin );
+        this.functionBarChartForSeparatedFlux = this.createFunctionBarChart( "#functionBarChartForSeparatedFlux", $( "#functionBarChartForSeparatedFlux" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.separatedFlux, this.yDomainForAllSeparatedFlux, true, rightBarChartMargin );
     },
 
     createFunctionBarChart: function( chartId, width, height, dimension, group, xDomain, yDomain, useRightYAxis, barCharMargin )
@@ -260,6 +299,7 @@ var RCInterface = Class.create( {
                 .brushOn( false )
                 .gap( 0 )
                 .elasticY( false )
+                .elasticYInDomain( true )
                 .colors( this.color )
                 .xUnits( dc.units.ordinal )
                 .x( d3.scale.ordinal().domain( xDomain ) )
@@ -296,6 +336,14 @@ var RCInterface = Class.create( {
 //            $( "#" + dynamicAreaDivId ).click();
 //        }, this ) );
 
+
+        d3.selectAll( "#functionBarChart .grid-line.horizontal line" ).classed( 'zero', false );
+        d3.selectAll( "#functionBarChart .grid-line.horizontal line" )
+                .filter( function( d )
+        {
+            return !d
+        } )
+                .classed( 'zero', true );
 
         // Test with "foreignObject" if necessary
 //        var barChartData = d3.selectAll( "#functionBarChart g.x g text" )[0];

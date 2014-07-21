@@ -234,13 +234,13 @@ var RCInterface = Class.create( {
     {
         var carbonBudgets = this.data.dimension( function ( d )
         {
-            return d["all units in TgC yr-1"];
+            return d[this.fluxColName];
         }, this );
 
         // group based on carbonBudgets dimension otherwise, a click on a bar hide all others
         var budgetAmountGroup = carbonBudgets.group().reduceSum( jQuery.proxy( function ( d )
         {
-            return this.numberFormat( d["flux"] );
+            return this.numberFormat( d[this.valueColName] );
         }, this ) );
 
         this.functionBarChartForMainFlux = this.createFunctionBarChart( "#functionBarChartForMainFlux", $( "#functionBarChartForMainFlux" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.mainFlux, this.yDomainForMainFlux, false, this.barCharMargin );

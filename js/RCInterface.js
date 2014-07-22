@@ -767,11 +767,13 @@ var RCInterface = Class.create( {
         $( "#reset" ).on( "click", jQuery.proxy( function()
         {
             $( "#dynamicAreasForImageFlux .dynamicArea" ).removeClass( "selected" );
-            $( "#groupedBarChart" ).empty();
             this.displayedVariables = [];
+            this.functionBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForAllMainFlux ) );
+            this.functionBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForAllSeparatedFlux ) );
 
             dc.filterAll();
             dc.renderAll();
+            this.loadRegionOneSelection();
             this.updateToolTipsForCharts();
             this.updateXAxisForFunctionBarChart();
 

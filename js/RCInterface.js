@@ -20,10 +20,13 @@ var RCInterface = Class.create( {
         this.valueColName = jQuery.i18n.prop( "valueColName" );
         this.mainFlux = JSON.parse( jQuery.i18n.prop( "mainFlux" ) );
         this.yDomainForMainFlux = JSON.parse( jQuery.i18n.prop( "yDomainForMainFlux" ) );
+        this.yDomainForAllMainFlux = JSON.parse( jQuery.i18n.prop( "yDomainForAllMainFlux" ) );
         this.separatedFlux = JSON.parse( jQuery.i18n.prop( "separatedFlux" ) );
         this.yDomainForSeparatedFlux = JSON.parse( jQuery.i18n.prop( "yDomainForSeparatedFlux" ) );
+        this.yDomainForAllSeparatedFlux = JSON.parse( jQuery.i18n.prop( "yDomainForAllSeparatedFlux" ) );
         this.needToAdaptDomains = JSON.parse( jQuery.i18n.prop( "needToAdaptDomains" ) );
         this.regionFilePath = jQuery.i18n.prop( "regionFilePath" );
+        this.globeRegion = jQuery.i18n.prop( "globeRegion" );
 
         // Variables
         this.initMapWidth = 600;
@@ -89,23 +92,24 @@ var RCInterface = Class.create( {
         // To set ',' in separator for .csv file, save first in .ods then in .csv and then fill the asked fiels
         d3.csv( this.dataFilePath, jQuery.proxy( function ( error, csv )
         {
-            this.data = crossfilter( csv );
-
             // Init this.transposedData & this.regionsKeys
             this.transposeDataFromFile( csv );
-            // Update y domains for function bar chart
-            this.initYDomainsForFunctionBarChart();
 
-            this.data.dimension(
+            this.data = crossfilter( csv );
+            // Filter on Globe region
+            this.filterRecords = this.data.dimension(
                     jQuery.proxy( function( d )
                     {
-                        return d[this.valueColName];
+                        return d[this.regionColName];
                     }, this ) ).filter(
-                    function( d )
+                    jQuery.proxy( function( d )
                     {
-                        if( 0 < Math.abs( d ) )
+                        if( this.globeRegion != d )
                             return d;
-                    } );
+                    }, this ) );
+
+            // Update y domains for function bar chart
+            this.initYDomainsForFunctionBarChart();
 
             this.continents = this.data.dimension( jQuery.proxy( function( d )
             {
@@ -121,27 +125,37 @@ var RCInterface = Class.create( {
 
     initYDomainsForFunctionBarChart: function()
     {
-        if( this.needToAdaptDomains )
-        {
-            var max = Math.max( Math.abs( this.yDomainForMainFlux[0] ), Math.abs( this.yDomainForMainFlux[1] ) );
-            this.yDomainForMainFlux = [-max, max];
-            max = Math.max( Math.abs( this.yDomainForSeparatedFlux[0] ), Math.abs( this.yDomainForSeparatedFlux[1] ) );
-            this.yDomainForSeparatedFlux = [-max, max];
-        }
+        if( !this.needToAdaptDomains )
+            return;
 
-        var globeData = this.transposedData[this.regionsKeys.indexOf( "Globe" )];
-        var mainFluxAllDomain = 0;
-        var separatedFluxAllDomain = 0;
+        var mainFluxDomain = 0;
+        var separatedFluxDomain = 0;
+
+        // Domains for mono region
+        $.each( this.filterRecords.top(Infinity), jQuery.proxy( function( i, d )
+        {
+            if( this.mainFlux.indexOf( d[this.fluxColName] ) != -1 )
+                mainFluxDomain = Math.max( mainFluxDomain, Math.abs( d[this.valueColName] ) );
+            else
+                separatedFluxDomain = Math.max( separatedFluxDomain, Math.abs( d[this.valueColName] ) );
+        }, this ) );
+        this.yDomainForMainFlux = [-mainFluxDomain, mainFluxDomain];
+        this.yDomainForSeparatedFlux = [-separatedFluxDomain, separatedFluxDomain];
+
+        // Domains for all regions
+        mainFluxDomain = 0;
+        separatedFluxDomain = 0;
+        var globeData = this.transposedData[this.regionsKeys.indexOf( this.globeRegion )];
         $.each( globeData, jQuery.proxy( function( i, d )
         {
             if( this.mainFlux.indexOf( i ) != -1 )
-                mainFluxAllDomain = Math.max( mainFluxAllDomain, Math.abs( d ) );
+                mainFluxDomain = Math.max( mainFluxDomain, Math.abs( d ) );
             else
             if( this.separatedFlux.indexOf( i ) != -1 )
-                separatedFluxAllDomain = Math.max( separatedFluxAllDomain, Math.abs( d ) );
+                separatedFluxDomain = Math.max( separatedFluxDomain, Math.abs( d ) );
         }, this ) );
-        this.yDomainForAllMainFlux = [-mainFluxAllDomain, mainFluxAllDomain];
-        this.yDomainForAllSeparatedFlux = [-separatedFluxAllDomain, separatedFluxAllDomain];
+        this.yDomainForAllMainFlux = [-mainFluxDomain, mainFluxDomain];
+        this.yDomainForAllSeparatedFlux = [-separatedFluxDomain, separatedFluxDomain];
     },
 
 
@@ -268,6 +282,7 @@ var RCInterface = Class.create( {
      * ... Dimensions are stateful, so Crossfilter knows about our filter, and will ensure that all future operations are filtered to only work on the filter field
      * except for any calculations performed directly on the said dimension..."
      * No way to try with filters !!!
+     * http://stackoverflow.com/questions/10608171/using-crossfilter-to-dynamically-return-results-in-javascript/10660123#10660123
      */
     createFunctions: function()
     {

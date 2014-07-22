@@ -132,7 +132,7 @@ var RCInterface = Class.create( {
         var separatedFluxDomain = 0;
 
         // Domains for mono region
-        $.each( this.filterRecords.top(Infinity), jQuery.proxy( function( i, d )
+        $.each( this.filterRecords.top( Infinity ), jQuery.proxy( function( i, d )
         {
             if( this.mainFlux.indexOf( d[this.fluxColName] ) != -1 )
                 mainFluxDomain = Math.max( mainFluxDomain, Math.abs( d[this.valueColName] ) );
@@ -181,6 +181,7 @@ var RCInterface = Class.create( {
 
             // Home with selected flux
             $( "#" + jQuery.i18n.prop( "selectedFluxForHomePage" ) ).click();
+            this.loadRegionOneSelection();
         }, this ) );
     },
 
@@ -216,26 +217,60 @@ var RCInterface = Class.create( {
         this.geoChoroplethChart.setCallBackOnClick( jQuery.proxy( this.onClickGeoChoroplethChart, this ) );
     },
 
-    onClickGeoChoroplethChart: function( element )
+    onClickGeoChoroplethChart: function()
     {
         if( !this.geoChoroplethChart.getSelect() )
-        {
             $( "#functionBarChartTitle" ).html( "All regions" );
-            this.functionBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForAllMainFlux ) );
-            this.functionBarChartForMainFlux._doRedraw();
-            this.functionBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForAllSeparatedFlux ) );
-            this.functionBarChartForSeparatedFlux.redraw();
-        }
         else
         {
             $( "#functionBarChartTitle" ).html( this.geoChoroplethChart.getDisplayedRegions().join( " + " ) );
             $( "#functionBarChartTitle" ).attr( "data-original-title", this.geoChoroplethChart.getDisplayedRegions().join( " + " ) );
-            this.functionBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForMainFlux ) );
-            this.functionBarChartForMainFlux._doRedraw();
-            this.functionBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForSeparatedFlux ) );
-            this.functionBarChartForSeparatedFlux.redraw();
-            this.updateXAxisForFunctionBarChart();
         }
+
+        this.functionBarChartForMainFlux.redraw();
+        this.functionBarChartForSeparatedFlux.redraw();
+        this.updateXAxisForFunctionBarChart();
+    },
+
+    loadRegionOneSelection: function()
+    {
+        this.geoChoroplethChart.setSelect( true );
+        this.geoChoroplethChart.setMultipleSelect( false );
+        this.functionBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForMainFlux ) );
+        this.functionBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForSeparatedFlux ) );
+
+        $( "#mapChart" ).addClass( "countryWithPointer" );
+        $( "#regionUnActive" ).fadeIn();
+        $( "#regionActive" ).fadeOut();
+        $( "#globeActive" ).fadeOut();
+    },
+
+    loadRegionMultipleSelection: function()
+    {
+        this.geoChoroplethChart.setSelect( true );
+        this.geoChoroplethChart.setMultipleSelect( true );
+        this.functionBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForAllMainFlux ) );
+        this.functionBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForAllSeparatedFlux ) );
+
+        $( "#mapChart" ).addClass( "countryWithPointer" );
+        $( "#regionUnActive" ).fadeOut();
+        $( "#regionActive" ).fadeIn();
+        $( "#globeActive" ).fadeOut();
+    },
+
+    loadRegionAllSelection: function()
+    {
+        this.geoChoroplethChart.selectAllRegion( this.regionsKeys );
+
+        this.geoChoroplethChart.setSelect( false );
+        this.geoChoroplethChart.setMultipleSelect( false );
+        this.functionBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForAllMainFlux ) );
+        this.functionBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForAllSeparatedFlux ) );
+
+        $( "#mapChart" ).removeClass( "countryWithPointer" );
+        $( "#regionUnActive" ).fadeOut();
+        $( "#regionActive" ).fadeOut();
+        $( "#globeActive" ).fadeIn();
     },
 
 
@@ -790,39 +825,17 @@ var RCInterface = Class.create( {
         // Region select button
         $( "#regionUnActive" ).on( "click", jQuery.proxy( function()
         {
-            $( "#mapChart" ).addClass( "countryWithPointer" );
-            this.geoChoroplethChart.setMultipleSelect( true );
-            this.geoChoroplethChart.setSelect( true );
-            $( "#regionUnActive" ).fadeOut();
-            $( "#regionActive" ).fadeIn();
-            $( "#globeActive" ).fadeOut();
+            this.loadRegionMultipleSelection();
         }, this ) );
 
         $( "#regionActive" ).on( "click", jQuery.proxy( function()
         {
-            $( "#mapChart" ).removeClass( "countryWithPointer" );
-            this.geoChoroplethChart.setSelect( false );
-            this.onClickGeoChoroplethChart();
-            $( "#regionUnActive" ).fadeOut();
-            $( "#regionActive" ).fadeOut();
-            $( "#globeActive" ).fadeIn();
-
-            dc.filterAll();
-            dc.renderAll();
-            this.displayedVariables = [];
-            $( "#dynamicAreasForImageFlux .dynamicArea" ).removeClass( "selected" );
-            $( "#dynamicAreasForImageFlux .dynamicArea" ).click();
-            this.updateXAxisForFunctionBarChart();
+            this.loadRegionAllSelection();
         }, this ) );
 
         $( "#globeActive" ).on( "click", jQuery.proxy( function()
         {
-            $( "#mapChart" ).addClass( "countryWithPointer" );
-            this.geoChoroplethChart.setMultipleSelect( false );
-            this.geoChoroplethChart.setSelect( true );
-            $( "#regionUnActive" ).fadeIn();
-            $( "#regionActive" ).fadeOut();
-            $( "#globeActive" ).fadeOut();
+            this.loadRegionOneSelection();
         }, this ) );
 
         // Data button

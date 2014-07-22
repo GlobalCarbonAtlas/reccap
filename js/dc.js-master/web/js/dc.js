@@ -5348,6 +5348,18 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
     }
 
     /** CHANGE VMIPSL **/
+    _chart.selectAllRegion = function(regionArray)
+    {
+        _chart.filterAll();
+        $.each(regionArray, function(i,d)
+        {
+            var countriesPath = _chart.svg().selectAll( layerSelector( 0 ) + "." + dc.utils.nameToId( d ) ).select( "path" );
+            if( countriesPath[0][0] )
+                _chart.onClick( countriesPath[0][0].__data__, 0 );
+        });
+    };
+
+    /** CHANGE VMIPSL **/
     _chart.setMultipleSelect= function( boolValue )
     {
         _boolMultipleSelect = boolValue;

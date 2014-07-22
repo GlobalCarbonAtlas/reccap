@@ -674,8 +674,6 @@ var RCInterface = Class.create( {
             return;
         this.displayedVariables.splice( index, 1 );
         this.updateGroupedBarChart();
-        if( 0 >= this.displayedVariables.length )
-            $( "#groupedBarChartSvg" ).remove();
     },
 
 

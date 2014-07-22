@@ -181,7 +181,6 @@ var RCInterface = Class.create( {
 
             // Home with selected flux
             $( "#" + jQuery.i18n.prop( "selectedFluxForHomePage" ) ).click();
-            this.loadRegionOneSelection();
         }, this ) );
     },
 
@@ -227,6 +226,16 @@ var RCInterface = Class.create( {
             $( "#functionBarChartTitle" ).attr( "data-original-title", this.geoChoroplethChart.getDisplayedRegions().join( " + " ) );
         }
 
+        if( this.geoChoroplethChart.getSelect() && !this.geoChoroplethChart.getMultipleSelect() )
+        {
+            this.functionBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForMainFlux ) );
+            this.functionBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForSeparatedFlux ) );
+        }
+        else
+        {
+            this.functionBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForAllMainFlux ) );
+            this.functionBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForAllSeparatedFlux ) );
+        }
         this.functionBarChartForMainFlux.redraw();
         this.functionBarChartForSeparatedFlux.redraw();
         this.updateXAxisForFunctionBarChart();
@@ -236,8 +245,6 @@ var RCInterface = Class.create( {
     {
         this.geoChoroplethChart.setSelect( true );
         this.geoChoroplethChart.setMultipleSelect( false );
-        this.functionBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForMainFlux ) );
-        this.functionBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForSeparatedFlux ) );
 
         $( "#mapChart" ).addClass( "countryWithPointer" );
         $( "#regionUnActive" ).fadeIn();
@@ -249,8 +256,6 @@ var RCInterface = Class.create( {
     {
         this.geoChoroplethChart.setSelect( true );
         this.geoChoroplethChart.setMultipleSelect( true );
-        this.functionBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForAllMainFlux ) );
-        this.functionBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForAllSeparatedFlux ) );
 
         $( "#mapChart" ).addClass( "countryWithPointer" );
         $( "#regionUnActive" ).fadeOut();
@@ -264,8 +269,6 @@ var RCInterface = Class.create( {
 
         this.geoChoroplethChart.setSelect( false );
         this.geoChoroplethChart.setMultipleSelect( false );
-        this.functionBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForAllMainFlux ) );
-        this.functionBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForAllSeparatedFlux ) );
 
         $( "#mapChart" ).removeClass( "countryWithPointer" );
         $( "#regionUnActive" ).fadeOut();

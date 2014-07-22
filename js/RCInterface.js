@@ -382,13 +382,6 @@ var RCInterface = Class.create( {
             var propertieName = this.getI18nPropertiesKeyFromValue( d );
             return 0 != jQuery.i18n.prop( propertieName + "_shortForAxis" ).indexOf( "[" ) ? jQuery.i18n.prop( propertieName + "_shortForAxis" ) : d;
         }, this ) );
-//                .on( 'click', jQuery.proxy( function( d )
-//        {
-        // Warning : need to desactivate "  pointer-events: auto;" in css -> .dc-chart g.axis text
-//            var dynamicAreaDivId = this.getI18nPropertiesKeyFromValue( d );
-//            $( "#" + dynamicAreaDivId ).click();
-//        }, this ) );
-
 
         d3.selectAll( "#functionBarChart .grid-line.horizontal line" ).classed( 'zero', false );
         d3.selectAll( "#functionBarChart .grid-line.horizontal line" )
@@ -397,29 +390,6 @@ var RCInterface = Class.create( {
             return !d
         } )
                 .classed( 'zero', true );
-
-        // Test with "foreignObject" if necessary
-//        var barChartData = d3.selectAll( "#functionBarChart g.x g text" )[0];
-//        d3.selectAll( "#functionBarChart g.x g text" ).remove();
-//        d3.selectAll( "#functionBarChart g.x g" )
-//                .data( barChartData )
-//                .append( "foreignObject" )
-//                .style( "text-anchor", "end" )
-//                .attr( "transform", "translate(-10,0)rotate(315)" )
-//                .attr( "x", 0 )
-//                .attr( "y", 9 )
-//                .attr( 'width', 100 )
-//                .attr( 'height', 20 )
-//                .append( "xhtml:body" )
-//                .html( function( d )
-//        {
-//            return '<div class="functionBarChartText">' + d.__data__ + '</div>';
-//        } )
-//                .on( 'click', jQuery.proxy( function( d )
-//        {
-//            var dynamicAreaDivId = this.getI18nPropertiesKeyFromValue( d.__data__ );
-//            $( "#" + dynamicAreaDivId ).click();
-//        }, this ) );
     },
 
     onClickFunctionChart: function( element )

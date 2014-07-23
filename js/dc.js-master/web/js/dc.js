@@ -2440,6 +2440,7 @@ dc.coordinateGridMixin = function (_chart) {
         return _chart;
     };
 
+    // Use by barchart
     function drawChart (render) {
         if (_chart.isOrdinal())
             _brushOn = false;
@@ -3601,6 +3602,7 @@ dc.barChart = function (parent, chartGroup) {
     var _callbackOnClick = false;
     var _yElasticityInDomain = false;
     var _areAllBarDeselected = false;
+    var _callbackOnCompleteDisplay = false;
 
     dc.override(_chart, 'rescale', function () {
         _chart._rescale();
@@ -3642,7 +3644,11 @@ dc.barChart = function (parent, chartGroup) {
         _callbackOnClick = callback;
     };
 
-    /** CHANGE VMIPSL **/
+    _chart.setCallBackOnCompleteDisplay = function( callback )
+    {
+        _callbackOnCompleteDisplay = callback;
+    };
+
     _chart.elasticYInDomain = function (_) {
         if (!arguments.length) return _yElasticityInDomain;
         _yElasticityInDomain = _;
@@ -3743,7 +3749,7 @@ dc.barChart = function (parent, chartGroup) {
             } else {
                 console.log("!!!!!!!!!!!!!!!!!! "+_areAllBarDeselected);
                 bars.classed(dc.constants.SELECTED_CLASS, false);
-                bars.classed(dc.constants.DESELECTED_CLASS, false);
+                bars.classed(dc.constants.DESELECTED_CLASS, true);
                 _areAllBarDeselected = true;
             }
         } else {
@@ -3775,6 +3781,7 @@ dc.barChart = function (parent, chartGroup) {
         _chart.onClick(d.data);
         if( _callbackOnClick )
             _callbackOnClick( d.data );
+//        alert("ORDER OK");
     }
 
     /**

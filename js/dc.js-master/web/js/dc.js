@@ -3601,7 +3601,6 @@ dc.barChart = function (parent, chartGroup) {
     /** CHANGE VMIPSL **/
     var _callbackOnClick = false;
     var _yElasticityInDomain = false;
-    var _areAllBarDeselected = false;
     var _callbackOnCompleteDisplay = false;
 
     dc.override(_chart, 'rescale', function () {
@@ -3736,21 +3735,14 @@ dc.barChart = function (parent, chartGroup) {
         if (_chart.isOrdinal()) {
             if (_chart.hasFilter()) {
                 bars.classed(dc.constants.SELECTED_CLASS, function (d) {
-//                    console.log("la "+d.x+", "+_areAllBarDeselected+" "+_chart.hasFilter(d.x));
-//                    return _chart.hasFilter(d.x) && !_areAllBarDeselected;
                     return _chart.hasFilter(d.x);
                 });
                 bars.classed(dc.constants.DESELECTED_CLASS, function (d) {
-//                    console.log("ici "+d.x+", "+_areAllBarDeselected+" "+_chart.hasFilter(d.x));
-//                    return !_chart.hasFilter(d.x) || _areAllBarDeselected;
                     return !_chart.hasFilter(d.x);
                 });
-                _areAllBarDeselected = false;
             } else {
-                console.log("!!!!!!!!!!!!!!!!!! "+_areAllBarDeselected);
                 bars.classed(dc.constants.SELECTED_CLASS, false);
                 bars.classed(dc.constants.DESELECTED_CLASS, true);
-                _areAllBarDeselected = true;
             }
         } else {
             if (!_chart.brushIsEmpty(extent)) {

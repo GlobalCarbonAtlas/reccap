@@ -18,6 +18,7 @@ var RCInterface = Class.create( {
         this.regionColName = jQuery.i18n.prop( "regionColName" );
         this.fluxColName = jQuery.i18n.prop( "fluxColName" );
         this.valueColName = jQuery.i18n.prop( "valueColName" );
+        this.uncertaintyColName = jQuery.i18n.prop( "uncertaintyColName" );
         this.mainFlux = JSON.parse( jQuery.i18n.prop( "mainFlux" ) );
         this.yDomainForMainFlux = JSON.parse( jQuery.i18n.prop( "yDomainForMainFlux" ) );
         this.yDomainForAllMainFlux = JSON.parse( jQuery.i18n.prop( "yDomainForAllMainFlux" ) );
@@ -31,7 +32,7 @@ var RCInterface = Class.create( {
         // Variables
         this.initMapWidth = 600;
         this.initMapScale = 90;
-        this.chartHeight = 0;
+        this.chartHeight = 300;
         this.groupedBarChartWidth = $( "#groupedBarChart" ).width();
         this.functionBarChartWidth = $( "#functionBarChart" ).width();
         this.imageHeight = 0;
@@ -236,9 +237,11 @@ var RCInterface = Class.create( {
             this.functionBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForAllMainFlux ) );
             this.functionBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForAllSeparatedFlux ) );
         }
+
+        d3.selectAll( "#functionBarChart .grid-line.horizontal line" ).classed( 'zero', false );
         this.functionBarChartForMainFlux.redraw();
         this.functionBarChartForSeparatedFlux.redraw();
-        this.updateXAxisForFunctionBarChart();
+//        this.updateXAxisForFunctionBarChart();
     },
 
     loadRegionOneSelection: function()
@@ -335,12 +338,17 @@ var RCInterface = Class.create( {
             return this.numberFormat( d[this.valueColName] );
         }, this ) );
 
-        this.functionBarChartForMainFlux = this.createFunctionBarChart( "#functionBarChartForMainFlux", $( "#functionBarChartForMainFlux" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.mainFlux, this.yDomainForAllMainFlux, false, this.barCharMargin );
+        var budgetUncertGroup = carbonBudgets.group().reduceSum( jQuery.proxy( function ( d )
+        {
+            return this.numberFormat( d[this.valueColName]- d[this.uncertaintyColName] );
+        }, this ) );
+
+        this.functionBarChartForMainFlux = this.createFunctionBarChart( "#functionBarChartForMainFlux", $( "#functionBarChartForMainFlux" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, budgetUncertGroup, this.mainFlux, this.yDomainForAllMainFlux, false, this.barCharMargin );
         var rightBarChartMargin = {top: this.barCharMargin.top, right: this.barCharMargin.left, bottom: this.barCharMargin.bottom, left: this.barCharMargin.right};
-        this.functionBarChartForSeparatedFlux = this.createFunctionBarChart( "#functionBarChartForSeparatedFlux", $( "#functionBarChartForSeparatedFlux" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, this.separatedFlux, this.yDomainForAllSeparatedFlux, true, rightBarChartMargin );
+        this.functionBarChartForSeparatedFlux = this.createFunctionBarChart( "#functionBarChartForSeparatedFlux", $( "#functionBarChartForSeparatedFlux" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, budgetUncertGroup, this.separatedFlux, this.yDomainForAllSeparatedFlux, true, rightBarChartMargin );
     },
 
-    createFunctionBarChart: function( chartId, width, height, dimension, group, xDomain, yDomain, useRightYAxis, barCharMargin )
+    createFunctionBarChart: function( chartId, width, height, dimension, group, uncertGroup, xDomain, yDomain, useRightYAxis, barCharMargin )
     {
         var barChart = dc.barChart( chartId )
                 .height( height )
@@ -348,7 +356,8 @@ var RCInterface = Class.create( {
                 .transitionDuration( 750 )
                 .margins( barCharMargin )
                 .dimension( dimension )
-                .group( group )
+                .group( group, "bobbbbb" )
+                .stack(uncertGroup, "Biiiibb")
                 .brushOn( false )
                 .gap( 0 )
                 .elasticY( false )
@@ -362,10 +371,18 @@ var RCInterface = Class.create( {
         barChart.setUseRightYAxis( useRightYAxis );
         barChart.yAxis().tickFormat( d3.format( "s" ) );
         barChart.setCallBackOnClick( jQuery.proxy( this.onClickFunctionChart, this ) );
-
-//        this.rowChart.setCallBackOnCompleteDisplay( jQuery.proxy( this.onCompleteDisplayRowChart, this ) );
+        barChart.setCallBackOnCompleteDisplay( jQuery.proxy( this.onCompleteDisplayFunctionChart, this ) );
         return barChart;
+
+//        .group(crimeIncidentByYear, "Non-Violent Crime")
+//                .valueAccessor(function(d) {
+//                    return d.value.nonViolentCrimeAvg;
+//                })
+//                .stack(crimeIncidentByYear, "Violent Crime", function(d){return d.value.violentCrimeAvg;})
+//                .x(d3.scale.linear().domain([1997, 2012]))
     },
+
+//http://dc-js.github.io/dc.js/crime/index.html
 
     updateXAxisForFunctionBarChart: function()
     {
@@ -383,7 +400,7 @@ var RCInterface = Class.create( {
             return 0 != jQuery.i18n.prop( propertieName + "_shortForAxis" ).indexOf( "[" ) ? jQuery.i18n.prop( propertieName + "_shortForAxis" ) : d;
         }, this ) );
 
-        d3.selectAll( "#functionBarChart .grid-line.horizontal line" ).classed( 'zero', false );
+//        d3.selectAll( "#functionBarChart .grid-line.horizontal line" ).classed( 'zero', false );
         d3.selectAll( "#functionBarChart .grid-line.horizontal line" )
                 .filter( function( d )
         {
@@ -398,9 +415,9 @@ var RCInterface = Class.create( {
         this.addOrRemoveToGroupedBarChart( $( "#" + dynamicAreaDivId ), element.key );
     },
 
-    onCompleteDisplayRowChart: function()
+    onCompleteDisplayFunctionChart: function()
     {
-//               alert("youhouuu");
+        alert("youhouuu");
     },
 
 
@@ -714,7 +731,7 @@ var RCInterface = Class.create( {
                 jQuery.proxy( function()
                 {
                     this.createAreas( mapId, activeClick, dynamicAreasId );
-                    this.chartHeight = $( "#pageWrapper" ).height() - $( "#imageFlux" ).height() - $( ".bottomBasicCell" ).css( "margin-top" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
+//                    this.chartHeight = $( "#pageWrapper" ).height() - $( "#imageFlux" ).height() - $( ".bottomBasicCell" ).css( "margin-top" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
                     this.imageHeight = $( "#imageFlux" ).height();
                     if( activeClick )
                         this.initFileValuesAndCreateDCObjects();
@@ -775,7 +792,7 @@ var RCInterface = Class.create( {
             this.updateToolTipsForCharts();
             this.updateXAxisForFunctionBarChart();
 
-            $( "#" + jQuery.i18n.prop( "selectedFluxForHomePage" ) ).click();
+//            $( "#" + jQuery.i18n.prop( "selectedFluxForHomePage" ) ).click();
         }, this ) );
 
         // Export button

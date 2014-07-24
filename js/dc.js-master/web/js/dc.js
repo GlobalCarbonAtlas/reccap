@@ -3627,7 +3627,7 @@ dc.barChart = function (parent, chartGroup) {
             .enter()
             .append("g")
             .attr("class", function (d, i) {
-                return "stack " + "_" + i;
+                return "stack " + "_" + i+" bob_"+i;
             });
 
         layers.each(function (d, i) {
@@ -3689,7 +3689,9 @@ dc.barChart = function (parent, chartGroup) {
                 return dc.utils.safeNumber(x);
             })
             .attr("y", function (d) {
-                var y = _chart.y()(d.y + d.y0);
+//                var y = _chart.y()(d.y + d.y0);
+                var y = _chart.y()(d.y);
+
 
                 if (d.y < 0)
                     y -= barHeight(d);

@@ -202,6 +202,9 @@ h3 {
     text-align: right;
 }
 
+.bob_0 .bar, .bob_0 .bar.deselected{
+              fill:black;
+}
 /*#resetFunctionBarChart {*/
 /*cursor: pointer;*/
 /*float: right;*/

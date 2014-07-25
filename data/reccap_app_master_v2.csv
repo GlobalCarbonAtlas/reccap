@@ -3,7 +3,7 @@ North America,Fossil fuel CO2 emissions,1856,2000,source,SOCCR
 North America,NEE,-348,-300,sink,King et al.( inventory atmospheric flow approach for 2000-09) ; note maybe inconsistent with some atm flows given below
 North America,Land use change,-128,-120,sink,SOCCR (here LUC is defined by agricultiral soil C balance + woody encroachement)
 North America,NPP,6200,1850,sink,Hicke et al. 1982-1997 (from MODIS)
-North America,Soil Heterotrophic Respiration,6028,529,source,mass balance
+North America,Soil Heterotrophic Respiration,6028,530,source,mass balance
 North America,Fire,142,12,source,Turner et al. GCB 2012
 North America,Wood product decay,38,10,source,Landfills wood products SOCCR p91 - note : inconsistent with  production (SOCCR p110) -export - wood product storage (King pers. Com - email 2013) = 128 - 61 - 68 = -1 Tg C ; note  forest harvest removal 165 TgC  (Hayes et al. Table 6.6)
 North America,Crop product consumption,182,,source,SOCCR p88 for crop production (217) + SOCCR crop trade (net export of 35) ; note  domestic crop harvest 217 TgC (SOCCR p88)

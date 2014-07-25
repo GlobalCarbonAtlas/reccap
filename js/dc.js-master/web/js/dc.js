@@ -3661,7 +3661,7 @@ dc.barChart = function (parent, chartGroup) {
         else
         {
             var result = dc.utils.safeNumber( Math.abs( _chart.y()( d.y + d.y0 ) - _chart.y()( d.y0 ) ) );
-            result += _chart.y()( 0 ) - result - _chart.y()( d.y );
+            result += 0 < d.y ? _chart.y()( 0 ) - result - _chart.y()( d.y ) : 0;
             return result;
         }
     }

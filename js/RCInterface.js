@@ -68,7 +68,10 @@ var RCInterface = Class.create( {
             }
             else if( d.data )
             // Bar chart
-                return "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.data.value );
+                if( "UncertaintyLayer" == d.layer )
+                    return "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.y0 ) + " (uncertainty : " + this.numberFormat( d.y0 - d.data.value ) + ")";
+                else
+                    return "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.data.value );
             else
             // Function bar chart axis
                 return "<span class='d3-tipTitle'>" + d + "</span>";
@@ -340,7 +343,7 @@ var RCInterface = Class.create( {
 
         var budgetUncertGroup = carbonBudgets.group().reduceSum( jQuery.proxy( function ( d )
         {
-            return this.numberFormat( d[this.valueColName]- d[this.uncertaintyColName] );
+            return this.numberFormat( d[this.valueColName] - d[this.uncertaintyColName] );
         }, this ) );
 
         this.functionBarChartForMainFlux = this.createFunctionBarChart( "#functionBarChartForMainFlux", $( "#functionBarChartForMainFlux" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, budgetUncertGroup, this.mainFlux, this.yDomainForAllMainFlux, false, this.barCharMargin );
@@ -348,7 +351,7 @@ var RCInterface = Class.create( {
         this.functionBarChartForSeparatedFlux = this.createFunctionBarChart( "#functionBarChartForSeparatedFlux", $( "#functionBarChartForSeparatedFlux" ).width(), this.chartHeight, carbonBudgets, budgetAmountGroup, budgetUncertGroup, this.separatedFlux, this.yDomainForAllSeparatedFlux, true, rightBarChartMargin );
     },
 
-    createFunctionBarChart: function( chartId, width, height, dimension, group, uncertGroup, xDomain, yDomain, useRightYAxis, barCharMargin )
+    createFunctionBarChart: function( chartId, width, height, dimension, group, uncertaintyGroup, xDomain, yDomain, useRightYAxis, barCharMargin )
     {
         var barChart = dc.barChart( chartId )
                 .height( height )
@@ -356,8 +359,8 @@ var RCInterface = Class.create( {
                 .transitionDuration( 750 )
                 .margins( barCharMargin )
                 .dimension( dimension )
-                .group( group, "bobbbbb" )
-                .stack(uncertGroup, "Biiiibb")
+                .group( group, "groupLayer" )
+                .stack( uncertaintyGroup, "UncertaintyLayer" )
                 .brushOn( false )
                 .gap( 0 )
                 .elasticY( false )
@@ -417,7 +420,7 @@ var RCInterface = Class.create( {
 
     onCompleteDisplayFunctionChart: function()
     {
-        alert("youhouuu");
+        alert( "youhouuu" );
     },
 
 

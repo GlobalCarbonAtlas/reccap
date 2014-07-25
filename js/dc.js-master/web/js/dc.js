@@ -3627,7 +3627,7 @@ dc.barChart = function (parent, chartGroup) {
             .enter()
             .append("g")
             .attr("class", function (d, i) {
-                return "stack " + "_" + i+" bob_"+i;
+                return "stack " + "_" + i;
             });
 
         layers.each(function (d, i) {
@@ -3659,7 +3659,11 @@ dc.barChart = function (parent, chartGroup) {
         if( _chart.xOriginalDomain().indexOf( d.x ) == -1 )
             return 0;
         else
-            return dc.utils.safeNumber( Math.abs( _chart.y()( d.y + d.y0 ) - _chart.y()( d.y0 ) ) );
+        {
+            var result = dc.utils.safeNumber( Math.abs( _chart.y()( d.y + d.y0 ) - _chart.y()( d.y0 ) ) );
+            result += _chart.y()( 0 ) - result - _chart.y()( d.y );
+            return result;
+        }
     }
 
     function renderBars(layer, layerIndex, d) {

@@ -202,9 +202,10 @@ h3 {
     text-align: right;
 }
 
-.bob_0 .bar, .bob_0 .bar.deselected{
-              fill:black;
+g.stack._0 .bar, g.stack._0 .bar.deselected {
+    fill: #444444;
 }
+
 /*#resetFunctionBarChart {*/
 /*cursor: pointer;*/
 /*float: right;*/

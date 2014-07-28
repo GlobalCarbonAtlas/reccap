@@ -3626,9 +3626,10 @@ dc.barChart = function (parent, chartGroup) {
         layers
             .enter()
             .append("g")
-            .attr("class", function (d, i) {
-                return "stack " + "_" + i;
-            });
+                .attr( "class", function ( d, i )
+        {
+            return "stack " + "_" + i + " layer" + i;
+        } );
 
         layers.each(function (d, i) {
             var layer = d3.select(this);

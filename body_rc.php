@@ -26,10 +26,13 @@
         <!-- ********************* MAP & FUNCTION ********************* -->
         <div class="col-md-6">
             <div class="row basicCell">
-                <div id="regionSelect">
+                <div id="regionAndUncertaintySelect">
                     <div id="globeActive" class="toolButton"><img src="img/Globe_Connected.png" width="35px" title="See all regions"/></div>
                     <div id="regionUnActive" class="toolButton"><img src="img/Globe_Disconnected.png" width="35px" title="See only one region"/></div>
                     <div id="regionActive" class="toolButton"><img src="img/Globe_RegionConnected.png" width="35px" title="See multiple regions"/></div>
+
+                    <div id="uncertaintyDisable" class="toolButton"><img src="img/uncertainty_disable.png" width="40px" title="Hide uncertainty"/></div>
+                    <div id="uncertainty" class="toolButton"><img src="img/uncertainty.png" width="40px" title="Display uncertainty"/></div>
                 </div>
 
                 <div id="mapChartAndComment">

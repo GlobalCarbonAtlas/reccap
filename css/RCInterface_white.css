@@ -96,14 +96,25 @@ h3 {
     display: none;
 }
 
-#regionSelect {
+#regionAndUncertaintySelect {
     float: left;
     margin-top: 15px;
+    position: relative;
 }
 
 #regionActive, #regionUnActive, #globeActive {
     position: absolute;
     margin-top: 10px;
+}
+
+#uncertainty, #uncertaintyDisable {
+    margin-left: -5px;
+    position: absolute;
+    bottom: 15px;
+}
+
+#uncertainty {
+    display: none;
 }
 
 #data, #synthesis img {
@@ -203,8 +214,20 @@ h3 {
 }
 
 g.stack._0 .bar, g.stack._0 .bar.deselected {
-    fill: #444444;
+fill: #444444;
 }
+
+/*#functionBarChart.uncertainty g.stack.layer0 .bar {*/
+    /*fill: #444444;*/
+/*}*/
+
+/*#functionBarChart.uncertainty g.stack.layer0 .bar:hover {*/
+    /*fill: red;*/
+/*}*/
+
+/*#functionBarChart.uncertainty g.stack.layer0 .bar, #functionBarChart.uncertainty g.stack.layer0 .bar.deselected.uncertainty {*/
+/*fill: #444444;*/
+/*}*/
 
 /*#resetFunctionBarChart {*/
 /*cursor: pointer;*/

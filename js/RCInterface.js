@@ -32,7 +32,7 @@ var RCInterface = Class.create( {
         // Variables
         this.initMapWidth = 600;
         this.initMapScale = 90;
-        this.chartHeight = 300;
+        this.chartHeight = 0;
         this.groupedBarChartWidth = $( "#groupedBarChart" ).width();
         this.functionBarChartWidth = $( "#functionBarChart" ).width();
         this.imageHeight = 0;
@@ -41,6 +41,7 @@ var RCInterface = Class.create( {
         colors[2] = "#555555";
         this.color = d3.scale.ordinal().range( colors );
         this.selectMultipleRegion = false;
+        this.displayUncertainty = false;
 
         // Areas for maps
         this.createDynamicAreasForResponsiveMap( "#imageFlux", "#mapForImageFlux", "#dynamicAreasForImageFlux", this.groupedBarChartWidth, true );
@@ -68,7 +69,7 @@ var RCInterface = Class.create( {
             }
             else if( d.data )
             // Bar chart
-                if( "UncertaintyLayer" == d.layer )
+                if( "UncertaintyLayer" == d.layer && this.displayUncertainty )
                     return "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.y0 ) + " (uncertainty : " + this.numberFormat( d.y0 - d.data.value ) + ")";
                 else
                     return "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.data.value );
@@ -86,7 +87,7 @@ var RCInterface = Class.create( {
             placement: "left",
             container:'body'} );
 
-        $( "#regionSelect .toolButton img" ).tooltip( {
+        $( "#regionAndUncertaintySelect .toolButton img" ).tooltip( {
             placement: "right",
             container:'body'} );
     },
@@ -179,9 +180,10 @@ var RCInterface = Class.create( {
             this.updateToolTipsForCharts();
             this.updateXAxisForFunctionBarChart();
 
-            // Position of "regionSelect" div
+            // Position of "regionAndUncertaintySelect" div
             var marginLeft = (this.functionBarChartWidth - $( "#mapChart" ).width() - $( "#globeActive" ).width()) / 2;
-            $( "#regionSelect" ).css( "margin-left", marginLeft );
+            $( "#regionAndUncertaintySelect" ).css( "margin-left", marginLeft );
+            $( "#regionAndUncertaintySelect" ).height( $( "#mapChart" ).height() );
 
             // Home with selected flux
             $( "#" + jQuery.i18n.prop( "selectedFluxForHomePage" ) ).click();
@@ -734,7 +736,7 @@ var RCInterface = Class.create( {
                 jQuery.proxy( function()
                 {
                     this.createAreas( mapId, activeClick, dynamicAreasId );
-//                    this.chartHeight = $( "#pageWrapper" ).height() - $( "#imageFlux" ).height() - $( ".bottomBasicCell" ).css( "margin-top" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
+                    this.chartHeight = $( "#pageWrapper" ).height() - $( "#imageFlux" ).height() - $( ".bottomBasicCell" ).css( "margin-top" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
                     this.imageHeight = $( "#imageFlux" ).height();
                     if( activeClick )
                         this.initFileValuesAndCreateDCObjects();
@@ -859,6 +861,21 @@ var RCInterface = Class.create( {
             $( "#hiddenDiv" ).height( $( "#pageWrapper .container-fluid" ).height() );
         } );
 
+        $( "#uncertainty" ).on( "click", jQuery.proxy( function()
+        {
+            this.displayUncertainty = false;
+            $( "#uncertaintyDisable" ).fadeToggle();
+            $( "#uncertainty" ).fadeToggle();
+            $( "#functionBarChart" ).removeClass( "uncertainty" );
+        }, this ) );
+
+        $( "#uncertaintyDisable" ).on( "click", jQuery.proxy( function()
+        {
+            this.displayUncertainty = true;
+            $( "#uncertaintyDisable" ).fadeToggle();
+            $( "#uncertainty" ).fadeToggle();
+            $( "#functionBarChart" ).addClass( "uncertainty" );
+        }, this ) );
 
         // Synthesis
         $( "#exportSynthesis" ).on( "click", function()

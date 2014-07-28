@@ -213,21 +213,13 @@ h3 {
     text-align: right;
 }
 
-g.stack._0 .bar, g.stack._0 .bar.deselected {
-fill: #444444;
+#functionBarChart g.stack.layer0 .bar {
+    fill: none;
 }
 
-/*#functionBarChart.uncertainty g.stack.layer0 .bar {*/
-    /*fill: #444444;*/
-/*}*/
-
-/*#functionBarChart.uncertainty g.stack.layer0 .bar:hover {*/
-    /*fill: red;*/
-/*}*/
-
-/*#functionBarChart.uncertainty g.stack.layer0 .bar, #functionBarChart.uncertainty g.stack.layer0 .bar.deselected.uncertainty {*/
-/*fill: #444444;*/
-/*}*/
+#functionBarChart.uncertainty g.stack.layer0 .bar {
+    fill: #444444;
+}
 
 /*#resetFunctionBarChart {*/
 /*cursor: pointer;*/

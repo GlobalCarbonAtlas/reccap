@@ -246,7 +246,6 @@ var RCInterface = Class.create( {
         d3.selectAll( "#functionBarChart .grid-line.horizontal line" ).classed( 'zero', false );
         this.functionBarChartForMainFlux.redraw();
         this.functionBarChartForSeparatedFlux.redraw();
-//        this.updateXAxisForFunctionBarChart();
     },
 
     loadRegionOneSelection: function()
@@ -378,18 +377,12 @@ var RCInterface = Class.create( {
         barChart.setUseRightYAxis( useRightYAxis );
         barChart.yAxis().tickFormat( d3.format( "s" ) );
         barChart.setCallBackOnClick( jQuery.proxy( this.onClickFunctionChart, this ) );
-        barChart.setCallBackOnCompleteDisplay( jQuery.proxy( this.onCompleteDisplayFunctionChart, this ) );
+        barChart.on( "postRedraw", jQuery.proxy( function( chart )
+        {
+            this.onCompleteDisplayFunctionChart()
+        }, this ) );
         return barChart;
-
-//        .group(crimeIncidentByYear, "Non-Violent Crime")
-//                .valueAccessor(function(d) {
-//                    return d.value.nonViolentCrimeAvg;
-//                })
-//                .stack(crimeIncidentByYear, "Violent Crime", function(d){return d.value.violentCrimeAvg;})
-//                .x(d3.scale.linear().domain([1997, 2012]))
     },
-
-//http://dc-js.github.io/dc.js/crime/index.html
 
     updateXAxisForFunctionBarChart: function()
     {
@@ -406,14 +399,6 @@ var RCInterface = Class.create( {
             var propertieName = this.getI18nPropertiesKeyFromValue( d );
             return 0 != jQuery.i18n.prop( propertieName + "_shortForAxis" ).indexOf( "[" ) ? jQuery.i18n.prop( propertieName + "_shortForAxis" ) : d;
         }, this ) );
-
-//        d3.selectAll( "#functionBarChart .grid-line.horizontal line" ).classed( 'zero', false );
-        d3.selectAll( "#functionBarChart .grid-line.horizontal line" )
-                .filter( function( d )
-        {
-            return !d
-        } )
-                .classed( 'zero', true );
     },
 
     onClickFunctionChart: function( element )
@@ -424,7 +409,12 @@ var RCInterface = Class.create( {
 
     onCompleteDisplayFunctionChart: function()
     {
-        alert( "youhouuu" );
+        d3.selectAll( "#functionBarChart .grid-line.horizontal line" )
+                .filter( function( d )
+        {
+            return !d
+        } )
+                .classed( 'zero', true );
     },
 
 
@@ -799,7 +789,7 @@ var RCInterface = Class.create( {
             this.updateToolTipsForCharts();
             this.updateXAxisForFunctionBarChart();
 
-//            $( "#" + jQuery.i18n.prop( "selectedFluxForHomePage" ) ).click();
+            $( "#" + jQuery.i18n.prop( "selectedFluxForHomePage" ) ).click();
         }, this ) );
 
         // Export button

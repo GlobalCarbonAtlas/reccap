@@ -3601,7 +3601,6 @@ dc.barChart = function (parent, chartGroup) {
     /** CHANGE VMIPSL **/
     var _callbackOnClick = false;
     var _yElasticityInDomain = false;
-    var _callbackOnCompleteDisplay = false;
 
     dc.override(_chart, 'rescale', function () {
         _chart._rescale();
@@ -3642,11 +3641,6 @@ dc.barChart = function (parent, chartGroup) {
     _chart.setCallBackOnClick = function( callback )
     {
         _callbackOnClick = callback;
-    };
-
-    _chart.setCallBackOnCompleteDisplay = function( callback )
-    {
-        _callbackOnCompleteDisplay = callback;
     };
 
     _chart.elasticYInDomain = function (_) {

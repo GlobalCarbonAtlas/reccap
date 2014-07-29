@@ -5400,6 +5400,11 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
         return _displayedRegions;
     };
 
+    _chart.setDisplayedRegions = function( displayRegions )
+    {
+        _displayedRegions = displayRegions;
+    };
+
     _chart.setEmptyZoneWithNoData = function( value )
     {
         _emptyZoneWithNoData = value;

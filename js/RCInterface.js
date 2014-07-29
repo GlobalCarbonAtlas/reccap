@@ -273,11 +273,13 @@ var RCInterface = Class.create( {
 
     loadRegionAllSelection: function()
     {
+        this.geoChoroplethChart.setDisplayedRegions( [] );
         this.geoChoroplethChart.selectAllRegion( this.regionsKeys );
 
         this.geoChoroplethChart.setSelect( false );
         this.geoChoroplethChart.setMultipleSelect( false );
 
+        $( "#functionBarChartTitle" ).html( "All regions" );
         $( "#mapChart" ).removeClass( "countryWithPointer" );
         $( "#regionUnActive" ).fadeOut();
         $( "#regionActive" ).fadeOut();

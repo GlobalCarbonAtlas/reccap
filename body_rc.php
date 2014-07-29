@@ -66,6 +66,7 @@
                     <area shape="rect" alt="FO" coords="768,154,847,192" href="" target=""/>
                     <area shape="rect" alt="SCE" coords="633,271,714,293" href="" target=""/>
                     <area shape="rect" alt="ETO" coords="832,242,880,296" href="" target=""/>
+                    <!-- Created by Online Image Map Editor (http://www.maschek.hu/imagemap/imgmap) -->
                 </map>
 
                 <div id="dynamicAreasForImageFlux"></div>
@@ -128,36 +129,24 @@
                     <button class="exportButton btn-link" data-toggle="dropdown"><img src="img/export_small.png" title="Export"/></button>
                 </div>
             </div>
-            <div class="row">
-                <img id="imageFluxForSynthesis" src="img/FluxEmpty.png" usemap="#mapForImageFluxForSynthesis" alt="Synthesis for flux"/>
-                <map id="mapForImageFluxForSynthesis" name="mapForImageFluxForSynthesis">
-                    <map id="imgmap2014623132018" name="imgmap2014623132018">
-                        <area shape="rect" alt="" title="" coords="405,252,434,273" href="" isRed/>
-                        <area shape="rect" alt="CropValue" title="" coords="503,248,537,268" href="" isRed/>
-                        <area shape="rect" alt="woodValue" title="" coords="525,285,562,314" href="" isRed/>
-                        <area shape="rect" alt="Fire_value" title="" coords="665,249,704,275" href="" isRed/>
-                        <area shape="rect" alt="Land use change_value" title="" coords="601,249,629,276" href="" isRed/>
-                        <area shape="rect" alt="Heterotrophic Respiration_value" title="" coords="834,252,858,274" href="" target=""/>
-                        <area shape="rect" alt="" title="" coords="785,255,817,273" href="" target=""/>
-                        <area shape="rect" alt="" title="" coords="861,252,906,275" href="" target=""/>
-                        <area shape="rect" alt="LandSinkValue" title="" coords="914,252,948,278" href="" target=""/>
-                        <area shape="rect" alt="NPP_value" title="" coords="972,251,1018,275" href="" target=""/>
-                        <area shape="rect" alt="weatheringValue" title="" coords="1011,345,1036,367" href="" target=""/>
-                        <area shape="rect" alt="" title="" coords="1105,368,1141,398" href="" target=""/>
-                        <area shape="rect" alt="" title="" coords="796,365,851,388" href="" target=""/>
-                        <area shape="rect" alt="" title="" coords="752,424,796,450" href="" target=""/>
-                        <area shape="rect" alt="" title="" coords="935,423,967,446" href="" target=""/>
-                        <area shape="rect" alt="weatheringValue" title="" coords="855,503,888,523" href="" target=""/>
-                        <area shape="rect" alt="freshwaterEstuaryValue" title="" coords="1077,495,1105,522" href="" target=""/>
-                        <area shape="rect" alt="exprotToOceanValue" title="" coords="1128,480,1159,505" href="" target=""/>
-                        <area shape="rect" alt="CoalValue" title="" coords="336,461,387,485" href="" target=""/>
-                        <area shape="rect" alt="OilValue" title="" coords="401,458,453,487" href="" target=""/>
-                        <area shape="rect" alt="GasValue" title="" coords="464,458,511,485" href="" target=""/>
-                        <area shape="rect" alt="FossiFuelTradeValue" title="" coords="462,498,516,525" href="" target=""/>
-                        <!-- Created by Online Image Map Editor (http://www.maschek.hu/imagemap/index) --></map>
-                </map>
-                <div id="dynamicAreasForImageFluxForSynthesis"></div>
 
+            <div class="row imageFluxForSynthesis">
+                <img id="imageFluxForSynthesis" src="img/FluxEmpty2.png" usemap="#mapForImageFluxForSynthesis" alt="Synthesis for flux"/>
+                <map id="mapForImageFluxForSynthesis" name="mapForImageFluxForSynthesis">
+                    <area shape="rect" alt="FFEValue" coords="55,90,97,116" href="" target="" isRed/>
+                    <area shape="rect" alt="WPDValue" coords="180,117,218,140" href="" target="" isRed/>
+                    <area shape="rect" alt="CPCValue" coords="258,111,294,132" href="" target="" isRed/>
+                    <area shape="rect" alt="LUCValue" coords="357,91,390,113" href="" target="" isRed/>
+                    <area shape="rect" alt="FireValue" coords="421,69,445,90" href="" target="" isRed/>
+                    <area shape="rect" alt="NPPValue" coords="498,58,521,79" href="" target=""/>
+                    <area shape="rect" alt="HRValue" coords="561,66,584,85" href="" target=""/>
+                    <area shape="rect" alt="SCEValue" coords="642,295,706,314" href="" target=""/>
+                    <area shape="rect" alt="FOValue" coords="775,203,806,228" href="" target=""/>
+                    <area shape="rect" alt="RTOValue" coords="842,305,876,324" href="" target=""/>
+                    <!-- Created by Online Image Map Editor (http://www.maschek.hu/imagemap/imgmap) -->
+                </map>
+
+                <div id="dynamicAreasForImageFluxForSynthesis"></div>
             </div>
         </div>
     </div>

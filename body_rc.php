@@ -133,16 +133,16 @@
             <div class="row imageFluxForSynthesis">
                 <img id="imageFluxForSynthesis" src="img/FluxEmpty2.png" usemap="#mapForImageFluxForSynthesis" alt="Synthesis for flux"/>
                 <map id="mapForImageFluxForSynthesis" name="mapForImageFluxForSynthesis">
-                    <area shape="rect" alt="FFEValue" coords="55,90,97,116" href="" target="" isRed/>
-                    <area shape="rect" alt="WPDValue" coords="180,117,218,140" href="" target="" isRed/>
+                    <area shape="rect" alt="FFEValue" coords="68,90,100,116" href="" target="" isRed/>
+                    <area shape="rect" alt="WPDValue" coords="185,117,218,140" href="" target="" isRed/>
                     <area shape="rect" alt="CPCValue" coords="258,111,294,132" href="" target="" isRed/>
-                    <area shape="rect" alt="LUCValue" coords="357,91,390,113" href="" target="" isRed/>
-                    <area shape="rect" alt="FireValue" coords="421,69,445,90" href="" target="" isRed/>
-                    <area shape="rect" alt="NPPValue" coords="498,58,521,79" href="" target=""/>
-                    <area shape="rect" alt="HRValue" coords="561,66,584,85" href="" target=""/>
-                    <area shape="rect" alt="SCEValue" coords="642,295,706,314" href="" target=""/>
-                    <area shape="rect" alt="FOValue" coords="775,203,806,228" href="" target=""/>
-                    <area shape="rect" alt="RTOValue" coords="842,305,876,324" href="" target=""/>
+                    <area shape="rect" alt="LUCValue" coords="365,93,390,113" href="" target="" isRed/>
+                    <area shape="rect" alt="FiresValue" coords="415,69,445,90" href="" target="" isRed/>
+                    <area shape="rect" alt="NPPValue" coords="491,58,521,79" href="" target=""/>
+                    <area shape="rect" alt="HRValue" coords="552,66,584,85" href="" target=""/>
+                    <area shape="rect" alt="SCEValue" coords="666,295,706,314" href="" target=""/>
+                    <area shape="rect" alt="FOValue" coords="780,207,806,228" href="" target=""/>
+                    <area shape="rect" alt="ETOValue" coords="849,308,876,324" href="" target=""/>
                     <!-- Created by Online Image Map Editor (http://www.maschek.hu/imagemap/imgmap) -->
                 </map>
 

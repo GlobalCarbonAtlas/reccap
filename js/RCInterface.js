@@ -49,7 +49,7 @@ var RCInterface = Class.create( {
 
         this.initToolTips();
         this.bindActions();
-        $("#synthesis").click();
+        $( "#synthesis" ).click();
     },
 
     initToolTips: function()
@@ -410,12 +410,22 @@ var RCInterface = Class.create( {
 
     onCompleteDisplayFunctionChart: function()
     {
+        // Update zero axis
         d3.selectAll( "#functionBarChart .grid-line.horizontal line" )
                 .filter( function( d )
         {
             return !d
         } )
                 .classed( 'zero', true );
+
+        // Update synthesis values
+        $.each( d3.selectAll( "#functionBarChart .bar" )[0], jQuery.proxy( function( i, d )
+        {
+            if( !d.__data__ || !d.__data__.data )
+                return;
+            var divId = this.getI18nPropertiesKeyFromValue( d.__data__.data.key );
+            $( "#" + divId + "Value" ).html( d.__data__.data.value );
+        }, this ) );
     },
 
 

@@ -226,11 +226,15 @@ var RCInterface = Class.create( {
     onClickGeoChoroplethChart: function()
     {
         if( !this.geoChoroplethChart.getSelect() )
+        {
             $( "#functionBarChartTitle" ).html( "All regions" );
+            $( "#imageFluxForSynthesisTitle" ).html( "All regions" );
+        }
         else
         {
             $( "#functionBarChartTitle" ).html( this.geoChoroplethChart.getDisplayedRegions().join( " + " ) );
             $( "#functionBarChartTitle" ).attr( "data-original-title", this.geoChoroplethChart.getDisplayedRegions().join( " + " ) );
+            $( "#imageFluxForSynthesisTitle" ).html( this.geoChoroplethChart.getDisplayedRegions().join( " + " ) );
         }
 
         if( this.geoChoroplethChart.getSelect() && !this.geoChoroplethChart.getMultipleSelect() )
@@ -280,6 +284,8 @@ var RCInterface = Class.create( {
         this.geoChoroplethChart.setMultipleSelect( false );
 
         $( "#functionBarChartTitle" ).html( "All regions" );
+        $( "#imageFluxForSynthesisTitle" ).html( "All regions" );
+
         $( "#mapChart" ).removeClass( "countryWithPointer" );
         $( "#regionUnActive" ).fadeOut();
         $( "#regionActive" ).fadeOut();
@@ -856,7 +862,7 @@ var RCInterface = Class.create( {
             } );
         }, this ) );
 
-        $( "#hiddenDiv, #synthesisDiv #imageFluxForSynthesis" ).on( "click", function()
+        $( "#hiddenDiv, #dataDiv .dataTableDiv, #synthesisDiv .imageFluxForSynthesis" ).on( "click", function()
         {
             $( "#dataDiv" ).fadeOut();
             $( ".synthesisDiv" ).fadeOut();

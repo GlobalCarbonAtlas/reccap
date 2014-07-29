@@ -131,6 +131,7 @@
             </div>
 
             <div class="row imageFluxForSynthesis">
+                <div id="imageFluxForSynthesisTitle">All regions</div>
                 <img id="imageFluxForSynthesis" src="img/FluxEmpty2.png" usemap="#mapForImageFluxForSynthesis" alt="Synthesis for flux"/>
                 <map id="mapForImageFluxForSynthesis" name="mapForImageFluxForSynthesis">
                     <area shape="rect" alt="FFEValue" coords="68,90,100,116" href="" target="" isRed/>

@@ -453,19 +453,19 @@ foreignObject {
 }
 
 .synthesisTitle {
-    margin: 187px 0 0 -92px;
+    margin: 193px 0 0 -88px;
 }
 
 #exportSynthesis {
     float: left;
     cursor: pointer;
-    margin: 10px 0 0 -90px;
+    margin: 11px 0 0 -90px;
 }
 
 .imageFluxForSynthesis {
     margin: auto;
     background-color: #FFFFFF;
-    height: 350px;
+    height: 368px;
     width: 911px;
     padding: 8px 0 10px 9px;
     -webkit-border-radius: 6px;
@@ -473,9 +473,17 @@ foreignObject {
     border-radius: 6px;
 }
 
+#imageFluxForSynthesisTitle {
+    text-align: right;
+    margin-right: 18px;
+    font: 12px "Futura", sans-serif;
+    color: #525252;
+    font-weight: bold;
+}
+
 #dynamicAreasForImageFluxForSynthesis {
     position: absolute;
-    top: 48px;
+    top: 66px;
     margin-left: 11px;
 }
 

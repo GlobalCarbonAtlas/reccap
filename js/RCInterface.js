@@ -49,7 +49,6 @@ var RCInterface = Class.create( {
 
         this.initToolTips();
         this.bindActions();
-        $( "#synthesis" ).click();
     },
 
     initToolTips: function()

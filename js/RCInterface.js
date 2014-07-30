@@ -382,7 +382,7 @@ var RCInterface = Class.create( {
 
         barChart.setUseRightYAxis( useRightYAxis );
         barChart.yAxis().tickFormat( d3.format( "s" ) );
-        barChart.setCallBackOnClick( jQuery.proxy( this.onClickFunctionChart, this ) );
+        barChart.setCallBackOnClick( jQuery.proxy( this.onClickFunctionChart, [this, chartId] ) );
         barChart.on( "postRedraw", jQuery.proxy( function( chart )
         {
             this.onCompleteDisplayFunctionChart()
@@ -409,8 +409,14 @@ var RCInterface = Class.create( {
 
     onClickFunctionChart: function( element )
     {
-        var dynamicAreaDivId = this.getI18nPropertiesKeyFromValue( element.key );
-        this.addOrRemoveToGroupedBarChart( $( "#" + dynamicAreaDivId ), element.key );
+        var context = this[0];
+        var chartId = this[1];
+        var dynamicAreaDivId = context.getI18nPropertiesKeyFromValue( element.key );
+        context.addOrRemoveToGroupedBarChart( $( "#" + dynamicAreaDivId ), element.key );
+        if(chartId == "#functionBarChartForMainFlux")
+            context.functionBarChartForSeparatedFlux.onClick( {key: element.key} );
+        else
+            context.functionBarChartForMainFlux.onClick( {key: element.key} );
     },
 
     onCompleteDisplayFunctionChart: function()

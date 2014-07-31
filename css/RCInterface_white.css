@@ -213,11 +213,7 @@ h3 {
     text-align: right;
 }
 
-#functionBarChart g.stack.layer0 .bar {
-    fill: none;
-}
-
-#functionBarChart.uncertainty g.stack.layer0 .bar {
+#functionBarChart.uncertainty g.stack.layer1 .bar {
     fill: #444444;
 }
 

@@ -3655,8 +3655,9 @@ dc.barChart = function (parent, chartGroup) {
             return 0;
         else
         {
-            var result = dc.utils.safeNumber( Math.abs( _chart.y()( d.y + d.y0 ) - _chart.y()( d.y0 ) ) );
-            result += 0 < d.y ? _chart.y()( 0 ) - result - _chart.y()( d.y ) : 0;
+//            var result = dc.utils.safeNumber( Math.abs( _chart.y()( d.y + d.y0 ) - _chart.y()( d.y0 ) ) );
+            var result = dc.utils.safeNumber( Math.abs( _chart.y()( d.y0 ) - _chart.y()( d.y ) ) );
+//            result += 0 < d.y ? _chart.y()( 0 ) - result - _chart.y()( d.y ) : 0;
             return result;
         }
     }
@@ -3687,17 +3688,16 @@ dc.barChart = function (parent, chartGroup) {
                 if (_chart.isOrdinal()) x += _gap/2;
                 return dc.utils.safeNumber(x);
             })
-            .attr("y", function (d) {
+                .attr( "y", function ( d )
+        {
 //                var y = _chart.y()(d.y + d.y0);
-                var y = _chart.y()(d.y);
+            var y = ("UncertaintyLayer" == d.layer) ? _chart.y()( d.y0 ) : _chart.y()( d.y );
+            if( 0 > d.y)
+                y -= barHeight( d );
 
-
-                if (d.y < 0)
-                    y -= barHeight(d);
-
-                return dc.utils.safeNumber(y);
-            })
-            .attr("width", _barWidth)
+            return dc.utils.safeNumber( y );
+        } )
+                .attr("width", _barWidth)
             .attr("height", function (d) {
                 return barHeight(d);
             })

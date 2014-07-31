@@ -1,15 +1,15 @@
 Region,Name,Mean,Uncert,Type,Comments
-North America,Fossil fuel CO2 emissions,1856,1299,source,SOCCR
-North America,NEE,-348,-244,sink,King et al.( inventory atmospheric flow approach for 2000-09) ; note maybe inconsistent with some atm flows given below
-North America,Land use change,-128,-90,sink,SOCCR (here LUC is defined by agricultiral soil C balance + woody encroachement)
-North America,NPP,6200,4340,sink,Hicke et al. 1982-1997 (from MODIS)
-North America,Soil Heterotrophic Respiration,6028,4220,source,mass balance
-North America,Fire,142,99,source,Turner et al. GCB 2012
-North America,Wood product decay,38,27,source,Landfills wood products SOCCR p91 - note : inconsistent with  production (SOCCR p110) -export - wood product storage (King pers. Com - email 2013) = 128 - 61 - 68 = -1 Tg C ; note  forest harvest removal 165 TgC  (Hayes et al. Table 6.6)
-North America,Crop product consumption,182,127,source,SOCCR p88 for crop production (217) + SOCCR crop trade (net export of 35) ; note  domestic crop harvest 217 TgC (SOCCR p88)
-North America,Soil C export,193,135,lateral,Mass balance (ignoring burial -SOCCR p 36 reports burial = 20)
-North America,Freshwater outgasing,158,111,source,Turner et al. - Butmann and Raymond (US only) = 97
-North America,River export to ocean,35,25,lateral,SOCCR Tab 3.2 p33
+North America,Fossil fuel CO2 emissions,1856,557,source,SOCCR
+North America,NEE,-348,-104,sink,King et al.( inventory atmospheric flow approach for 2000-09) ; note maybe inconsistent with some atm flows given below
+North America,Land use change,-128,-38,sink,SOCCR (here LUC is defined by agricultiral soil C balance + woody encroachement)
+North America,NPP,6200,1860,sink,Hicke et al. 1982-1997 (from MODIS)
+North America,Soil Heterotrophic Respiration,6028,1808,source,mass balance
+North America,Fire,142,43,source,Turner et al. GCB 2012
+North America,Wood product decay,38,11,source,Landfills wood products SOCCR p91 - note : inconsistent with  production (SOCCR p110) -export - wood product storage (King pers. Com - email 2013) = 128 - 61 - 68 = -1 Tg C ; note  forest harvest removal 165 TgC  (Hayes et al. Table 6.6)
+North America,Crop product consumption,182,55,source,SOCCR p88 for crop production (217) + SOCCR crop trade (net export of 35) ; note  domestic crop harvest 217 TgC (SOCCR p88)
+North America,Soil C export,193,58,lateral,Mass balance (ignoring burial -SOCCR p 36 reports burial = 20)
+North America,Freshwater outgasing,158,47,source,Turner et al. - Butmann and Raymond (US only) = 97
+North America,River export to ocean,35,11,lateral,SOCCR Tab 3.2 p33
 South Asia,Fossil fuel CO2 emissions,444,,source,Patra et al.
 South Asia,NEE,80,,source,Patra et al.
 South Asia,Land use change,-14,,sink,Patra et al.

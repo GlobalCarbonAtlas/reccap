@@ -244,6 +244,13 @@ h3 {
     margin-left: 15px;
 }
 
+#resetMap {
+    margin: 54px 0 0 4px;
+    color: #0088CC;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .countryWithPointer g.country {
     cursor: pointer;
 }
@@ -326,6 +333,18 @@ g.no_data_for_this_region path {
 
 #dynamicAreasForImageFlux #SCE.selected {
     border: 1px ridge #f5f5f5;
+}
+
+.imageFluxComment {
+    float: left;
+}
+
+#resetFlux {
+    float: right;
+    margin-right: 33px;
+    color: #0088CC;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 /* ************** DATA & SYNTHESIS STYLE ************** */

@@ -83,11 +83,11 @@ var RCInterface = Class.create( {
             placement: "bottom",
             container:'body'} );
 
-        $( ".rightTools .toolButton img" ).tooltip( {
+        $( ".rightTools .toolButton img, #resetFlux" ).tooltip( {
             placement: "left",
             container:'body'} );
 
-        $( "#regionAndUncertaintySelect .toolButton img" ).tooltip( {
+        $( "#regionAndUncertaintySelect .toolButton img, #resetMap" ).tooltip( {
             placement: "right",
             container:'body'} );
     },
@@ -413,7 +413,7 @@ var RCInterface = Class.create( {
         var chartId = this[1];
         var dynamicAreaDivId = context.getI18nPropertiesKeyFromValue( element.key );
         context.addOrRemoveToGroupedBarChart( $( "#" + dynamicAreaDivId ), element.key );
-        if(chartId == "#functionBarChartForMainFlux")
+        if( chartId == "#functionBarChartForMainFlux" )
             context.functionBarChartForSeparatedFlux.onClick( {key: element.key} );
         else
             context.functionBarChartForMainFlux.onClick( {key: element.key} );
@@ -826,10 +826,24 @@ var RCInterface = Class.create( {
             alert( "work in progress" );
         } );
 
-        $( "#resetFunctionBarChart" ).on( "click", function()
+        // Reset filters
+        $( "#resetMap" ).on( "click", jQuery.proxy( function()
         {
-            alert( "work in progress" );
-        } );
+            this.geoChoroplethChart.filterAll();
+            $( "#functionBarChartTitle" ).html( "All regions" );
+            $( "#imageFluxForSynthesisTitle" ).html( "All regions" );
+            this.functionBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForAllMainFlux ) );
+            this.functionBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForAllSeparatedFlux ) );
+            d3.selectAll( "#functionBarChart .grid-line.horizontal line" ).classed( 'zero', false );
+            dc.redrawAll();
+        }, this ) );
+
+        $( "#resetFlux" ).on( "click", jQuery.proxy( function()
+        {
+            this.functionBarChartForMainFlux.filterAll();
+            this.functionBarChartForSeparatedFlux.filterAll();
+            dc.redrawAll();
+        }, this ) );
 
         // Region select button
         $( "#regionUnActive" ).on( "click", jQuery.proxy( function()

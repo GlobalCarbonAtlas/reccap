@@ -31,6 +31,8 @@
                     <div id="regionUnActive" class="toolButton"><img src="img/Globe_Disconnected.png" width="35px" title="See only one region"/></div>
                     <div id="regionActive" class="toolButton"><img src="img/Globe_RegionConnected.png" width="35px" title="See multiple regions"/></div>
 
+                    <div id="resetMap" title="Reset map's filters">reset</div>
+
                     <div id="uncertaintyDisable" class="toolButton"><img src="img/uncertainty_disable2.png" width="40px" title="Hide uncertainty"/></div>
                     <div id="uncertainty" class="toolButton"><img src="img/uncertainty2.png" width="40px" title="Display uncertainty"/></div>
                 </div>
@@ -70,7 +72,8 @@
                 </map>
 
                 <div id="dynamicAreasForImageFlux"></div>
-                <div class="comment">Select a flux name to show its values accross all regions</div>
+                <div class="comment imageFluxComment">Select a flux name to show its values accross all regions</div>
+                <div id="resetFlux" title="Reset flux's filters">reset</div>
             </div>
 
             <div class="row bottomBasicCell">

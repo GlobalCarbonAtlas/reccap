@@ -69,8 +69,11 @@ var RCInterface = Class.create( {
             }
             else if( d.data )
             // Bar chart
-                if( "UncertaintyLayer" == d.layer && this.displayUncertainty )
-                    return "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.y0 ) + " (uncertainty : " + this.numberFormat( d.y0 - d.data.value ) + ")";
+                if( "UncertaintyLayer" == d.layer )
+                    if( this.displayUncertainty )
+                        return "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.y0 ) + " (uncertainty : " + this.numberFormat( d.y0 - d.data.value ) + ")";
+                    else
+                        return "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.y0 );
                 else
                     return "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.data.value );
             else

@@ -48,6 +48,7 @@ var RCInterface = Class.create( {
         this.createDynamicAreasForResponsiveMap( "#imageFluxForSynthesis", "#mapForImageFluxForSynthesis", "#dynamicAreasForImageFluxForSynthesis", 900, false );
 
         this.initToolTips();
+        this.initOthers();
         this.bindActions();
     },
 
@@ -90,7 +91,7 @@ var RCInterface = Class.create( {
             placement: "left",
             container:'body'} );
 
-        $( "#regionAndUncertaintySelect .toolButton img, #resetMap" ).tooltip( {
+        $( "#regionAndUncertaintySelect .toolButton img, #resetMap, #dataPNGExport" ).tooltip( {
             placement: "right",
             container:'body'} );
     },
@@ -129,6 +130,14 @@ var RCInterface = Class.create( {
             this.createDataTable( "#data-count", "#data-table", this.data, this.data.groupAll(), this.continents );
             this.createMapAndUpdateAllAfterRender();
         }, this ) );
+    },
+
+    initOthers: function()
+    {
+        var userAgent = getUserAgengt();
+        var isFirefox = /mozilla/.test( userAgent ) && !/(compatible|webkit)/.test( userAgent );
+        if( !isFirefox )
+            $( "#dataPNGExport" ).addClass( "disabled" );
     },
 
     initYDomainsForFunctionBarChart: function()

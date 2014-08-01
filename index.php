@@ -44,6 +44,7 @@
     <script type="text/javascript" src="js/htmltable_export/jspdf/libs/sprintf.js"></script>
     <script type="text/javascript" src="js/htmltable_export/jspdf/jspdf.js"></script>
     <script type="text/javascript" src="js/htmltable_export/jspdf/libs/base64.js"></script>
+    <script type="text/javascript" src="js/htmltable_export/html2canvas.js"></script>
 
     <!--    <script type="text/javascript" src="js/jsPDF-0.9.0rc2/jspdf.js"></script>-->
     <!--    <script type="text/javascript" src="js/jsPDF-0.9.0rc2/libs/Deflate/adler32cs.js"></script>-->

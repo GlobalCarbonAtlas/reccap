@@ -443,6 +443,7 @@ g.no_data_for_this_region path {
 
 .dc-data-count, .dc-data-table {
     margin-left: 20px;
+    float: none !important;
 }
 
 foreignObject {

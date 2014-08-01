@@ -95,12 +95,10 @@
             <div id="exportData" class="toolButton">
                 <button class="exportButton btn-link" data-toggle="dropdown"><img src="img/export_small.png" title="Export"/></button>
                 <ul class="exportMenu dropdown-menu">
-                    <li><a href="#" onClick="$('#data-table').tableExport({type:'pdf',pdfFontSize:'10',escape:'false'});"> <img src='js/htmltable_export/icons/pdf.png'
-                                                                                                                                width='24px'>
-                        PDF</a>
-                    </li>
-                    <li><a href="#" onClick="$('#data-table').tableExport({type:'csv',escape:'false'});"> <img src='js/htmltable_export/icons/csv.png' width='24px'> CSV</a></li>
-                    <li><a href="#" onClick="$('#data-table').tableExport({type:'txt',escape:'false'});"> <img src='js/htmltable_export/icons/txt.png' width='24px'> TXT</a></li>
+                    <li><a href="#" onClick="$('#data-table').tableExport({type:'pdf',pdfFontSize:'10',escape:'false'});"> <img src='js/htmltable_export/icons/pdf.png'width='24px'>PDF</a></li>
+                    <li><a onClick="$('#data-table').tableExport({type:'csv',escape:'false', element:this});"> <img src='js/htmltable_export/icons/csv.png' width='24px'> CSV</a></li>
+                    <li><a onClick="$('#data-table').tableExport({type:'txt',escape:'false', element:this});"> <img src='js/htmltable_export/icons/txt.png' width='24px'> TXT</a></li>
+                    <li id="dataPNGExport"><a href="#" onClick="$('#data-table').tableExport({type:'png',escape:'true'});" title="Only for Firefox. Long loading time."> <img src='js/htmltable_export/icons/png.png' width='24px'> PNG</a></li>
                 </ul>
             </div>
         </div>

@@ -843,8 +843,7 @@ var RCInterface = Class.create( {
 
         $( "#resetFlux" ).on( "click", jQuery.proxy( function()
         {
-            this.functionBarChartForMainFlux.filterAll();
-            this.functionBarChartForSeparatedFlux.filterAll();
+            $( "#dynamicAreasForImageFlux .dynamicArea.selected" ).click();
             dc.redrawAll();
         }, this ) );
 

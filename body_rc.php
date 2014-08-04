@@ -1,10 +1,11 @@
 <div id="pageWrapper">
 
     <!-- ********************* MENU & TITLE ********************* -->
-    <div class="container-fluid">
+    <div id="containerTools" class="container-fluid">
         <div class="leftTools ">
             <div id="reset" class="toolButton"><img src="img/reset-icon-614x460.png" width="50px" title="Reset all"/></div>
-            <div id="export" class="toolButton"><img src="img/export_small.png" title="Export"/></div>
+            <div id="export" class="toolButton">
+                <a href="#" onClick="javascript:exportAll();"><img src="img/export_small.png" title="Export"/></a></div>
             <div id="help" class="toolButton"><img src="img/help.png" width="30px" title="Help"/></div>
         </div>
 
@@ -153,9 +154,10 @@
         </div>
     </div>
 
-    <canvas id="svg-canvas" hidden="hidden"></canvas>
+<!--    <canvas id="svg-canvas" hidden="hidden"></canvas>-->
 </div>
 
+<div id="exportDiv"></div>
 
 <script type="text/javascript">
     $( document ).ready( function ()

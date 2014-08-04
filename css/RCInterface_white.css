@@ -49,7 +49,7 @@ h3 {
 }
 
 .bottomBasicCell {
-/*width:100%;*/
+    /*width:100%;*/
     margin-top: 40px;
 }
 
@@ -563,3 +563,14 @@ foreignObject {
 /*overflow: hidden;*/
 /*text-overflow: ellipsis;*/
 /*white-space: nowrap;*/
+
+/* ************** EXPORT ************** */
+#exportDiv {
+    margin-top: 100px;
+    float: left;
+}
+
+#exportDiv #mapChartAndComment {
+    margin:  auto;
+    float: none;
+}

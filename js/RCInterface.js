@@ -32,7 +32,7 @@ var RCInterface = Class.create( {
         // Variables
         this.initMapWidth = 600;
         this.initMapScale = 90;
-        this.chartHeight = 0;
+        this.chartHeight = 300;
         this.groupedBarChartWidth = $( "#groupedBarChart" ).width();
         this.functionBarChartWidth = $( "#functionBarChart" ).width();
         this.imageHeight = 0;
@@ -762,7 +762,7 @@ var RCInterface = Class.create( {
                 jQuery.proxy( function()
                 {
                     this.createAreas( mapId, activeClick, dynamicAreasId );
-                    this.chartHeight = $( "#pageWrapper" ).height() - $( "#imageFlux" ).height() - $( ".bottomBasicCell" ).css( "margin-top" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
+//                    this.chartHeight = $( "#pageWrapper" ).height() - $( "#imageFlux" ).height() - $( ".bottomBasicCell" ).css( "margin-top" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
                     this.imageHeight = $( "#imageFlux" ).height();
                     if( activeClick )
                         this.initFileValuesAndCreateDCObjects();
@@ -825,12 +825,6 @@ var RCInterface = Class.create( {
 
             $( "#" + jQuery.i18n.prop( "selectedFluxForHomePage" ) ).click();
         }, this ) );
-
-        // Export button
-        $( "#export" ).on( "click", function()
-        {
-            alert( "work in progress" );
-        } );
 
         // Help button
         $( "#help" ).on( "click", function()
@@ -994,4 +988,15 @@ function print_filter( filter )
     {
     }
     console.log( filter + "(" + f.length + ") = " + JSON.stringify( f ).replace( "[", "[\n\t" ).replace( /}\,/g, "},\n\t" ).replace( "]", "\n]" ) );
+}
+
+
+function exportAll()
+{
+    $( "#exportDiv" ).empty();
+    $( "#exportDiv" ).append( $( "#pageWrapper" ).clone() );
+    $("#exportDiv #containerTools, #exportDiv .comment, #exportDiv #regionAndUncertaintySelect, #exportDiv #resetFlux").remove();
+    $("#exportDiv #mapChartAndComment").width($("#exportDiv #mapChart").width());
+
+    $('#exportDiv').exportAll();
 }

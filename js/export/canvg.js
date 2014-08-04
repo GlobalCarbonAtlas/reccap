@@ -22,10 +22,13 @@
 	//		 scaleHeight: int => scales vertically to height
 	//		 renderCallback: function => will call the function after the first render is completed
 	//		 forceRedraw: function => will call the function on every frame, if it returns true, will redraw
-	this.canvg = function (target, s, opts) {
+	this.canvg = function (target, s, opts, divToExportId) {
 		// no parameters
 		if (target == null && s == null && opts == null) {
-			var svgTags = document.querySelectorAll('svg');
+            var svgTags = document.querySelectorAll('svg');
+            /** CHANGE VMIPSL **/
+            if(divToExportId != null)
+                svgTags = $("#"+divToExportId+ " svg");
 			for (var i=0; i<svgTags.length; i++) {
 				var svgTag = svgTags[i];
 				var c = document.createElement('canvas');

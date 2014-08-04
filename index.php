@@ -60,6 +60,11 @@
     <!--    <script type="text/javascript" src="js/canvg/canvg.js"></script>-->
     <!--    <script type="text/javascript" src="js/htmltable_export/html2canvas.js"></script>-->
 
+
+    <script type="text/javascript" src="js/export/rgbcolor.js"></script>
+    <script type="text/javascript" src="js/export/canvg.js"></script>
+    <script type="text/javascript" src="js/export/exportAll.js"></script>
+
     <script type="text/javascript" src="js/helper.js"></script>
     <script type="text/javascript" src="js/library/jquery.class.js"></script>
     <script type="text/javascript" src="js/RCInterface.js"></script>

@@ -568,6 +568,8 @@ foreignObject {
 #exportDiv {
     margin-top: 100px;
     float: left;
+    /*position: absolute;*/
+    /*top:50px;*/
 }
 
 #exportDiv #mapChartAndComment {

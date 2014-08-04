@@ -56,9 +56,9 @@ var RCInterface = Class.create( {
     {
         // Tooltips for charts
         this.toolTip = d3.tip()
-                .attr( 'class', 'd3-tip' )
-                .offset( [-10, 0] )
-                .html( jQuery.proxy( function ( d )
+            .attr( 'class', 'd3-tip' )
+            .offset( [-10, 0] )
+            .html( jQuery.proxy( function ( d )
         {
             if( d.properties )
             // Choropleth
@@ -107,15 +107,15 @@ var RCInterface = Class.create( {
             this.data = crossfilter( csv );
             // Filter on Globe region
             this.filterRecords = this.data.dimension(
-                    jQuery.proxy( function( d )
-                    {
-                        return d[this.regionColName];
-                    }, this ) ).filter(
-                    jQuery.proxy( function( d )
-                    {
-                        if( this.globeRegion != d )
-                            return d;
-                    }, this ) );
+                jQuery.proxy( function( d )
+                {
+                    return d[this.regionColName];
+                }, this ) ).filter(
+                jQuery.proxy( function( d )
+                {
+                    if( this.globeRegion != d )
+                        return d;
+                }, this ) );
 
             // Update y domains for function bar chart
             this.initYDomainsForFunctionBarChart();
@@ -211,23 +211,23 @@ var RCInterface = Class.create( {
     {
         var newScale = this.initMapScale * width / this.initMapWidth;
         var projection = d3.geo.equirectangular()
-                .translate( [width / 2,  height / 2] )
-                .scale( [newScale] );
+            .translate( [width / 2,  height / 2] )
+            .scale( [newScale] );
 
         this.geoChoroplethChart = dc.geoChoroplethChart( chartId )
-                .width( width )
-                .height( height )
-                .dimension( continentsDimension )
-                .group( continentsGroup )
-                .projection( projection )
-                .overlayGeoJson( countries.features, "country", function( d )
-        {
-            return d.properties.continent;
-        } )
-                .title( function ( d )
-        {
-            return "";
-        } );
+            .width( width )
+            .height( height )
+            .dimension( continentsDimension )
+            .group( continentsGroup )
+            .projection( projection )
+            .overlayGeoJson( countries.features, "country", function( d )
+            {
+                return d.properties.continent;
+            } )
+            .title( function ( d )
+            {
+                return "";
+            } );
 
         this.geoChoroplethChart.setMultipleSelect( this.selectMultipleRegion );
         this.geoChoroplethChart.setEmptyZoneWithNoData( "No data for this region" );
@@ -310,17 +310,17 @@ var RCInterface = Class.create( {
     createDataTable: function( countId, tableId, allD, allG, tableD )
     {
         dc.dataCount( countId )
-                .dimension( allD )
-                .group( allG );
+            .dimension( allD )
+            .group( allG );
 
         dc.dataTable( tableId )
-                .dimension( tableD )
-                .group( jQuery.proxy( function( d )
+            .dimension( tableD )
+            .group( jQuery.proxy( function( d )
         {
             return d[this.regionColName];
         }, this ) )
-                .size( allG.value() )
-                .columns( [
+            .size( allG.value() )
+            .columns( [
             jQuery.proxy( function( d )
             {
                 return d[this.fluxColName];
@@ -330,10 +330,10 @@ var RCInterface = Class.create( {
                 return d[this.valueColName];
             }, this )
         ] ).
-                renderlet( function ( table )
-        {
-            table.selectAll( ".dc-table-group" ).classed( "info", true );
-        } );
+            renderlet( function ( table )
+            {
+                table.selectAll( ".dc-table-group" ).classed( "info", true );
+            } );
     },
 
 
@@ -375,22 +375,22 @@ var RCInterface = Class.create( {
     createFunctionBarChart: function( chartId, width, height, dimension, group, uncertaintyGroup, xDomain, yDomain, useRightYAxis, barCharMargin )
     {
         var barChart = dc.barChart( chartId )
-                .height( height )
-                .width( width )
-                .transitionDuration( 750 )
-                .margins( barCharMargin )
-                .dimension( dimension )
-                .group( group, "groupLayer" )
-                .stack( uncertaintyGroup, "UncertaintyLayer" )
-                .brushOn( false )
-                .gap( 0 )
-                .elasticY( false )
-                .elasticYInDomain( true )
-                .colors( this.color )
-                .xUnits( dc.units.ordinal )
-                .x( d3.scale.ordinal().domain( xDomain ) )
-                .y( d3.scale.linear().domain( yDomain ) )
-                .renderHorizontalGridLines( true );
+            .height( height )
+            .width( width )
+            .transitionDuration( 750 )
+            .margins( barCharMargin )
+            .dimension( dimension )
+            .group( group, "groupLayer" )
+            .stack( uncertaintyGroup, "UncertaintyLayer" )
+            .brushOn( false )
+            .gap( 0 )
+            .elasticY( false )
+            .elasticYInDomain( true )
+            .colors( this.color )
+            .xUnits( dc.units.ordinal )
+            .x( d3.scale.ordinal().domain( xDomain ) )
+            .y( d3.scale.linear().domain( yDomain ) )
+            .renderHorizontalGridLines( true );
 
         barChart.setUseRightYAxis( useRightYAxis );
         barChart.yAxis().tickFormat( d3.format( "s" ) );
@@ -406,13 +406,13 @@ var RCInterface = Class.create( {
     {
         // Function Bar chart : rotate the x Axis labels
         d3.selectAll( "#functionBarChart g.x g text" )
-                .style( "text-anchor", "end" )
-                .attr( "title", function( d )
-        {
-            return d;
-        } )
-                .attr( "transform", "translate(-10,0)rotate(315)" )
-                .html( jQuery.proxy( function( d )
+            .style( "text-anchor", "end" )
+            .attr( "title", function( d )
+            {
+                return d;
+            } )
+            .attr( "transform", "translate(-10,0)rotate(315)" )
+            .html( jQuery.proxy( function( d )
         {
             var propertieName = this.getI18nPropertiesKeyFromValue( d );
             return 0 != jQuery.i18n.prop( propertieName + "_shortForAxis" ).indexOf( "[" ) ? jQuery.i18n.prop( propertieName + "_shortForAxis" ) : d;
@@ -435,11 +435,11 @@ var RCInterface = Class.create( {
     {
         // Update zero axis
         d3.selectAll( "#functionBarChart .grid-line.horizontal line" )
-                .filter( function( d )
-        {
-            return !d
-        } )
-                .classed( 'zero', true );
+            .filter( function( d )
+            {
+                return !d
+            } )
+            .classed( 'zero', true );
 
         // Update synthesis values
         $.each( d3.selectAll( "#functionBarChart .bar" )[0], jQuery.proxy( function( i, d )
@@ -503,32 +503,32 @@ var RCInterface = Class.create( {
         // Axes
         this.groupedBarChartxAxis = d3.svg.axis().scale( this.groupedBarChartx0 );
         this.groupedBarChartyAxis = d3.svg.axis()
-                .scale( this.groupedBarCharty )
-                .orient( "left" )
-                .tickFormat( d3.format( ".2s" ) )
-                .tickSize( -this.groupedBarChartWidth, 0 );
+            .scale( this.groupedBarCharty )
+            .orient( "left" )
+            .tickFormat( d3.format( ".2s" ) )
+            .tickSize( -this.groupedBarChartWidth, 0 );
 
         $( containerId ).addClass( "dc-chart" );
         // BarChart
         this.groupedBarChartsvg = d3.select( containerId ).append( "svg" )
-                .attr( "id", "groupedBarChartSvg" )
-                .attr( "width", this.groupedBarChartWidth + this.barCharMargin.left + this.barCharMargin.right )
-                .attr( "height", this.groupedBarChartHeight + this.barCharMargin.top + this.barCharMargin.bottom )
-                .append( "g" )
-                .attr( "transform", "translate(" + this.barCharMargin.left + "," + this.barCharMargin.top + ")" );
+            .attr( "id", "groupedBarChartSvg" )
+            .attr( "width", this.groupedBarChartWidth + this.barCharMargin.left + this.barCharMargin.right )
+            .attr( "height", this.groupedBarChartHeight + this.barCharMargin.top + this.barCharMargin.bottom )
+            .append( "g" )
+            .attr( "transform", "translate(" + this.barCharMargin.left + "," + this.barCharMargin.top + ")" );
 
         this.groupedBarChartsvg.append( "g" )
-                .attr( "class", "y axis" )
-                .append( "text" )
-                .attr( "transform", "rotate(-90)" )
-                .attr( "y", 6 )
-                .attr( "dy", ".7em" )
-                .style( "text-anchor", "end" )
-                .text( "" );
+            .attr( "class", "y axis" )
+            .append( "text" )
+            .attr( "transform", "rotate(-90)" )
+            .attr( "y", 6 )
+            .attr( "dy", ".7em" )
+            .style( "text-anchor", "end" )
+            .text( "" );
 
         this.groupedBarChartsvg.append( "g" )
-                .attr( "class", "x axis" )
-                .attr( "transform", "translate(0," + this.groupedBarChartHeight + ")" );
+            .attr( "class", "x axis" )
+            .attr( "transform", "translate(0," + this.groupedBarChartHeight + ")" );
 
         // xAxis
         this.groupedBarChartsvg.select( '.x.axis' ).call( this.groupedBarChartxAxis );
@@ -580,57 +580,57 @@ var RCInterface = Class.create( {
     {
         // Update yAxis
         this.groupedBarChartsvg
-                .select( '.y.axis' )
-                .call( this.groupedBarChartyAxis )
-                .selectAll( 'line' )
-                .filter( function( d )
-        {
-            return !d
-        } )
-                .classed( 'zero', true );
+            .select( '.y.axis' )
+            .call( this.groupedBarChartyAxis )
+            .selectAll( 'line' )
+            .filter( function( d )
+            {
+                return !d
+            } )
+            .classed( 'zero', true );
     },
 
     updateBarChartLegend: function()
     {
         var legend = this.groupedBarChartsvg.selectAll( ".legend" )
-                .data( this.displayedVariables.slice() );
+            .data( this.displayedVariables.slice() );
 
         var legendsEnter = legend.enter().append( "g" )
-                .attr( "class", "legend" )
-                .attr( "transform",
-                function( d, i )
-                {
-                    return "translate(0," + i * 20 + ")";
-                } );
+            .attr( "class", "legend" )
+            .attr( "transform",
+            function( d, i )
+            {
+                return "translate(0," + i * 20 + ")";
+            } );
 
         legendsEnter.append( "rect" )
-                .attr( "x", this.groupedBarChartWidth - 18 )
-                .attr( "width", 18 )
-                .attr( "height", 18 );
+            .attr( "x", this.groupedBarChartWidth - 18 )
+            .attr( "width", 18 )
+            .attr( "height", 18 );
 
         legendsEnter.append( "text" )
-                .attr( "x", this.groupedBarChartWidth - 24 )
-                .attr( "y", 9 )
-                .attr( "dy", ".35em" )
-                .style( "text-anchor", "end" );
+            .attr( "x", this.groupedBarChartWidth - 24 )
+            .attr( "y", 9 )
+            .attr( "dy", ".35em" )
+            .style( "text-anchor", "end" );
         legend.exit().remove();
 
         // When remove bar
         legend.select( "text" )
-                .text( function( d )
-        {
-            return jQuery.i18n.prop( d.name ).replace( "[", "" ).replace( "]", "" );
-        } );
+            .text( function( d )
+            {
+                return jQuery.i18n.prop( d.name ).replace( "[", "" ).replace( "]", "" );
+            } );
 
         legend.select( "rect" )
-                .style( "fill", jQuery.proxy( function( d )
+            .style( "fill", jQuery.proxy( function( d )
         {
             if( !d.color )
                 d.color = this.color( d.name );
             return d.color;
         }, this ) )
-                .style( "stroke", "#2C3537" )
-                .on( "click", jQuery.proxy( function( d )
+            .style( "stroke", "#2C3537" )
+            .on( "click", jQuery.proxy( function( d )
         {
             this.onClickGroupedBarChart( d );
         }, this ) );
@@ -639,36 +639,36 @@ var RCInterface = Class.create( {
     updateGroupedBar: function()
     {
         var groupedBar = this.groupedBarChartsvg.selectAll( ".groupedBar" )
-                .data( this.transposedData );
+            .data( this.transposedData );
 
         var groupedBarEnter = groupedBar.enter().append( "g" )
-                .attr( "class", "groupedBar" )
-                .attr( "transform", jQuery.proxy( function( d )
+            .attr( "class", "groupedBar" )
+            .attr( "transform", jQuery.proxy( function( d )
         {
             return "translate(" + this.groupedBarChartx0( d[this.fluxColName] ) + ",0)";
         }, this ) );
 
         var groupedBarRect = groupedBar.selectAll( "rect" )
-                .data( jQuery.proxy( function( d )
+            .data( jQuery.proxy( function( d )
         {
             return d.columnDetails;
         }, this ) );
 
         groupedBarRect.enter().append( "rect" )
-                .attr( "width", this.groupedBarChartx1.rangeBand() )
-                .attr( "x", jQuery.proxy( function( d )
+            .attr( "width", this.groupedBarChartx1.rangeBand() )
+            .attr( "x", jQuery.proxy( function( d )
         {
             return this.groupedBarChartx1( d.column );
         }, this ) )
-                .attr( "y", jQuery.proxy( function( d )
+            .attr( "y", jQuery.proxy( function( d )
         {
             return this.groupedBarCharty( d.yEnd );
         }, this ) )
-                .attr( "height", jQuery.proxy( function( d )
+            .attr( "height", jQuery.proxy( function( d )
         {
             return this.groupedBarCharty( d.yBegin ) - this.groupedBarCharty( d.yEnd );
         }, this ) )
-                .on( "click", jQuery.proxy( function( d )
+            .on( "click", jQuery.proxy( function( d )
         {
             this.onClickGroupedBarChart( d );
         }, this ) );
@@ -676,24 +676,24 @@ var RCInterface = Class.create( {
         groupedBarRect.exit().remove();
 
         groupedBar
-                .transition()
-                .duration( 200 )
-                .ease( "linear" )
-                .selectAll( "rect" )
-                .attr( "width", this.groupedBarChartx1.rangeBand() )
-                .attr( "x", jQuery.proxy( function( d )
+            .transition()
+            .duration( 200 )
+            .ease( "linear" )
+            .selectAll( "rect" )
+            .attr( "width", this.groupedBarChartx1.rangeBand() )
+            .attr( "x", jQuery.proxy( function( d )
         {
             return this.groupedBarChartx1( d.column );
         }, this ) )
-                .attr( "y", jQuery.proxy( function( d )
+            .attr( "y", jQuery.proxy( function( d )
         {
             return this.groupedBarCharty( d.yEnd );
         }, this ) )
-                .attr( "height", jQuery.proxy( function( d )
+            .attr( "height", jQuery.proxy( function( d )
         {
             return this.groupedBarCharty( d.yBegin ) - this.groupedBarCharty( d.yEnd );
         }, this ) )
-                .style( "fill", jQuery.proxy( function( d )
+            .style( "fill", jQuery.proxy( function( d )
         {
             if( !d.color )
                 d.color = this.color( d.name );
@@ -702,8 +702,8 @@ var RCInterface = Class.create( {
 
         // Grouped Bar chart : rotate the x Axis labels
         d3.selectAll( "#groupedBarChartSvg g.x g text" )
-                .style( "text-anchor", "end" )
-                .attr( "transform", "translate(-10,0)rotate(315)" );
+            .style( "text-anchor", "end" )
+            .attr( "transform", "translate(-10,0)rotate(315)" );
     },
 
     onClickGroupedBarChart: function( element )
@@ -732,8 +732,8 @@ var RCInterface = Class.create( {
     {
         d3.selectAll( ".country, #functionBarChart .bar, #functionBarChart text, #groupedBarChart .groupedBar rect" ).call( this.toolTip );
         d3.selectAll( ".country, #functionBarChart .bar, #functionBarChart text, #groupedBarChart .groupedBar rect" )
-                .on( 'mouseover', this.toolTip.show )
-                .on( 'mouseout', this.toolTip.hide );
+            .on( 'mouseover', this.toolTip.show )
+            .on( 'mouseout', this.toolTip.hide );
     },
 
 
@@ -755,20 +755,20 @@ var RCInterface = Class.create( {
 
         // Create "areas" divs
         $.waitUntil(
-                function()
-                {
-                    return width == $( imageId ).width();
-                },
-                jQuery.proxy( function()
-                {
-                    this.createAreas( mapId, activeClick, dynamicAreasId );
+            function()
+            {
+                return width == $( imageId ).width();
+            },
+            jQuery.proxy( function()
+            {
+                this.createAreas( mapId, activeClick, dynamicAreasId );
 //                    this.chartHeight = $( "#pageWrapper" ).height() - $( "#imageFlux" ).height() - $( ".bottomBasicCell" ).css( "margin-top" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
-                    this.imageHeight = $( "#imageFlux" ).height();
-                    if( activeClick )
-                        this.initFileValuesAndCreateDCObjects();
-                }, this ),
-                null
-                );
+                this.imageHeight = $( "#imageFlux" ).height();
+                if( activeClick )
+                    this.initFileValuesAndCreateDCObjects();
+            }, this ),
+            null
+        );
     },
 
     createAreas : function( mapId, activeClick, dynamicAreasId )
@@ -979,10 +979,10 @@ function print_filter( filter )
     if( "undefined" != typeof(f.dimension) )
     {
         f = f.dimension(
-                function( d )
-                {
-                    return "";
-                } ).top( Infinity );
+            function( d )
+            {
+                return "";
+            } ).top( Infinity );
     }
     else
     {
@@ -997,6 +997,13 @@ function exportAll()
     $( "#exportDiv" ).append( $( "#pageWrapper" ).clone() );
     $("#exportDiv #containerTools, #exportDiv .comment, #exportDiv #regionAndUncertaintySelect, #exportDiv #resetFlux").remove();
     $("#exportDiv #mapChartAndComment").width($("#exportDiv #mapChart").width());
+
+
+    $("#exportDiv #functionBarChart rect.deselected").css("fill","#CCCCCC");
+    $("#exportDiv path").css("fill","none");
+    $("#exportDiv path").css("stroke","black");
+    $("#exportDiv line").css("opacity","0.5").css("stroke","#CCCCCC");
+    $("#exportDiv .grid-line line").css("opacity","0.5").css("stroke","#CCCCCC");
 
     $('#exportDiv').exportAll();
 }

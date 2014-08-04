@@ -1,3 +1,5 @@
+<div id="exportDiv"></div>
+
 <div id="pageWrapper">
 
     <!-- ********************* MENU & TITLE ********************* -->
@@ -154,10 +156,10 @@
         </div>
     </div>
 
-<!--    <canvas id="svg-canvas" hidden="hidden"></canvas>-->
+    <!--    <canvas id="svg-canvas" hidden="hidden"></canvas>-->
 </div>
 
-<div id="exportDiv"></div>
+<div id="bob"></div>
 
 <script type="text/javascript">
     $( document ).ready( function ()

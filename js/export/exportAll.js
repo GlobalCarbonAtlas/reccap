@@ -19,13 +19,13 @@
             // Transform all svg into canvas
             canvg(null, null, null, "exportDiv");
 
-//            html2canvas($(element), {
-//                onrendered: function(canvas) {
-//                    document.body.appendChild(canvas);
+            html2canvas($(element), {
+                onrendered: function(canvas) {
+                    document.body.appendChild(canvas);
 //                    var img = canvas.toDataURL("image/png");
 //                    window.open(img);
-//                }
-//            });
+                }
+            });
 //            html2canvas($(element), {
 //                onrendered: function(canvas) {
 //                    var img = canvas.toDataURL("image/png");

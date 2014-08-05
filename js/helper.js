@@ -196,6 +196,8 @@ function css2json(css) {
 (function($){
     $.fn.getStyleObject = function(listStyleToGet){
         var dom = this.get(0);
+        if(!dom)
+            return;
         var style;
         var returns = {};
         if(window.getComputedStyle){

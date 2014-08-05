@@ -14,10 +14,10 @@
 //                copySelectedCss($(d), $("#exportDiv #functionBarChartForMainFlux"), options.listStyleToGet);
 //            });
 
-//            copySelectedCss($("#sourceWrapper"), $("#exportDiv"), options.listStyleToGet);
+            copySelectedCss($("#sourceWrapper"), $("#exportDiv"), options.listStyleToGet);
 
-            copySelectedCss($("#sourceWrapper #functionBarChartForMainFlux"), $("#exportDiv #functionBarChartForMainFlux"), options.listStyleToGet);
-            copySelectedCss($("#sourceWrapper #mapChart"), $("#exportDiv #mapChart"), options.listStyleToGet);
+//            copySelectedCss($("#sourceWrapper #functionBarChartForMainFlux"), $("#exportDiv #functionBarChartForMainFlux"), options.listStyleToGet);
+//            copySelectedCss($("#sourceWrapper #mapChart"), $("#exportDiv #mapChart"), options.listStyleToGet);
 //
 
             // TODO : update dynamically css
@@ -60,7 +60,8 @@
         $.each(targetDiv.children(), function(i,d)
         {
             var styles = $(sourceChildren[i]).getStyleObject(listStyleToGet);
-            $(d).css(styles);
+            if(styles)
+                $(d).css(styles);
             copySelectedCss($(sourceChildren[i]), $(d), listStyleToGet);
         });
     }

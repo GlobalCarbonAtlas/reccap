@@ -992,13 +992,14 @@ function print_filter( filter )
 }
 
 
-function exportAll()
+function exportAll(exportDivId)
 {
-    $( "#exportDiv" ).empty();
-    $( "#exportDiv" ).append( $( "#sourceWrapper #pageWrapper" ).clone() );
-    $("#exportDiv #containerTools, #exportDiv .comment, #exportDiv #regionAndUncertaintySelect, #exportDiv #resetFlux").remove();
-    $("#exportDiv #mapChartAndComment").width($("#exportDiv #mapChart").width());
+    $( "#"+exportDivId ).empty();
+    $( "#"+exportDivId ).append( $( "#sourceWrapper #pageWrapper" ).clone() );
+    $("#"+exportDivId+" #mapChartAndComment").width($("#"+exportDivId+" #mapChart").width());
 
 
-    $('#exportDiv').exportAll({sourceDivId:"sourceWrapper", targetDivId:"exportDiv", listStyleToGet:["fill", "stroke", "opacity", "fill-opacity"]});
+    $('#'+exportDivId).exportAll({sourceDivId:"sourceWrapper", targetDivId:exportDivId, listStyleToGet:["fill", "stroke", "opacity", "fill-opacity"]});
+    $("#"+exportDivId+" #containerTools, #"+exportDivId+" .comment, #"+exportDivId+" #regionAndUncertaintySelect, #"+exportDivId+" #resetFlux").remove();
+    $("#"+exportDivId+" #hiddenDiv, #"+exportDivId+" #dataDiv, #"+exportDivId+" .synthesisDiv").remove();
 }

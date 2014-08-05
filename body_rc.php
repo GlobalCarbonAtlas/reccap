@@ -157,12 +157,9 @@
             </div>
         </div>
 
-        <!--    <canvas id="svg-canvas" hidden="hidden"></canvas>-->
     </div>
 
 </div>
-
-<div id="bob"></div>
 
 <script type="text/javascript">
     $( document ).ready( function ()

@@ -1,3 +1,7 @@
+/**
+ * @optional sourceDivId : source div used to get the styles
+ * @optional listStyleToGet : list of styles to keep in the export elements
+ */
 (function($){
     $.fn.extend({
         exportAll: function(options) {
@@ -8,43 +12,20 @@
             options = $.extend(defaults, options);
             var element = this;
 
-//            var sourceChildren = $("#"+options.sourceDivId).children();
-//            $.each($("#"+options.targetDivId).children(), function(i,d)
-//            {
-//                copySelectedCss($(d), $("#exportDiv #functionBarChartForMainFlux"), options.listStyleToGet);
-//            });
-
-            copySelectedCss($("#sourceWrapper"), $("#exportDiv"), options.listStyleToGet);
-
-//            copySelectedCss($("#sourceWrapper #functionBarChartForMainFlux"), $("#exportDiv #functionBarChartForMainFlux"), options.listStyleToGet);
-//            copySelectedCss($("#sourceWrapper #mapChart"), $("#exportDiv #mapChart"), options.listStyleToGet);
-//
-
-            // TODO : update dynamically css
-//            $("#exportDiv #functionBarChart rect.deselected").css("fill","#CCCCCC");
-//            $("#exportDiv path").css("fill","none");
-//            $("#exportDiv path").css("stroke","black");
-//            $("#exportDiv line").css("opacity","0.5").css("stroke","#CCCCCC");
-//            $("#exportDiv .grid-line line").css("opacity","0.5").css("stroke","#CCCCCC");
-
+            // Copy styles from source to export
+            if(options.sourceDivId)
+                copySelectedCss($("#"+options.sourceDivId), element, options.listStyleToGet);
 
             // Transform all svg into canvas
-            canvg(null, null, null, "exportDiv");
+            canvg(null, null, null, element[0].id);
 
-//            html2canvas($(element), {
-//                onrendered: function(canvas) {
+            html2canvas($(element), {
+                onrendered: function(canvas) {
 //                    document.body.appendChild(canvas);
 //                    var img = canvas.toDataURL("image/png");
 //                    window.open(img);
-//                }
-//            });
-//            html2canvas($(element), {
-//                onrendered: function(canvas) {
-//                    var img = canvas.toDataURL("image/png");
-//                    window.open(img);
-//                }
-//            });
-
+                }
+            });
         }
     });
 

@@ -35,9 +35,8 @@
 				c.width = svgTag.clientWidth;
 				c.height = svgTag.clientHeight;
 				svgTag.parentNode.insertBefore(c, svgTag);
-//				svgTag.parentNode.removeChild(svgTag);
+				svgTag.parentNode.removeChild(svgTag);
 				var div = document.createElement('div');
-                $("#bob").append(div);
 				div.appendChild(svgTag);
 				canvg(c, div.innerHTML);
 			}

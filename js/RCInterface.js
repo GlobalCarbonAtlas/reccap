@@ -999,7 +999,8 @@ function exportAll(exportDivId)
     $("#"+exportDivId+" #mapChartAndComment").width($("#"+exportDivId+" #mapChart").width());
 
 
-    $('#'+exportDivId).exportAll({sourceDivId:"sourceWrapper", targetDivId:exportDivId, listStyleToGet:["fill", "stroke", "opacity", "fill-opacity"]});
+    $('#'+exportDivId).exportAll({sourceDivId:"sourceWrapper", listStyleToGet:["fill", "stroke", "opacity", "fill-opacity", "shape-rendering", "stroke-opacity", "font"]});
+
     $("#"+exportDivId+" #containerTools, #"+exportDivId+" .comment, #"+exportDivId+" #regionAndUncertaintySelect, #"+exportDivId+" #resetFlux").remove();
     $("#"+exportDivId+" #hiddenDiv, #"+exportDivId+" #dataDiv, #"+exportDivId+" .synthesisDiv").remove();
 }

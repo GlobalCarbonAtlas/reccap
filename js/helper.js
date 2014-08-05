@@ -115,84 +115,13 @@ function getStyleSheetsPropertyValue( selectorText, propertyName, cssFile )
 
 
 // **************************************************************
-// ************************ COPY CSS ****************************
+// ************************* EXPORT *****************************
 // **************************************************************
-//http://upshots.org/javascript/jquery-copy-style-copycss
-$.fn.copyCSS = function (source) {
-    var dom = $(source).get(0);
-    var dest = {};
-    var style, prop;
-    if (window.getComputedStyle) {
-        var camelize = function (a, b) {
-            return b.toUpperCase();
-        };
-        if (style = window.getComputedStyle(dom, null)) {
-            var camel, val;
-            if (style.length) {
-                for (var i = 0, l = style.length; i < l; i++) {
-                    prop = style[i];
-                    camel = prop.replace(/\-([a-z])/, camelize);
-                    val = style.getPropertyValue(prop);
-                    dest[camel] = val;
-                }
-            } else {
-                for (prop in style) {
-                    camel = prop.replace(/\-([a-z])/, camelize);
-                    val = style.getPropertyValue(prop) || style[prop];
-                    dest[camel] = val;
-                }
-            }
-            return this.css(dest);
-        }
-    }
-    if (style = dom.currentStyle) {
-        for (prop in style) {
-            dest[prop] = style[prop];
-        }
-        return this.css(dest);
-    }
-    if (style = dom.style) {
-        for (prop in style) {
-            if (typeof style[prop] != 'function') {
-                dest[prop] = style[prop];
-            }
-        }
-    }
-    return this.css(dest);
-};
-
-function css(a) {
-    var sheets = document.styleSheets, o = {};
-    for (var i in sheets) {
-        var rules = sheets[i].rules || sheets[i].cssRules;
-        for (var r in rules) {
-            if (rules[r].selectorText && rules[r].selectorText.indexOf(":") ==-1 && a.is(rules[r].selectorText)) {
-                o = $.extend(o, css2json(rules[r].style), css2json(a.attr('style')));
-            }
-        }
-    }
-    return o;
-}
-
-function css2json(css) {
-    var s = {};
-    if (!css) return s;
-    if (css instanceof CSSStyleDeclaration) {
-        for (var i in css) {
-            if ((css[i]).toLowerCase) {
-                s[(css[i]).toLowerCase()] = (css[css[i]]);
-            }
-        }
-    } else if (typeof css == "string") {
-        css = css.split("; ");
-        for (var i in css) {
-            var l = css[i].split(": ");
-            s[l[0].toLowerCase()] = (l[1]);
-        }
-    }
-    return s;
-}
-
+//http://stackoverflow.com/questions/754607/can-jquery-get-all-css-styles-associated-with-an-element
+/*
+ * getStyleObject Plugin for jQuery JavaScript Library
+ * From: http://upshots.org/?p=112
+ */
 (function($){
     $.fn.getStyleObject = function(listStyleToGet){
         var dom = this.get(0);
@@ -210,8 +139,7 @@ function css2json(css) {
                 if(!listStyleToGet || listStyleToGet.indexOf(prop) != -1)
                 {
                     var camel = prop.replace(/\-([a-z])/g, camelize);
-                    var val = style.getPropertyValue(prop);
-                    returns[camel] = val;
+                    returns[camel] = style.getPropertyValue(prop);
                 }
             };
             return returns;

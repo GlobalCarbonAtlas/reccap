@@ -984,6 +984,7 @@ function print_filter( filter )
                 return "";
             } ).top( Infinity );
     }
+
     else
     {
     }
@@ -994,16 +995,10 @@ function print_filter( filter )
 function exportAll()
 {
     $( "#exportDiv" ).empty();
-    $( "#exportDiv" ).append( $( "#pageWrapper" ).clone() );
+    $( "#exportDiv" ).append( $( "#sourceWrapper #pageWrapper" ).clone() );
     $("#exportDiv #containerTools, #exportDiv .comment, #exportDiv #regionAndUncertaintySelect, #exportDiv #resetFlux").remove();
     $("#exportDiv #mapChartAndComment").width($("#exportDiv #mapChart").width());
 
 
-    $("#exportDiv #functionBarChart rect.deselected").css("fill","#CCCCCC");
-    $("#exportDiv path").css("fill","none");
-    $("#exportDiv path").css("stroke","black");
-    $("#exportDiv line").css("opacity","0.5").css("stroke","#CCCCCC");
-    $("#exportDiv .grid-line line").css("opacity","0.5").css("stroke","#CCCCCC");
-
-    $('#exportDiv').exportAll();
+    $('#exportDiv').exportAll({listStyleToGet:["fill", "stroke", "opacity"]});
 }

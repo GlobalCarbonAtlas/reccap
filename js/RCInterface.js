@@ -1000,5 +1000,5 @@ function exportAll()
     $("#exportDiv #mapChartAndComment").width($("#exportDiv #mapChart").width());
 
 
-    $('#exportDiv').exportAll({listStyleToGet:["fill", "stroke", "opacity"]});
+    $('#exportDiv').exportAll({sourceDivId:"sourceWrapper", targetDivId:"exportDiv", listStyleToGet:["fill", "stroke", "opacity", "fill-opacity"]});
 }

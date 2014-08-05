@@ -8,14 +8,17 @@
             options = $.extend(defaults, options);
             var element = this;
 
-//            var styles = css($(".imageFluxDiv"));
-//            var styles = $("#mapChart").getStyleObject();
-//            $("#exportDiv #mapChart").copyCSS("#mapChart");
+//            var sourceChildren = $("#"+options.sourceDivId).children();
+//            $.each($("#"+options.targetDivId).children(), function(i,d)
+//            {
+//                copySelectedCss($(d), $("#exportDiv #functionBarChartForMainFlux"), options.listStyleToGet);
+//            });
 
-//            loadCss($("#exportDiv #mapChart"), $("#sourceWrapper #mapChart"));
+//            copySelectedCss($("#sourceWrapper"), $("#exportDiv"), options.listStyleToGet);
 
             copySelectedCss($("#sourceWrapper #functionBarChartForMainFlux"), $("#exportDiv #functionBarChartForMainFlux"), options.listStyleToGet);
-
+            copySelectedCss($("#sourceWrapper #mapChart"), $("#exportDiv #mapChart"), options.listStyleToGet);
+//
 
             // TODO : update dynamically css
 //            $("#exportDiv #functionBarChart rect.deselected").css("fill","#CCCCCC");
@@ -51,14 +54,14 @@
      * @param @mandatory targetDivId : the target div to copy the styles
      * @param listStyleToGet : array of wanted styles
      */
-    function copySelectedCss(sourceDiv, targetDivId, listStyleToGet)
+    function copySelectedCss(sourceDiv, targetDiv, listStyleToGet)
     {
-        var targetChildren = targetDivId.children();
-        $.each(sourceDiv.children(), function(i,d)
+        var sourceChildren = sourceDiv.children();
+        $.each(targetDiv.children(), function(i,d)
         {
-            var styles = $(d).getStyleObject(listStyleToGet);
-            $(targetChildren[i]).css(styles);
-            copySelectedCss($(d), $(targetChildren[i]), listStyleToGet);
+            var styles = $(sourceChildren[i]).getStyleObject(listStyleToGet);
+            $(d).css(styles);
+            copySelectedCss($(sourceChildren[i]), $(d), listStyleToGet);
         });
     }
 })(jQuery);

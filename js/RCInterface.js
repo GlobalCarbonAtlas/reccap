@@ -992,7 +992,7 @@ function print_filter( filter )
 }
 
 
-function exportAll(exportDivId)
+function exportAll(exportDivId, aElement)
 {
     $( "#"+exportDivId ).empty();
     $("#sourceWrapper").fadeOut(1000);
@@ -1005,6 +1005,7 @@ function exportAll(exportDivId)
         sourceDivId:"sourceWrapper",
         callbackBeforeCanvg:{name: callbackBeforeCanvg, arguments: exportDivId},
         callbackOnRendered: {name: callbackOnRendered, arguments: exportDivId},
+        aElement: aElement,
         listStyleToGet:["fill", "stroke", "opacity", "fill-opacity", "shape-rendering", "stroke-opacity",
             "font", "font-size", "font-weight", "font-family", "color",
             "float", "height", "width"]});//, "margin-top", "margin-bottom", "margin-right", "margin-left"]});

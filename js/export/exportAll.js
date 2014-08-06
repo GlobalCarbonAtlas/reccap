@@ -1,4 +1,5 @@
 /**
+ * @mandatory aElement : DOM "a" element, used to launch the export
  * @optional sourceDivId : source div used to get the styles (sourceDiv and targetDiv MUST HAVE the same childrens)
  * @optional listStyleToGet : list of styles to keep in the export elements
  * @optional callbackBeforeCanvg : function to call before the transformation of all svg elements to canvas
@@ -35,7 +36,12 @@
                         options.callbackOnRendered.name(options.callbackOnRendered.arguments);
 
                     var img = canvas.toDataURL("image/png");
-                    window.open(img);
+
+                    $( options.aElement ).attr( "href", img );
+                    $( options.aElement ).attr( "download", "bob.png");
+
+//                    var img = canvas.toDataURL("image/png");
+//                    window.open(img);
                 }
             });
         }

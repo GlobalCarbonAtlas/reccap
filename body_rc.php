@@ -1,5 +1,3 @@
-<div id="exportDiv"></div>
-
 <div id="sourceWrapper">
     <div id="pageWrapper">
 
@@ -26,7 +24,7 @@
         </div>
 
 
-        <div class="container-fluid">
+        <div id="containerCharts" class="container-fluid">
             <!-- ********************* MAP & FUNCTION ********************* -->
             <div class="col-md-6">
                 <div class="row basicCell">
@@ -160,6 +158,15 @@
     </div>
 
 </div>
+
+<div class="row"><hr></div>
+<BR/><BR/><BR/>
+<div id="bob"></div>
+<BR/><BR/><BR/>
+<div class="row"><hr></div>
+<BR/><BR/><BR/>
+<div id="exportDiv"></div>
+
 
 <script type="text/javascript">
     $( document ).ready( function ()

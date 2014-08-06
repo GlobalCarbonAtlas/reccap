@@ -1,6 +1,7 @@
 /**
- * @optional sourceDivId : source div used to get the styles
+ * @optional sourceDivId : source div used to get the styles (sourceDiv and targetDiv MUST HAVE the same childrens)
  * @optional listStyleToGet : list of styles to keep in the export elements
+ * @optional callbackBeforeCanvg : function to call before the transformation of all svg elements to canvas
  */
 (function($){
     $.fn.extend({
@@ -16,16 +17,20 @@
             if(options.sourceDivId)
                 copySelectedCss($("#"+options.sourceDivId), element, options.listStyleToGet);
 
+            if(options.callbackBeforeCanvg)
+                options.callbackBeforeCanvg.name(options.callbackBeforeCanvg.arguments);
+
             // Transform all svg into canvas
             canvg(null, null, null, element[0].id);
 
-            html2canvas($(element), {
-                onrendered: function(canvas) {
+//            html2canvas($(element), {
+//                onrendered: function(canvas) {
+//                                console.log("ici3");
 //                    document.body.appendChild(canvas);
 //                    var img = canvas.toDataURL("image/png");
 //                    window.open(img);
-                }
-            });
+//                }
+//            });
         }
     });
 

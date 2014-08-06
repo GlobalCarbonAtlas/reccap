@@ -762,7 +762,7 @@ var RCInterface = Class.create( {
             jQuery.proxy( function()
             {
                 this.createAreas( mapId, activeClick, dynamicAreasId );
-//                    this.chartHeight = $( "#pageWrapper" ).height() - $( "#imageFlux" ).height() - $( ".bottomBasicCell" ).css( "margin-top" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
+//                this.chartHeight = $( "#pageWrapper" ).height() - $( "#imageFlux" ).height() - $( ".bottomBasicCell" ).css( "margin-top" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
                 this.imageHeight = $( "#imageFlux" ).height();
                 if( activeClick )
                     this.initFileValuesAndCreateDCObjects();
@@ -999,8 +999,16 @@ function exportAll(exportDivId)
     $("#"+exportDivId+" #mapChartAndComment").width($("#"+exportDivId+" #mapChart").width());
 
 
-    $('#'+exportDivId).exportAll({sourceDivId:"sourceWrapper", listStyleToGet:["fill", "stroke", "opacity", "fill-opacity", "shape-rendering", "stroke-opacity", "font"]});
+    $('#'+exportDivId).exportAll({
+        sourceDivId:"sourceWrapper",
+        callbackBeforeCanvg:{name: callbackForExport, arguments: exportDivId},
+        listStyleToGet:["fill", "stroke", "opacity", "fill-opacity", "shape-rendering", "stroke-opacity",
+            "font", "font-size", "font-weight", "font-family", "color",
+            "float", "height", "width", "margin-top", "margin-bottom", "margin-right", "margin-left"]});
+}
 
+function callbackForExport(exportDivId)
+{
     $("#"+exportDivId+" #containerTools, #"+exportDivId+" .comment, #"+exportDivId+" #regionAndUncertaintySelect, #"+exportDivId+" #resetFlux").remove();
     $("#"+exportDivId+" #hiddenDiv, #"+exportDivId+" #dataDiv, #"+exportDivId+" .synthesisDiv").remove();
 }

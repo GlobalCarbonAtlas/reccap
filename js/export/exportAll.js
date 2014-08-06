@@ -4,12 +4,17 @@
  * @optional listStyleToGet : list of styles to keep in the export elements
  * @optional callbackBeforeCanvg : function to call before the transformation of all svg elements to canvas
  * @optional callbackOnRendered : function to call before the window.open
+ * @optional windowTitle : title for the opened tab
+ * @mandatory fileName
+ * @mandatory fileType
+ * http://jqueryfiledownload.apphb.com/
+ * http://stackoverflow.com/questions/283956/is-there-any-way-to-specify-a-suggested-filename-when-using-data-uri
  */
 (function($){
     $.fn.extend({
         exportAll: function(options) {
             var defaults = {
-                consoleLog:'false'
+                consoleLog:'true'
             };
 
             options = $.extend(defaults, options);
@@ -27,21 +32,36 @@
 
             html2canvas($(element), {
                 onrendered: function(canvas) {
-//                    document.body.appendChild(canvas);
-//                    var base64data = "base64," + $.base64.encode(tdData);
-//                    $( defaults.element ).attr( "href", "data:application/"+defaults.type+";" + base64data );
-//                    $( defaults.element ).attr( "download", "exportData." + defaults.type );
 
                     if(options.callbackOnRendered)
                         options.callbackOnRendered.name(options.callbackOnRendered.arguments);
 
-                    var img = canvas.toDataURL("image/png");
-
-                    $( options.aElement ).attr( "href", img );
-                    $( options.aElement ).attr( "download", "bob.png");
-
 //                    var img = canvas.toDataURL("image/png");
-//                    window.open(img);
+//                    $( options.aElement ).attr( "href", img );
+//                    if($( options.aElement ).attr( "download") != undefined)
+//                        return;
+//                    $( options.aElement ).attr( "download", "bob.png");
+//                    document.getElementById("pouif").click();
+//                    $( options.aElement ).removeAttr( "href");
+//                    $( options.aElement ).removeAttr("download");
+
+//                    eventFire( a, "click");
+
+
+                    var data = canvas.toDataURL("image/"+options.fileType);
+
+                    var img = document.createElement('img');
+                    img.src = data;
+                    img.title= 'Click on the image to save it';
+
+                    var a = document.createElement('a');
+                    a.setAttribute("download", options.fileName+"."+options.fileType);
+                    a.setAttribute("href", data);
+                    a.appendChild(img);
+
+                    var w = open();
+                    w.document.title = options.windowTitle ? options.windowTitle : "Exported image";
+                    w.document.body.appendChild(a);
                 }
             });
         }
@@ -64,4 +84,15 @@
             copySelectedCss($(sourceChildren[i]), $(d), listStyleToGet);
         });
     }
+
+
+//    function eventFire(el, etype){
+//        if (el.fireEvent) {
+//            (el.fireEvent('on' + etype));
+//        } else {
+//            var evObj = document.createEvent('Events');
+//            evObj.initEvent(etype, true, false);
+//            el.dispatchEvent(evObj);
+//        }
+//    }
 })(jQuery);

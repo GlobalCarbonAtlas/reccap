@@ -1005,7 +1005,10 @@ function exportAll(exportDivId, aElement)
         sourceDivId:"sourceWrapper",
         callbackBeforeCanvg:{name: callbackBeforeCanvg, arguments: exportDivId},
         callbackOnRendered: {name: callbackOnRendered, arguments: exportDivId},
-        aElement: aElement,
+//        aElement: aElement,
+        fileName: "GCAExportImage",
+        fileType: "png",
+        windowTitle: "GCA Reccap : Exported image",
         listStyleToGet:["fill", "stroke", "opacity", "fill-opacity", "shape-rendering", "stroke-opacity",
             "font", "font-size", "font-weight", "font-family", "color",
             "float", "height", "width"]});//, "margin-top", "margin-bottom", "margin-right", "margin-left"]});

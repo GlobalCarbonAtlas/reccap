@@ -995,20 +995,29 @@ function print_filter( filter )
 function exportAll(exportDivId)
 {
     $( "#"+exportDivId ).empty();
+    $("#sourceWrapper").fadeOut(1000);
+
     $( "#"+exportDivId ).append( $( "#sourceWrapper #pageWrapper" ).clone() );
     $("#"+exportDivId+" #mapChartAndComment").width($("#"+exportDivId+" #mapChart").width());
 
 
     $('#'+exportDivId).exportAll({
         sourceDivId:"sourceWrapper",
-        callbackBeforeCanvg:{name: callbackForExport, arguments: exportDivId},
+        callbackBeforeCanvg:{name: callbackBeforeCanvg, arguments: exportDivId},
+        callbackOnRendered: {name: callbackOnRendered, arguments: exportDivId},
         listStyleToGet:["fill", "stroke", "opacity", "fill-opacity", "shape-rendering", "stroke-opacity",
             "font", "font-size", "font-weight", "font-family", "color",
-            "float", "height", "width", "margin-top", "margin-bottom", "margin-right", "margin-left"]});
+            "float", "height", "width"]});//, "margin-top", "margin-bottom", "margin-right", "margin-left"]});
 }
 
-function callbackForExport(exportDivId)
+function callbackBeforeCanvg(exportDivId)
 {
     $("#"+exportDivId+" #containerTools, #"+exportDivId+" .comment, #"+exportDivId+" #regionAndUncertaintySelect, #"+exportDivId+" #resetFlux").remove();
     $("#"+exportDivId+" #hiddenDiv, #"+exportDivId+" #dataDiv, #"+exportDivId+" .synthesisDiv").remove();
+}
+
+function callbackOnRendered(exportDivId)
+{
+    $("#"+exportDivId).empty();
+    $("#sourceWrapper").fadeIn();
 }

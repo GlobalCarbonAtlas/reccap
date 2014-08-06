@@ -52,6 +52,7 @@
 					if(defaults.consoleLog == 'true'){
 						console.log(tdData);
 					}
+                    /** CHANGE VMIPSL **/
 					var base64data = "base64," + $.base64.encode(tdData);
                     $( defaults.element ).attr( "href", "data:application/"+defaults.type+";" + base64data );
                     $( defaults.element ).attr( "download", "exportData." + defaults.type );
@@ -263,8 +264,6 @@
 						onrendered: function(canvas) {
 							var img = canvas.toDataURL("image/png");
 							window.open(img);
-
-
 						}
 					});
 				}else if(defaults.type == 'pdf'){

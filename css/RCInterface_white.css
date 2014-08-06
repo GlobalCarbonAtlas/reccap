@@ -567,31 +567,34 @@ foreignObject {
 /*text-overflow: ellipsis;*/
 /*white-space: nowrap;*/
 
-/* ************** EXPORT ************** */
-#exportDiv {
 
-    /*margin-top: 100px;*/
-    /*float: left;*/
-    /*position: absolute;*/
-    /*top:0;*/
-    /*z-index: 0;*/
-    /*padding: 100px 0 0 0;*/
-    /*height: 100%;*/
-    width: 100%;
-    float:left;
-    /*background-color: red;*/
+/* ************************************ */
+/* ************** EXPORT ************** */
+/* ************************************ */
+#exportDiv {
+    position: absolute;
+    top:0;
 }
 
-#exportDiv #mapChartAndComment {
-    /*margin:  auto;*/
-    /*float: none;*/
+#exportDiv #containerCharts #mapChartAndComment {
+    margin:  auto !important;
+    float: none !important;
 }
 
 #exportDiv .title{
-    /*margin: -100px auto 400px !important;*/
+    margin: 2px auto;
 }
 
-#bob{
-    float: left;
-    /*background-color: red;*/
+#exportDiv #containerCharts {
+    margin-top: 50px;
 }
+
+#exportDiv #dynamicAreasForImageFlux .dynamicArea {
+    border: none !important;
+}
+
+#exportDiv #dynamicAreasForImageFlux .dynamicArea.selected {
+    border: 1px double #DDDDDD !important;
+}
+
+

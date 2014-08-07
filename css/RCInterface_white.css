@@ -626,4 +626,9 @@ foreignObject {
     border: 1px double #DDDDDD !important;
 }
 
+#exportDiv .exportLogo {
+    position:absolute;
+    top:0;
+    right: 20px;
+}
 

@@ -1000,9 +1000,11 @@ function exportAll(exportDivId, fileType)
     $( "#"+exportDivId ).append( $( "#sourceWrapper #pageWrapper" ).clone() );
     $("#"+exportDivId+" #mapChartAndComment").width($("#"+exportDivId+" #mapChart").width());
 
+    // File name with date
     var exportDate = $.datepicker.formatDate( 'yy_mm_dd', new Date() );
     var fileName = "GCAExportImage_" + exportDate;
 
+    // Export
     $('#'+exportDivId).exportAll({
         sourceDivId:"sourceWrapper",
         callbackBeforeCanvg:{name: callbackBeforeCanvg, arguments: exportDivId},
@@ -1019,6 +1021,10 @@ function callbackBeforeCanvg(exportDivId)
 {
     $("#"+exportDivId+" #containerTools, #"+exportDivId+" .comment, #"+exportDivId+" #regionAndUncertaintySelect, #"+exportDivId+" #resetFlux").remove();
     $("#"+exportDivId+" #hiddenDiv, #"+exportDivId+" #dataDiv, #"+exportDivId+" .synthesisDiv").remove();
+
+    // Add GCA logo
+    $("#"+exportDivId).append("<div class='exportLogo'><img src='img/GCA_logo_white.png' width='150px'></div>");
+
 }
 
 function callbackOnRendered(exportDivId)

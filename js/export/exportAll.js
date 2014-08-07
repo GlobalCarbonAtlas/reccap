@@ -54,6 +54,8 @@
                     img.src = data;
                     img.title= 'Click on the image to save it';
 
+                    // download doesn't work with Safari, IE or Opera.
+                    // http://caniuse.com/download
                     var a = document.createElement('a');
                     a.setAttribute("download", options.fileName+"."+options.fileType);
                     a.setAttribute("href", data);

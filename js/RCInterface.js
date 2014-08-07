@@ -1000,12 +1000,14 @@ function exportAll(exportDivId, fileType)
     $( "#"+exportDivId ).append( $( "#sourceWrapper #pageWrapper" ).clone() );
     $("#"+exportDivId+" #mapChartAndComment").width($("#"+exportDivId+" #mapChart").width());
 
+    var exportDate = $.datepicker.formatDate( 'yy_mm_dd', new Date() );
+    var fileName = "GCAExportImage_" + exportDate;
 
     $('#'+exportDivId).exportAll({
         sourceDivId:"sourceWrapper",
         callbackBeforeCanvg:{name: callbackBeforeCanvg, arguments: exportDivId},
         callbackOnRendered: {name: callbackOnRendered, arguments: exportDivId},
-        fileName: "GCAExportImage",
+        fileName: fileName,
         fileType: fileType,
         windowTitle: "GCA Reccap : Exported image",
         listStyleToGet:["fill", "stroke", "opacity", "fill-opacity", "shape-rendering", "stroke-opacity",

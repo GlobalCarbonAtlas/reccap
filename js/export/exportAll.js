@@ -40,8 +40,7 @@
 //                    $( options.aElement ).attr( "href", img );
 //                    if($( options.aElement ).attr( "download") != undefined)
 //                        return;
-//                    $( options.aElement ).attr( "download", "bob.png");
-//                    document.getElementById("pouif").click();
+//                    $( options.aElement ).attr( "download", "test.png");
 //                    $( options.aElement ).removeAttr( "href");
 //                    $( options.aElement ).removeAttr("download");
 

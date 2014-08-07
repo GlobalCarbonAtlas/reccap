@@ -83,7 +83,7 @@ var RCInterface = Class.create( {
         }, this ) );
 
         // Tooltips for menu
-        $( ".leftTools .toolButton img, #functionBarChartTitle" ).tooltip( {
+        $( ".leftTools .toolButton img, .leftTools button, #functionBarChartTitle" ).tooltip( {
             placement: "bottom",
             container:'body'} );
 
@@ -992,7 +992,7 @@ function print_filter( filter )
 }
 
 
-function exportAll(exportDivId, aElement)
+function exportAll(exportDivId, fileType)
 {
     $( "#"+exportDivId ).empty();
     $("#sourceWrapper").fadeOut(1000);
@@ -1005,9 +1005,8 @@ function exportAll(exportDivId, aElement)
         sourceDivId:"sourceWrapper",
         callbackBeforeCanvg:{name: callbackBeforeCanvg, arguments: exportDivId},
         callbackOnRendered: {name: callbackOnRendered, arguments: exportDivId},
-//        aElement: aElement,
         fileName: "GCAExportImage",
-        fileType: "png",
+        fileType: fileType,
         windowTitle: "GCA Reccap : Exported image",
         listStyleToGet:["fill", "stroke", "opacity", "fill-opacity", "shape-rendering", "stroke-opacity",
             "font", "font-size", "font-weight", "font-family", "color",

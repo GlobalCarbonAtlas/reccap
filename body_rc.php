@@ -3,11 +3,17 @@
 
         <!-- ********************* MENU & TITLE ********************* -->
         <div id="containerTools" class="container-fluid">
-            <div class="leftTools ">
-                <div id="reset" class="toolButton"><img src="img/reset-icon-614x460.png" width="50px" title="Reset all"/></div>
-                <div id="export" class="toolButton">
-                    <a href="#" onClick="javascript:exportAll('exportDiv', this);"><img src="img/export_small.png" title="Export"/></a></div>
-                <div id="help" class="toolButton"><img src="img/help.png" width="30px" title="Help"/></div>
+            <div class="leftTools">
+                <div class="btn-group">
+                    <button id="reset" type="button" class="btn-default leftToolsButton" title="Reset all"><img src="img/reset-icon-614x460.png" width="50px"/></button>
+                    <button id="export" type="button" class="btn btn-default leftToolsButton" data-toggle="dropdown" title="Export"><img src="img/export_small.png"/></button>
+                    <ul class="dropdown-menu leftToolsMenu">
+                        <li><a href="#" onClick="javascript:exportAll('exportDiv', 'png');">&nbsp;&nbsp;<img src='js/htmltable_export/icons/png.png' width='24px'> PNG</a></li>
+                        <li><a href="#" onClick="javascript:exportAll('exportDiv', 'jpg');">&nbsp;<img src='js/htmltable_export/icons/png.png' width='24px'> JPG</a></li>
+                        <li><a href="#" onClick="javascript:exportAll('exportDiv', 'gif');"><img src='js/htmltable_export/icons/png.png' width='24px'> GIF</a></li>
+                    </ul>
+                    <button id="help" type="button" class="btn btn-default leftToolsButton" title="Help"><img src="img/help.png" width="30px"/></button>
+                </div>
             </div>
 
             <div class="rightTools ">

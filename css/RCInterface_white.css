@@ -60,6 +60,7 @@ h3 {
 /*border: 1px solid red;*/
 /*}*/
 
+
 /* ************** TOOLS ************** */
 .leftTools {
     border: 2px solid #2C3537 !important;
@@ -69,7 +70,7 @@ h3 {
     text-align: center;
     margin: 16px 0 40px;
     float: left;
-    width: 100px;
+    width: 119px;
 }
 
 .rightTools {
@@ -91,8 +92,22 @@ h3 {
     cursor: pointer;
 }
 
+.leftToolsButton {
+    border: none;
+    padding: 0;
+    float: left;
+}
+
+.leftToolsButton:hover, .leftToolsButton:focus, .leftToolsButton:active{
+    background-color: white !important;
+}
+
+.leftToolsMenu {
+    min-width: 80px;
+}
+
 #reset {
-    margin: 1px 0 0 -6px;
+    margin-left: -13px;
 }
 
 #regionActive {
@@ -131,11 +146,25 @@ h3 {
 }
 
 #export {
-    margin: 7px 0 0 -6px;
+    margin: 6px 2px 0 -7px;
+}
+
+.exportMainButton {
+    float: left;
+}
+
+.exportMainMenu {
+    float: left;
+    position: relative;
+    margin-top: -1px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    min-width: 100px;
 }
 
 #help {
-    margin: 4px 0 0 2px;
+    margin-top: 2px;
 }
 
 /* ************** DC Object ************** */

@@ -1106,10 +1106,17 @@ _html2canvas.Parse = function (images, options, cb) {
         }
       }
 
-      // Trim off the :after and :before (or ::after and ::before)
-      for (i = 0, j = classes.length; i < j; i++) {
-        classes[i] = classes[i].match(/(^[^:]*)/)[1];
-      }
+        // Trim off the :after and :before (or ::after and ::before)
+        for (i = 0, j = classes.length; i < j; i++) {
+            /** CHANGE VMIPSL */
+            // https://github.com/niklasvh/html2canvas/pull/341
+            // Fix :  https://github.com/remdex/html2canvas/commit/e774c0363fd83cb54a72f024eddcdf14482202d1
+            classes[i] = classes[i].match(/(^[^:]*)/)[1].replace(/(\s+[>]\s+$)|([,]\s+$)/,'');
+        }
+        classes = classes.filter(function(d)
+        {
+            return d != "";
+        });
     }
 
     // Using the list of elements we know how pseudo el styles, create fake pseudo elements.

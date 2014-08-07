@@ -136,10 +136,15 @@
                     </div>
                     <div id="exportSynthesis" class="toolButton">
                         <button class="exportButton btn-link" data-toggle="dropdown"><img src="img/export_small.png" title="Export"/></button>
+                        <ul class="exportMenu dropdown-menu">
+                            <li><a href="#" onClick="javascript:exportSynthesis('synthesisDivData', 'png');"><img src='js/htmltable_export/icons/png.png' width='24px'> PNG</a></li>
+                            <li><a href="#" onClick="javascript:exportSynthesis('synthesisDivData', 'jpg');"><img src='js/htmltable_export/icons/png.png' width='24px'> JPG</a></li>
+                            <li><a href="#" onClick="javascript:exportSynthesis('synthesisDivData', 'gif');"><img src='js/htmltable_export/icons/png.png' width='24px'> GIF</a></li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="row imageFluxForSynthesis">
+                <div id="synthesisDivData" class="row imageFluxForSynthesis">
                     <div id="imageFluxForSynthesisTitle">All regions</div>
                     <img id="imageFluxForSynthesis" src="img/FluxEmpty2.png" usemap="#mapForImageFluxForSynthesis" alt="Synthesis for flux"/>
                     <map id="mapForImageFluxForSynthesis" name="mapForImageFluxForSynthesis">

@@ -909,12 +909,6 @@ var RCInterface = Class.create( {
             $( "#uncertainty" ).fadeToggle();
             $( "#functionBarChart" ).addClass( "uncertainty" );
         }, this ) );
-
-        // Synthesis
-        $( "#exportSynthesis" ).on( "click", function()
-        {
-            alert( "work in progress" );
-        } );
     },
 
     transposeDataFromFile: function( csv )
@@ -992,6 +986,11 @@ function print_filter( filter )
 }
 
 
+<!-- ******************************************** -->
+<!-- ****************** EXPORT ****************** -->
+<!-- ******************************************** -->
+
+<!-- ********** EXPORT ALL ************ -->
 function exportAll(exportDivId, fileType)
 {
     $( "#"+exportDivId ).empty();
@@ -1007,28 +1006,57 @@ function exportAll(exportDivId, fileType)
     // Export
     $('#'+exportDivId).exportAll({
         sourceDivId:"sourceWrapper",
-        callbackBeforeCanvg:{name: callbackBeforeCanvg, arguments: exportDivId},
-        callbackOnRendered: {name: callbackOnRendered, arguments: exportDivId},
+        callbackBeforeCanvg:{name: callbackForExportAllBeforeCanvg, arguments: exportDivId},
+        callbackOnRendered: {name: callbackForExportAllOnRendered, arguments: exportDivId},
         fileName: fileName,
         fileType: fileType,
         windowTitle: "GCA Reccap : Exported image",
         listStyleToGet:["fill", "stroke", "opacity", "fill-opacity", "shape-rendering", "stroke-opacity",
             "font", "font-size", "font-weight", "font-family", "color",
-            "float", "height", "width"]});//, "margin-top", "margin-bottom", "margin-right", "margin-left"]});
+            "float", "height", "width"]
+    });
 }
 
-function callbackBeforeCanvg(exportDivId)
+function callbackForExportAllBeforeCanvg(exportDivId)
 {
     $("#"+exportDivId+" #containerTools, #"+exportDivId+" .comment, #"+exportDivId+" #regionAndUncertaintySelect, #"+exportDivId+" #resetFlux").remove();
     $("#"+exportDivId+" #hiddenDiv, #"+exportDivId+" #dataDiv, #"+exportDivId+" .synthesisDiv").remove();
 
     // Add GCA logo
     $("#"+exportDivId).append("<div class='exportLogo'><img src='img/GCA_logo_white.png' width='150px'></div>");
-
 }
 
-function callbackOnRendered(exportDivId)
+function callbackForExportAllOnRendered(exportDivId)
 {
     $("#"+exportDivId).empty();
     $("#sourceWrapper").fadeIn();
+}
+
+<!-- ********** EXPORT SYNTHESIS ************ -->
+function exportSynthesis(exportDivId, fileType)
+{
+    // File name with date
+    var exportDate = $.datepicker.formatDate( 'yy_mm_dd', new Date() );
+    var fileName = "GCAExportImage_" + exportDate;
+
+    // Export
+    $('#'+exportDivId).exportAll({
+        callbackBeforeCanvg:{name: callbackForExportSynthesisBeforeCanvg, arguments:true},
+        callbackOnRendered: {name: callbackForExportSynthesisBeforeCanvg, arguments: false},
+        fileName: fileName,
+        fileType: fileType,
+        windowTitle: "GCA Reccap : Exported synthesis"
+    });
+}
+
+function callbackForExportSynthesisBeforeCanvg(isToAdd)
+{
+    // Add GCA logo
+    if(isToAdd)
+    {
+        var height = $("#synthesisDivData").height() - 75;
+        $("#dynamicAreasForImageFluxForSynthesis").append("<div class='exportLogo' style='margin-top:"+height+"px'><img src='img/GCA_logo.png' width='150px'></div>");
+    }
+    else
+        $("#dynamicAreasForImageFluxForSynthesis .exportLogo").remove();
 }

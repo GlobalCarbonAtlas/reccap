@@ -632,3 +632,6 @@ foreignObject {
     right: 20px;
 }
 
+#synthesisDivData .exportLogo img {
+    margin-left: -15px;
+}

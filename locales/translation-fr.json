@@ -1,3 +1,40 @@
 {
-    "reset": "bilibili"
+    "title":{
+        "carbonBudgets":"BUDGETS CARBON",
+        "synthesis":"SYNTHESES"
+    },
+    "label" :
+    {
+        "clickRegion": "Cliquer sur une région pour voir tous les flux CO2",
+        "allRegions":"Totalité des régions",
+        "unit":"Tg C yr-1",
+        "clickFlux":"Cliquer sur un flux pour voir les valeurs par régions",
+        "dataNumber":" valeur(s) affichée(s) sur un total de ",
+        "dataRecords":"",
+        "carbonBudget":"Budget Carbon",
+        "value":"Valeur"
+
+    },
+    "button" :
+    {
+        "reset": "initialiser"
+    },
+    "tooltip":
+    {
+        "resetAll":"Réinitialiser",
+        "export":"Export",
+        "help":"Aide",
+        "data":"Afficher les données",
+        "synthesis":"Afficher le graphe de synthèse",
+        "regionOne":"Sélection unique",
+        "regionMultiple":"Sélection multiple",
+        "regionAll":"Sélection totale",
+        "resetMap":"Réinitialiser la carte",
+        "uncertaintyHide":"Cacher les incertitudes",
+        "uncertaintyDisplay":"Afficher les incertitudes",
+        "resetFlux":"Réinitialiser les flux",
+        "exportDataPNG":"Disponible uniquement pour Firefox. Temps de chargement long.",
+        "allRegions":"Totalité des régions"
+
+    }
 }

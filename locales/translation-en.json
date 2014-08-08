@@ -1,3 +1,39 @@
 {
-    "reset": "bouloublou"
+    "title":{
+        "carbonBudgets":"CARBON BUDGETS",
+        "synthesis":"SYNTHESIS"
+    },
+    "label" :
+    {
+        "clickRegion": "Click on a region to show all component CO2 fluxes",
+        "allRegions":"All regions",
+        "unit":"Tg C yr-1",
+        "clickFlux":"Select a flux name to show its values accross all regions",
+        "dataNumber":" selected out of ",
+        "dataRecords":" records",
+        "carbonBudget":"Carbon Budget",
+        "value":"Value"
+    },
+    "button" :
+    {
+        "reset": "reset"
+    },
+    "tooltip":
+    {
+        "resetAll":"Reset all",
+        "export":"Export",
+        "help":"Help",
+        "data":"Get all data",
+        "synthesis":"Display synthesis",
+        "regionOne":"See only one region",
+        "regionMultiple":"See multiple regions",
+        "regionAll":"See all regions",
+        "resetMap":"Reset map's filters",
+        "uncertaintyHide":"Hide uncertainty",
+        "uncertaintyDisplay":"Display uncertainty",
+        "resetFlux":"Reset flux's filters",
+        "exportDataPNG":"Only for Firefox. Long loading time.",
+        "allRegions":"All regions"
+
+    }
 }

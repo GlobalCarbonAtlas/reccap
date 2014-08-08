@@ -83,15 +83,15 @@ var RCInterface = Class.create( {
         }, this ) );
 
         // Tooltips for menu
-        $( ".leftTools .toolButton img, .leftTools button, #functionBarChartTitle" ).tooltip( {
+        $( ".leftTools .leftToolsButton, #functionBarChartTitle" ).tooltip( {
             placement: "bottom",
             container:'body'} );
 
-        $( ".rightTools .toolButton img, #resetFlux" ).tooltip( {
+        $( ".rightTools .toolButton, #resetFlux" ).tooltip( {
             placement: "left",
             container:'body'} );
 
-        $( "#regionAndUncertaintySelect .toolButton img, #resetMap, #dataPNGExport" ).tooltip( {
+        $( "#regionAndUncertaintySelect .toolButton, #resetMap, #exportData .exportButton, #dataPNGExport, #exportSynthesis .exportButton" ).tooltip( {
             placement: "right",
             container:'body'} );
     },

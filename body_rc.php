@@ -1,6 +1,3 @@
-ppppp<div id="bob" data-i18n="reset"></div>zzzz
-BIB<div id="bib"></div>BIB
-
 <div id="sourceWrapper">
     <div id="pageWrapper">
 
@@ -8,20 +5,20 @@ BIB<div id="bib"></div>BIB
         <div id="containerTools" class="container-fluid">
             <div class="leftTools">
                 <div class="btn-group">
-                    <button id="reset" type="button" class="btn-default leftToolsButton" title="Reset all"><img src="img/reset-icon-614x460.png" width="50px"/></button>
-                    <button id="export" type="button" class="btn btn-default leftToolsButton" data-toggle="dropdown" title="Export"><img src="img/export_small.png"/></button>
+                    <button id="reset" type="button" class="btn-default leftToolsButton labelI18n" data-i18n="[title]tooltip.resetAll"><img src="img/reset-icon-614x460.png" width="50px"/></button>
+                    <button id="export" type="button" class="btn btn-default leftToolsButton labelI18n" data-toggle="dropdown" data-i18n="[title]tooltip.export"><img src="img/export_small.png"/></button>
                     <ul class="dropdown-menu leftToolsMenu">
                         <li><a href="#" onClick="javascript:exportAll('exportDiv', 'png');">&nbsp;&nbsp;<img src='js/htmltable_export/icons/png.png' width='24px'> PNG</a></li>
                         <li><a href="#" onClick="javascript:exportAll('exportDiv', 'jpg');">&nbsp;<img src='js/htmltable_export/icons/png.png' width='24px'> JPG</a></li>
                         <li><a href="#" onClick="javascript:exportAll('exportDiv', 'gif');"><img src='js/htmltable_export/icons/png.png' width='24px'> GIF</a></li>
                     </ul>
-                    <button id="help" type="button" class="btn btn-default leftToolsButton" title="Help"><img src="img/help.png" width="30px"/></button>
+                    <button id="help" type="button" class="btn btn-default leftToolsButton labelI18n" data-i18n="[title]tooltip.help"><img src="img/help.png" width="30px"/></button>
                 </div>
             </div>
 
             <div class="rightTools ">
-                <div id="data" class="toolButton"><img src="img/Data.png" width="30px" title="Get all data"/></div>
-                <div id="synthesis" class="toolButton"><img src="img/FluxEmptyWB_small.png" width="30px" title="Display synthesis"/></div>
+                <div id="data" class="toolButton labelI18n" data-i18n="[title]tooltip.data"><img src="img/Data.png" width="30px"/></div>
+                <div id="synthesis" class="toolButton labelI18n" data-i18n="[title]tooltip.synthesis"><img src="img/FluxEmptyWB_small.png" width="30px"/></div>
             </div>
         </div>
 
@@ -38,25 +35,25 @@ BIB<div id="bib"></div>BIB
             <div class="col-md-6">
                 <div class="row basicCell">
                     <div id="regionAndUncertaintySelect">
-                        <div id="globeActive" class="toolButton"><img src="img/Globe_Connected.png" width="35px" title="See all regions"/></div>
-                        <div id="regionUnActive" class="toolButton"><img src="img/Globe_Disconnected.png" width="35px" title="See only one region"/></div>
-                        <div id="regionActive" class="toolButton"><img src="img/Globe_RegionConnected.png" width="35px" title="See multiple regions"/></div>
+                        <div id="globeActive" class="toolButton labelI18n" data-i18n="[title]tooltip.regionAll"><img src="img/Globe_Connected.png" width="35px"/></div>
+                        <div id="regionUnActive" class="toolButton labelI18n" data-i18n="[title]tooltip.regionOne"><img src="img/Globe_Disconnected.png" width="35px"/></div>
+                        <div id="regionActive" class="toolButton labelI18n" data-i18n="[title]tooltip.regionMultiple"><img src="img/Globe_RegionConnected.png" width="35px"/></div>
 
-                        <div id="resetMap" title="Reset map's filters">eeee<?php echo $bob["reset"]?></div>
+                        <div id="resetMap" class="labelI18n labelI18n" data-i18n="[title]tooltip.resetMap;button.reset"></div>
 
-                        <div id="uncertaintyDisable" class="toolButton"><img src="img/uncertainty_disable2.png" width="40px" title="Hide uncertainty"/></div>
-                        <div id="uncertainty" class="toolButton"><img src="img/uncertainty2.png" width="40px" title="Display uncertainty"/></div>
+                        <div id="uncertaintyDisable" class="toolButton labelI18n" data-i18n="[title]tooltip.uncertaintyHide"><img src="img/uncertainty_disable2.png" width="40px"/></div>
+                        <div id="uncertainty" class="toolButton labelI18n" data-i18n="[title]tooltip.uncertaintyDisplay"><img src="img/uncertainty2.png" width="40px"/></div>
                     </div>
 
                     <div id="mapChartAndComment">
                         <div id="mapChart"></div>
-                        <div class="comment mapChartComment">Click on a region to show all component CO2 fluxes</div>
+                        <div class="comment mapChartComment labelI18n" data-i18n="label.clickRegion"></div>
                     </div>
                 </div>
 
                 <div class="bottomBasicCell">
-                    <div id="functionBarChartUnit">Tg C yr-1</div>
-                    <div id="functionBarChartTitle">All regions</div>
+                    <div id="functionBarChartUnit" class="labelI18n" data-i18n="label.unit"></div>
+                    <div id="functionBarChartTitle" class="labelI18n" data-i18n="[title]tooltip.allRegions;label.allRegions"></div>
                     <div id="functionBarChart">
                         <div id="functionBarChartForMainFlux"></div>
                         <div id="functionBarChartForSeparatedFlux"></div>
@@ -83,8 +80,8 @@ BIB<div id="bib"></div>BIB
                     </map>
 
                     <div id="dynamicAreasForImageFlux"></div>
-                    <div class="comment imageFluxComment">Select a flux name to show its values accross all regions</div>
-                    <div id="resetFlux" title="Reset flux's filters">reset</div>
+                    <div class="comment imageFluxComment labelI18n" data-i18n="label.clickFlux"></div>
+                    <div id="resetFlux" class="labelI18n" data-i18n="[title]tooltip.resetFlux;button.reset"></div>
                 </div>
 
                 <div class="row bottomBasicCell">
@@ -101,29 +98,29 @@ BIB<div id="bib"></div>BIB
         <div id="dataDiv">
             <div class="row dataTitleAndExport">
                 <div class="dataTitle">
-                    <div id="dataTitle">CARBON BUDGETS</div>
+                    <div id="dataTitle" class="labelI18n" data-i18n="title.carbonBudgets"></div>
                 </div>
                 <div id="exportData" class="toolButton">
-                    <button class="exportButton btn-link" data-toggle="dropdown"><img src="img/export_small.png" title="Export"/></button>
+                    <button class="exportButton btn-link labelI18n" data-toggle="dropdown" data-i18n="[title]tooltip.export"><img src="img/export_small.png"/></button>
                     <ul class="exportMenu dropdown-menu">
-                        <li><a href="#" onClick="$('#data-table').tableExport({type:'pdf',pdfFontSize:'10',escape:'false'});"> <img src='js/htmltable_export/icons/pdf.png'width='24px'>PDF</a></li>
+                        <li><a href="#" onClick="$('#data-table').tableExport({type:'pdf',pdfFontSize:'10',escape:'false'});"> <img src='js/htmltable_export/icons/pdf.png'width='24px'> PDF</a></li>
                         <li><a onClick="$('#data-table').tableExport({type:'csv',escape:'false', element:this});"> <img src='js/htmltable_export/icons/csv.png' width='24px'> CSV</a></li>
                         <li><a onClick="$('#data-table').tableExport({type:'txt',escape:'false', element:this});"> <img src='js/htmltable_export/icons/txt.png' width='24px'> TXT</a></li>
-                        <li id="dataPNGExport"><a href="#" onClick="$('#data-table').tableExport({type:'png',escape:'true'});" title="Only for Firefox. Long loading time."> <img src='js/htmltable_export/icons/png.png' width='24px'> PNG</a></li>
+                        <li id="dataPNGExport" class="labelI18n" data-i18n="[title]tooltip.exportDataPNG"><a href="#" onClick="$('#data-table').tableExport({type:'png',escape:'true'});"> <img src='js/htmltable_export/icons/png.png' width='24px'> PNG</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="row dataTableDiv">
                 <div id="data-count" class="dc-data-count dc-chart">
-                    <span class="filter-count"></span> selected out of <span class="total-count"></span> records
+                    <span class="filter-count"></span><span class="labelI18n" data-i18n="label.dataNumber"></span><span class="total-count"></span><span class="labelI18n" data-i18n="label.dataRecords"></span>
                 </div>
 
                 <table id="data-table" class="table table-hover dc-data-table dc-chart">
                     <thead>
                     <tr class="header">
-                        <th>Carbon budget</th>
-                        <th>Value</th>
+                        <th><span class="labelI18n" data-i18n="label.carbonBudget"></span></th>
+                        <th><span class="labelI18n" data-i18n="label.value"></span></th>
                     </tr>
                     </thead>
                 </table>
@@ -135,10 +132,10 @@ BIB<div id="bib"></div>BIB
             <div id="synthesisDiv">
                 <div class="row synthesisTitleAndExport">
                     <div class="synthesisTitle">
-                        <div id="synthesisTitle">SYNTHESIS</div>
+                        <div id="synthesisTitle" class="labelI18n" data-i18n="title.synthesis"></div>
                     </div>
                     <div id="exportSynthesis" class="toolButton">
-                        <button class="exportButton btn-link" data-toggle="dropdown"><img src="img/export_small.png" title="Export"/></button>
+                        <button class="exportButton btn-link labelI18n" data-toggle="dropdown" data-i18n="[title]tooltip.export"><img src="img/export_small.png"/></button>
                         <ul class="exportMenu dropdown-menu">
                             <li><a href="#" onClick="javascript:exportSynthesis('synthesisDivData', 'png');"><img src='js/htmltable_export/icons/png.png' width='24px'> PNG</a></li>
                             <li><a href="#" onClick="javascript:exportSynthesis('synthesisDivData', 'jpg');"><img src='js/htmltable_export/icons/png.png' width='24px'> JPG</a></li>
@@ -148,7 +145,7 @@ BIB<div id="bib"></div>BIB
                 </div>
 
                 <div id="synthesisDivData" class="row imageFluxForSynthesis">
-                    <div id="imageFluxForSynthesisTitle">All regions</div>
+                    <div id="imageFluxForSynthesisTitle" class="labelI18n" data-i18n="label.allRegions"></div>
                     <img id="imageFluxForSynthesis" src="img/FluxEmpty2.png" usemap="#mapForImageFluxForSynthesis" alt="Synthesis for flux"/>
                     <map id="mapForImageFluxForSynthesis" name="mapForImageFluxForSynthesis">
                         <area shape="rect" alt="FFEValue" coords="68,90,100,116" href="" target="" isRed/>
@@ -188,31 +185,18 @@ BIB<div id="bib"></div>BIB
 
         testBrowser();
 
-        new RCInterface();
-
-        // setLng=en
+        // Load translations : setLng=en
         // http://i18next.com/pages/doc_init.html
         i18n.init({
 //            lng: 'en',
             resGetPath: 'locales/__ns__-__lng__.json',
             debug: true
         }, function() {
-            $('#bib').text($.t('reset'));
-            $("#bob").i18n();
+            $(".labelI18n").i18n();
+
+            new RCInterface();
         });
 
     } );
 
-
-    //    	loadBundles('pt_PT');
-    //
-    //			// configure language combo box
-    //			jQuery('#lang').change(function() {
-    //				var selection = jQuery('#lang option:selected').val();
-    //				loadBundles(selection != 'browser' ? selection : null);
-    //				jQuery('#langBrowser').empty();
-    //				if(selection == 'browser') {
-    //					jQuery('#langBrowser').text('('+jQuery.i18n.browserLang()+')');
-    //				}
-    //			});
 </script>

@@ -62,7 +62,7 @@ var RCInterface = Class.create( {
         {
             if( d.properties )
             // Choropleth
-                return  "<span class='d3-tipTitle'>" + d.properties.continent + "</span>";
+                return  "<span class='d3-tipTitle'>" + i18n.t("country."+d.properties.continent) + "</span>";
             else if( d.column && d.name )
             {
                 var value = (0 != d.yBegin ? d.yBegin : 0 != d.yEnd ? d.yEnd : 0);
@@ -72,7 +72,7 @@ var RCInterface = Class.create( {
             // Bar chart
                 if( "UncertaintyLayer" == d.layer )
                     if( this.displayUncertainty )
-                        return "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.y0 ) + " (uncertainty : " + this.numberFormat( d.y0 - d.data.value ) + ")";
+                        return "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.y0 ) + " ("+i18n.t("label.uncertainty")+" : " + this.numberFormat( d.y0 - d.data.value ) + ")";
                     else
                         return "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.y0 );
                 else
@@ -236,17 +236,18 @@ var RCInterface = Class.create( {
 
     onClickGeoChoroplethChart: function()
     {
-        if( !this.geoChoroplethChart.getSelect() )
-        {
-            $( "#functionBarChartTitle" ).html( "All regions" );
-            $( "#imageFluxForSynthesisTitle" ).html( "All regions" );
-        }
-        else
-        {
-            $( "#functionBarChartTitle" ).html( this.geoChoroplethChart.getDisplayedRegions().join( " + " ) );
-            $( "#functionBarChartTitle" ).attr( "data-original-title", this.geoChoroplethChart.getDisplayedRegions().join( " + " ) );
-            $( "#imageFluxForSynthesisTitle" ).html( this.geoChoroplethChart.getDisplayedRegions().join( " + " ) );
-        }
+//        if( !this.geoChoroplethChart.getSelect() )
+//        {
+//            $( "#functionBarChartTitle" ).html( i18n.t("label.allRegions") );
+//            $( "#imageFluxForSynthesisTitle" ).html( i18n.t("label.allRegions") );
+//        }
+//        else
+//        {
+        var translatedRegions = this.getDisplayedRegions().join( " + " );
+        $( "#functionBarChartTitle" ).html( translatedRegions);
+        $( "#functionBarChartTitle" ).attr( "data-original-title", translatedRegions);
+        $( "#imageFluxForSynthesisTitle" ).html( translatedRegions );
+//        }
 
         if( this.geoChoroplethChart.getSelect() && !this.geoChoroplethChart.getMultipleSelect() )
         {
@@ -262,6 +263,16 @@ var RCInterface = Class.create( {
         d3.selectAll( "#functionBarChart .grid-line.horizontal line" ).classed( 'zero', false );
         this.functionBarChartForMainFlux.redraw();
         this.functionBarChartForSeparatedFlux.redraw();
+    },
+
+    getDisplayedRegions: function()
+    {
+        var result = [];
+        $.each(this.geoChoroplethChart.getDisplayedRegions(), function(i,d)
+        {
+            result.push(i18n.t("country."+d));
+        });
+        return result;
     },
 
     loadRegionOneSelection: function()
@@ -294,8 +305,8 @@ var RCInterface = Class.create( {
         this.geoChoroplethChart.setSelect( false );
         this.geoChoroplethChart.setMultipleSelect( false );
 
-        $( "#functionBarChartTitle" ).html( "All regions" );
-        $( "#imageFluxForSynthesisTitle" ).html( "All regions" );
+        $( "#functionBarChartTitle" ).html( i18n.t("label.allRegions") );
+        $( "#imageFluxForSynthesisTitle" ).html( i18n.t("label.allRegions") );
 
         $( "#mapChart" ).removeClass( "countryWithPointer" );
         $( "#regionUnActive" ).fadeOut();
@@ -762,7 +773,7 @@ var RCInterface = Class.create( {
             jQuery.proxy( function()
             {
                 this.createAreas( mapId, activeClick, dynamicAreasId );
-//                this.chartHeight = $( "#pageWrapper" ).height() - $( "#imageFlux" ).height() - $( ".bottomBasicCell" ).css( "margin-top" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
+                this.chartHeight = $( "#pageWrapper" ).height() - $( "#imageFlux" ).height() - $( ".bottomBasicCell" ).css( "margin-top" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
                 this.imageHeight = $( "#imageFlux" ).height();
                 if( activeClick )
                     this.initFileValuesAndCreateDCObjects();
@@ -813,6 +824,8 @@ var RCInterface = Class.create( {
         $( "#reset" ).on( "click", jQuery.proxy( function()
         {
             $( "#dynamicAreasForImageFlux .dynamicArea" ).removeClass( "selected" );
+            $( "#functionBarChartTitle" ).html( i18n.t("label.allRegions") );
+            $( "#imageFluxForSynthesisTitle" ).html( i18n.t("label.allRegions") );
             this.displayedVariables = [];
             this.functionBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForAllMainFlux ) );
             this.functionBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForAllSeparatedFlux ) );
@@ -836,8 +849,8 @@ var RCInterface = Class.create( {
         $( "#resetMap" ).on( "click", jQuery.proxy( function()
         {
             this.geoChoroplethChart.filterAll();
-            $( "#functionBarChartTitle" ).html( "All regions" );
-            $( "#imageFluxForSynthesisTitle" ).html( "All regions" );
+            $( "#functionBarChartTitle" ).html( i18n.t("label.allRegions") );
+            $( "#imageFluxForSynthesisTitle" ).html( i18n.t("label.allRegions") );
             this.functionBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForAllMainFlux ) );
             this.functionBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForAllSeparatedFlux ) );
             d3.selectAll( "#functionBarChart .grid-line.horizontal line" ).classed( 'zero', false );
@@ -1010,7 +1023,7 @@ function exportAll(exportDivId, fileType)
         callbackOnRendered: {name: callbackForExportAllOnRendered, arguments: exportDivId},
         fileName: fileName,
         fileType: fileType,
-        windowTitle: "GCA Reccap : Exported image",
+        windowTitle: i18n.t("label.exportAllTitle"),
         listStyleToGet:["fill", "stroke", "opacity", "fill-opacity", "shape-rendering", "stroke-opacity",
             "font", "font-size", "font-weight", "font-family", "color",
             "float", "height", "width"]
@@ -1045,7 +1058,7 @@ function exportSynthesis(exportDivId, fileType)
         callbackOnRendered: {name: callbackForExportSynthesisBeforeCanvg, arguments: false},
         fileName: fileName,
         fileType: fileType,
-        windowTitle: "GCA Reccap : Exported synthesis"
+        windowTitle: i18n.t("label.exportSynthesisTitle")
     });
 }
 

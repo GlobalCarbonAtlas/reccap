@@ -12,8 +12,10 @@
         "dataNumber":" valeur(s) affichée(s) sur un total de ",
         "dataRecords":"",
         "carbonBudget":"Budget Carbon",
-        "value":"Valeur"
-
+        "value":"Valeur",
+        "uncertainty":"incertitude",
+        "exportAllTitle":"GCA Reccap : Export image",
+        "exportSynthesisTitle":"GCA Reccap : Export synthèses"
     },
     "button" :
     {
@@ -36,5 +38,19 @@
         "exportDataPNG":"Disponible uniquement pour Firefox. Temps de chargement long.",
         "allRegions":"Totalité des régions"
 
+    },
+    "country":
+    {
+        "Africa":"Afrique",
+        "North America":"Amérique du Nord",
+        "South America":"Amérique du Sud",
+        "Russia":"Russie",
+        "Europe":"Europe",
+        "East Asia":"Asie de l'Est",
+        "South Asia":"Asie du Sud",
+        "SouthEast Asia":"Asie du Sud Est",
+        "Australia":"Australie",
+        "No data for this region":"Pas de donnée pour cette région"
     }
+
 }

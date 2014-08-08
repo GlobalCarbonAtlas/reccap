@@ -1,3 +1,6 @@
+ppppp<div id="bob" data-i18n="reset"></div>zzzz
+BIB<div id="bib"></div>BIB
+
 <div id="sourceWrapper">
     <div id="pageWrapper">
 
@@ -39,7 +42,7 @@
                         <div id="regionUnActive" class="toolButton"><img src="img/Globe_Disconnected.png" width="35px" title="See only one region"/></div>
                         <div id="regionActive" class="toolButton"><img src="img/Globe_RegionConnected.png" width="35px" title="See multiple regions"/></div>
 
-                        <div id="resetMap" title="Reset map's filters">reset</div>
+                        <div id="resetMap" title="Reset map's filters">eeee<?php echo $bob["reset"]?></div>
 
                         <div id="uncertaintyDisable" class="toolButton"><img src="img/uncertainty_disable2.png" width="40px" title="Hide uncertainty"/></div>
                         <div id="uncertainty" class="toolButton"><img src="img/uncertainty2.png" width="40px" title="Display uncertainty"/></div>
@@ -172,7 +175,6 @@
 
 <div id="exportDiv"></div>
 
-
 <script type="text/javascript">
     $( document ).ready( function ()
     {
@@ -187,6 +189,30 @@
         testBrowser();
 
         new RCInterface();
+
+        // setLng=en
+        // http://i18next.com/pages/doc_init.html
+        i18n.init({
+//            lng: 'en',
+            resGetPath: 'locales/__ns__-__lng__.json',
+            debug: true
+        }, function() {
+            $('#bib').text($.t('reset'));
+            $("#bob").i18n();
+        });
+
     } );
 
+
+    //    	loadBundles('pt_PT');
+    //
+    //			// configure language combo box
+    //			jQuery('#lang').change(function() {
+    //				var selection = jQuery('#lang option:selected').val();
+    //				loadBundles(selection != 'browser' ? selection : null);
+    //				jQuery('#langBrowser').empty();
+    //				if(selection == 'browser') {
+    //					jQuery('#langBrowser').text('('+jQuery.i18n.browserLang()+')');
+    //				}
+    //			});
 </script>

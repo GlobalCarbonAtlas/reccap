@@ -22,7 +22,7 @@
 
     <!-- ************************* JS ************************* -->
     <script type="text/javascript" src="js/library/jquery-1.9.1.js"></script>
-    <script type="text/javascript" src="js/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script type="text/javascript" src="js/library/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js"></script>
     <script type="text/javascript" src="js/bootstrap-3.1.1-dist/js/bootstrap.js"></script>
     <script type="text/javascript" src="js/library/jquery.i18n.properties-1.0.9.js"></script>
 
@@ -63,6 +63,8 @@
     <script type="text/javascript" src="js/export/rgbcolor.js"></script>
     <script type="text/javascript" src="js/export/canvg.js"></script>
     <script type="text/javascript" src="js/export/exportAll.js"></script>
+
+    <script type="text/javascript" src="js/i18next-1.7.3/i18next-1.7.3.min.js"></script>
 
     <script type="text/javascript" src="js/helper.js"></script>
     <script type="text/javascript" src="js/library/jquery.class.js"></script>

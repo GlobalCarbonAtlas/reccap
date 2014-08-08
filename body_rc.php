@@ -194,6 +194,14 @@
         }, function() {
             $(".labelI18n").i18n();
 
+            // Load css for each languages if exist
+            $.get("css/RCInterface_white_"+i18n.options.lng+".css")
+                    .done(function() {
+                        var cssLink = $("<link rel='stylesheet' type='text/css' href='css/RCInterface_white_"+i18n.options.lng+".css'>");
+                        $("head").append(cssLink);
+                    }).fail(function() {
+                    });
+
             new RCInterface();
         });
 

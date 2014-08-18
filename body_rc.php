@@ -185,11 +185,13 @@
 
         testBrowser();
 
-        // Load translations : setLng=en
+        // Load translations : lang=en
         // http://i18next.com/pages/doc_init.html
         i18n.init({
 //            lng: 'en',
             resGetPath: 'locales/__ns__-__lng__.json',
+            detectLngQS: 'lang',
+            fallbackLng: ['en'],
             debug: true
         }, function() {
             $(".labelI18n").i18n();
@@ -197,9 +199,11 @@
             // Load css for each languages if exist
             $.get("css/RCInterface_white_"+i18n.options.lng+".css")
                     .done(function() {
+                        console.log("ok");
                         var cssLink = $("<link rel='stylesheet' type='text/css' href='css/RCInterface_white_"+i18n.options.lng+".css'>");
                         $("head").append(cssLink);
                     }).fail(function() {
+                        console.log("no file");
                     });
 
             new RCInterface();

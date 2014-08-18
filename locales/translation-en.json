@@ -24,7 +24,7 @@
     "tooltip":
     {
         "resetAll":"Reset all",
-        "export":"Export",
+        "export":"Export. Please check the popup are allowed by your browser.",
         "help":"Help",
         "data":"Get all data",
         "synthesis":"Display synthesis",
@@ -52,5 +52,16 @@
         "SouthEast Asia":"SouthEast Asia",
         "Australia":"Australia",
         "No data for this region":"No data for this region"
+    },
+
+    "help":
+    {
+        "reset":"Init all the selected fields",
+        "export":"Choose png, jpg or gif to export the all graphs (map, barcharts and image) in a new tab. Please check the popup are allowed by your browser.",
+        "data":"",
+        "synthesis":"",
+        "globeActive":"",
+        "resetMap":""
+
     }
 }

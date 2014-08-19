@@ -199,7 +199,7 @@ var RCInterface = Class.create( {
 
             // Home with selected flux
             $( "#" + jQuery.i18n.prop( "selectedFluxForHomePage" ) ).click();
-            this.createHelp();
+//            this.createHelp();
         }, this ) );
     },
 
@@ -843,7 +843,8 @@ var RCInterface = Class.create( {
         // Help button
         $( "#help" ).on( "click", jQuery.proxy(function()
         {
-            this.createHelp();
+            alert("Work in progress");
+//            this.createHelp();
         }, this) );
 
         // Reset filters

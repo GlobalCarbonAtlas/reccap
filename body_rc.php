@@ -5,7 +5,7 @@
         <div id="containerTools" class="container-fluid">
             <div class="leftTools">
                 <div class="btn-group">
-                    <button id="reset" type="button" class="btn-default leftToolsButton labelI18n" data-i18n="[title]tooltip.resetAll"><img src="img/reset-icon-614x460.png" width="50px"/></button>
+                    <button id="reset" type="button" class="btn-default leftToolsButton labelI18n" data-i18n="[title]tooltip.resetAll"><img src="img/reset.png" width="28px"/></button>
                     <button id="export" type="button" class="btn btn-default leftToolsButton labelI18n" data-toggle="dropdown" data-i18n="[title]tooltip.export"><img src="img/export_small.png"/></button>
                     <ul class="dropdown-menu leftToolsMenu">
                         <li><a href="#" onClick="javascript:exportAll('exportDiv', 'png');">&nbsp;&nbsp;<img src='js/htmltable_export/icons/png.png' width='24px'> PNG</a></li>
@@ -39,7 +39,7 @@
                         <div id="regionUnActive" class="toolButton labelI18n" data-i18n="[title]tooltip.regionOne"><img src="img/Globe_Disconnected.png" width="35px"/></div>
                         <div id="regionActive" class="toolButton labelI18n" data-i18n="[title]tooltip.regionMultiple"><img src="img/Globe_RegionConnected.png" width="35px"/></div>
 
-                        <div id="resetMap" class="labelI18n labelI18n" data-i18n="[title]tooltip.resetMap;button.reset"></div>
+                        <div id="resetMap" class="labelI18n" data-i18n="[title]tooltip.resetMap;button.reset"></div>
 
                         <div id="uncertaintyDisable" class="toolButton labelI18n" data-i18n="[title]tooltip.uncertaintyHide"><img src="img/uncertainty_disable2.png" width="40px"/></div>
                         <div id="uncertainty" class="toolButton labelI18n" data-i18n="[title]tooltip.uncertaintyDisplay"><img src="img/uncertainty2.png" width="40px"/></div>

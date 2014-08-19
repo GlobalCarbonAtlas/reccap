@@ -9,8 +9,8 @@
                     <button id="export" type="button" class="btn btn-default leftToolsButton labelI18n" data-toggle="dropdown" data-i18n="[title]tooltip.export"><img src="img/export_small.png"/></button>
                     <ul class="dropdown-menu leftToolsMenu">
                         <li><a href="#" onClick="javascript:exportAll('exportDiv', 'png');">&nbsp;&nbsp;<img src='js/htmltable_export/icons/png.png' width='24px'> PNG</a></li>
-                        <li><a href="#" onClick="javascript:exportAll('exportDiv', 'jpg');">&nbsp;<img src='js/htmltable_export/icons/png.png' width='24px'> JPG</a></li>
-                        <li><a href="#" onClick="javascript:exportAll('exportDiv', 'gif');"><img src='js/htmltable_export/icons/png.png' width='24px'> GIF</a></li>
+                        <li><a href="#" onClick="javascript:exportAll('exportDiv', 'jpg');">&nbsp;<img src='js/htmltable_export/icons/jpg.png' width='24px'> JPG</a></li>
+                        <li><a href="#" onClick="javascript:exportAll('exportDiv', 'gif');"><img src='js/htmltable_export/icons/gif.png' width='24px'> GIF</a></li>
                     </ul>
                     <button id="help" type="button" class="btn btn-default leftToolsButton labelI18n" data-i18n="[title]tooltip.help"><img src="img/help.png" width="30px"/></button>
                 </div>
@@ -138,8 +138,8 @@
                         <button class="exportButton btn-link labelI18n" data-toggle="dropdown" data-i18n="[title]tooltip.export"><img src="img/export_small.png"/></button>
                         <ul class="exportMenu dropdown-menu">
                             <li><a href="#" onClick="javascript:exportSynthesis('synthesisDivData', 'png');"><img src='js/htmltable_export/icons/png.png' width='24px'> PNG</a></li>
-                            <li><a href="#" onClick="javascript:exportSynthesis('synthesisDivData', 'jpg');"><img src='js/htmltable_export/icons/png.png' width='24px'> JPG</a></li>
-                            <li><a href="#" onClick="javascript:exportSynthesis('synthesisDivData', 'gif');"><img src='js/htmltable_export/icons/png.png' width='24px'> GIF</a></li>
+                            <li><a href="#" onClick="javascript:exportSynthesis('synthesisDivData', 'jpg');"><img src='js/htmltable_export/icons/jpg.png' width='24px'> JPG</a></li>
+                            <li><a href="#" onClick="javascript:exportSynthesis('synthesisDivData', 'gif');"><img src='js/htmltable_export/icons/gif.png' width='24px'> GIF</a></li>
                         </ul>
                     </div>
                 </div>

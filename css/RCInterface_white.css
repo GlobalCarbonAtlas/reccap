@@ -18,6 +18,14 @@ body {
     /*top:0;*/
 }
 
+#pageWrapper {
+    float:left;
+}
+
+#sourceWrapper {
+    /*float:left;*/
+}
+
 #sourceWrapper .title {
     color: #2C3537;
     font-size: 36px;

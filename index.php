@@ -64,10 +64,11 @@
     <script type="text/javascript" src="js/export/canvg.js"></script>
     <script type="text/javascript" src="js/export/exportAll.js"></script>
 
-    <script type="text/javascript" src="js/i18next-1.7.3/i18next-1.7.3.min.js"></script>
+    <script type="text/javascript" src="js/i18next-1.7.3/i18next-1.7.3.js"></script>
 
     <script type="text/javascript" src="js/helper.js"></script>
     <script type="text/javascript" src="js/library/jquery.class.js"></script>
+    <script type="text/javascript" src="js/Help.js"></script>
     <script type="text/javascript" src="js/RCInterface.js"></script>
 
 </HEAD>

@@ -199,6 +199,7 @@ var RCInterface = Class.create( {
 
             // Home with selected flux
             $( "#" + jQuery.i18n.prop( "selectedFluxForHomePage" ) ).click();
+            this.createHelp();
         }, this ) );
     },
 
@@ -840,10 +841,10 @@ var RCInterface = Class.create( {
         }, this ) );
 
         // Help button
-        $( "#help" ).on( "click", function()
+        $( "#help" ).on( "click", jQuery.proxy(function()
         {
-            alert( "work in progress" );
-        } );
+            this.createHelp();
+        }, this) );
 
         // Reset filters
         $( "#resetMap" ).on( "click", jQuery.proxy( function()
@@ -963,6 +964,60 @@ var RCInterface = Class.create( {
             }
         } );
         return result;
+    },
+
+
+    /* ******************************************************* */
+    /* ************************ HELP ************************* */
+    /* ******************************************************* */
+    createHelp: function()
+    {
+        var parameters = new Object();
+
+        parameters.helpArray = [
+            {linkType:"simple", divToHelpId:"export", text:i18n.t("help.export"), marginTop:8, marginLeft:10, textLengthByLine: 70},
+            {linkType:"right", divToHelpId:"reset", text:i18n.t("help.reset"), marginTop:31, marginLeft:20, stage: 1},
+
+
+            {linkType:"simpleLeft", divToHelpId:"data", text:"Remove all lines", marginTop:10, marginLeft: 33},
+            {linkType:"left", divToHelpId:"synthesis", text:"Remove all lines", marginTop:38, marginLeft: 26, stage:1},
+
+
+            {linkType:"simple", divToHelpId:"globeActive", text:"Remove all lines", marginTop:10, marginLeft: 12},
+            {linkType:"right", divToHelpId:"resetMap", text:"Remove all lines", marginTop:0, marginLeft: 0, stage:1},
+            {linkType:"simple", divToHelpId:"uncertaintyDisable", text:"Remove all lines", marginTop:0, marginLeft: 0, stage:1},
+            {linkType:"middle", divToHelpId:"mapChart", text:i18n.t("label.clickRegion"), marginTop:$("#mapChart").height()/2, marginLeft: $("#mapChart").width()/2},
+
+
+//            {linkType:"simple", divToHelpId:"submitAddToGraph", text:"Display the data corresponded to the selected fields in the graph", textLengthByLine:35, marginTop:11, marginLeft:20},
+//            {linkType:"simple", divToHelpId:"regionSelect", text:"Select a region in the given list. A map helps you by showing the differents regions", textLengthByLine:35, marginTop:8, marginLeft:-40},
+//            {linkType:"simple", divToHelpId:"periodSelect", text:"Choose your period", textLengthByLine:35, marginTop:8, marginLeft:-40},
+//            {linkType:"simple", divToHelpId:"resourceSelect", text:"Select one or several resources in the given list", textLengthByLine:30, marginTop:10, marginLeft:-40},
+//            {linkType:"simple", divToHelpId:"variableSelect", text:"Union of the variables available for each selected resources", textLengthByLine:65, marginTop:6, marginLeft:-60},
+//
+//            {linkType:"left", divToHelpId:"WPlineIcon", text:"Remove all lines", marginTop:36, marginLeft: 20, stage:9},
+//            {linkType:"left", divToHelpId:"WPexportIcon", text:"Export your graph",  linkedHelp: ["WPExport"], marginTop:36, marginLeft: 20, stage:8},
+//            {linkType:"left", divToHelpId:"WPpointIcon", text:"Hide or display data points. Move your mouse over a point to get data value", textLengthByLine:40, marginTop:36, marginLeft: 20, stage:7},
+//            {linkType:"left", divToHelpId:"WPXaxisImage", text:"Block the pan and zoom on the X axis", marginTop:36, marginLeft: 20, stage:6},
+//            {linkType:"left", divToHelpId:"WPYaxisImage", text:"Block the pan and zoom on the Y axis", marginTop:36, marginLeft: 20, stage:5},
+//            {linkType:"left", divToHelpId:"WPaxisIcon", text:"Change your bounds", linkedHelp: ["WPaxis"], marginTop:36, marginLeft: 20, stage:4},
+//            {linkType:"left", divToHelpId:"WPinterpolationIcon", text:"Change your graph interpolation", linkedHelp: ["WPinterpolationTree"], marginTop:36, marginLeft: 20, stage:3},
+//            {linkType:"left", divToHelpId:"WPzoomIcon", text:"Initialize your graph with the best zoom and pan you can get", textLengthByLine:30, marginTop:36, marginLeft: 20, stage:1},
+//
+//            {linkType:"right", divToHelpId:"WPLegendImage" + lastIdForLegend, text:"You can remove a line by clicking on this icon", marginTop:25, marginLeft:5, stage:1},
+//            {linkType:"right", divToHelpId:"WPLegendCircle" + lastIdForLegend, text:"You can change the color of a line by clicking on this icon or directly on the line in the graph. Then use the color picker", linkedHelp: ["WPcolor"], textLengthByLine:72, marginTop:19, stage:3},
+//
+//            {linkType:"middle", divToHelpId:"WPcolor", text:"You can change the color of a line by clicking on the circle to select a new color palette. Then use the square to pick a specific gradation", textLengthByLine:25, marginTop:$( "#WPcolor" ).height() - 15, marginLeft:$( "#WPcolor" ).width() / 2, stage:1},
+//            {linkType:"right", divToHelpId:"WPinterpolationTree", text:"Select a new interpolation. It will automatically update your graph", textLengthByLine:36, marginTop:$( "#WPinterpolationTree" ).height() - 15, marginLeft:$( "#WPinterpolationTree" ).width() / 2, stage:2},
+//            {linkType:"simple", divToHelpId:"WPaxis", text:"Put the axis bounds you want. This will block zoom and pan at the same time. You can undo these blocks by clicking on the related icons", linkedHelp: ["WPYaxisImage", "WPXaxisImage"], textLengthByLine:38, marginTop:$( "#WPaxis" ).height() / 2 - 50},
+//            {linkType:"simple", divToHelpId:"WPExport", text:"Choose svg or png to export your graph in a new tab", textLengthByLine:20, marginTop:$( "#WPExport" ).height() / 2}
+        ];
+
+        parameters.parentContainerId = "#pageWrapper";
+        //parameters.globalMarginTop = -110;
+        //parameters.globalMarginLeft = -110;		// TODO: do not handle width resizing
+
+        this.help = new Help( parameters );
     }
 
 } );

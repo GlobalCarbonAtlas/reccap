@@ -221,27 +221,27 @@ h3 {
 }
 
 /* ************** FUNCTION BARCHART ************** */
-#functionBarChartForMainFlux {
+#fluxBarChartForMainFlux {
     width: 70%;
 }
 
-#functionBarChartForSeparatedFlux {
+#fluxBarChartForSeparatedFlux {
     width: 30%;
 }
 
 /* To allow click or mouseover on axis text */
-#functionBarChart g.axis text {
+#fluxBarChart g.axis text {
     pointer-events: auto; /*cursor: pointer;*/
 }
 
-#functionBarChartUnit {
+#fluxBarChartUnit {
     fill: #525252;
     font: 10px "Futura", sans-serif;
     margin-top: -10px;
     float: left;
 }
 
-#functionBarChartTitle {
+#fluxBarChartTitle {
     float: right;
     margin: -10px 25% 0 0;
     font: 12px "Futura", sans-serif;
@@ -253,11 +253,11 @@ h3 {
     text-align: right;
 }
 
-#functionBarChart.uncertainty g.stack.layer1 .bar {
+#fluxBarChart.uncertainty g.stack.layer1 .bar {
     fill: #444444;
 }
 
-/*#resetFunctionBarChart {*/
+/*#resetfluxBarChart {*/
 /*cursor: pointer;*/
 /*float: right;*/
 /*margin: -50px 50px 0 0;*/
@@ -266,29 +266,33 @@ h3 {
 /*}*/
 
 /* ************** GROUPED BARCHART ************** */
-#groupedBarChart .legend rect, #groupedBarChart .groupedBar rect {
+#regionBarChart .legend rect, #regionBarChart .groupedBar rect {
     cursor: pointer;
 }
 
 /* ************** MAP ************** */
 #mapChart {
-    margin: 5px 0 -5px;
+    /*margin: 5px 0 -5px;*/
 }
 
 #mapChartAndComment {
-    float: right;
-    padding-right: 15px;
+    float: left;
+    /*padding-right: 15px;*/
+    margin-left:40px;
 }
 
 .mapChartComment {
-    margin-left: 15px;
+    margin-left: 12px;
+    float:left;
 }
 
 #resetMap {
-    margin: 54px 0 0 4px;
+    /*margin: 54px 0 0 4px;*/
     color: #0088CC;
     text-decoration: none;
     cursor: pointer;
+    float:right;
+    margin-right: 45px;
 }
 
 .countryWithPointer g.country {

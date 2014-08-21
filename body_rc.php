@@ -5,14 +5,17 @@
         <div id="containerTools" class="container-fluid">
             <div class="leftTools">
                 <div class="btn-group">
-                    <button id="reset" type="button" class="btn-default leftToolsButton labelI18n" data-i18n="[title]tooltip.resetAll"><img src="img/reset.png" width="28px"/></button>
-                    <button id="export" type="button" class="btn btn-default leftToolsButton labelI18n" data-toggle="dropdown" data-i18n="[title]tooltip.export"><img src="img/export_small.png"/></button>
+                    <button id="reset" type="button" class="btn-default leftToolsButton labelI18n" data-i18n="[title]tooltip.resetAll"><img src="img/reset.png" width="28px"/>
+                    </button>
+                    <button id="export" type="button" class="btn btn-default leftToolsButton labelI18n" data-toggle="dropdown" data-i18n="[title]tooltip.export"><img
+                            src="img/export_small.png"/></button>
                     <ul class="dropdown-menu leftToolsMenu">
                         <li><a href="#" onClick="javascript:exportAll('exportDiv', 'png');">&nbsp;&nbsp;<img src='js/htmltable_export/icons/png.png' width='24px'> PNG</a></li>
                         <li><a href="#" onClick="javascript:exportAll('exportDiv', 'jpg');">&nbsp;<img src='js/htmltable_export/icons/jpg.png' width='24px'> JPG</a></li>
                         <li><a href="#" onClick="javascript:exportAll('exportDiv', 'gif');"><img src='js/htmltable_export/icons/gif.png' width='24px'> GIF</a></li>
                     </ul>
-                    <button id="help" type="button" class="btn btn-default leftToolsButton labelI18n" data-i18n="[title]tooltip.help"><img src="img/help.png" width="30px"/></button>
+                    <button id="help" type="button" class="btn btn-default leftToolsButton labelI18n" data-i18n="[title]tooltip.help"><img src="img/help.png" width="30px"/>
+                    </button>
                 </div>
             </div>
 
@@ -34,29 +37,29 @@
             <!-- ********************* MAP & FUNCTION ********************* -->
             <div class="col-md-6">
                 <div class="row basicCell">
-                    <div id="regionAndUncertaintySelect">
-                        <div id="globeActive" class="toolButton labelI18n" data-i18n="[title]tooltip.regionAll"><img src="img/Globe_Connected.png" width="35px"/></div>
-                        <div id="regionUnActive" class="toolButton labelI18n" data-i18n="[title]tooltip.regionOne"><img src="img/Globe_Disconnected.png" width="35px"/></div>
-                        <div id="regionActive" class="toolButton labelI18n" data-i18n="[title]tooltip.regionMultiple"><img src="img/Globe_RegionConnected.png" width="35px"/></div>
-
-                        <div id="resetMap" class="labelI18n" data-i18n="[title]tooltip.resetMap;button.reset"></div>
-
-                        <div id="uncertaintyDisable" class="toolButton labelI18n" data-i18n="[title]tooltip.uncertaintyHide"><img src="img/uncertainty_disable2.png" width="40px"/></div>
-                        <div id="uncertainty" class="toolButton labelI18n" data-i18n="[title]tooltip.uncertaintyDisplay"><img src="img/uncertainty2.png" width="40px"/></div>
-                    </div>
+<!--                    <div id="regionAndUncertaintySelect">-->
+<!--                        <div id="globeActive" class="toolButton labelI18n" data-i18n="[title]tooltip.regionAll"><img src="img/Globe_Connected.png" width="35px"/></div>-->
+<!--                        <div id="regionUnActive" class="toolButton labelI18n" data-i18n="[title]tooltip.regionOne"><img src="img/Globe_Disconnected.png" width="35px"/></div>-->
+<!--                        <div id="regionActive" class="toolButton labelI18n" data-i18n="[title]tooltip.regionMultiple"><img src="img/Globe_RegionConnected.png" width="35px"/></div>-->
+<!---->
+<!--                        <div id="uncertaintyDisable" class="toolButton labelI18n" data-i18n="[title]tooltip.uncertaintyHide"><img src="img/uncertainty_disable2.png" width="40px"/>-->
+<!--                        </div>-->
+<!--                        <div id="uncertainty" class="toolButton labelI18n" data-i18n="[title]tooltip.uncertaintyDisplay"><img src="img/uncertainty2.png" width="40px"/></div>-->
+<!--                    </div>-->
 
                     <div id="mapChartAndComment">
                         <div id="mapChart"></div>
                         <div class="comment mapChartComment labelI18n" data-i18n="label.clickRegion"></div>
+                        <div id="resetMap" class="labelI18n" data-i18n="[title]tooltip.resetMap;button.reset"></div>
                     </div>
                 </div>
 
                 <div class="bottomBasicCell">
-                    <div id="functionBarChartUnit" class="labelI18n" data-i18n="label.unit"></div>
-                    <div id="functionBarChartTitle" class="labelI18n" data-i18n="[title]tooltip.allRegions;label.allRegions"></div>
-                    <div id="functionBarChart">
-                        <div id="functionBarChartForMainFlux"></div>
-                        <div id="functionBarChartForSeparatedFlux"></div>
+                    <div id="fluxBarChartUnit" class="labelI18n" data-i18n="label.unit"></div>
+                    <div id="fluxBarChartTitle" class="labelI18n" data-i18n="[title]tooltip.allRegions;label.allRegions"></div>
+                    <div id="fluxBarChart">
+                        <div id="fluxBarChartForMainFlux"></div>
+                        <div id="fluxBarChartForSeparatedFlux"></div>
                     </div>
                 </div>
             </div>
@@ -85,7 +88,7 @@
                 </div>
 
                 <div class="row bottomBasicCell">
-                    <div id="groupedBarChart"></div>
+                    <div id="regionBarChart"></div>
                 </div>
 
             </div>
@@ -103,17 +106,21 @@
                 <div id="exportData" class="toolButton">
                     <button class="exportButton btn-link labelI18n" data-toggle="dropdown" data-i18n="[title]tooltip.export"><img src="img/export_small.png"/></button>
                     <ul class="exportMenu dropdown-menu">
-                        <li><a href="#" onClick="$('#data-table').tableExport({type:'pdf',pdfFontSize:'10',escape:'false'});"> <img src='js/htmltable_export/icons/pdf.png'width='24px'> PDF</a></li>
-                        <li><a onClick="$('#data-table').tableExport({type:'csv',escape:'false', element:this});"> <img src='js/htmltable_export/icons/csv.png' width='24px'> CSV</a></li>
-                        <li><a onClick="$('#data-table').tableExport({type:'txt',escape:'false', element:this});"> <img src='js/htmltable_export/icons/txt.png' width='24px'> TXT</a></li>
-<!--                        <li id="dataPNGExport" class="labelI18n" data-i18n="[title]tooltip.exportDataPNG"><a href="#" onClick="$('#data-table').tableExport({type:'png',escape:'true'});"> <img src='js/htmltable_export/icons/png.png' width='24px'> PNG</a></li>-->
+                        <li><a href="#" onClick="$('#data-table').tableExport({type:'pdf',pdfFontSize:'10',escape:'false'});"> <img src='js/htmltable_export/icons/pdf.png'
+                                                                                                                                    width='24px'> PDF</a></li>
+                        <li><a onClick="$('#data-table').tableExport({type:'csv',escape:'false', element:this});"> <img src='js/htmltable_export/icons/csv.png' width='24px'>
+                            CSV</a></li>
+                        <li><a onClick="$('#data-table').tableExport({type:'txt',escape:'false', element:this});"> <img src='js/htmltable_export/icons/txt.png' width='24px'>
+                            TXT</a></li>
+                        <!--                        <li id="dataPNGExport" class="labelI18n" data-i18n="[title]tooltip.exportDataPNG"><a href="#" onClick="$('#data-table').tableExport({type:'png',escape:'true'});"> <img src='js/htmltable_export/icons/png.png' width='24px'> PNG</a></li>-->
                     </ul>
                 </div>
             </div>
 
             <div class="row dataTableDiv">
                 <div id="data-count" class="dc-data-count dc-chart">
-                    <span class="filter-count"></span><span class="labelI18n" data-i18n="label.dataNumber"></span><span class="total-count"></span><span class="labelI18n" data-i18n="label.dataRecords"></span>
+                    <span class="filter-count"></span><span class="labelI18n" data-i18n="label.dataNumber"></span><span class="total-count"></span><span class="labelI18n"
+                                                                                                                                                         data-i18n="label.dataRecords"></span>
                 </div>
 
                 <table id="data-table" class="table table-hover dc-data-table dc-chart">
@@ -187,28 +194,89 @@
 
         // Load translations : lang=en
         // http://i18next.com/pages/doc_init.html
-        i18n.init({
+        i18n.init( {
 //            lng: 'en',
             resGetPath: 'locales/__ns__-__lng__.json',
             detectLngQS: 'lang',
             fallbackLng: ['en'],
             debug: true
-        }, function() {
-            $(".labelI18n").i18n();
+        }, function()
+        {
+            $( ".labelI18n" ).i18n();
 
+            var myrequest = new ajaxRequest();
+            myrequest.onreadystatechange = function()
+            {
+                if( myrequest.readyState == 4 )
+                { //if request has completed
+                    if( myrequest.status == 200 || window.location.href.indexOf( "http" ) == -1 )
+                    {
+                        var cssLink = $( "<link rel='stylesheet' type='text/css' href='css/RCInterface_white_" + i18n.options.lng + ".css'>" );
+                        $( "head" ).append( cssLink );
+                    }
+                    else
+                        alert( "not ok" ); // FOUND!
+
+                }
+            };
+
+//            myrequest.open( 'GET', "css/RCInterface_white_" + i18n.options.lng + ".css", true );
+            myrequest.open( 'GET', "http://localhost/reccap/css/RCInterface_white.css", true );
+
+
+//            $.ajax( {
+//                url:"css/RCInterface_white_" + i18n.options.lng + ".css",
+//                type:'GET',
+//                error: function()
+//                {
+//                    console.log( "no" );
+//                    //file not exists
+//                },
+//                success: function()
+//                {
+//                    console.log( "ok" );
+//                    //file exists
+//                }
+//            } );
             // Load css for each languages if exist
-            $.get("css/RCInterface_white_"+i18n.options.lng+".css")
-                    .done(function() {
-                        console.log("ok");
-                        var cssLink = $("<link rel='stylesheet' type='text/css' href='css/RCInterface_white_"+i18n.options.lng+".css'>");
-                        $("head").append(cssLink);
-                    }).fail(function() {
-                        console.log("no file");
-                    });
+//            $.get( "css/RCInterface_white_" + i18n.options.lng + ".css" )
+//                    .done(
+//                    function()
+//                    {
+//                        console.log( "Css file loaded : RCInterface_white_" + i18n.options.lng + ".css" );
+//                        var cssLink = $( "<link rel='stylesheet' type='text/css' href='css/RCInterface_white_" + i18n.options.lng + ".css'>" );
+//                        $( "head" ).append( cssLink );
+//                    } ).fail( function()
+//            {
+//                console.log( "No found css file : RCInterface_white_" + i18n.options.lng + ".css" );
+//            } );
 
             new RCInterface();
-        });
+        } );
 
     } );
 
+    function ajaxRequest()
+    {
+        var activexmodes = ["Msxml2.XMLHTTP", "Microsoft.XMLHTTP"];
+        //Test for support for ActiveXObject in IE first (as XMLHttpRequest in IE7 is broken)
+        if( window.ActiveXObject )
+        {
+            for( var i = 0; i < activexmodes.length; i++ )
+            {
+                try
+                {
+                    return new ActiveXObject( activexmodes[i] )
+                }
+                catch( e )
+                {
+                    //suppress error
+                }
+            }
+        }
+        else if( window.XMLHttpRequest ) // if Mozilla, Safari etc
+            return new XMLHttpRequest();
+        else
+            return false
+    }
 </script>

@@ -19,10 +19,6 @@
                     <div id="data" class="toolButton labelI18n" data-i18n="[title]tooltip.data"><img src="img/Data.png" width="30px"/></div>
                 </div>
             </div>
-
-            <!--            <div class="rightTools ">-->
-            <!--                <div id="synthesis" class="toolButton labelI18n" data-i18n="[title]tooltip.synthesis"><img src="img/FluxEmptyWB_small.png" width="30px"/></div>-->
-            <!--            </div>-->
         </div>
 
         <div class="container-fluid">
@@ -34,7 +30,7 @@
 
 
         <div id="containerCharts" class="container-fluid">
-            <!-- ********************* MAP & FUNCTION ********************* -->
+            <!-- ********************* LEFT COL : MAP & FUNCTION ********************* -->
             <div id="leftCol">
                 <div class="basicCell">
                     <!---->
@@ -66,7 +62,7 @@
                 </div>
             </div>
 
-            <!-- ********************* FLUX & BARCHART ********************* -->
+            <!-- ********************* RIGHT COL : FLUX & BARCHART ********************* -->
             <div id="rightCol">
                 <div class="basicCell imageFluxCell">
                     <img id="imageFlux" src="img/FluxWhite3.png" usemap="#mapForImageFlux" alt="Image for flux"/>
@@ -85,6 +81,7 @@
                     </map>
 
                     <div id="dynamicAreasForImageFlux"></div>
+                    <div id="synthesis" class="toolButton labelI18n" data-i18n="[title]tooltip.synthesis"><img src="img/FluxEmptyWB_small.png" width="30px"/></div>
                     <div class="comment imageFluxComment labelI18n" data-i18n="label.clickFlux"></div>
                     <div id="resetFlux" class="labelI18n" data-i18n="[title]tooltip.resetFlux;button.reset"></div>
                 </div>

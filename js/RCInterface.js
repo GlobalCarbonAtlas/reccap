@@ -46,7 +46,7 @@ var RCInterface = Class.create( {
         this.createDynamicAreasForResponsiveMap( "#imageFluxForSynthesis", "#mapForImageFluxForSynthesis", "#dynamicAreasForImageFluxForSynthesis", 900, false );
 
         this.initToolTips();
-        this.initOthers();
+//        this.initOthers();
         this.bindActions();
     },
 
@@ -116,12 +116,11 @@ var RCInterface = Class.create( {
             placement: "bottom",
             container:'body'} );
 
-//        $( ".rightTools .toolButton, #resetFlux" ).tooltip( {
-        $( "#resetFlux" ).tooltip( {
+        $( "#resetFlux, #resetMap" ).tooltip( {
             placement: "left",
             container:'body'} );
 
-        $( "#regionSelect .toolButton, #resetMap, #exportData .exportButton, #dataPNGExport, #exportSynthesis .exportButton" ).tooltip( {
+        $( "#regionSelect .toolButton, #exportData .exportButton, #exportSynthesis .exportButton, #synthesis" ).tooltip( { //#dataPNGExport
             placement: "right",
             container:'body'} );
     },
@@ -162,13 +161,13 @@ var RCInterface = Class.create( {
         }, this ) );
     },
 
-    initOthers: function()
-    {
-        var userAgent = getUserAgengt();
-        var isFirefox = /mozilla/.test( userAgent ) && !/(compatible|webkit)/.test( userAgent );
-        if( !isFirefox )
-            $( "#dataPNGExport" ).addClass( "disabled" );
-    },
+//    initOthers: function()
+//    {
+//        var userAgent = getUserAgengt();
+//        var isFirefox = /mozilla/.test( userAgent ) && !/(compatible|webkit)/.test( userAgent );
+//        if( !isFirefox )
+//            $( "#dataPNGExport" ).addClass( "disabled" );
+//    },
 
     initYDomainsForFluxBarChart: function()
     {
@@ -804,6 +803,8 @@ var RCInterface = Class.create( {
                     if( activeClick )
                     {
                         this.initDimensionsForCharts( $( imageId ).height() );
+                        $( "#synthesis" ).css( "margin-top", -$( "#synthesis" ).height() * 3 / 2 );
+                        $( "#synthesis" ).css( "margin-right", -$( "#synthesis" ).width() );
                         this.initFileValuesAndCreateDCObjects();
                     }
                 }, this ),

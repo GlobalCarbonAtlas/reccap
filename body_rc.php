@@ -20,9 +20,9 @@
                 </div>
             </div>
 
-<!--            <div class="rightTools ">-->
-<!--                <div id="synthesis" class="toolButton labelI18n" data-i18n="[title]tooltip.synthesis"><img src="img/FluxEmptyWB_small.png" width="30px"/></div>-->
-<!--            </div>-->
+            <!--            <div class="rightTools ">-->
+            <!--                <div id="synthesis" class="toolButton labelI18n" data-i18n="[title]tooltip.synthesis"><img src="img/FluxEmptyWB_small.png" width="30px"/></div>-->
+            <!--            </div>-->
         </div>
 
         <div class="container-fluid">
@@ -37,26 +37,28 @@
             <!-- ********************* MAP & FUNCTION ********************* -->
             <div id="leftCol">
                 <div class="basicCell">
-                    <!--                    <div id="regionAndUncertaintySelect">-->
-                    <!--                        <div id="globeActive" class="toolButton labelI18n" data-i18n="[title]tooltip.regionAll"><img src="img/Globe_Connected.png" width="35px"/></div>-->
-                    <!--                        <div id="regionUnActive" class="toolButton labelI18n" data-i18n="[title]tooltip.regionOne"><img src="img/Globe_Disconnected.png" width="35px"/></div>-->
-                    <!--                        <div id="regionActive" class="toolButton labelI18n" data-i18n="[title]tooltip.regionMultiple"><img src="img/Globe_RegionConnected.png" width="35px"/></div>-->
                     <!---->
                     <!--                        <div id="uncertaintyDisable" class="toolButton labelI18n" data-i18n="[title]tooltip.uncertaintyHide"><img src="img/uncertainty_disable2.png" width="40px"/>-->
                     <!--                        </div>-->
                     <!--                        <div id="uncertainty" class="toolButton labelI18n" data-i18n="[title]tooltip.uncertaintyDisplay"><img src="img/uncertainty2.png" width="40px"/></div>-->
-                    <!--                    </div>-->
 
                     <div id="mapChartAndComment">
                         <div id="mapChart"></div>
+                        <div id="regionSelect">
+                            <div id="globeActive" class="toolButton labelI18n" data-i18n="[title]tooltip.regionAll"><img src="img/Globe_Connected.png" width="35px"/></div>
+                            <div id="regionUnActive" class="toolButton labelI18n" data-i18n="[title]tooltip.regionOne"><img src="img/Globe_Disconnected.png" width="35px"/></div>
+                            <div id="regionActive" class="toolButton labelI18n" data-i18n="[title]tooltip.regionMultiple"><img src="img/Globe_RegionConnected.png" width="35px"/>
+                            </div>
+                        </div>
+
                         <div class="comment mapChartComment labelI18n" data-i18n="label.clickRegion"></div>
                         <div id="resetMap" class="labelI18n" data-i18n="[title]tooltip.resetMap;button.reset"></div>
                     </div>
                 </div>
 
                 <div class="bottomBasicCell">
-<!--                    <div id="fluxBarChartUnit" class="labelI18n" data-i18n="label.unit"></div>-->
-<!--                    <div id="fluxBarChartTitle" class="labelI18n" data-i18n="[title]tooltip.allRegions;label.allRegions"></div>-->
+                    <div id="fluxBarChartUnit" class="labelI18n" data-i18n="label.unit"></div>
+                    <div id="fluxBarChartTitle" class="labelI18n" data-i18n="[title]tooltip.allRegions;label.allRegions"></div>
                     <div id="fluxBarChart">
                         <div id="fluxBarChartForMainFlux"></div>
                         <div id="fluxBarChartForSeparatedFlux"></div>

@@ -69,11 +69,11 @@ h3 {
 }
 
 /*.basicCell, .bottomBasicCell {*/
-    /*border: 1px solid red;*/
+/*border: 1px solid red;*/
 /*}*/
 
 /*#mapChart, #regionBarChart, #fluxBarChartForMainFlux, #fluxBarChartForSeparatedFlux, #mapster_wrap_0 {*/
-    /*border: 1px solid blue;*/
+/*border: 1px solid blue;*/
 /*}*/
 
 /* ************** TOOLS ************** */
@@ -129,10 +129,10 @@ h3 {
     display: none;
 }
 
-#regionAndUncertaintySelect {
-    float: left;
-    margin-top: 15px;
-    position: relative;
+#regionSelect {
+    /*float: left;*/
+    /*margin-top: 15px;*/
+    /*position: relative;*/
 }
 
 #regionActive, #regionUnActive, #globeActive {
@@ -229,12 +229,12 @@ h3 {
 
 /* ************** FUNCTION BARCHART ************** */
 #fluxBarChartForMainFlux {
-    width: 70%; /*width: 69%;*/
-/*margin-right:2%;*/
+    width: 70%;
 }
 
 #fluxBarChartForSeparatedFlux {
-    width: 30%; /*width: 29%;*/
+    width: 28%;
+    margin-left: 2%;
 }
 
 /* To allow click or mouseover on axis text */
@@ -250,15 +250,15 @@ h3 {
 }
 
 #fluxBarChartTitle {
-    float: right;
-    margin: -10px 25% 0 0;
-    font: 12px "Futura", sans-serif;
     color: #525252;
+    float: left;
+    font: 12px "Futura", sans-serif;
+    margin: -10px 0 0 20%;
     overflow: hidden;
+    text-align: center;
     text-overflow: ellipsis;
-    width: 60%;
     white-space: nowrap;
-    text-align: right;
+    width: 60%;
 }
 
 #fluxBarChart.uncertainty g.stack.layer1 .bar {

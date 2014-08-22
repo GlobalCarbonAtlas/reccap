@@ -66,21 +66,17 @@ var RCInterface = Class.create( {
             $( "#rightCol" ).width( this.barChartWidth );
             $( "#leftCol" ).width( this.barChartWidth );
         }
-        console.log("ABVAT");
-        console.log( "imageW : " + this.imageWidth + ", imageH :" + this.imageHeight );
-        console.log( "barW : " + this.barChartWidth + ", barH : " + this.barChartHeight );
     },
 
     initDimensionsForCharts: function( newImageHeight )
     {
         this.imageHeight = newImageHeight;
-        this.mapImageWidth = this.imageWidth - this.marginLeftForFluxImageAndMap;
+        this.mapImageWidth = this.imageWidth - this.marginLeftForFluxImageAndMap;// - $( "#fluxBarChartForSeparatedFlux" ).css( "margin-left" ).replace( "px", "" );
         this.mapImageHeight = this.imageHeight;
         this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".basicCell" ).css( "margin-bottom" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
 
         // Elements positions
-        $("#mapChartAndComment").css( "margin-left", this.marginLeftForFluxImageAndMap );
-        $( "#resetMap" ).css( "margin-right", this.marginLeftForFluxImageAndMap );
+        $( "#mapChartAndComment" ).css( "margin-left", this.marginLeftForFluxImageAndMap );
         $( ".imageFluxCell" ).css( "margin-left", this.marginLeftForFluxImageAndMap );
         $( "#dynamicAreasForImageFlux" ).css( "top", -this.imageHeight );
     },
@@ -125,7 +121,7 @@ var RCInterface = Class.create( {
             placement: "left",
             container:'body'} );
 
-        $( "#regionAndUncertaintySelect .toolButton, #resetMap, #exportData .exportButton, #dataPNGExport, #exportSynthesis .exportButton" ).tooltip( {
+        $( "#regionSelect .toolButton, #resetMap, #exportData .exportButton, #dataPNGExport, #exportSynthesis .exportButton" ).tooltip( {
             placement: "right",
             container:'body'} );
     },
@@ -225,10 +221,9 @@ var RCInterface = Class.create( {
             this.updateToolTipsForCharts();
             this.updateXAxisForFluxBarChart();
 
-            // Position of "regionAndUncertaintySelect" div
-            var marginLeft = (this.barChartWidth - $( "#mapChart" ).width() - $( "#globeActive" ).width()) / 2;
-            $( "#regionAndUncertaintySelect" ).css( "margin-left", marginLeft );
-            $( "#regionAndUncertaintySelect" ).height( $( "#mapChart" ).height() );
+            // Position of "regionSelect" div
+            $( "#regionSelect" ).css( "margin-left", $( "#globeActive" ).width() );
+            $( "#regionSelect" ).css( "margin-top", $( "#mapChart" ).height() / 2 );
 
             // Home with selected flux
             $( "#" + jQuery.i18n.prop( "selectedFluxForHomePage" ) ).click();
@@ -1121,7 +1116,7 @@ function exportAll( exportDivId, fileType )
 
 function callbackForExportAllBeforeCanvg( exportDivId )
 {
-    $( "#" + exportDivId + " #containerTools, #" + exportDivId + " .comment, #" + exportDivId + " #regionAndUncertaintySelect, #" + exportDivId + " #resetFlux" ).remove();
+    $( "#" + exportDivId + " #containerTools, #" + exportDivId + " .comment, #" + exportDivId + " #regionSelect, #" + exportDivId + " #resetFlux" ).remove();
     $( "#" + exportDivId + " #hiddenDiv, #" + exportDivId + " #dataDiv, #" + exportDivId + " .synthesisDiv" ).remove();
 
     // Add GCA logo

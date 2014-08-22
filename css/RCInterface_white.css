@@ -68,13 +68,13 @@ h3 {
     width: 47%;
 }
 
-.basicCell, .bottomBasicCell {
-    border: 1px solid red;
-}
+/*.basicCell, .bottomBasicCell {*/
+    /*border: 1px solid red;*/
+/*}*/
 
-#mapChart, #regionBarChart, #fluxBarChartForMainFlux, #fluxBarChartForSeparatedFlux, #mapster_wrap_0 {
-    border: 1px solid blue;
-}
+/*#mapChart, #regionBarChart, #fluxBarChartForMainFlux, #fluxBarChartForSeparatedFlux, #mapster_wrap_0 {*/
+    /*border: 1px solid blue;*/
+/*}*/
 
 /* ************** TOOLS ************** */
 .leftTools {
@@ -288,7 +288,6 @@ h3 {
 
 #mapChartAndComment {
     float: left;
-    margin-left: 32px;
 }
 
 .mapChartComment {

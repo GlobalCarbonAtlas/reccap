@@ -76,15 +76,12 @@ var RCInterface = Class.create( {
         this.imageHeight = newImageHeight;
         this.mapImageWidth = this.imageWidth - this.marginLeftForFluxImageAndMap;
         this.mapImageHeight = this.imageHeight;
-        this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".bottomBasicCell" ).css( "margin-top" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
-
-        console.log("APRES");
-        console.log( "imageW : " + this.imageWidth + ", imageH :" + this.imageHeight );
-        console.log( "barW : " + this.barChartWidth + ", barH : " + this.barChartHeight );
+        this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".basicCell" ).css( "margin-bottom" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
 
         // Elements positions
-        $( ".imageFluxCell" ).css( "margin-left", this.marginLeftForFluxImageAndMap );
+        $("#mapChartAndComment").css( "margin-left", this.marginLeftForFluxImageAndMap );
         $( "#resetMap" ).css( "margin-right", this.marginLeftForFluxImageAndMap );
+        $( ".imageFluxCell" ).css( "margin-left", this.marginLeftForFluxImageAndMap );
         $( "#dynamicAreasForImageFlux" ).css( "top", -this.imageHeight );
     },
 

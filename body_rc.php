@@ -36,7 +36,7 @@
         <div id="containerCharts" class="container-fluid">
             <!-- ********************* MAP & FUNCTION ********************* -->
             <div id="leftCol">
-                <div class="row basicCell">
+                <div class="basicCell">
                     <!--                    <div id="regionAndUncertaintySelect">-->
                     <!--                        <div id="globeActive" class="toolButton labelI18n" data-i18n="[title]tooltip.regionAll"><img src="img/Globe_Connected.png" width="35px"/></div>-->
                     <!--                        <div id="regionUnActive" class="toolButton labelI18n" data-i18n="[title]tooltip.regionOne"><img src="img/Globe_Disconnected.png" width="35px"/></div>-->
@@ -55,8 +55,8 @@
                 </div>
 
                 <div class="bottomBasicCell">
-                    <div id="fluxBarChartUnit" class="labelI18n" data-i18n="label.unit"></div>
-                    <div id="fluxBarChartTitle" class="labelI18n" data-i18n="[title]tooltip.allRegions;label.allRegions"></div>
+<!--                    <div id="fluxBarChartUnit" class="labelI18n" data-i18n="label.unit"></div>-->
+<!--                    <div id="fluxBarChartTitle" class="labelI18n" data-i18n="[title]tooltip.allRegions;label.allRegions"></div>-->
                     <div id="fluxBarChart">
                         <div id="fluxBarChartForMainFlux"></div>
                         <div id="fluxBarChartForSeparatedFlux"></div>
@@ -67,7 +67,7 @@
             <!-- ********************* FLUX & BARCHART ********************* -->
             <div id="rightCol">
                 <div class="basicCell imageFluxCell">
-                    <img id="imageFlux" src="img/FluxWhite2.png" usemap="#mapForImageFlux" alt="Image for flux"/>
+                    <img id="imageFlux" src="img/FluxWhite3.png" usemap="#mapForImageFlux" alt="Image for flux"/>
                     <map id="mapForImageFlux" name="mapForImageFlux">
                         <area shape="rect" alt="FFE" coords="69,7,155,55" href="" target=""/>
                         <area shape="rect" alt="WPD" coords="156,48,258,88" href="" target=""/>
@@ -84,7 +84,7 @@
 
                     <div id="dynamicAreasForImageFlux"></div>
                     <div class="comment imageFluxComment labelI18n" data-i18n="label.clickFlux"></div>
-<!--                    <div id="resetFlux" class="labelI18n" data-i18n="[title]tooltip.resetFlux;button.reset"></div>-->
+                    <div id="resetFlux" class="labelI18n" data-i18n="[title]tooltip.resetFlux;button.reset"></div>
                 </div>
 
                 <div class="bottomBasicCell">

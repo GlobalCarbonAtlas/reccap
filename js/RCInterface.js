@@ -32,10 +32,7 @@ var RCInterface = Class.create( {
 
         // Variables
         this.initMapWidth = 600;
-        this.initMapScale = 90;
-//        this.barChartHeight = 300;
-        this.barChartWidth = $( "#regionBarChart" ).width();
-//        this.imageHeight = 0;
+        this.initMapScale = 95;
         this.barCharMargin = {top: 10, right: 0, bottom: 75, left: 35};
         var colors = d3.scale.category20c().range();
         colors[2] = "#555555";
@@ -44,7 +41,7 @@ var RCInterface = Class.create( {
         this.displayUncertainty = false;
 
         // Areas for maps
-        this.initDimensionsForImage();
+        this.initDimensionsForImageAndCharts();
         this.createDynamicAreasForResponsiveMap( "#imageFlux", "#mapForImageFlux", "#dynamicAreasForImageFlux", this.imageWidth, true );
         this.createDynamicAreasForResponsiveMap( "#imageFluxForSynthesis", "#mapForImageFluxForSynthesis", "#dynamicAreasForImageFluxForSynthesis", 900, false );
 
@@ -53,10 +50,12 @@ var RCInterface = Class.create( {
         this.bindActions();
     },
 
-    initDimensionsForImage: function()
+    initDimensionsForImageAndCharts: function()
     {
         var marginLeftForFluxImage = 34;
+        this.barChartWidth = $( "#regionBarChart" ).width();
         this.imageWidth = this.barChartWidth - marginLeftForFluxImage;
+        this.mapImageWidth = this.imageWidth - marginLeftForFluxImage;
         this.imageHeight = this.imageWidth / 2;
 
         var heightToDisplayGraphs = $( "body" )[0].clientHeight - $( ".bottomBasicCell" ).css( "margin-top" ).replace( "px", "" ) - $( ".container-fluid" ).height();
@@ -64,6 +63,7 @@ var RCInterface = Class.create( {
         {
             this.imageHeight = heightToDisplayGraphs / 2;
             this.imageWidth = heightToDisplayGraphs;
+            this.mapImageWidth = this.imageWidth - marginLeftForFluxImage;
             this.barChartWidth = this.imageWidth + marginLeftForFluxImage;
             $( "#rightCol" ).width( this.barChartWidth );
             $( "#leftCol" ).width( this.barChartWidth );
@@ -72,6 +72,10 @@ var RCInterface = Class.create( {
         this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".bottomBasicCell" ).css( "margin-top" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
         console.log( "image : " + this.imageWidth + ", " + this.imageHeight );
         console.log( "bar : " + this.barChartWidth + ", " + this.barChartHeight );
+
+        // Elements positions
+        $( ".imageFluxCell" ).css( "margin-left", marginLeftForFluxImage );
+        $( "#resetMap" ).css( "margin-right", marginLeftForFluxImage );
     },
 
     initToolTips: function()
@@ -207,13 +211,9 @@ var RCInterface = Class.create( {
         d3.json( this.regionFilePath, jQuery.proxy( function( error, world )
         {
             var countries = topojson.feature( world, world.objects.countries );
-            var mapWidth = this.imageWidth - 10;
-            this.createChoroplethMap( "#mapChart", mapWidth, this.imageHeight, countries, this.continents, this.continents.group() );
+            this.createChoroplethMap( "#mapChart", this.mapImageWidth, this.mapImageWidth / 2, countries, this.continents, this.continents.group() );
             $( "#mapChart" ).addClass( "countryWithPointer" );
             dc.renderAll();
-
-//            this.barChartWidth = mapWidth + 40;
-//            this.imageHeight = $( "#mapChart" ).height();
 
             this.updateToolTipsForCharts();
             this.updateXAxisForFluxBarChart();
@@ -222,10 +222,6 @@ var RCInterface = Class.create( {
             var marginLeft = (this.barChartWidth - $( "#mapChart" ).width() - $( "#globeActive" ).width()) / 2;
             $( "#regionAndUncertaintySelect" ).css( "margin-left", marginLeft );
             $( "#regionAndUncertaintySelect" ).height( $( "#mapChart" ).height() );
-
-            // Areas for maps
-//            this.createDynamicAreasForResponsiveMap( "#imageFlux", "#mapForImageFlux", "#dynamicAreasForImageFlux", this.barChartWidth, true );
-//            this.createDynamicAreasForResponsiveMap( "#imageFluxForSynthesis", "#mapForImageFluxForSynthesis", "#dynamicAreasForImageFluxForSynthesis", 900, false );
 
             // Home with selected flux
             $( "#" + jQuery.i18n.prop( "selectedFluxForHomePage" ) ).click();

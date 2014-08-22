@@ -12,18 +12,17 @@ body {
 #sourceWrapper #pageWrapper {
     color: #2C3537;
     width: 100%;
-    height: 100%;
-    /*z-index: 10;*/
-    /*position: absolute;*/
-    /*top:0;*/
+    height: 100%; /*z-index: 10;*/
+/*position: absolute;*/
+/*top:0;*/
 }
 
 #pageWrapper {
-    float:left;
+    float: left;
 }
 
 #sourceWrapper {
-    /*float:left;*/
+/*float:left;*/
 }
 
 #sourceWrapper .title {
@@ -60,14 +59,24 @@ h3 {
 }
 
 .bottomBasicCell {
-    /*width:100%;*/
-    margin-top: 40px;
+/*width:100%;*/
+    margin-top: 40px; /*float:left;*/
 }
 
-/*.basicCell, .bottomBasicCell {*/
-/*border: 1px solid red;*/
-/*}*/
+#leftCol {
+    float: left;
+    width: 47%;
+}
 
+#rightCol {
+    float: right;
+    margin-right:10px;
+    width: 47%;
+}
+
+.basicCell, .bottomBasicCell {
+    border: 1px solid red;
+}
 
 /* ************** TOOLS ************** */
 .leftTools {
@@ -78,20 +87,20 @@ h3 {
     text-align: center;
     margin: 16px 0 40px;
     float: left;
-    width: 103px;
+    width: 150px;
 }
 
-.rightTools {
-    float: right;
-    width: 94px;
-    margin: 12px 0;
-    border: 2px solid #2C3537 !important;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-}
+/*.rightTools {*/
+/*float: right;*/
+/*width: 94px;*/
+/*margin: 12px 0;*/
+/*border: 2px solid #2C3537 !important;*/
+/*-webkit-border-radius: 10px;*/
+/*-moz-border-radius: 10px;*/
+/*border-radius: 10px;*/
+/*}*/
 
-.leftTools img, .rightTools img {
+.leftTools img {
     cursor: pointer;
 }
 
@@ -106,7 +115,7 @@ h3 {
     float: left;
 }
 
-.leftToolsButton:hover, .leftToolsButton:focus, .leftToolsButton:active{
+.leftToolsButton:hover, .leftToolsButton:focus, .leftToolsButton:active {
     background-color: white !important;
 }
 
@@ -270,28 +279,33 @@ h3 {
     cursor: pointer;
 }
 
+#regionBarChart {
+    border: 1px solid blue;
+}
+/*.regionBarChartCell {*/
+/*float: right;*/
+/*}*/
 /* ************** MAP ************** */
 #mapChart {
-    /*margin: 5px 0 -5px;*/
+    padding: 0 !important;
 }
 
 #mapChartAndComment {
     float: left;
-    /*padding-right: 15px;*/
-    margin-left:40px;
+    margin-left: 32px;
 }
 
 .mapChartComment {
-    margin-left: 12px;
-    float:left;
+    margin-left: 14px;
+    float: left;
 }
 
 #resetMap {
-    /*margin: 54px 0 0 4px;*/
+/*margin: 54px 0 0 4px;*/
     color: #0088CC;
     text-decoration: none;
     cursor: pointer;
-    float:right;
+    float: right;
     margin-right: 45px;
 }
 
@@ -351,14 +365,16 @@ g.no_data_for_this_region path {
 }
 
 /* ************** FLUX IMG ************** */
-.imageFluxDiv {
-    margin-bottom: 15px;
+.imageFluxCell {
+    margin-left: 34px;
 }
 
-.imageFluxDiv .mapster_el {
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    border-radius: 6px;
+#mapster_wrap_0 {
+border: 1px solid blue;
+}
+
+#dynamicAreasForImageFlux {
+    position: relative;
 }
 
 #dynamicAreasForImageFlux .dynamicArea {
@@ -608,21 +624,20 @@ foreignObject {
 /*text-overflow: ellipsis;*/
 /*white-space: nowrap;*/
 
-
 /* ************************************ */
 /* ************** EXPORT ************** */
 /* ************************************ */
 #exportDiv {
     position: absolute;
-    top:0;
+    top: 0;
 }
 
 #exportDiv #containerCharts #mapChartAndComment {
-    margin:  auto !important;
+    margin: auto !important;
     float: none !important;
 }
 
-#exportDiv .title{
+#exportDiv .title {
     margin: 2px auto;
 }
 
@@ -639,8 +654,8 @@ foreignObject {
 }
 
 #exportDiv .exportLogo {
-    position:absolute;
-    top:0;
+    position: absolute;
+    top: 0;
     right: 20px;
 }
 

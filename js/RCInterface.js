@@ -52,9 +52,9 @@ var RCInterface = Class.create( {
 
     initDimensionsForImageAndCharts: function()
     {
-        var marginLeftForFluxImage = 34;
+        this.marginLeftForFluxImageAndMap = 34;
         this.barChartWidth = $( "#regionBarChart" ).width();
-        this.imageWidth = this.barChartWidth - marginLeftForFluxImage;
+        this.imageWidth = this.barChartWidth - this.marginLeftForFluxImageAndMap;
         this.imageHeight = this.imageWidth / 2;
 
         var heightToDisplayGraphs = $( "body" )[0].clientHeight - $( ".bottomBasicCell" ).css( "margin-top" ).replace( "px", "" ) - $( ".container-fluid" ).height();
@@ -62,20 +62,30 @@ var RCInterface = Class.create( {
         {
             this.imageHeight = heightToDisplayGraphs / 2;
             this.imageWidth = heightToDisplayGraphs;
-            this.barChartWidth = this.imageWidth + marginLeftForFluxImage;
+            this.barChartWidth = this.imageWidth + this.marginLeftForFluxImageAndMap;
             $( "#rightCol" ).width( this.barChartWidth );
             $( "#leftCol" ).width( this.barChartWidth );
         }
+        console.log("ABVAT");
+        console.log( "imageW : " + this.imageWidth + ", imageH :" + this.imageHeight );
+        console.log( "barW : " + this.barChartWidth + ", barH : " + this.barChartHeight );
+    },
 
-        this.mapImageWidth = this.imageWidth - marginLeftForFluxImage;
-        this.mapImageHeight = this.mapImageWidth / 2;
+    initDimensionsForCharts: function( newImageHeight )
+    {
+        this.imageHeight = newImageHeight;
+        this.mapImageWidth = this.imageWidth - this.marginLeftForFluxImageAndMap;
+        this.mapImageHeight = this.imageHeight;
         this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".bottomBasicCell" ).css( "margin-top" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
-        console.log( "image : " + this.imageWidth + ", " + this.imageHeight );
-        console.log( "bar : " + this.barChartWidth + ", " + this.barChartHeight );
+
+        console.log("APRES");
+        console.log( "imageW : " + this.imageWidth + ", imageH :" + this.imageHeight );
+        console.log( "barW : " + this.barChartWidth + ", barH : " + this.barChartHeight );
 
         // Elements positions
-        $( ".imageFluxCell" ).css( "margin-left", marginLeftForFluxImage );
-        $( "#resetMap" ).css( "margin-right", marginLeftForFluxImage );
+        $( ".imageFluxCell" ).css( "margin-left", this.marginLeftForFluxImageAndMap );
+        $( "#resetMap" ).css( "margin-right", this.marginLeftForFluxImageAndMap );
+        $( "#dynamicAreasForImageFlux" ).css( "top", -this.imageHeight );
     },
 
     initToolTips: function()
@@ -799,11 +809,9 @@ var RCInterface = Class.create( {
                 jQuery.proxy( function()
                 {
                     this.createAreas( mapId, activeClick, dynamicAreasId );
-                    $( "#dynamicAreasForImageFlux" ).css( "top", -this.imageHeight );
                     if( activeClick )
                     {
-                        this.mapImageHeight = $(imageId).height();
-                        this.imageHeight = $(imageId).height();
+                        this.initDimensionsForCharts( $( imageId ).height() );
                         this.initFileValuesAndCreateDCObjects();
                     }
                 }, this ),

@@ -55,7 +55,6 @@ var RCInterface = Class.create( {
         var marginLeftForFluxImage = 34;
         this.barChartWidth = $( "#regionBarChart" ).width();
         this.imageWidth = this.barChartWidth - marginLeftForFluxImage;
-        this.mapImageWidth = this.imageWidth - marginLeftForFluxImage;
         this.imageHeight = this.imageWidth / 2;
 
         var heightToDisplayGraphs = $( "body" )[0].clientHeight - $( ".bottomBasicCell" ).css( "margin-top" ).replace( "px", "" ) - $( ".container-fluid" ).height();
@@ -63,12 +62,13 @@ var RCInterface = Class.create( {
         {
             this.imageHeight = heightToDisplayGraphs / 2;
             this.imageWidth = heightToDisplayGraphs;
-            this.mapImageWidth = this.imageWidth - marginLeftForFluxImage;
             this.barChartWidth = this.imageWidth + marginLeftForFluxImage;
             $( "#rightCol" ).width( this.barChartWidth );
             $( "#leftCol" ).width( this.barChartWidth );
         }
 
+        this.mapImageWidth = this.imageWidth - marginLeftForFluxImage;
+        this.mapImageHeight = this.mapImageWidth / 2;
         this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".bottomBasicCell" ).css( "margin-top" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
         console.log( "image : " + this.imageWidth + ", " + this.imageHeight );
         console.log( "bar : " + this.barChartWidth + ", " + this.barChartHeight );
@@ -211,7 +211,7 @@ var RCInterface = Class.create( {
         d3.json( this.regionFilePath, jQuery.proxy( function( error, world )
         {
             var countries = topojson.feature( world, world.objects.countries );
-            this.createChoroplethMap( "#mapChart", this.mapImageWidth, this.mapImageWidth / 2, countries, this.continents, this.continents.group() );
+            this.createChoroplethMap( "#mapChart", this.mapImageWidth, this.mapImageHeight, countries, this.continents, this.continents.group() );
             $( "#mapChart" ).addClass( "countryWithPointer" );
             dc.renderAll();
 
@@ -801,7 +801,11 @@ var RCInterface = Class.create( {
                     this.createAreas( mapId, activeClick, dynamicAreasId );
                     $( "#dynamicAreasForImageFlux" ).css( "top", -this.imageHeight );
                     if( activeClick )
+                    {
+                        this.mapImageHeight = $(imageId).height();
+                        this.imageHeight = $(imageId).height();
                         this.initFileValuesAndCreateDCObjects();
+                    }
                 }, this ),
                 null
                 );

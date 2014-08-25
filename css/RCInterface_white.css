@@ -517,19 +517,19 @@ g.no_data_for_this_region path {
 }
 
 .synthesisTitle {
-    margin: 193px 0 0 -88px;
+    margin: 265px 0 0 -88px;
 }
 
 #exportSynthesis {
     float: left;
     cursor: pointer;
-    margin: 11px 0 0 -90px;
+    margin: 62px 0 0 -90px;
 }
 
 .imageFluxForSynthesis {
     margin: auto;
     background-color: #FFFFFF;
-    height: 368px;
+    height: 483px;
     width: 911px;
     padding: 8px 0 10px 9px;
     -webkit-border-radius: 6px;
@@ -554,6 +554,7 @@ g.no_data_for_this_region path {
 #dynamicAreasForImageFluxForSynthesis .dynamicArea {
     font-weight: bold;
     position: absolute;
+    font-size: 14px;
 }
 
 .redSynthesisText {

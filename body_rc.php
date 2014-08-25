@@ -33,11 +33,6 @@
             <!-- ********************* LEFT COL : MAP & FUNCTION ********************* -->
             <div id="leftCol">
                 <div class="basicCell">
-                    <!---->
-                    <!--                        <div id="uncertaintyDisable" class="toolButton labelI18n" data-i18n="[title]tooltip.uncertaintyHide"><img src="img/uncertainty_disable2.png" width="40px"/>-->
-                    <!--                        </div>-->
-                    <!--                        <div id="uncertainty" class="toolButton labelI18n" data-i18n="[title]tooltip.uncertaintyDisplay"><img src="img/uncertainty2.png" width="40px"/></div>-->
-
                     <div id="mapChartAndComment">
                         <div id="mapChart"></div>
                         <div id="regionSelect">
@@ -58,6 +53,11 @@
                     <div id="fluxBarChart">
                         <div id="fluxBarChartForMainFlux"></div>
                         <div id="fluxBarChartForSeparatedFlux"></div>
+                    </div>
+                    <div id="uncertaintyDiv">
+                        <div id="uncertaintyDisable" class="toolButton labelI18n" data-i18n="[title]tooltip.uncertaintyHide"><img src="img/uncertainty_disable2.png" width="40px"/>
+                        </div>
+                        <div id="uncertainty" class="toolButton labelI18n" data-i18n="[title]tooltip.uncertaintyDisplay"><img src="img/uncertainty2.png" width="40px"/></div>
                     </div>
                 </div>
             </div>

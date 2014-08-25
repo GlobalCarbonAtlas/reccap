@@ -14,7 +14,7 @@ var RCInterface = Class.create( {
     initialize: function()
     {
         // File variables
-        this.numberFormat = d3.format( ".2f" );
+        this.numberFormat = d3.format( ".0f" );
         this.dataFilePath = jQuery.i18n.prop( "dataFilePath" );
         this.regionColName = jQuery.i18n.prop( "regionColName" );
         this.fluxColName = jQuery.i18n.prop( "fluxColName" );

@@ -85,7 +85,7 @@ h3 {
     text-align: center;
     margin: 16px 0 40px;
     float: left;
-    width: 150px;
+    width: 134px;
 }
 
 /*.rightTools {*/
@@ -153,7 +153,7 @@ h3 {
 }
 
 #data, #synthesis img {
-    margin: 6px 6px 6px;
+    margin: 1px 4px 0 0;
 }
 
 #synthesis img {

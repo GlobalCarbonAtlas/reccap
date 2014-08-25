@@ -67,16 +67,16 @@
                 <div class="basicCell imageFluxCell">
                     <img id="imageFlux" src="img/FluxWhite3.png" usemap="#mapForImageFlux" alt="Image for flux"/>
                     <map id="mapForImageFlux" name="mapForImageFlux">
-                        <area shape="rect" alt="FFE" coords="69,7,155,55" href="" target=""/>
-                        <area shape="rect" alt="WPD" coords="156,48,258,88" href="" target=""/>
-                        <area shape="rect" alt="CPC" coords="258,45,357,84" href="" target=""/>
-                        <area shape="rect" alt="LUC" coords="332,12,403,47" href="" target=""/>
-                        <area shape="rect" alt="Fires" coords="406,10,453,36" href="" target=""/>
-                        <area shape="rect" alt="NPP" coords="502,13,544,36" href="" target=""/>
-                        <area shape="rect" alt="HR" coords="562,12,660,51" href="" target=""/>
-                        <area shape="rect" alt="FO" coords="768,154,847,192" href="" target=""/>
-                        <area shape="rect" alt="SCE" coords="633,271,714,293" href="" target=""/>
-                        <area shape="rect" alt="ETO" coords="832,242,880,296" href="" target=""/>
+                        <area shape="rect" alt="FFE" coords="-5,46,102,117" href="" target=""/>
+                        <area shape="rect" alt="WPD" coords="124,46,200,117" href="" target=""/>
+                        <area shape="rect" alt="CPC" coords="202,46,311,117" href="" target=""/>
+                        <area shape="rect" alt="LUC" coords="316,46,401,117" href="" target=""/>
+                        <area shape="rect" alt="Fires" coords="428,46,487,74" href="" target=""/>
+                        <area shape="rect" alt="NPP" coords="512,46,568,75" href="" target=""/>
+                        <area shape="rect" alt="HR" coords="581,46,709,98" href="" target=""/>
+                        <area shape="rect" alt="FO" coords="785,46,896,98" href="" target=""/>
+                        <area shape="rect" alt="SCE" coords="672,374,742,421" href="" target=""/>
+                        <area shape="rect" alt="ETO" coords="893,334,967,405" href="" target=""/>
                         <!-- Created by Online Image Map Editor (http://www.maschek.hu/imagemap/imgmap) -->
                     </map>
 
@@ -198,7 +198,8 @@
             resGetPath: 'locales/__ns__-__lng__.json',
             detectLngQS: 'lang',
             fallbackLng: ['en'],
-            debug: true
+            debug: true,
+            lng:"en"
         }, function()
         {
             $( ".labelI18n" ).i18n();

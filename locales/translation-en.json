@@ -19,7 +19,8 @@
     },
     "button" :
     {
-        "reset": "reset"
+        "reset": "reset",
+        "export": "export"
     },
     "tooltip":
     {

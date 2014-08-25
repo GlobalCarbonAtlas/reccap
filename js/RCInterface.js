@@ -1153,7 +1153,7 @@ function callbackForExportSynthesisBeforeCanvg( isToAdd )
     if( isToAdd )
     {
         var height = $( "#synthesisDivData" ).height() - 75;
-        $( "#dynamicAreasForImageFluxForSynthesis" ).append( "<div class='exportLogo' style='margin-top:" + height + "px'><img src='img/GCA_logo.png' width='150px'></div>" );
+        $( "#dynamicAreasForImageFluxForSynthesis" ).append( "<div class='exportLogo' style='margin-top:" + (height - 20) + "px'><img src='img/GCA_logo.png' width='150px'></div>" );
     }
     else
         $( "#dynamicAreasForImageFluxForSynthesis .exportLogo" ).remove();

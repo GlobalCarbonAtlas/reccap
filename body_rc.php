@@ -183,7 +183,7 @@
     {
         // Load properties file
         jQuery.i18n.properties( {
-            name:'flux',
+            name:'reccap',
             path:'',
             language:null,
             mode:'both'

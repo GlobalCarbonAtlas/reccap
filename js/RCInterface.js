@@ -475,7 +475,7 @@ var RCInterface = Class.create( {
                 .classed( 'zero', true );
 
         // Update synthesis values
-        $.each( d3.selectAll( "#fluxBarChart .bar" )[0], jQuery.proxy( function( i, d )
+        $.each( d3.selectAll( "#fluxBarChart .layer0 .bar" )[0], jQuery.proxy( function( i, d )
         {
             if( !d.__data__ || !d.__data__.data )
                 return;

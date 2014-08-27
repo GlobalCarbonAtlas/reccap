@@ -103,7 +103,7 @@
                     <div id="dataTitle" class="labelI18n" data-i18n="title.carbonBudgets"></div>
                 </div>
                 <div id="exportData" class="toolButton">
-                    <button class="exportButton btn-link labelI18n" data-toggle="dropdown" data-i18n="[title]tooltip.export"><img src="img/export_small.png"/></button>
+                    <button class="exportButton btn-link labelI18n" data-toggle="dropdown" data-i18n="[title]tooltip.exportData"><img src="img/export_small.png"/></button>
                     <ul class="exportMenu dropdown-menu">
                         <li><a href="#" onClick="$('#data-table').tableExport({type:'pdf',pdfFontSize:'10',escape:'false'});"> <img src='js/htmltable_export/icons/pdf.png'
                                                                                                                                     width='24px'> PDF</a></li>

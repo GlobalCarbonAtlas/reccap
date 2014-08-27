@@ -19,13 +19,13 @@
     },
     "button" :
     {
-        "reset": "reset",
-        "export": "export"
+        "reset": "reset"
     },
     "tooltip":
     {
         "resetAll":"Reset all",
-        "export":"Export. Please check the popup are allowed by your browser.",
+        "export":"Export. Please check the popup are allowed by your browser",
+        "exportData":"Export data",
         "help":"Help",
         "data":"Get all data",
         "synthesis":"Display synthesis",
@@ -36,10 +36,8 @@
         "uncertaintyHide":"Hide uncertainty",
         "uncertaintyDisplay":"Display uncertainty",
         "resetFlux":"Reset flux's filters",
-        "exportDataPNG":"Only for Firefox. Long loading time.",
+        "exportDataPNG":"Only for Firefox. Long loading time",
         "allRegions":"All regions"
-
-
     },
     "country":
     {

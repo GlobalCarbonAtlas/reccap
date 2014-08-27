@@ -126,7 +126,7 @@ var RCInterface = Class.create( {
             placement: "left",
             container:'body'} );
 
-        $( "#regionSelect .toolButton, #exportData .exportButton, #exportSynthesis .exportButton, #synthesis" ).tooltip( { //#dataPNGExport
+        $( ".toolButton, #exportData .exportButton, #exportSynthesis .exportButton" ).tooltip( { //#dataPNGExport/
             placement: "right",
             container:'body'} );
     },

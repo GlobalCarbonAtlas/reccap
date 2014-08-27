@@ -5,9 +5,11 @@
 /*[class*="col"] { background: #EEF; }*/
 /*[class*="col"] [class*="col"] { background: #FEE; }*/
 
+/* Graph : "Futura", sans-serif; */
+/* Other : "Lato", Arial; */
+
 body {
-    font-family: "Lato", Arial;
-    font-size: 13px;
+    font: 13px "Lato", Arial;
 }
 
 #sourceWrapper #pageWrapper {
@@ -20,13 +22,16 @@ body {
     float: left;
 }
 
+#sourceWrapper .titleDiv {
+    margin: 15px 0 0 220px;
+}
+
 #sourceWrapper .title {
     color: #2C3537;
     font-size: 36px;
     text-shadow: 2px 2px 2px #CCCCCC;
-    margin: -87px auto 0;
-    width: 900px;
-    padding-left: 55px;
+    margin: auto;
+    width: 900px; /*padding-left: 55px;*/
 }
 
 #sourceWrapper .bigTitle {
@@ -84,23 +89,20 @@ h3 {
     -moz-border-radius: 10px;
     border-radius: 10px;
     text-align: center;
-    margin: 16px 0 40px;
+    margin: 10px 0 20px;
     float: left;
-    width: 134px;
+    width: 195px;
+    font: 11px "Lato", Arial;
+    color: #333333;
 }
-
-/*.rightTools {*/
-/*float: right;*/
-/*width: 94px;*/
-/*margin: 12px 0;*/
-/*border: 2px solid #2C3537 !important;*/
-/*-webkit-border-radius: 10px;*/
-/*-moz-border-radius: 10px;*/
-/*border-radius: 10px;*/
-/*}*/
 
 .leftTools img {
     cursor: pointer;
+}
+
+.leftTools button {
+    width: 37px;
+    margin: 0 7px 1px 0;
 }
 
 .toolButton {
@@ -123,7 +125,7 @@ h3 {
 }
 
 #reset {
-    margin: 3px 11px 0 3px;
+    margin-top: 3px;
 }
 
 #regionActive {
@@ -160,7 +162,7 @@ h3 {
 }
 
 #export {
-    margin: 4px 2px 0 -7px;
+    margin-top: 4px;
 }
 
 .exportMainButton {
@@ -178,9 +180,12 @@ h3 {
 }
 
 #help {
-    margin: 1px 0 2px 0;
+    margin-top: 1px;
 }
 
+.helpButton {
+    margin-top: 6px;
+}
 /* ************** DC Object ************** */
 .dc-chart .selected path {
     fill-opacity: 1;
@@ -539,7 +544,7 @@ g.no_data_for_this_region path {
 
 #imageFluxForSynthesisTitle {
     text-align: center;
-    font: 18px "Futura", sans-serif;
+    font: 18px "Lato", Arial;
     color: #525252;
     font-weight: bold;
     z-index: 10;
@@ -628,12 +633,17 @@ g.no_data_for_this_region path {
     float: none !important;
 }
 
+#exportDiv .titleDiv {
+    margin-left: 0;
+    width: 100% !important;
+}
+
 #exportDiv .title {
-    margin: 2px auto;
+    margin: 13px auto -10px;
 }
 
 #exportDiv #containerCharts {
-    margin-top: 50px;
+    margin-top: -20px;
 }
 
 #exportDiv #dynamicAreasForImageFlux .dynamicArea {

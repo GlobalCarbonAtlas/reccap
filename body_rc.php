@@ -5,28 +5,49 @@
         <div id="containerTools" class="container-fluid">
             <div class="leftTools">
                 <div class="btn-group">
-                    <button id="reset" type="button" class="btn-default leftToolsButton labelI18n" data-i18n="[title]tooltip.resetAll"><img src="img/reset.png" width="28px"/>
+                    <button id="reset" type="button" class="btn-default leftToolsButton labelI18n" data-i18n="[title]tooltip.resetAll">
+                        <img src="img/reset.png" width="27px"/>
+
+                        <div class="labelI18n" data-i18n="button.resetAll"></div>
                     </button>
-                    <button id="export" type="button" class="btn btn-default leftToolsButton labelI18n" data-toggle="dropdown" data-i18n="[title]tooltip.export"><img
-                            src="img/export_small.png"/></button>
+                    <button id="export" type="button" class="btn-default leftToolsButton labelI18n" data-toggle="dropdown" data-i18n="[title]tooltip.export">
+                        <img src="img/export_small.png"/>
+
+                        <div class="labelI18n" data-i18n="button.export"></div>
+                    </button>
                     <ul class="dropdown-menu leftToolsMenu">
                         <li><a href="#" onClick="javascript:exportAll('exportDiv', 'png');">&nbsp;&nbsp;<img src='js/htmltable_export/icons/png.png' width='24px'> PNG</a></li>
                         <li><a href="#" onClick="javascript:exportAll('exportDiv', 'jpg');">&nbsp;<img src='js/htmltable_export/icons/jpg.png' width='24px'> JPG</a></li>
                         <li><a href="#" onClick="javascript:exportAll('exportDiv', 'gif');"><img src='js/htmltable_export/icons/gif.png' width='24px'> GIF</a></li>
                     </ul>
-                    <button id="help" type="button" class="btn btn-default leftToolsButton labelI18n" data-i18n="[title]tooltip.help"><img src="img/help.png" width="30px"/>
+                    <button id="help" type="button" class="btn-default leftToolsButton labelI18n" data-i18n="[title]tooltip.help">
+                        <img src="img/help.png" width="27px"/>
+                        <div class="labelI18n helpButton" data-i18n="button.help"></div>
                     </button>
-                    <div id="data" class="toolButton labelI18n" data-i18n="[title]tooltip.data"><img src="img/Data.png" width="30px"/></div>
+                    <button id="data" type="button" class="btn-default leftToolsButton labelI18n" data-i18n="[title]tooltip.data">
+                        <img src="img/Data.png" width="27px"/>
+
+                        <div class="labelI18n" data-i18n="button.data"></div>
+                    </button>
                 </div>
             </div>
+
+            <div class="titleDiv">
+                <div class="title">
+                    <span class="bigTitle">RE</span>gional <span class="bigTitle">C</span>arbon <span class="bigTitle">C</span>ycle <span class="bigTitle">A</span>ssessment
+                    and <span
+                        class="bigTitle">P</span>rocesses
+                </div>
+            </div>
+
         </div>
 
-        <div class="container-fluid">
-            <div class="title">
-                <span class="bigTitle">RE</span>gional <span class="bigTitle">C</span>arbon <span class="bigTitle">C</span>ycle <span class="bigTitle">A</span>ssessment and <span
-                    class="bigTitle">P</span>rocesses
-            </div>
-        </div>
+        <!--        <div class="container-fluid">-->
+        <!--            <div class="title">-->
+        <!--                <span class="bigTitle">RE</span>gional <span class="bigTitle">C</span>arbon <span class="bigTitle">C</span>ycle <span class="bigTitle">A</span>ssessment and <span-->
+        <!--                    class="bigTitle">P</span>rocesses-->
+        <!--            </div>-->
+        <!--        </div>-->
 
 
         <div id="containerCharts" class="container-fluid">

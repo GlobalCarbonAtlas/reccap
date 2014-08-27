@@ -79,12 +79,12 @@ var RCInterface = Class.create( {
         $( "#mapChartAndComment" ).css( "margin-left", this.marginLeftForFluxImageAndMap );
         $( ".imageFluxCell" ).css( "margin-left", this.marginLeftForFluxImageAndMap );
         $( "#dynamicAreasForImageFlux" ).css( "top", -this.imageHeight );
+//        $( "#uncertaintyDiv" ).css( "margin-left", this.barChartWidth - $( "#uncertaintyDiv img" ).width() + parseInt( $( "#fluxBarChartForSeparatedFlux" ).css( "margin-left" ).replace( "px", "" ) ) );
+        $( "#uncertaintyDiv" ).css( "margin-left", $( "#fluxBarChartForMainFlux" ).width() - $( "#uncertaintyDiv img" ).width()/2 );
 
         // Position of "regionSelect" div
         $( "#regionSelect" ).css( "margin-left", $( "#globeActive" ).width() );
         $( "#regionSelect" ).css( "margin-top", this.mapImageHeight / 2 );
-
-        $( "#uncertaintyDiv" ).css( "margin-left", this.barChartWidth - $( "#uncertaintyDiv img" ).width() + parseInt( $( "#fluxBarChartForSeparatedFlux" ).css( "margin-left" ).replace( "px", "" ) ) );
     },
 
     initToolTips: function()
@@ -1111,7 +1111,7 @@ function exportAll( exportDivId, fileType )
 
 function callbackForExportAllBeforeCanvg( exportDivId )
 {
-    $( "#" + exportDivId + " #containerTools, #" + exportDivId + " .comment, #" + exportDivId + " #regionSelect, #" + exportDivId + " #resetFlux" ).remove();
+    $( "#" + exportDivId + " .leftTools, #" + exportDivId + " .comment, #" + exportDivId + " #regionSelect, #" + exportDivId + " #resetFlux" ).remove();
     $( "#" + exportDivId + " #resetMap, #" + exportDivId + " #uncertaintyDiv, #" + exportDivId + " #synthesis" ).remove();
     $( "#" + exportDivId + " #hiddenDiv, #" + exportDivId + " #dataDiv, #" + exportDivId + " .synthesisDiv" ).remove();
 

@@ -19,7 +19,11 @@
     },
     "button" :
     {
-        "reset": "reset"
+        "reset": "reset",
+        "export": "export images",
+        "resetAll": "reset all",
+        "data": "get all data",
+        "help": "help"
     },
     "tooltip":
     {

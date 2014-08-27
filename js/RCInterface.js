@@ -80,7 +80,7 @@ var RCInterface = Class.create( {
         $( ".imageFluxCell" ).css( "margin-left", this.marginLeftForFluxImageAndMap );
         $( "#dynamicAreasForImageFlux" ).css( "top", -this.imageHeight );
 //        $( "#uncertaintyDiv" ).css( "margin-left", this.barChartWidth - $( "#uncertaintyDiv img" ).width() + parseInt( $( "#fluxBarChartForSeparatedFlux" ).css( "margin-left" ).replace( "px", "" ) ) );
-        $( "#uncertaintyDiv" ).css( "margin-left", $( "#fluxBarChartForMainFlux" ).width() - $( "#uncertaintyDiv img" ).width()/2 );
+        $( "#uncertaintyDiv" ).css( "margin-left", $( "#fluxBarChartForMainFlux" ).width() - $( "#uncertaintyDiv img" ).width() / 2 );
 
         // Position of "regionSelect" div
         $( "#regionSelect" ).css( "margin-left", $( "#globeActive" ).width() );
@@ -228,7 +228,6 @@ var RCInterface = Class.create( {
 
             // Home with selected flux
             $( "#" + jQuery.i18n.prop( "selectedFluxForHomePage" ) ).click();
-//            this.createHelp();
         }, this ) );
     },
 
@@ -637,6 +636,10 @@ var RCInterface = Class.create( {
                 } );
 
         legendsEnter.append( "rect" )
+                .attr( "id", function( d, i )
+        {
+            return "regionBarChartSvg_legendRect_" + i;
+        } )
                 .attr( "x", this.barChartWidth - 18 )
                 .attr( "width", 18 )
                 .attr( "height", 18 );
@@ -866,8 +869,7 @@ var RCInterface = Class.create( {
         // Help button
         $( "#help" ).on( "click", jQuery.proxy( function()
         {
-            alert( "Work in progress" );
-//            this.createHelp();
+            this.createHelp();
         }, this ) );
 
         // Reset filters
@@ -996,46 +998,41 @@ var RCInterface = Class.create( {
     /* ******************************************************* */
     createHelp: function()
     {
+        $.each( d3.selectAll( "#fluxBarChartForMainFlux rect" )[0], function( i, d )
+        {
+            $( d ).attr( "id", "fluxBarChartForMainFlux_rect_" + i );
+        } );
+
         var parameters = new Object();
 
+        var barRectHeight = $( "#fluxBarChartForMainFlux_rect_0" )[0].attributes.height ? parseInt( $( "#fluxBarChartForMainFlux_rect_0" )[0].attributes.height.value ) : 0;
+        var barRectWidth = $( "#fluxBarChartForMainFlux_rect_0" )[0].attributes.width ? parseInt( $( "#fluxBarChartForMainFlux_rect_0" )[0].attributes.width.value ) : 0;
+
         parameters.helpArray = [
-            {linkType:"simple", divToHelpId:"export", text:i18n.t( "help.export" ), marginTop:8, marginLeft:10, textLengthByLine: 70},
-            {linkType:"right", divToHelpId:"reset", text:i18n.t( "help.reset" ), marginTop:31, marginLeft:20, stage: 1},
-
-
-            {linkType:"simpleLeft", divToHelpId:"data", text:"Remove all lines", marginTop:10, marginLeft: 33},
-            {linkType:"left", divToHelpId:"synthesis", text:"Remove all lines", marginTop:38, marginLeft: 26, stage:1},
-
-
-            {linkType:"simple", divToHelpId:"globeActive", text:"Remove all lines", marginTop:10, marginLeft: 12},
-            {linkType:"right", divToHelpId:"resetMap", text:"Remove all lines", marginTop:0, marginLeft: 0, stage:1},
-            {linkType:"simple", divToHelpId:"uncertaintyDisable", text:"Remove all lines", marginTop:0, marginLeft: 0, stage:1},
+            {linkType:"right", divToHelpId:"reset", text:i18n.t( "help.reset" ), marginTop:31, marginLeft:15, stage: 3},
+            {linkType:"right", divToHelpId:"export", text:i18n.t( "help.export" ), marginTop:31, marginLeft:12, textLengthByLine: 70, stage: 1},
+            {linkType:"simple", divToHelpId:"data", text:i18n.t( "help.data" ), marginTop:15, marginLeft: -10},
             {linkType:"middle", divToHelpId:"mapChart", text:i18n.t( "label.clickRegion" ), marginTop:$( "#mapChart" ).height() / 2, marginLeft: $( "#mapChart" ).width() / 2},
+            {linkType:"right", divToHelpId:"resetMap", text:i18n.t( "help.resetMap" ), marginTop:14, marginLeft: 8, stage:1},
+            {linkType:"simple", divToHelpId:"synthesis", text:i18n.t( "help.synthesis" ), marginTop:10, marginLeft: -10, textLengthByLine: 45, stage:1},
+            {linkType:"simpleLeft", divToHelpId:"resetFlux", text:i18n.t( "help.resetFlux" ), marginTop:4, marginLeft: 28, stage:1},
+            {linkType:"middle", divToHelpId:"LUC", text:i18n.t( "label.clickFlux" ), marginTop:25, marginLeft: 30},
 
-
-//            {linkType:"simple", divToHelpId:"submitAddToGraph", text:"Display the data corresponded to the selected fields in the graph", textLengthByLine:35, marginTop:11, marginLeft:20},
-//            {linkType:"simple", divToHelpId:"regionSelect", text:"Select a region in the given list. A map helps you by showing the differents regions", textLengthByLine:35, marginTop:8, marginLeft:-40},
-//            {linkType:"simple", divToHelpId:"periodSelect", text:"Choose your period", textLengthByLine:35, marginTop:8, marginLeft:-40},
-//            {linkType:"simple", divToHelpId:"resourceSelect", text:"Select one or several resources in the given list", textLengthByLine:30, marginTop:10, marginLeft:-40},
-//            {linkType:"simple", divToHelpId:"variableSelect", text:"Union of the variables available for each selected resources", textLengthByLine:65, marginTop:6, marginLeft:-60},
-//
-//            {linkType:"left", divToHelpId:"WPlineIcon", text:"Remove all lines", marginTop:36, marginLeft: 20, stage:9},
-//            {linkType:"left", divToHelpId:"WPexportIcon", text:"Export your graph",  linkedHelp: ["WPExport"], marginTop:36, marginLeft: 20, stage:8},
-//            {linkType:"left", divToHelpId:"WPpointIcon", text:"Hide or display data points. Move your mouse over a point to get data value", textLengthByLine:40, marginTop:36, marginLeft: 20, stage:7},
-//            {linkType:"left", divToHelpId:"WPXaxisImage", text:"Block the pan and zoom on the X axis", marginTop:36, marginLeft: 20, stage:6},
-//            {linkType:"left", divToHelpId:"WPYaxisImage", text:"Block the pan and zoom on the Y axis", marginTop:36, marginLeft: 20, stage:5},
-//            {linkType:"left", divToHelpId:"WPaxisIcon", text:"Change your bounds", linkedHelp: ["WPaxis"], marginTop:36, marginLeft: 20, stage:4},
-//            {linkType:"left", divToHelpId:"WPinterpolationIcon", text:"Change your graph interpolation", linkedHelp: ["WPinterpolationTree"], marginTop:36, marginLeft: 20, stage:3},
-//            {linkType:"left", divToHelpId:"WPzoomIcon", text:"Initialize your graph with the best zoom and pan you can get", textLengthByLine:30, marginTop:36, marginLeft: 20, stage:1},
-//
-//            {linkType:"right", divToHelpId:"WPLegendImage" + lastIdForLegend, text:"You can remove a line by clicking on this icon", marginTop:25, marginLeft:5, stage:1},
-//            {linkType:"right", divToHelpId:"WPLegendCircle" + lastIdForLegend, text:"You can change the color of a line by clicking on this icon or directly on the line in the graph. Then use the color picker", linkedHelp: ["WPcolor"], textLengthByLine:72, marginTop:19, stage:3},
-//
-//            {linkType:"middle", divToHelpId:"WPcolor", text:"You can change the color of a line by clicking on the circle to select a new color palette. Then use the square to pick a specific gradation", textLengthByLine:25, marginTop:$( "#WPcolor" ).height() - 15, marginLeft:$( "#WPcolor" ).width() / 2, stage:1},
-//            {linkType:"right", divToHelpId:"WPinterpolationTree", text:"Select a new interpolation. It will automatically update your graph", textLengthByLine:36, marginTop:$( "#WPinterpolationTree" ).height() - 15, marginLeft:$( "#WPinterpolationTree" ).width() / 2, stage:2},
-//            {linkType:"simple", divToHelpId:"WPaxis", text:"Put the axis bounds you want. This will block zoom and pan at the same time. You can undo these blocks by clicking on the related icons", linkedHelp: ["WPYaxisImage", "WPXaxisImage"], textLengthByLine:38, marginTop:$( "#WPaxis" ).height() / 2 - 50},
-//            {linkType:"simple", divToHelpId:"WPExport", text:"Choose svg or png to export your graph in a new tab", textLengthByLine:20, marginTop:$( "#WPExport" ).height() / 2}
+            {linkType:"simple", divToHelpId:"fluxBarChartForMainFlux_rect_0", text:i18n.t( "help.clickBar" ), marginTop:barRectHeight / 2, marginLeft:5 + barRectWidth / 2},
+            {linkType:"left", divToHelpId:"regionBarChartSvg_legendRect_0", text:i18n.t( "help.clickLegend" ), marginTop:5, marginLeft: 14, stage:1}
         ];
+
+        if( "none" != $( "#globeActive" ).css( "display" ) )
+            parameters.helpArray.push( {linkType:"right", divToHelpId:"globeActive", text:i18n.t( "help.regionSelect" ), marginTop:14, marginLeft: 12, stage:2} );
+        else if( "none" != $( "#regionUnActive" ).css( "display" ) )
+            parameters.helpArray.push( {linkType:"right", divToHelpId:"regionUnActive", text:i18n.t( "help.regionSelect" ), marginTop:14, marginLeft: 12, stage:2} );
+        else
+            parameters.helpArray.push( {linkType:"right", divToHelpId:"regionActive", text:i18n.t( "help.regionSelect" ), marginTop:14, marginLeft: 12, stage:2} );
+
+        if( "none" != $( "#uncertaintyDisable" ).css( "display" ) )
+            parameters.helpArray.push( {linkType:"simple", divToHelpId:"uncertaintyDisable", text:i18n.t( "help.uncertainty" ), marginTop:7, marginLeft: -6} );
+        else
+            parameters.helpArray.push( {linkType:"simple", divToHelpId:"uncertainty", text:i18n.t( "help.uncertainty" ), marginTop:7, marginLeft: -6} );
 
         parameters.parentContainerId = "#pageWrapper";
         //parameters.globalMarginTop = -110;

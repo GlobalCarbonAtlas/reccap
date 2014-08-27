@@ -60,11 +60,14 @@
     "help":
     {
         "reset":"Init all the selected fields",
-        "export":"Choose png, jpg or gif to export the all graphs (map, barcharts and image) in a new tab. Please check the popup are allowed by your browser.",
-        "data":"",
-        "synthesis":"",
-        "globeActive":"",
-        "resetMap":""
-
+        "export":"Choose png, jpg or gif to export the all graphs (map, barcharts and image) in a new tab. Please check the popup are allowed by your browser",
+        "data":"Display all data. You can export in this page",
+        "regionSelect":"Choose if you want to select one, multiple or all regions",
+        "resetMap":"Init the regions selection",
+        "synthesis":"Display a synthesis with selected regions. You can export in this page",
+        "resetFlux":"Init the fluxes selection",
+        "uncertainty":"Display or hide uncertainty",
+        "clickBar":"Click on a flux bar to show it values accross all regions",
+        "clickLegend": "Click on a legend to remove flux"
     }
 }

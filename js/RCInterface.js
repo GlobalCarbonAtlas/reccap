@@ -1120,6 +1120,7 @@ function exportAll( exportDivId, fileType )
 function callbackForExportAllBeforeCanvg( exportDivId )
 {
     $( "#" + exportDivId + " #containerTools, #" + exportDivId + " .comment, #" + exportDivId + " #regionSelect, #" + exportDivId + " #resetFlux" ).remove();
+    $( "#" + exportDivId + " #resetMap, #" + exportDivId + " #uncertaintyDiv, #" + exportDivId + " #synthesis" ).remove();
     $( "#" + exportDivId + " #hiddenDiv, #" + exportDivId + " #dataDiv, #" + exportDivId + " .synthesisDiv" ).remove();
 
     // Add GCA logo

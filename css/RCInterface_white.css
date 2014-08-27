@@ -70,11 +70,11 @@ h3 {
 }
 
 /*.basicCell, .bottomBasicCell {*/
-    /*border: 1px solid red;*/
+/*border: 1px solid red;*/
 /*}*/
 
 /*#mapChart, #regionBarChart, #fluxBarChartForMainFlux, #fluxBarChartForSeparatedFlux, #mapster_wrap_0 {*/
-    /*border: 1px solid blue;*/
+/*border: 1px solid blue;*/
 /*}*/
 
 /* ************** TOOLS ************** */
@@ -290,12 +290,12 @@ h3 {
 }
 
 .mapChartComment {
-    /*margin-left: 14px;*/
+/*margin-left: 14px;*/
     float: left;
 }
 
 #resetMap {
-    /*margin: 54px 0 0 4px;*/
+/*margin: 54px 0 0 4px;*/
     color: #0088CC;
     text-decoration: none;
     cursor: pointer;
@@ -531,18 +531,20 @@ g.no_data_for_this_region path {
     background-color: #FFFFFF;
     height: 483px;
     width: 911px;
-    padding: 8px 0 10px 9px;
+    padding: 20px 0 10px 9px;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
 }
 
 #imageFluxForSynthesisTitle {
-    text-align: right;
-    margin-right: 18px;
-    font: 12px "Futura", sans-serif;
+    text-align: center;
+    font: 18px "Futura", sans-serif;
     color: #525252;
     font-weight: bold;
+    z-index: 10;
+    position: absolute;
+    width: 891px;
 }
 
 #dynamicAreasForImageFluxForSynthesis {

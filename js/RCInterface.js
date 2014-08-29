@@ -34,9 +34,7 @@ var RCInterface = Class.create( {
         this.initMapWidth = 600;
         this.initMapScale = 95;
         this.barCharMargin = {top: 10, right: 0, bottom: 75, left: 35};
-        var colors = d3.scale.category20c().range();
-        colors[2] = "#555555";
-        this.color = d3.scale.ordinal().range( colors );
+        this.color = d3.scale.ordinal().range( JSON.parse( jQuery.i18n.prop( "fluxColors" ) ) );
         this.selectMultipleRegion = false;
         this.displayUncertainty = false;
 

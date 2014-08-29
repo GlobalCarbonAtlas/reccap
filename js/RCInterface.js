@@ -118,7 +118,7 @@ var RCInterface = Class.create( {
         }, this ) );
 
         // Tooltips for menu
-        $( ".leftTools .leftToolsButton, #fluxBarChartTitle" ).tooltip( {
+        $( ".leftTools div, #fluxBarChartTitle" ).tooltip( {
             placement: "bottom",
             container:'body'} );
 

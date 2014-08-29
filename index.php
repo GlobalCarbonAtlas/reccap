@@ -30,7 +30,7 @@
     <script type="text/javascript" src="js/dc.js-master/web/js/crossfilter.js"></script>
     <script type="text/javascript" src="js/dc.js-master/web/js/dc.js"></script>
     <!-- Tooltips -->
-    <script type="text/javascript" src="js/library/d3.tip.min.js"></script>
+    <script type="text/javascript" src="js/library/d3.tip.js"></script>
 
     <!--    ???-->
     <script type="text/javascript" src="js/library/topojson.v1.min.js"></script>

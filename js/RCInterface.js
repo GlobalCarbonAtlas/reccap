@@ -92,7 +92,7 @@ var RCInterface = Class.create( {
         // Tooltips for charts
         this.toolTip = d3.tip()
                 .attr( 'class', 'd3-tip' )
-                .offset( [-10, 0] )
+                .offset( {"Russia": [0, this.imageWidth / 4], "*":[-10,0]} )
                 .html( jQuery.proxy( function ( d )
         {
             if( d.properties )

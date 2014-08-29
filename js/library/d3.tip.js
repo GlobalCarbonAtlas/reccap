@@ -29,7 +29,7 @@ d3.tip = function()
     tip.show = function()
     {
         var content = html.apply( this, arguments ),
-                poffset = offset.apply( this, arguments ),
+                poffset = getOffset( arguments ),
                 dir = direction.apply( this, arguments ),
                 nodel = d3.select( node ), i = 0,
                 coords
@@ -143,7 +143,20 @@ d3.tip = function()
 
     function d3_tip_offset()
     {
-        return [0, 0]
+        return {"*":[0, 0]}
+    }
+
+    /* CHANGE VMIPSL */
+    // Private
+    // Returns the offset corresponding to the properties.name if exist
+    // the result of "*" otherwise
+    function getOffset( arguments )
+    {
+        var allOffSet = offset.apply( this, arguments );
+        var country = arguments[0].properties ? arguments[0].properties.name : false;
+        if( country && allOffSet[country] )
+            return allOffSet[country];
+        else return allOffSet["*"] ? allOffSet["*"] : allOffSet;
     }
 
     function d3_tip_html()

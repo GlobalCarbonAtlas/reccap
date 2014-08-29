@@ -970,7 +970,11 @@ var RCInterface = Class.create( {
         {
             return key;
         } );
-        this.regionsKeys.sort();
+        // Put Globe region in head
+        this.regionsKeys.sort().reverse();
+        this.regionsKeys.splice( $.inArray( this.globeRegion, this.regionsKeys ), 1 );
+        this.regionsKeys.push( this.globeRegion );
+        this.regionsKeys.reverse();
 
         this.transposedData = new Array();
         $.each( this.regionsKeys, jQuery.proxy( function( i, key )

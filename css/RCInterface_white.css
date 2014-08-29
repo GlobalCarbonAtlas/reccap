@@ -142,6 +142,15 @@ body {
     margin-top: 10px;
 }
 
+#regionSelectComment {
+    color: #333333;
+    font: 11px "Lato", Arial;
+    margin: 47px 0 0 -4px;
+    position: absolute;
+    text-align: center;
+    width: 43px;
+}
+
 #uncertainty, #uncertaintyDisable {
     position: absolute;
     bottom: 20px;

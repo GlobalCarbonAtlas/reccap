@@ -23,7 +23,8 @@
         "export": "export images",
         "resetAll": "reset all",
         "data": "get data",
-        "help": "help"
+        "help": "help",
+        "region": "regions selection"
     },
     "tooltip":
     {

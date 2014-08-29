@@ -51,6 +51,7 @@
                             <div id="regionUnActive" class="toolButton labelI18n" data-i18n="[title]tooltip.regionOne"><img src="img/Globe_Disconnected.png" width="35px"/></div>
                             <div id="regionActive" class="toolButton labelI18n" data-i18n="[title]tooltip.regionMultiple"><img src="img/Globe_RegionConnected.png" width="35px"/>
                             </div>
+                            <div id="regionSelectComment" class="labelI18n" data-i18n="button.region"></div>
                         </div>
 
                         <div class="comment labelI18n" data-i18n="label.clickRegion"></div>

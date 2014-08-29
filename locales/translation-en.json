@@ -22,7 +22,7 @@
         "reset": "reset",
         "export": "export images",
         "resetAll": "reset all",
-        "data": "get all data",
+        "data": "get data",
         "help": "help"
     },
     "tooltip":
@@ -31,7 +31,7 @@
         "export":"Export. Please check the popup are allowed by your browser",
         "exportData":"Export data",
         "help":"Help",
-        "data":"Get all data",
+        "data":"Get selected data",
         "synthesis":"Display synthesis",
         "regionOne":"See only one region",
         "regionMultiple":"See multiple regions",

@@ -802,6 +802,10 @@ var RCInterface = Class.create( {
                         this.initDimensionsForCharts( $( imageId ).height() );
                         $( "#synthesis" ).css( "margin-top", -$( "#synthesis" ).height() * 3 / 2 );
                         $( "#synthesis" ).css( "margin-right", -$( "#synthesis" ).width() );
+
+                        $( "#dynamicAreasForImageFlux .dynamicArea" ).tooltip( {
+                            placement: "bottom",
+                            container:'body'} );
                         this.initFileValuesAndCreateDCObjects();
                     }
                 }, this ),
@@ -814,7 +818,7 @@ var RCInterface = Class.create( {
         $.each( $( mapId + " area" ), jQuery.proxy( function( i, element )
         {
             var coords = element.coords.split( ',' );
-            var div = $( '<div id="' + element.alt + '" name="' + element.alt + '" class="dynamicArea"></div>' );
+            var div = $( '<div id="' + element.alt + '" name="' + element.alt + '" class="dynamicArea" title="'+i18n.t( "tooltip.flux")+'"></div>' );
             if( null != element.getAttribute( "isRed" ) )
                 div.addClass( "redSynthesisText" );
             div.css( "top", coords[1] );

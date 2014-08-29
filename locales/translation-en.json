@@ -41,7 +41,8 @@
         "uncertaintyDisplay":"Display uncertainty",
         "resetFlux":"Reset flux's filters",
         "exportDataPNG":"Only for Firefox. Long loading time",
-        "allRegions":"All regions"
+        "allRegions":"All regions",
+        "flux": "Click on this flux to display this flux below"
     },
     "country":
     {

@@ -537,7 +537,7 @@ var RCInterface = Class.create( {
         this.regionBarChartyAxis = d3.svg.axis()
                 .scale( this.regionBarCharty )
                 .orient( "left" )
-                .tickFormat( d3.format( ".1s" ) )
+                .tickFormat( d3.format( ".2s" ) )
                 .tickSize( -this.barChartWidth, 0 );
 
         $( containerId ).addClass( "dc-chart" );

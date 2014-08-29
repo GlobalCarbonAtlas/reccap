@@ -93,7 +93,12 @@
                     </map>
 
                     <div id="dynamicAreasForImageFlux"></div>
-                    <div id="synthesis" class="toolButton labelI18n" data-i18n="[title]tooltip.synthesis"><img src="img/FluxEmptyWB_small.png" width="30px"/></div>
+                    <div id="synthesis" class="toolButton labelI18n" data-i18n="[title]tooltip.synthesis">
+                        <img src="img/FluxEmptyWB_small.png" width="30px"/>
+
+                        <div id="synthesisComment" class="labelI18n" data-i18n="button.synthesis"></div>
+                    </div>
+
                     <div class="comment labelI18n" data-i18n="label.clickFlux"></div>
                     <div id="resetFlux" class="labelI18n" data-i18n="[title]tooltip.resetFlux;button.reset"></div>
                 </div>

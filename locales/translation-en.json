@@ -24,7 +24,8 @@
         "resetAll": "reset all",
         "data": "get data",
         "help": "help",
-        "region": "regions selection"
+        "region": "regions selection",
+        "synthesis": "display image for the region selected on the left"
     },
     "tooltip":
     {

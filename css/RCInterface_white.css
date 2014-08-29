@@ -173,10 +173,19 @@ body {
 }
 
 #synthesis img {
-    margin: 1px 4px 0 0;
+    margin: 1px 4px 0 22px;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
+}
+
+#synthesisComment {
+    color: #333333;
+    font: 11px "Lato", Arial;
+    margin: 3px 0 0 -32px;
+    position: absolute;
+    text-align: center;
+    width: 135px;
 }
 
 /* ************** Texts ************** */

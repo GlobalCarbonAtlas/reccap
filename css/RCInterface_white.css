@@ -340,11 +340,11 @@ g.no_data_for_this_region path {
     -moz-border-radius: 6px;
     border-radius: 6px;
     margin-left: 0;
-    border: 1px dashed #DDDDDD;
+    border: 2px dashed #DDDDDD;
 }
 
 #dynamicAreasForImageFlux .dynamicArea.selected {
-    border: 1px double #DDDDDD;
+    border: 2px double #DDDDDD;
 }
 
 #dynamicAreasForImageFlux #SCE.selected {

@@ -25,7 +25,9 @@
         "data": "get data",
         "help": "help",
         "region": "regions selection",
-        "synthesis": "display image for the region selected on the left"
+        "synthesis": "display image for the region selected on the left",
+        "uncertaintyHide":"hide uncertainty",
+        "uncertaintyDisplay":"plot uncertainty"
     },
     "tooltip":
     {
@@ -39,8 +41,7 @@
         "regionMultiple":"See multiple regions",
         "regionAll":"See all regions",
         "resetMap":"Reset map's filters",
-        "uncertaintyHide":"Hide uncertainty",
-        "uncertaintyDisplay":"Display uncertainty",
+        "uncertainty":"Display or hide uncertainty on both charts",
         "resetFlux":"Reset flux's filters",
         "exportDataPNG":"Only for Firefox. Long loading time",
         "allRegions":"All regions",

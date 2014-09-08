@@ -77,8 +77,6 @@ var RCInterface = Class.create( {
         $( "#mapChartAndComment" ).css( "margin-left", this.marginLeftForFluxImageAndMap );
         $( ".imageFluxCell" ).css( "margin-left", this.marginLeftForFluxImageAndMap );
         $( "#dynamicAreasForImageFlux" ).css( "top", -this.imageHeight );
-//        $( "#uncertaintyDiv" ).css( "margin-left", this.barChartWidth - $( "#uncertaintyDiv img" ).width() + parseInt( $( "#fluxBarChartForSeparatedFlux" ).css( "margin-left" ).replace( "px", "" ) ) );
-        $( "#uncertaintyDiv" ).css( "margin-left", $( "#fluxBarChartForMainFlux" ).width() - $( "#uncertaintyDiv img" ).width() / 2 );
 
         // Position of "regionSelect" div
         $( "#regionSelect" ).css( "margin-left", $( "#globeActive" ).width() );
@@ -875,6 +873,21 @@ var RCInterface = Class.create( {
             this.createHelp();
         }, this ) );
 
+        $( "#uncertaintyDiv" ).on( "click", jQuery.proxy( function()
+        {
+            this.displayUncertainty = !this.displayUncertainty;
+            if( !this.displayUncertainty )
+            {
+                $( "#uncertaintyText" ).html( i18n.t( "button.uncertaintyDisplay" ) );
+                $( "#fluxBarChart" ).removeClass( "uncertainty" );
+            }
+            else
+            {
+                $( "#uncertaintyText" ).html( i18n.t( "button.uncertaintyHide" ) );
+                $( "#fluxBarChart" ).addClass( "uncertainty" );
+            }
+        }, this ) );
+
         // Reset filters
         $( "#resetMap" ).on( "click", jQuery.proxy( function()
         {
@@ -936,22 +949,6 @@ var RCInterface = Class.create( {
             $( "#hiddenDiv" ).fadeToggle();
             $( "#hiddenDiv" ).height( $( "#pageWrapper .container-fluid" ).height() );
         } );
-
-        $( "#uncertainty" ).on( "click", jQuery.proxy( function()
-        {
-            this.displayUncertainty = false;
-            $( "#uncertaintyDisable" ).fadeToggle();
-            $( "#uncertainty" ).fadeToggle();
-            $( "#fluxBarChart" ).removeClass( "uncertainty" );
-        }, this ) );
-
-        $( "#uncertaintyDisable" ).on( "click", jQuery.proxy( function()
-        {
-            this.displayUncertainty = true;
-            $( "#uncertaintyDisable" ).fadeToggle();
-            $( "#uncertainty" ).fadeToggle();
-            $( "#fluxBarChart" ).addClass( "uncertainty" );
-        }, this ) );
     },
 
     transposeDataFromFile: function( csv )
@@ -1116,7 +1113,7 @@ function exportAll( exportDivId, fileType )
 function callbackForExportAllBeforeCanvg( exportDivId )
 {
     $( "#" + exportDivId + " .leftTools, #" + exportDivId + " .comment, #" + exportDivId + " #regionSelect, #" + exportDivId + " #resetFlux" ).remove();
-    $( "#" + exportDivId + " #resetMap, #" + exportDivId + " #uncertaintyDiv, #" + exportDivId + " #synthesis" ).remove();
+    $( "#" + exportDivId + " #resetMap, #" + exportDivId + " #synthesis" ).remove();
     $( "#" + exportDivId + " #hiddenDiv, #" + exportDivId + " #dataDiv, #" + exportDivId + " .synthesisDiv" ).remove();
 
     // Add GCA logo

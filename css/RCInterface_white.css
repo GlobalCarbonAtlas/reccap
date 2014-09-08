@@ -125,7 +125,7 @@ body {
     width: 55px;
 }
 
-#uncertaintyText{
+#uncertaintyText {
     text-align: center;
     width: 55px;
 }
@@ -238,6 +238,10 @@ body {
 
 .grid-line.horizontal line.zero {
     stroke: #2C3537;
+}
+
+.grid-line.horizontal line {
+    opacity: 1;
 }
 
 /* ************** FUNCTION BARCHART ************** */

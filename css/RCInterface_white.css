@@ -229,7 +229,7 @@ body {
     fill: none;
     shape-rendering: crispedges;
     stroke: #000000;
-    stroke-opacity: 0.1;
+    stroke-opacity: 0.2;
 }
 
 .y.axis line.zero {
@@ -238,10 +238,13 @@ body {
 
 .grid-line.horizontal line.zero {
     stroke: #2C3537;
+    stroke-opacity: 1;
 }
 
 .grid-line.horizontal line {
     opacity: 1;
+    stroke: #000000;
+    stroke-opacity: 0.3;
 }
 
 /* ************** FUNCTION BARCHART ************** */

@@ -369,6 +369,7 @@ var RCInterface = Class.create( {
     /* ************************* FLUX BAR CHART *************************** */
     /* ******************************************************************** */
     /**
+     * dc.js
      * http://blog.rusty.io/2012/09/17/crossfilter-tutorial/
      * "... when you filter on a dimension, and then roll-up using said dimension, Crossfilter intentionally ignores any filter an said dimension....
      * ...The workaround is to create another dimension on the same field, and filter on that.
@@ -483,6 +484,10 @@ var RCInterface = Class.create( {
     /* ******************************************************************** */
     /* ************************ REGION BAR CHART ************************** */
     /* ******************************************************************** */
+    /**
+     * d3.js
+     * http://tenxer.github.io/xcharts/examples/
+     */
     addOrRemoveToRegionBarChart: function( dynamicAreaDiv, fluxName )
     {
         this.displayedVariables = this.displayedVariables ? this.displayedVariables : [];
@@ -1013,11 +1018,12 @@ var RCInterface = Class.create( {
         var barRectWidth = $( "#fluxBarChartForMainFlux_rect_0" )[0].attributes.width ? parseInt( $( "#fluxBarChartForMainFlux_rect_0" )[0].attributes.width.value ) : 0;
 
         parameters.helpArray = [
-            {linkType:"right", divToHelpId:"reset", text:i18n.t( "help.reset" ), marginTop:31, marginLeft:15, stage: 3},
-            {linkType:"right", divToHelpId:"export", text:i18n.t( "help.export" ), marginTop:31, marginLeft:12, textLengthByLine: 70, stage: 1},
-            {linkType:"simple", divToHelpId:"data", text:i18n.t( "help.data" ), marginTop:15, marginLeft: -10},
+            {linkType:"right", divToHelpId:"reset", text:i18n.t( "help.reset" ), marginTop:31, marginLeft:15, stage: 4},
+            {linkType:"right", divToHelpId:"export", text:i18n.t( "help.export" ), marginTop:31, marginLeft:12, textLengthByLine: 70, stage: 2},
+            {linkType:"right", divToHelpId:"data", text:i18n.t( "help.data" ), marginTop:37, marginLeft: 12, stage: 1},
+            {linkType:"simple", divToHelpId:"uncertaintyDiv", text:i18n.t( "help.uncertainty" ), marginTop:7, marginLeft: -6},
             {linkType:"middle", divToHelpId:"mapChart", text:i18n.t( "label.clickRegion" ), marginTop:$( "#mapChart" ).height() / 2, marginLeft: $( "#mapChart" ).width() / 2},
-            {linkType:"right", divToHelpId:"resetMap", text:i18n.t( "help.resetMap" ), marginTop:14, marginLeft: 8, stage:1},
+            {linkType:"right", divToHelpId:"resetMap", text:i18n.t( "help.resetMap" ), marginTop:15, marginLeft: 8, stage:1},
             {linkType:"simple", divToHelpId:"synthesis", text:i18n.t( "help.synthesis" ), marginTop:10, marginLeft: -10, textLengthByLine: 45, stage:1},
             {linkType:"simpleLeft", divToHelpId:"resetFlux", text:i18n.t( "help.resetFlux" ), marginTop:4, marginLeft: 28, stage:1},
             {linkType:"middle", divToHelpId:"LUC", text:i18n.t( "label.clickFlux" ), marginTop:25, marginLeft: 30},
@@ -1032,11 +1038,6 @@ var RCInterface = Class.create( {
             parameters.helpArray.push( {linkType:"right", divToHelpId:"regionUnActive", text:i18n.t( "help.regionSelect" ), marginTop:14, marginLeft: 12, stage:2} );
         else
             parameters.helpArray.push( {linkType:"right", divToHelpId:"regionActive", text:i18n.t( "help.regionSelect" ), marginTop:14, marginLeft: 12, stage:2} );
-
-        if( "none" != $( "#uncertaintyDisable" ).css( "display" ) )
-            parameters.helpArray.push( {linkType:"simple", divToHelpId:"uncertaintyDisable", text:i18n.t( "help.uncertainty" ), marginTop:7, marginLeft: -6} );
-        else
-            parameters.helpArray.push( {linkType:"simple", divToHelpId:"uncertainty", text:i18n.t( "help.uncertainty" ), marginTop:7, marginLeft: -6} );
 
         parameters.parentContainerId = "#pageWrapper";
         //parameters.globalMarginTop = -110;

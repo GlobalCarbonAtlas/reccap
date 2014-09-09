@@ -30,7 +30,7 @@
                     <div class="labelI18n" data-i18n="button.data"></div>
                 </div>
                 <div id="uncertaintyDiv" type="button" class="labelI18n" data-i18n="[title]tooltip.uncertainty">
-                    <img src="img/Data.png" width="27px"/>
+                    <img src="img/uncertainty3.png" width="27px"/>
 
                     <div id="uncertaintyText" class="labelI18n" data-i18n="button.uncertaintyDisplay"></div>
                 </div>
@@ -39,8 +39,7 @@
             <div class="titleDiv">
                 <div class="title">
                     <span class="bigTitle">RE</span>gional <span class="bigTitle">C</span>arbon <span class="bigTitle">C</span>ycle <span class="bigTitle">A</span>ssessment
-                    and <span
-                        class="bigTitle">P</span>rocesses
+                    and <span class="bigTitle">P</span>rocesses
                 </div>
             </div>
         </div>

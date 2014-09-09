@@ -70,7 +70,7 @@
         "resetMap":"Init the regions selection",
         "synthesis":"Display a synthesis with selected regions. You can export in this page",
         "resetFlux":"Init the fluxes selection",
-        "uncertainty":"Display or hide uncertainty",
+        "uncertainty":"Display or hide uncertainty on both barcharts",
         "clickBar":"Click on a flux bar to show it values accross all regions",
         "clickLegend": "Click on a legend to remove flux"
     }

@@ -36,7 +36,7 @@ var RCInterface = Class.create( {
         this.barCharMargin = {top: 10, right: 0, bottom: 75, left: 35};
         this.color = d3.scale.ordinal().range( JSON.parse( jQuery.i18n.prop( "fluxColors" ) ) );
         this.selectMultipleRegion = false;
-        this.displayUncertainty = true;
+        this.displayUncertainty = false;
 
         // Areas for maps
         this.initDimensionsForImageAndCharts();
@@ -585,10 +585,10 @@ var RCInterface = Class.create( {
 
             d.negativeTotal = d3.min( d.columnDetails, jQuery.proxy( function( d )
             {
-//                if( this.displayUncertainty && d.uncertainty )
-//                    return d ? parseInt( d.yBegin ) - parseInt( d.uncertainty ) : 0;
-//                else
-                return d ? parseInt( d.yBegin ) : 0;
+                if( this.displayUncertainty && d.uncertainty )
+                    return d ? parseInt( d.yBegin ) + parseInt( d.uncertainty ) : 0;
+                else
+                    return d ? parseInt( d.yBegin ) : 0;
             }, this ) );
 
             d.positiveTotal = d3.max( d.columnDetails, jQuery.proxy( function( d )
@@ -603,8 +603,7 @@ var RCInterface = Class.create( {
         this.updateRegionBarChartDomains();
         this.updateRegionBarChartAxes();
         this.updateRegionBarChartBar();
-        if( this.displayUncertainty )
-            this.updateRegionBarChartUncertainty();
+        this.updateRegionBarChartUncertainty();
         this.updateRegionBarChartLegend();
     },
 
@@ -934,7 +933,7 @@ var RCInterface = Class.create( {
                 $( "#uncertaintyText" ).html( i18n.t( "button.uncertaintyHide" ) );
                 $( "#fluxBarChart" ).addClass( "uncertainty" );
             }
-            this.updateRegionBarChartUncertainty();
+            this.updateRegionBarChart();
         }, this ) );
 
         // Reset filters

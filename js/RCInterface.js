@@ -755,14 +755,7 @@ var RCInterface = Class.create( {
             return d.columnDetails;
         }, this ) );
 
-        regionBarPath.enter().append( "path" )
-                .attr( "d", jQuery.proxy( function( d )
-        {
-            if( this.displayUncertainty && d.uncertainty )
-                return "M" + (this.regionBarChartx1( d.column ) + this.regionBarChartx1.rangeBand() / 2) + "," + this.regionBarCharty( parseInt( d.yEnd ) + parseInt( d.uncertainty ) ) + "L" + (this.regionBarChartx1( d.column ) + this.regionBarChartx1.rangeBand() / 2) + "," + this.regionBarCharty( parseInt( d.yEnd ) - parseInt( d.uncertainty ) );
-            else
-                return false;
-        }, this ) );
+        regionBarPath.enter().append( "path" );
         regionBarPath.exit().remove();
 
         regionBar.transition()
@@ -771,8 +764,13 @@ var RCInterface = Class.create( {
                 .selectAll( "path" )
                 .attr( "d", jQuery.proxy( function( d )
         {
+            var centerPoint = this.regionBarChartx1( d.column ) + this.regionBarChartx1.rangeBand() / 2;
+            var lineWidth = this.regionBarChartx1.rangeBand() / 5;
+            var yTop = this.regionBarCharty( parseInt( d.yEnd ) + parseInt( d.uncertainty ) );
+            var yBottom = this.regionBarCharty( parseInt( d.yEnd ) - parseInt( d.uncertainty ) );
             if( this.displayUncertainty && d.uncertainty )
-                return "M" + (this.regionBarChartx1( d.column ) + this.regionBarChartx1.rangeBand() / 2) + "," + this.regionBarCharty( parseInt( d.yEnd ) + parseInt( d.uncertainty ) ) + "L" + (this.regionBarChartx1( d.column ) + this.regionBarChartx1.rangeBand() / 2) + "," + this.regionBarCharty( parseInt( d.yEnd ) - parseInt( d.uncertainty ) );
+                return "M" + (centerPoint - lineWidth) + "," + yBottom + "L" + (centerPoint + lineWidth) + "," + yBottom + "M" + centerPoint + "," + yBottom +
+                        "L" + centerPoint + "," + yTop + "M" + (centerPoint - lineWidth) + "," + yTop + "L" + (centerPoint + lineWidth) + "," + yTop;
             else
                 return false;
         }, this ) )
@@ -782,7 +780,7 @@ var RCInterface = Class.create( {
                 d.color = this.color( d.name );
             return ColorLuminance( d.color, -0.3 );
         }, this ) )
-                .attr( "stroke-width", "3" );
+                .attr( "stroke-width", "2" );
     },
 
     onClickRegionBarChart: function( element )

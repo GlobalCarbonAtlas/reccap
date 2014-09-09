@@ -262,10 +262,10 @@ body {
     pointer-events: auto;
 }
 
-#fluxBarChartUnit {
+.fluxBarChartUnit {
     fill: #525252;
     font: 10px "Futura", sans-serif;
-    margin-top: -10px;
+    margin: -10px 0 0 6px;
     float: left;
 }
 

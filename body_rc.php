@@ -64,7 +64,7 @@
                 </div>
 
                 <div class="bottomBasicCell">
-                    <div id="fluxBarChartUnit" class="labelI18n" data-i18n="label.unit"></div>
+                    <div class="fluxBarChartUnit labelI18n" data-i18n="label.unit"></div>
                     <div id="fluxBarChartTitle" class="labelI18n" data-i18n="[title]tooltip.allRegions;label.allRegions"></div>
                     <div id="fluxBarChart">
                         <div id="fluxBarChartForMainFlux"></div>
@@ -103,6 +103,7 @@
                 </div>
 
                 <div class="bottomBasicCell">
+                    <div class="fluxBarChartUnit labelI18n" data-i18n="label.unit"></div>
                     <div id="regionBarChart"></div>
                 </div>
 

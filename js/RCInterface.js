@@ -36,7 +36,7 @@ var RCInterface = Class.create( {
         this.barCharMargin = {top: 10, right: 0, bottom: 75, left: 35};
         this.color = d3.scale.ordinal().range( JSON.parse( jQuery.i18n.prop( "fluxColors" ) ) );
         this.selectMultipleRegion = false;
-        this.displayUncertainty = false;
+        this.displayUncertainty = true;
 
         // Areas for maps
         this.initDimensionsForImageAndCharts();
@@ -98,7 +98,7 @@ var RCInterface = Class.create( {
             {
                 var value = (0 != d.yBegin ? d.yBegin : 0 != d.yEnd ? d.yEnd : 0);
                 if( this.displayUncertainty && d.uncertainty )
-                    return "<span class='d3-tipTitle'>" + d.name + " : </span>" + this.numberFormat( value )+ " (" + i18n.t( "label.uncertainty" ) + " : " + this.numberFormat( d.uncertainty ) + ")";
+                    return "<span class='d3-tipTitle'>" + d.name + " : </span>" + this.numberFormat( value ) + " (" + i18n.t( "label.uncertainty" ) + " : " + this.numberFormat( d.uncertainty ) + ")";
                 else
                     return "<span class='d3-tipTitle'>" + d.name + " : </span>" + this.numberFormat( value );
             }
@@ -583,15 +583,21 @@ var RCInterface = Class.create( {
                 return {name: element.name, column: index.toString(), yBegin: (0 > d[element.name].value ? d[element.name].value : 0), yEnd: (0 < d[element.name].value ? d[element.name].value : 0), uncertainty: d[element.name].uncertainty, color:false};
             }, this ) );
 
-            d.negativeTotal = d3.min( d.columnDetails, function( d )
+            d.negativeTotal = d3.min( d.columnDetails, jQuery.proxy( function( d )
             {
+//                if( this.displayUncertainty && d.uncertainty )
+//                    return d ? parseInt( d.yBegin ) - parseInt( d.uncertainty ) : 0;
+//                else
                 return d ? parseInt( d.yBegin ) : 0;
-            } );
+            }, this ) );
 
-            d.positiveTotal = d3.max( d.columnDetails, function( d )
+            d.positiveTotal = d3.max( d.columnDetails, jQuery.proxy( function( d )
             {
-                return d ? parseInt( d.yEnd ) : 0;
-            } );
+                if( this.displayUncertainty && d.uncertainty )
+                    return d ? parseInt( d.yEnd ) + parseInt( d.uncertainty ) : 0;
+                else
+                    return d ? parseInt( d.yEnd ) : 0;
+            }, this ) );
         }, this ) );
 
         this.updateRegionBarChartDomains();
@@ -697,19 +703,19 @@ var RCInterface = Class.create( {
         }, this ) );
 
         regionBarRect.enter().append( "rect" )
-                .attr( "width", this.regionBarChartx1.rangeBand() )
-                .attr( "x", jQuery.proxy( function( d )
-        {
-            return this.regionBarChartx1( d.column );
-        }, this ) )
-                .attr( "y", jQuery.proxy( function( d )
-        {
-            return this.regionBarCharty( d.yEnd );
-        }, this ) )
-                .attr( "height", jQuery.proxy( function( d )
-        {
-            return this.regionBarCharty( d.yBegin ) - this.regionBarCharty( d.yEnd );
-        }, this ) )
+//                .attr( "width", this.regionBarChartx1.rangeBand() )
+//                .attr( "x", jQuery.proxy( function( d )
+//        {
+//            return this.regionBarChartx1( d.column );
+//        }, this ) )
+//                .attr( "y", jQuery.proxy( function( d )
+//        {
+//            return this.regionBarCharty( d.yEnd );
+//        }, this ) )
+//                .attr( "height", jQuery.proxy( function( d )
+//        {
+//            return this.regionBarCharty( d.yBegin ) - this.regionBarCharty( d.yEnd );
+//        }, this ) )
                 .on( "click", jQuery.proxy( function( d )
         {
             this.onClickRegionBarChart( d );
@@ -767,13 +773,19 @@ var RCInterface = Class.create( {
                 .selectAll( "path" )
                 .attr( "d", jQuery.proxy( function( d )
         {
-            var centerPoint = this.regionBarChartx1( d.column ) + this.regionBarChartx1.rangeBand() / 2;
+            var xCenter = this.regionBarChartx1( d.column ) + this.regionBarChartx1.rangeBand() / 2;
             var lineWidth = this.regionBarChartx1.rangeBand() / 5;
             var yTop = this.regionBarCharty( parseInt( d.yEnd ) + parseInt( d.uncertainty ) );
             var yBottom = this.regionBarCharty( parseInt( d.yEnd ) - parseInt( d.uncertainty ) );
+            if( 0 > d.yBegin )
+            {
+                yTop = this.regionBarCharty( parseInt( d.yBegin ) + parseInt( d.uncertainty ) );
+                yBottom = this.regionBarCharty( parseInt( d.yBegin ) - parseInt( d.uncertainty ) );
+            }
+
             if( this.displayUncertainty && d.uncertainty )
-                return "M" + (centerPoint - lineWidth) + "," + yBottom + "L" + (centerPoint + lineWidth) + "," + yBottom + "M" + centerPoint + "," + yBottom +
-                        "L" + centerPoint + "," + yTop + "M" + (centerPoint - lineWidth) + "," + yTop + "L" + (centerPoint + lineWidth) + "," + yTop;
+                return "M" + (xCenter - lineWidth) + "," + yBottom + "L" + (xCenter + lineWidth) + "," + yBottom + "M" + xCenter + "," + yBottom +
+                        "L" + xCenter + "," + yTop + "M" + (xCenter - lineWidth) + "," + yTop + "L" + (xCenter + lineWidth) + "," + yTop;
             else
                 return false;
         }, this ) )

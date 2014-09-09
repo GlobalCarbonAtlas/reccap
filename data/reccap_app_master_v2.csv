@@ -98,14 +98,14 @@ Africa,Crop product consumption,182,,source,Peters
 Africa,Soil C export,172,,lateral,mass balance (ignoring burial)
 Africa,Freshwater outgasing,109,,source,Raymond et al.
 Africa,River export to ocean,63,,lateral,valentini table 11
-Globe,Fossil fuel CO2 emissions,6877,,source,note + Need to add Middle East region (global fossil fuel CO2 emissions from Lequéré et al. (7.8 ± 0.4) during 2000-2009)
-Globe,NEE,-2524,,sink,
-Globe,Land use change,1413,,source,
-Globe,NPP,55537,,sink,
-Globe,Soil Heterotrophic Respiration,47428,,source,
-Globe,Fire,2023,,source,
-Globe,Wood product decay,403,,source,
-Globe,Crop product consumption,1749,,source,
-Globe,Soil C export,2139,,lateral,
+Globe,Fossil fuel CO2 emissions,6877,6000,source,note + Need to add Middle East region (global fossil fuel CO2 emissions from Lequéré et al. (7.8 ± 0.4) during 2000-2009)
+Globe,NEE,-2524,-250,sink,
+Globe,Land use change,1413,14,source,
+Globe,NPP,55537,555,sink,
+Globe,Soil Heterotrophic Respiration,47428,1000,source,
+Globe,Fire,2023,1000,source,
+Globe,Wood product decay,403,4,source,
+Globe,Crop product consumption,1749,17,source,
+Globe,Soil C export,2139,21,lateral,
 Globe,Freshwater outgasing,1759,,source,
 Globe,River export to ocean,380,,lateral,

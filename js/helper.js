@@ -122,34 +122,77 @@ function getStyleSheetsPropertyValue( selectorText, propertyName, cssFile )
  * getStyleObject Plugin for jQuery JavaScript Library
  * From: http://upshots.org/?p=112
  */
-(function($){
-    $.fn.getStyleObject = function(listStyleToGet){
-        var dom = this.get(0);
-        if(!dom)
+(function( $ )
+{
+    $.fn.getStyleObject = function( listStyleToGet )
+    {
+        var dom = this.get( 0 );
+        if( !dom )
             return;
         var style;
         var returns = {};
-        if(window.getComputedStyle){
-            var camelize = function(a,b){
+        if( window.getComputedStyle )
+        {
+            var camelize = function( a, b )
+            {
                 return b.toUpperCase();
             };
-            style = window.getComputedStyle(dom, null);
-            for(var i = 0, l = style.length; i < l; i++){
+            style = window.getComputedStyle( dom, null );
+            for( var i = 0, l = style.length; i < l; i++ )
+            {
                 var prop = style[i];
-                if(!listStyleToGet || listStyleToGet.indexOf(prop) != -1)
+                if( !listStyleToGet || listStyleToGet.indexOf( prop ) != -1 )
                 {
-                    var camel = prop.replace(/\-([a-z])/g, camelize);
-                    returns[camel] = style.getPropertyValue(prop);
+                    var camel = prop.replace( /\-([a-z])/g, camelize );
+                    returns[camel] = style.getPropertyValue( prop );
                 }
-            };
+            }
+            ;
             return returns;
-        };
-        if(style = dom.currentStyle){
-            for(var prop in style){
+        }
+        ;
+        if( style = dom.currentStyle )
+        {
+            for( var prop in style )
+            {
                 returns[prop] = style[prop];
-            };
+            }
+            ;
             return returns;
-        };
+        }
+        ;
         return this.css();
     }
-})(jQuery);
+})( jQuery );
+
+
+// **************************************************************
+// ************************* COLOR ******************************
+// **************************************************************
+/**
+ * http://www.sitepoint.com/javascript-generate-lighter-darker-color/
+ * Warning : colors must be in hexadecimal, color's names are not working !
+ */
+function ColorLuminance( hex, lum )
+{
+
+    // validate hex string
+    hex = String( hex ).replace( /[^0-9a-f]/gi, '' );
+    if( hex.length < 6 )
+    {
+        hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+    }
+    lum = lum || 0;
+
+    // convert to decimal and change luminosity
+    var rgb = "#", c, i;
+    for( i = 0; i < 3; i++ )
+    {
+        c = parseInt( hex.substr( i * 2, 2 ), 16 );
+        c = Math.round( Math.min( Math.max( 0, c + (c * lum) ), 255 ) ).toString( 16 );
+        rgb += ("00" + c).substr( c.length );
+    }
+
+    return rgb;
+}
+

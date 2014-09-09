@@ -197,10 +197,10 @@ var RCInterface = Class.create( {
         $.each( globeData, jQuery.proxy( function( i, d )
         {
             if( this.mainFlux.indexOf( i ) != -1 )
-                mainFluxDomain = Math.max( mainFluxDomain, Math.abs( d ) );
+                mainFluxDomain = Math.max( mainFluxDomain, Math.abs( d.value ) );
             else
             if( this.separatedFlux.indexOf( i ) != -1 )
-                separatedFluxDomain = Math.max( separatedFluxDomain, Math.abs( d ) );
+                separatedFluxDomain = Math.max( separatedFluxDomain, Math.abs( d.value ) );
         }, this ) );
         this.yDomainForAllMainFlux = [-mainFluxDomain, mainFluxDomain];
         this.yDomainForAllSeparatedFlux = [-separatedFluxDomain, separatedFluxDomain];
@@ -577,7 +577,7 @@ var RCInterface = Class.create( {
         {
             d.columnDetails = this.displayedVariables.map( jQuery.proxy( function( element, index )
             {
-                return {name: element.name, column: index.toString(), yBegin: (0 > d[element.name] ? d[element.name] : 0), yEnd: (0 < d[element.name] ? d[element.name] : 0), color:false};
+                return {name: element.name, column: index.toString(), yBegin: (0 > d[element.name].value ? d[element.name].value : 0), yEnd: (0 < d[element.name].value ? d[element.name].value : 0), uncertainty: d[element.name].uncertainty, color:false};
             }, this ) );
 
             d.negativeTotal = d3.min( d.columnDetails, function( d )
@@ -594,6 +594,8 @@ var RCInterface = Class.create( {
         this.updateRegionBarChartDomains();
         this.updateRegionBarChartAxes();
         this.updateRegionBarChartBar();
+        if( this.displayUncertainty )
+            this.updateRegionBarChartUncertainty();
         this.updateRegionBarChartLegend();
     },
 
@@ -740,6 +742,47 @@ var RCInterface = Class.create( {
         d3.selectAll( "#regionBarChartSvg g.x g text" )
                 .style( "text-anchor", "end" )
                 .attr( "transform", "translate(-10,0)rotate(315)" );
+    },
+
+    updateRegionBarChartUncertainty: function()
+    {
+        var regionBar = this.regionBarChartsvg.selectAll( ".groupedBar" )
+                .data( this.transposedData );
+
+        var regionBarPath = regionBar.selectAll( "path" )
+                .data( jQuery.proxy( function( d )
+        {
+            return d.columnDetails;
+        }, this ) );
+
+        regionBarPath.enter().append( "path" )
+                .attr( "d", jQuery.proxy( function( d )
+        {
+            if( this.displayUncertainty && d.uncertainty )
+                return "M" + (this.regionBarChartx1( d.column ) + this.regionBarChartx1.rangeBand() / 2) + "," + this.regionBarCharty( parseInt( d.yEnd ) + parseInt( d.uncertainty ) ) + "L" + (this.regionBarChartx1( d.column ) + this.regionBarChartx1.rangeBand() / 2) + "," + this.regionBarCharty( parseInt( d.yEnd ) - parseInt( d.uncertainty ) );
+            else
+                return false;
+        }, this ) );
+        regionBarPath.exit().remove();
+
+        regionBar.transition()
+                .duration( 200 )
+                .ease( "linear" )
+                .selectAll( "path" )
+                .attr( "d", jQuery.proxy( function( d )
+        {
+            if( this.displayUncertainty && d.uncertainty )
+                return "M" + (this.regionBarChartx1( d.column ) + this.regionBarChartx1.rangeBand() / 2) + "," + this.regionBarCharty( parseInt( d.yEnd ) + parseInt( d.uncertainty ) ) + "L" + (this.regionBarChartx1( d.column ) + this.regionBarChartx1.rangeBand() / 2) + "," + this.regionBarCharty( parseInt( d.yEnd ) - parseInt( d.uncertainty ) );
+            else
+                return false;
+        }, this ) )
+                .attr( "stroke", jQuery.proxy( function( d )
+        {
+            if( !d.color )
+                d.color = this.color( d.name );
+            return ColorLuminance( d.color, -0.3 );
+        }, this ) )
+                .attr( "stroke-width", "3" );
     },
 
     onClickRegionBarChart: function( element )
@@ -891,6 +934,7 @@ var RCInterface = Class.create( {
                 $( "#uncertaintyText" ).html( i18n.t( "button.uncertaintyHide" ) );
                 $( "#fluxBarChart" ).addClass( "uncertainty" );
             }
+            this.updateRegionBarChartUncertainty();
         }, this ) );
 
         // Reset filters
@@ -964,7 +1008,10 @@ var RCInterface = Class.create( {
         {
             if( arrayByContinents[d[this.regionColName]] == undefined )
                 arrayByContinents[d[this.regionColName]] = new Object();
-            arrayByContinents[d[this.regionColName]][d[this.fluxColName]] = d[this.valueColName];
+            var object = new Object();
+            object.value = d[this.valueColName];
+            object.uncertainty = d[this.uncertaintyColName];
+            arrayByContinents[d[this.regionColName]][d[this.fluxColName]] = object;
         }, this ) );
 
         // Then we create a more simple array (no associative) to avoid tu use array's functions

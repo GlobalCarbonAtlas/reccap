@@ -703,19 +703,6 @@ var RCInterface = Class.create( {
         }, this ) );
 
         regionBarRect.enter().append( "rect" )
-//                .attr( "width", this.regionBarChartx1.rangeBand() )
-//                .attr( "x", jQuery.proxy( function( d )
-//        {
-//            return this.regionBarChartx1( d.column );
-//        }, this ) )
-//                .attr( "y", jQuery.proxy( function( d )
-//        {
-//            return this.regionBarCharty( d.yEnd );
-//        }, this ) )
-//                .attr( "height", jQuery.proxy( function( d )
-//        {
-//            return this.regionBarCharty( d.yBegin ) - this.regionBarCharty( d.yEnd );
-//        }, this ) )
                 .on( "click", jQuery.proxy( function( d )
         {
             this.onClickRegionBarChart( d );

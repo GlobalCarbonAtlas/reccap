@@ -97,7 +97,10 @@ var RCInterface = Class.create( {
             else if( d.column && d.name )
             {
                 var value = (0 != d.yBegin ? d.yBegin : 0 != d.yEnd ? d.yEnd : 0);
-                return "<span class='d3-tipTitle'>" + d.name + " : </span>" + this.numberFormat( value );
+                if( this.displayUncertainty && d.uncertainty )
+                    return "<span class='d3-tipTitle'>" + d.name + " : </span>" + this.numberFormat( value )+ " (" + i18n.t( "label.uncertainty" ) + " : " + this.numberFormat( d.uncertainty ) + ")";
+                else
+                    return "<span class='d3-tipTitle'>" + d.name + " : </span>" + this.numberFormat( value );
             }
             else if( d.data )
             // Bar chart

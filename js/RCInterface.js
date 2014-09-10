@@ -902,6 +902,7 @@ var RCInterface = Class.create( {
             $( "#fluxBarChartTitle" ).html( i18n.t( "label.allRegions" ) );
             $( "#imageFluxForSynthesisTitle" ).html( i18n.t( "label.allRegions" ) );
             this.displayedVariables = [];
+            this.displayUncertainty = false;
             this.fluxBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForAllMainFlux ) );
             this.fluxBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForAllSeparatedFlux ) );
 
@@ -910,6 +911,7 @@ var RCInterface = Class.create( {
             this.loadRegionOneSelection();
             this.updateToolTipsForCharts();
             this.updateXAxisForFluxBarChart();
+            this.updateRegionBarChart();
 
             $( "#" + jQuery.i18n.prop( "selectedFluxForHomePage" ) ).click();
         }, this ) );

@@ -3600,6 +3600,9 @@ dc.barChart = function (parent, chartGroup) {
     var _barWidth;
     /** CHANGE VMIPSL **/
     var _callbackOnClick = false;
+    // Use stack to display uncertainty as Box and Whiskers Plot
+    var _useBoxAndWhiskersPlot = false;
+
     var _yElasticityInDomain = false;
 
     dc.override(_chart, 'rescale', function () {
@@ -3634,6 +3637,7 @@ dc.barChart = function (parent, chartGroup) {
             var layer = d3.select(this);
 
             renderBars(layer, i, d);
+            renderBoxAndWhiskersPlot(layer, d);
         });
     };
 
@@ -3641,6 +3645,11 @@ dc.barChart = function (parent, chartGroup) {
     _chart.setCallBackOnClick = function( callback )
     {
         _callbackOnClick = callback;
+    };
+
+    _chart.setUseBoxAndWhiskersPlot = function ( boolValue )
+    {
+        _useBoxAndWhiskersPlot = boolValue;
     };
 
     _chart.elasticYInDomain = function (_) {
@@ -3655,11 +3664,64 @@ dc.barChart = function (parent, chartGroup) {
             return 0;
         else
         {
-//            var result = dc.utils.safeNumber( Math.abs( _chart.y()( d.y + d.y0 ) - _chart.y()( d.y0 ) ) );
-            var result = dc.utils.safeNumber( Math.abs( _chart.y()( d.y0 ) - _chart.y()( d.y ) ) );
-//            result += 0 < d.y ? _chart.y()( 0 ) - result - _chart.y()( d.y ) : 0;
-            return result;
+//            if(("UncertaintyLayer" == d.layer) && _useBoxAndWhiskersPlot)
+//                return 0;
+//            else
+//                return dc.utils.safeNumber( Math.abs( _chart.y()( d.y + d.y0 ) - _chart.y()( d.y0 ) ) );
+            // VMIPSL : Uncertainty in rect
+            return dc.utils.safeNumber( Math.abs( _chart.y()( d.y0 ) - _chart.y()( d.y ) ) );
         }
+    }
+
+    function renderBoxAndWhiskersPlot(layer, d)
+    {
+        if(("UncertaintyLayer" != d.name) || !_useBoxAndWhiskersPlot)
+            return;
+
+        var paths = layer.selectAll("path" ).data(d.values);
+        paths.enter().append( "path" );
+        paths.exit().remove();
+
+        layer.transition()
+                .duration( 200 )
+                .ease( "linear" )
+                .selectAll( "path" )
+            .attr("id", function(d)
+            {
+                return d.x;
+            })
+                .attr( "d", function( d )
+        {
+            if(_chart.xOriginalDomain().indexOf( d.x ) == -1)
+                return false;
+
+            var x = _chart.x()(d.x);
+            if (_centerBar) x -= _barWidth / 2;
+            if (_chart.isOrdinal()) x += _gap/2;
+            var xCenter = dc.utils.safeNumber(x) + _barWidth / 2;
+            var lineWidth = _barWidth / 5;
+            var yTop = dc.utils.safeNumber( _chart.y()(d.y + d.y0));
+            var yBottom = 100;
+//            var yTop = this.regionBarCharty( parseInt( d.yEnd ) + parseInt( d.uncertainty ) );
+//            var yBottom = this.regionBarCharty( parseInt( d.yEnd ) - parseInt( d.uncertainty ) );
+//            if( 0 > d.yBegin )
+//            {
+//                yTop = this.regionBarCharty( parseInt( d.yBegin ) + parseInt( d.uncertainty ) );
+//                yBottom = this.regionBarCharty( parseInt( d.yBegin ) - parseInt( d.uncertainty ) );
+//            }
+//
+//            return "M0,0L100,100";
+                return "M" + (xCenter - lineWidth) + "," + yBottom + "L" + (xCenter + lineWidth) + "," + yBottom + "M" + xCenter + "," + yBottom +
+                        "L" + xCenter + "," + yTop + "M" + (xCenter - lineWidth) + "," + yTop + "L" + (xCenter + lineWidth) + "," + yTop;
+            })
+            .attr( "stroke", "red")
+//                .attr( "stroke", jQuery.proxy( function( d )
+//        {
+//            if( !d.color )
+//                d.color = this.color( d.name );
+//            return ColorLuminance( d.color, -0.3 );
+//        }, this ) )
+                .attr( "stroke-width", "2" );
     }
 
     function renderBars(layer, layerIndex, d) {
@@ -3688,16 +3750,18 @@ dc.barChart = function (parent, chartGroup) {
                 if (_chart.isOrdinal()) x += _gap/2;
                 return dc.utils.safeNumber(x);
             })
-                .attr( "y", function ( d )
-        {
-//                var y = _chart.y()(d.y + d.y0);
-            var y = ("UncertaintyLayer" == d.layer) ? _chart.y()( d.y0 ) : _chart.y()( d.y );
-            if( 0 > d.y)
-                y -= barHeight( d );
+            .attr( "y", function ( d )
+            {
+                var y = _chart.y()(d.y + d.y0);
 
-            return dc.utils.safeNumber( y );
-        } )
-                .attr("width", _barWidth)
+                // VMIPSL : Uncertainty in rect
+                var y = ("UncertaintyLayer" == d.layer) ? _chart.y()( d.y0 ) : _chart.y()( d.y );
+                if( 0 > d.y)
+                    y -= barHeight( d );
+
+                return dc.utils.safeNumber( y );
+            } )
+            .attr("width", _barWidth)
             .attr("height", function (d) {
                 return barHeight(d);
             })

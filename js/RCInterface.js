@@ -36,7 +36,7 @@ var RCInterface = Class.create( {
         this.barCharMargin = {top: 10, right: 0, bottom: 75, left: 35};
         this.color = d3.scale.ordinal().range( JSON.parse( jQuery.i18n.prop( "fluxColors" ) ) );
         this.selectMultipleRegion = false;
-        this.displayUncertainty = false;
+        this.displayUncertainty = true;
 
         // Areas for maps
         this.initDimensionsForImageAndCharts();
@@ -71,7 +71,8 @@ var RCInterface = Class.create( {
         this.imageHeight = newImageHeight;
         this.mapImageWidth = this.imageWidth - this.marginLeftForFluxImageAndMap;// - $( "#fluxBarChartForSeparatedFlux" ).css( "margin-left" ).replace( "px", "" );
         this.mapImageHeight = this.imageHeight;
-        this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".basicCell" ).css( "margin-bottom" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
+//        this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".basicCell" ).css( "margin-bottom" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
+            this.barChartHeight = 300;
 
         // Elements positions
         $( "#mapChartAndComment" ).css( "margin-left", this.marginLeftForFluxImageAndMap );
@@ -396,7 +397,7 @@ var RCInterface = Class.create( {
 
         var budgetUncertGroup = carbonBudgets.group().reduceSum( jQuery.proxy( function ( d )
         {
-            return this.numberFormat( d[this.valueColName] - d[this.uncertaintyColName] );
+            return this.numberFormat( d[this.uncertaintyColName] );
         }, this ) );
 
         this.fluxBarChartForMainFlux = this.createFluxBarChart( "#fluxBarChartForMainFlux", $( "#fluxBarChartForMainFlux" ).width(), this.barChartHeight, carbonBudgets, budgetAmountGroup, budgetUncertGroup, this.mainFlux, this.yDomainForAllMainFlux, false, this.barCharMargin );
@@ -426,8 +427,9 @@ var RCInterface = Class.create( {
 
         barChart.setUseRightYAxis( useRightYAxis );
         barChart.yAxis().tickFormat( d3.format( "s" ) );
+        barChart.setUseBoxAndWhiskersPlot(true);
         barChart.setCallBackOnClick( jQuery.proxy( this.onClickFluxChart, [this, chartId] ) );
-        barChart.on( "postRedraw", jQuery.proxy( function( chart )
+        barChart.on( "postRedraw", jQuery.proxy( function()
         {
             this.onCompleteDisplayFluxChart()
         }, this ) );

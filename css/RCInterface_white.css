@@ -155,10 +155,10 @@ body {
 #regionSelectComment {
     color: #333333;
     font: 11px "Lato", Arial;
-    margin: 47px 0 0 -4px;
+    margin: 47px 0 0 -26px;
     position: absolute;
     text-align: center;
-    width: 43px;
+    width: 90px;
 }
 
 #resetFlux {
@@ -264,7 +264,7 @@ body {
 
 .fluxBarChartUnit {
     fill: #525252;
-    font: 10px "Futura", sans-serif;
+    font: 11px "Futura", sans-serif;
     margin: -10px 0 0 6px;
     float: left;
 }
@@ -272,7 +272,7 @@ body {
 #fluxBarChartTitle {
     color: #525252;
     float: left;
-    font: 12px "Futura", sans-serif;
+    font: 13px "Futura", sans-serif;
     margin: -10px 0 0 20%;
     overflow: hidden;
     text-align: center;

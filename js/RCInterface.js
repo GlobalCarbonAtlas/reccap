@@ -444,7 +444,7 @@ var RCInterface = Class.create( {
             return d;
         } )
                 .attr( "transform", "translate(-10,0)rotate(315)" )
-                .html( jQuery.proxy( function( d )
+                .text( jQuery.proxy( function( d )
         {
             var propertieName = this.getI18nPropertiesKeyFromValue( d );
             return 0 != jQuery.i18n.prop( propertieName + "_shortForAxis" ).indexOf( "[" ) ? jQuery.i18n.prop( propertieName + "_shortForAxis" ) : d;

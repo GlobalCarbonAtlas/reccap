@@ -75,10 +75,10 @@ body {
 
 /* ************** LEFT TOOLS ************** */
 .leftTools {
-    border: 2px solid #2C3537 !important;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
+    /*border: 2px solid #2C3537 !important;*/
+    /*-webkit-border-radius: 10px;*/
+    /*-moz-border-radius: 10px;*/
+    /*border-radius: 10px;*/
     text-align: center;
     margin: 10px 0 20px;
     float: left;

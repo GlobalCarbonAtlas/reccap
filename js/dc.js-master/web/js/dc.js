@@ -3664,12 +3664,8 @@ dc.barChart = function (parent, chartGroup) {
             return 0;
         else
         {
-//            if(("UncertaintyLayer" == d.layer) && _useBoxAndWhiskersPlot)
-//                return 0;
-//            else
-//                return dc.utils.safeNumber( Math.abs( _chart.y()( d.y + d.y0 ) - _chart.y()( d.y0 ) ) );
-            // VMIPSL : Uncertainty in rect
-            if(d.y.value)
+            // VMIPSL : object with 2 values : value and uncertainty
+            if( d.y.value )
                 return dc.utils.safeNumber( Math.abs( _chart.y()( d.y0 ) - _chart.y()( d.y.value ) ) );
             else
                 return dc.utils.safeNumber( Math.abs( _chart.y()( d.y0 ) - _chart.y()( d.y ) ) );
@@ -3678,11 +3674,11 @@ dc.barChart = function (parent, chartGroup) {
 
     function renderBoxAndWhiskersPlot(layer, d)
     {
-        if(("UncertaintyLayer" != d.name) || !_useBoxAndWhiskersPlot)
+        if( !_useBoxAndWhiskersPlot)
             return;
 
         var paths = layer.selectAll("path" ).data(d.values);
-        paths.enter().append( "path" );
+        paths.enter().append( "path" ).attr("class", "bar");
         paths.exit().remove();
 
         layer.transition()
@@ -3703,27 +3699,17 @@ dc.barChart = function (parent, chartGroup) {
             if (_chart.isOrdinal()) x += _gap/2;
             var xCenter = dc.utils.safeNumber(x) + _barWidth / 2;
             var lineWidth = _barWidth / 5;
-            var yTop = dc.utils.safeNumber( _chart.y()(d.y + d.y0));
-            var yBottom = 100;
-//            var yTop = this.regionBarCharty( parseInt( d.yEnd ) + parseInt( d.uncertainty ) );
-//            var yBottom = this.regionBarCharty( parseInt( d.yEnd ) - parseInt( d.uncertainty ) );
-//            if( 0 > d.yBegin )
-//            {
-//                yTop = this.regionBarCharty( parseInt( d.yBegin ) + parseInt( d.uncertainty ) );
-//                yBottom = this.regionBarCharty( parseInt( d.yBegin ) - parseInt( d.uncertainty ) );
-//            }
-//
-//            return "M0,0L100,100";
-                return "M" + (xCenter - lineWidth) + "," + yBottom + "L" + (xCenter + lineWidth) + "," + yBottom + "M" + xCenter + "," + yBottom +
-                        "L" + xCenter + "," + yTop + "M" + (xCenter - lineWidth) + "," + yTop + "L" + (xCenter + lineWidth) + "," + yTop;
-            })
-            .attr( "stroke", "red")
-//                .attr( "stroke", jQuery.proxy( function( d )
-//        {
-//            if( !d.color )
-//                d.color = this.color( d.name );
-//            return ColorLuminance( d.color, -0.3 );
-//        }, this ) )
+            var yTop = dc.utils.safeNumber( _chart.y()( d.y.value + d.y.uncertainty ) );
+            var yBottom = dc.utils.safeNumber( _chart.y()( d.y.value - d.y.uncertainty ) );
+
+            return "M" + (xCenter - lineWidth) + "," + yBottom + "L" + (xCenter + lineWidth) + "," + yBottom + "M" + xCenter + "," + yBottom +
+                    "L" + xCenter + "," + yTop + "M" + (xCenter - lineWidth) + "," + yTop + "L" + (xCenter + lineWidth) + "," + yTop;
+        })
+                .attr( "stroke", jQuery.proxy( function( d )
+        {
+            var colorValue = _chart.getColor( d.data );
+            return ColorLuminance( colorValue, -0.3 );
+        }, this ) )
                 .attr( "stroke-width", "2" );
     }
 
@@ -3738,7 +3724,6 @@ dc.barChart = function (parent, chartGroup) {
             {
                 return _chart.getColor(d.data);
             });
-//            .attr("fill", dc.pluck('data',_chart.getColor));
 
         if (_chart.renderTitle())
             bars.append("title").text(dc.pluck('data',_chart.title(d.name)));
@@ -3772,7 +3757,6 @@ dc.barChart = function (parent, chartGroup) {
             {
                 return _chart.getColor(d.data);
             })
-//            .attr("fill", dc.pluck('data',_chart.getColor))
             .select("title").text(dc.pluck('data',_chart.title(d.name)));
 
         dc.transition(bars.exit(), _chart.transitionDuration())
@@ -3798,6 +3782,8 @@ dc.barChart = function (parent, chartGroup) {
 
     _chart.fadeDeselectedArea = function () {
         var bars = _chart.chartBodyG().selectAll("rect.bar");
+        /* CHANGE VMIPSL */
+        var paths = _chart.chartBodyG().selectAll("path.bar");
         var extent = _chart.brush().extent();
 
         if (_chart.isOrdinal()) {
@@ -3808,9 +3794,13 @@ dc.barChart = function (parent, chartGroup) {
                 bars.classed(dc.constants.DESELECTED_CLASS, function (d) {
                     return !_chart.hasFilter(d.x);
                 });
+                paths.classed(dc.constants.DESELECTED_CLASS, function (d) {
+                    return !_chart.hasFilter(d.x);
+                });
             } else {
                 bars.classed(dc.constants.SELECTED_CLASS, false);
                 bars.classed(dc.constants.DESELECTED_CLASS, true);
+                paths.classed(dc.constants.DESELECTED_CLASS, true);
             }
         } else {
             if (!_chart.brushIsEmpty(extent)) {

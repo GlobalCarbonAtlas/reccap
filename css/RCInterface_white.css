@@ -93,7 +93,6 @@ body {
     cursor: pointer;
     padding: 0;
     float: left;
-
 }
 
 .leftToolsExportMenu {
@@ -281,8 +280,8 @@ body {
     width: 60%;
 }
 
-#fluxBarChart.uncertainty g.stack.layer1 .bar {
-    fill: #444444;
+#fluxBarChart .dc-chart path.deselected {
+    stroke: #7A7A7A;
 }
 
 /* ************** REGION BARCHART ************** */

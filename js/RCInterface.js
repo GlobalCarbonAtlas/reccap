@@ -72,7 +72,7 @@ var RCInterface = Class.create( {
         this.mapImageWidth = this.imageWidth - this.marginLeftForFluxImageAndMap;// - $( "#fluxBarChartForSeparatedFlux" ).css( "margin-left" ).replace( "px", "" );
         this.mapImageHeight = this.imageHeight;
 //        this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".basicCell" ).css( "margin-bottom" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
-            this.barChartHeight = 300;
+        this.barChartHeight = 300;
 
         // Elements positions
         $( "#mapChartAndComment" ).css( "margin-left", this.marginLeftForFluxImageAndMap );
@@ -97,6 +97,7 @@ var RCInterface = Class.create( {
                 return  "<span class='d3-tipTitle'>" + i18n.t( "country." + d.properties.continent ) + "</span>";
             else if( d.column && d.name )
             {
+                // Region bar chart axis
                 var value = (0 != d.yBegin ? d.yBegin : 0 != d.yEnd ? d.yEnd : 0);
                 if( this.displayUncertainty && d.uncertainty )
                     return "<span class='d3-tipTitle'>" + d.name + " : </span>" + this.numberFormat( value ) + " (" + i18n.t( "label.uncertainty" ) + " : " + this.numberFormat( d.uncertainty ) + ")";
@@ -104,13 +105,14 @@ var RCInterface = Class.create( {
                     return "<span class='d3-tipTitle'>" + d.name + " : </span>" + this.numberFormat( value );
             }
             else if( d.data )
-            // Bar chart
+            {
+                // Bar chart
                 if( this.displayUncertainty )
                     return "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.data.value.value ) + " (" + i18n.t( "label.uncertainty" ) + " : " + this.numberFormat( d.data.value.uncertainty ) + ")";
                 else
                     return "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.data.value.value );
+            }
             else
-            // Flux bar chart axis
                 return "<span class='d3-tipTitle'>" + d + "</span>";
         }, this ) );
 
@@ -394,22 +396,25 @@ var RCInterface = Class.create( {
 
         var budgetAmountGroup = carbonBudgets.group().reduce(
             // add
-            jQuery.proxy(function(p,v){
-                p.value += parseInt(this.numberFormat( v[this.valueColName] ));
-                p.uncertainty += parseInt(this.numberFormat( v[this.uncertaintyColName] ));
-                return p;
-            }, this ),
+                jQuery.proxy( function( p, v )
+                {
+                    p.value += parseInt( this.numberFormat( v[this.valueColName] ) );
+                    p.uncertainty += parseInt( this.numberFormat( v[this.uncertaintyColName] ) );
+                    return p;
+                }, this ),
             // remove
-            jQuery.proxy(function(p,v){
-                p.value -= parseInt(this.numberFormat( v[this.valueColName] ));
-                p.uncertainty -= parseInt(this.numberFormat( v[this.uncertaintyColName] ));
-                return p;
-            }, this ),
+                jQuery.proxy( function( p, v )
+                {
+                    p.value -= parseInt( this.numberFormat( v[this.valueColName] ) );
+                    p.uncertainty -= parseInt( this.numberFormat( v[this.uncertaintyColName] ) );
+                    return p;
+                }, this ),
             // init
-            jQuery.proxy(function(p,v){
-                 return {value: 0, uncertainty: 0};
-            }, this )
-        );
+                jQuery.proxy( function( p, v )
+                {
+                    return {value: 0, uncertainty: 0};
+                }, this )
+                );
 
         var budgetUncertGroup = carbonBudgets.group().reduceSum( jQuery.proxy( function ( d )
         {
@@ -430,7 +435,6 @@ var RCInterface = Class.create( {
                 .margins( barCharMargin )
                 .dimension( dimension )
                 .group( group, "groupLayer" )
-                .stack( uncertaintyGroup, "UncertaintyLayer" )
                 .brushOn( false )
                 .gap( 0 )
                 .elasticY( false )
@@ -443,7 +447,7 @@ var RCInterface = Class.create( {
 
         barChart.setUseRightYAxis( useRightYAxis );
         barChart.yAxis().tickFormat( d3.format( "s" ) );
-        barChart.setUseBoxAndWhiskersPlot(true);
+        barChart.setUseBoxAndWhiskersPlot( true );
         barChart.setCallBackOnClick( jQuery.proxy( this.onClickFluxChart, [this, chartId] ) );
         barChart.on( "postRedraw", jQuery.proxy( function()
         {

@@ -3669,7 +3669,10 @@ dc.barChart = function (parent, chartGroup) {
 //            else
 //                return dc.utils.safeNumber( Math.abs( _chart.y()( d.y + d.y0 ) - _chart.y()( d.y0 ) ) );
             // VMIPSL : Uncertainty in rect
-            return dc.utils.safeNumber( Math.abs( _chart.y()( d.y0 ) - _chart.y()( d.y ) ) );
+            if(d.y.value)
+                return dc.utils.safeNumber( Math.abs( _chart.y()( d.y0 ) - _chart.y()( d.y.value ) ) );
+            else
+                return dc.utils.safeNumber( Math.abs( _chart.y()( d.y0 ) - _chart.y()( d.y ) ) );
         }
     }
 
@@ -3752,11 +3755,11 @@ dc.barChart = function (parent, chartGroup) {
             })
             .attr( "y", function ( d )
             {
-                var y = _chart.y()(d.y + d.y0);
+                var y = _chart.y()(d.y.value + d.y0);
 
                 // VMIPSL : Uncertainty in rect
-                var y = ("UncertaintyLayer" == d.layer) ? _chart.y()( d.y0 ) : _chart.y()( d.y );
-                if( 0 > d.y)
+                var y = ("UncertaintyLayer" == d.layer) ? _chart.y()( d.y0 ) : _chart.y()( d.y.value );
+                if( 0 > d.y.value)
                     y -= barHeight( d );
 
                 return dc.utils.safeNumber( y );

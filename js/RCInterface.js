@@ -105,13 +105,10 @@ var RCInterface = Class.create( {
             }
             else if( d.data )
             // Bar chart
-                if( "UncertaintyLayer" == d.layer )
-                    if( this.displayUncertainty )
-                        return "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.y0 ) + " (" + i18n.t( "label.uncertainty" ) + " : " + this.numberFormat( d.y0 - d.data.value ) + ")";
-                    else
-                        return "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.y0 );
+                if( this.displayUncertainty )
+                    return "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.data.value.value ) + " (" + i18n.t( "label.uncertainty" ) + " : " + this.numberFormat( d.data.value.uncertainty ) + ")";
                 else
-                    return "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.data.value );
+                    return "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.data.value.value );
             else
             // Flux bar chart axis
                 return "<span class='d3-tipTitle'>" + d + "</span>";
@@ -390,10 +387,29 @@ var RCInterface = Class.create( {
         }, this );
 
         // group based on carbonBudgets dimension otherwise, a click on a bar hide all others
-        var budgetAmountGroup = carbonBudgets.group().reduceSum( jQuery.proxy( function ( d )
-        {
-            return this.numberFormat( d[this.valueColName] );
-        }, this ) );
+//        var budgetAmountGroup = carbonBudgets.group().reduceSum( jQuery.proxy( function ( d )
+//        {
+//            return this.numberFormat( d[this.valueColName] );
+//        }, this ) );
+
+        var budgetAmountGroup = carbonBudgets.group().reduce(
+            // add
+            jQuery.proxy(function(p,v){
+                p.value += parseInt(this.numberFormat( v[this.valueColName] ));
+                p.uncertainty += parseInt(this.numberFormat( v[this.uncertaintyColName] ));
+                return p;
+            }, this ),
+            // remove
+            jQuery.proxy(function(p,v){
+                p.value -= parseInt(this.numberFormat( v[this.valueColName] ));
+                p.uncertainty -= parseInt(this.numberFormat( v[this.uncertaintyColName] ));
+                return p;
+            }, this ),
+            // init
+            jQuery.proxy(function(p,v){
+                 return {value: 0, uncertainty: 0};
+            }, this )
+        );
 
         var budgetUncertGroup = carbonBudgets.group().reduceSum( jQuery.proxy( function ( d )
         {

@@ -186,10 +186,13 @@ var RCInterface = Class.create( {
         $.each( this.filterRecords.top( Infinity ), jQuery.proxy( function( i, d )
         {
             if( this.mainFlux.indexOf( d[this.fluxColName] ) != -1 )
-                mainFluxDomain = Math.max( mainFluxDomain, Math.abs( d[this.valueColName] ) );
+                mainFluxDomain = (this.displayUncertainty && d[this.uncertaintyColName] ? Math.max( mainFluxDomain, Math.abs( parseInt( d[this.valueColName] ) + parseInt( d[this.uncertaintyColName] ) ) ) : Math.max( mainFluxDomain, Math.abs( d[this.valueColName] ) ));
             else
-                separatedFluxDomain = Math.max( separatedFluxDomain, Math.abs( d[this.valueColName] ) );
+                separatedFluxDomain = (this.displayUncertainty && d[this.uncertaintyColName] ? Math.max( separatedFluxDomain, Math.abs( parseInt( d[this.valueColName] ) + parseInt( d[this.uncertaintyColName] ) ) ) : Math.max( separatedFluxDomain, Math.abs( d[this.valueColName] ) ));
         }, this ) );
+        // Add 1% to see complete box and whiskers plot
+        mainFluxDomain += mainFluxDomain * 0.01;
+        separatedFluxDomain += separatedFluxDomain * 0.01;
         this.yDomainForMainFlux = [-mainFluxDomain, mainFluxDomain];
         this.yDomainForSeparatedFlux = [-separatedFluxDomain, separatedFluxDomain];
 
@@ -200,11 +203,14 @@ var RCInterface = Class.create( {
         $.each( globeData, jQuery.proxy( function( i, d )
         {
             if( this.mainFlux.indexOf( i ) != -1 )
-                mainFluxDomain = (this.displayUncertainty && d.uncertainty ? Math.max( mainFluxDomain, Math.abs( parseInt(d.value) + parseInt(d.uncertainty)) ) : Math.max( mainFluxDomain, Math.abs( d.value ) ));
+                mainFluxDomain = (this.displayUncertainty && d.uncertainty ? Math.max( mainFluxDomain, Math.abs( parseInt( d.value ) + parseInt( d.uncertainty ) ) ) : Math.max( mainFluxDomain, Math.abs( d.value ) ));
             else
             if( this.separatedFlux.indexOf( i ) != -1 )
-                separatedFluxDomain = (this.displayUncertainty && d.uncertainty ? Math.max( separatedFluxDomain, Math.abs( parseInt(d.value) + parseInt(d.uncertainty)) ) : Math.max( separatedFluxDomain, Math.abs( d.value ) ));
+                separatedFluxDomain = (this.displayUncertainty && d.uncertainty ? Math.max( separatedFluxDomain, Math.abs( parseInt( d.value ) + parseInt( d.uncertainty ) ) ) : Math.max( separatedFluxDomain, Math.abs( d.value ) ));
         }, this ) );
+        // Add 1% to see complete box and whiskers plot
+        mainFluxDomain += mainFluxDomain * 0.01;
+        separatedFluxDomain += separatedFluxDomain * 0.01;
         this.yDomainForAllMainFlux = [-mainFluxDomain, mainFluxDomain];
         this.yDomainForAllSeparatedFlux = [-separatedFluxDomain, separatedFluxDomain];
     },

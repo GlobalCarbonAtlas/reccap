@@ -3681,10 +3681,7 @@ dc.barChart = function (parent, chartGroup) {
         paths.enter().append( "path" ).attr("class", "bar");
         paths.exit().remove();
 
-        layer.transition()
-                .duration( 200 )
-                .ease( "linear" )
-                .selectAll( "path" )
+        dc.transition( paths, _chart.transitionDuration() )
             .attr("id", function(d)
             {
                 return d.x;

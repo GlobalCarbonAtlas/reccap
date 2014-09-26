@@ -3853,199 +3853,228 @@ dc.barChart = function (parent, chartGroup) {
     return _chart.anchor(parent, chartGroup);
 };
 
+    /**
+     * **************************************************************
+     * ## Custom Bar Chart with Uncertainty as box and whiskers plot
+     * Heritates from Bar Chart
+     * Change from VMIPSL
+     * **************************************************************
+     **/
 
-dc.customBarChartWithUncertainty = function (parent, chartGroup) {
-    var _chart = dc.barChart(parent, chartGroup);
-
-    var _callbackOnClick = false;
-    // Use stack to display uncertainty as Box and Whiskers Plot
-    var _useBoxAndWhiskersPlot = false;
-    var _yElasticityInDomain = false;
-
-    _chart.setCallBackOnClick = function( callback )
+    dc.customBarChartWithUncertainty = function ( parent, chartGroup )
     {
-        _callbackOnClick = callback;
-    };
+        var _chart = dc.barChart( parent, chartGroup );
 
-    _chart.setUseBoxAndWhiskersPlot = function ( boolValue )
-    {
-        _useBoxAndWhiskersPlot = boolValue;
-    };
+        var _callbackOnClick = false;
+        // Use stack to display uncertainty as Box and Whiskers Plot
+        var _useBoxAndWhiskersPlot = false;
+        var _yElasticityInDomain = false;
 
-    function barHeight(d) {
-        if( _chart.xOriginalDomain().indexOf( d.x ) == -1 )
-            return 0;
-        else
+        _chart.setCallBackOnClick = function( callback )
         {
-            // Object with 2 values : value and uncertainty
-            if( d.y.value )
-                return dc.utils.safeNumber( Math.abs( _chart.y()( d.y0 ) - _chart.y()( d.y.value ) ) );
+            _callbackOnClick = callback;
+        };
+
+        _chart.setUseBoxAndWhiskersPlot = function ( boolValue )
+        {
+            _useBoxAndWhiskersPlot = boolValue;
+        };
+
+        function barHeight( d )
+        {
+            if( _chart.xOriginalDomain().indexOf( d.x ) == -1 )
+                return 0;
             else
-                return dc.utils.safeNumber( Math.abs( _chart.y()( d.y0 ) - _chart.y()( d.y ) ) );
+            {
+                // Object with 2 values : value and uncertainty
+                if( d.y.value )
+                    return dc.utils.safeNumber( Math.abs( _chart.y()( d.y0 ) - _chart.y()( d.y.value ) ) );
+                else
+                    return dc.utils.safeNumber( Math.abs( _chart.y()( d.y0 ) - _chart.y()( d.y ) ) );
+            }
         }
-    }
 
-    function renderBoxAndWhiskersPlot(layer, d)
-    {
-        if( !_useBoxAndWhiskersPlot)
-            return;
+        function renderBoxAndWhiskersPlot( layer, d )
+        {
+            if( !_useBoxAndWhiskersPlot )
+                return;
 
-        var paths = layer.selectAll("path" ).data(d.values);
-        paths.enter().append( "path" ).attr("class", "bar");
-        paths.exit().remove();
+            var paths = layer.selectAll( "path" ).data( d.values );
+            paths.enter().append( "path" ).attr( "class", "bar" );
+            paths.exit().remove();
 
-        dc.transition( paths, _chart.transitionDuration() )
-            .attr("id", function(d)
+            dc.transition( paths, _chart.transitionDuration() )
+                    .attr( "id", function( d )
             {
                 return d.x;
-            })
-                .attr( "d", function( d )
-        {
-            if(_chart.xOriginalDomain().indexOf( d.x ) == -1)
-                return false;
-
-            var x = _chart.x()(d.x);
-            if (_chart.centerBar()) x -= _chart.barWidth() / 2;
-            if (_chart.isOrdinal()) x += _chart.gap()/2;
-            var xCenter = dc.utils.safeNumber(x) + _chart.barWidth() / 2;
-            var lineWidth = _chart.barWidth() / 5;
-            var yTop = dc.utils.safeNumber( _chart.y()( d.y.value + d.y.uncertainty ) );
-            var yBottom = dc.utils.safeNumber( _chart.y()( d.y.value - d.y.uncertainty ) );
-
-            return "M" + (xCenter - lineWidth) + "," + yBottom + "L" + (xCenter + lineWidth) + "," + yBottom + "M" + xCenter + "," + yBottom +
-                    "L" + xCenter + "," + yTop + "M" + (xCenter - lineWidth) + "," + yTop + "L" + (xCenter + lineWidth) + "," + yTop;
-        })
-                .attr( "stroke", jQuery.proxy( function( d )
-        {
-            var colorValue = _chart.getColor( d.data );
-            return ColorLuminance( colorValue, -0.3 );
-        }, this ) )
-                .attr( "stroke-width", "2" );
-    }
-
-    function renderBars(layer, layerIndex, d) {
-        var bars = layer.selectAll("rect.bar")
-            .data(d.values, dc.pluck('x'));
-
-        bars.enter()
-            .append("rect")
-            .attr("class", "bar")
-            .attr("fill",function(d)
+            } )
+                    .attr( "d", function( d )
             {
-                return _chart.getColor(d.data);
-            });
+                if( _chart.xOriginalDomain().indexOf( d.x ) == -1 )
+                    return false;
 
-        if (_chart.renderTitle())
-            bars.append("title").text(dc.pluck('data',_chart.title(d.name)));
+                var x = _chart.x()( d.x );
+                if( _chart.centerBar() ) x -= _chart.barWidth() / 2;
+                if( _chart.isOrdinal() ) x += _chart.gap() / 2;
+                var xCenter = dc.utils.safeNumber( x ) + _chart.barWidth() / 2;
+                var lineWidth = _chart.barWidth() / 5;
+                var yTop = dc.utils.safeNumber( _chart.y()( d.y.value + d.y.uncertainty ) );
+                var yBottom = dc.utils.safeNumber( _chart.y()( d.y.value - d.y.uncertainty ) );
 
-        if (_chart.isOrdinal())
-            bars.on("click", onClick);
-
-        dc.transition(bars, _chart.transitionDuration())
-            .attr("x", function (d) {
-                var x = _chart.x()(d.x);
-                if (_chart.centerBar()) x -= _chart.barWidth() / 2;
-                if (_chart.isOrdinal()) x += _chart.gap()/2;
-                return dc.utils.safeNumber(x);
-            })
-            .attr( "y", function ( d )
+                return "M" + (xCenter - lineWidth) + "," + yBottom + "L" + (xCenter + lineWidth) + "," + yBottom + "M" + xCenter + "," + yBottom +
+                        "L" + xCenter + "," + yTop + "M" + (xCenter - lineWidth) + "," + yTop + "L" + (xCenter + lineWidth) + "," + yTop;
+            } )
+                    .attr( "stroke", jQuery.proxy( function( d )
             {
-                var y = _chart.y()(d.y.value + d.y0);
+                var colorValue = _chart.getColor( d.data );
+                return ColorLuminance( colorValue, -0.3 );
+            }, this ) )
+                    .attr( "stroke-width", "2" );
+        }
 
-                if( 0 > d.y.value)
+        function renderBars( layer, layerIndex, d )
+        {
+            var bars = layer.selectAll( "rect.bar" )
+                    .data( d.values, dc.pluck( 'x' ) );
+
+            bars.enter()
+                    .append( "rect" )
+                    .attr( "class", "bar" )
+                    .attr( "fill", function( d )
+            {
+                return _chart.getColor( d.data );
+            } );
+
+            if( _chart.renderTitle() )
+                bars.append( "title" ).text( dc.pluck( 'data', _chart.title( d.name ) ) );
+
+            if( _chart.isOrdinal() )
+                bars.on( "click", onClick );
+
+            dc.transition( bars, _chart.transitionDuration() )
+                    .attr( "x", function ( d )
+            {
+                var x = _chart.x()( d.x );
+                if( _chart.centerBar() ) x -= _chart.barWidth() / 2;
+                if( _chart.isOrdinal() ) x += _chart.gap() / 2;
+                return dc.utils.safeNumber( x );
+            } )
+                    .attr( "y", function ( d )
+            {
+                var y = _chart.y()( d.y.value + d.y0 );
+
+                if( 0 > d.y.value )
                     y -= barHeight( d );
 
                 return dc.utils.safeNumber( y );
             } )
-            .attr("width", _chart.barWidth())
-            .attr("height", function (d) {
-                return barHeight(d);
-            })
-            .attr("fill",function(d)
+                    .attr( "width", _chart.barWidth() )
+                    .attr( "height", function ( d )
             {
-                return _chart.getColor(d.data);
-            })
-            .select("title").text(dc.pluck('data',_chart.title(d.name)));
+                return barHeight( d );
+            } )
+                    .attr( "fill", function( d )
+            {
+                return _chart.getColor( d.data );
+            } )
+                    .select( "title" ).text( dc.pluck( 'data', _chart.title( d.name ) ) );
 
-        dc.transition(bars.exit(), _chart.transitionDuration())
-            .attr("height", 0)
-            .remove();
-    }
-
-   function onClick(d) {
-        _chart.onClick(d.data);
-        if( _callbackOnClick )
-            _callbackOnClick( d.data );
-    }
-
-    _chart.fadeDeselectedArea = function () {
-        var bars = _chart.chartBodyG().selectAll("rect.bar");
-        var paths = _chart.chartBodyG().selectAll("path.bar");
-        var extent = _chart.brush().extent();
-
-        if (_chart.isOrdinal()) {
-            if (_chart.hasFilter()) {
-                bars.classed(dc.constants.SELECTED_CLASS, function (d) {
-                    return _chart.hasFilter(d.x);
-                });
-                bars.classed(dc.constants.DESELECTED_CLASS, function (d) {
-                    return !_chart.hasFilter(d.x);
-                });
-                paths.classed(dc.constants.DESELECTED_CLASS, function (d) {
-                    return !_chart.hasFilter(d.x);
-                });
-            } else {
-                bars.classed(dc.constants.SELECTED_CLASS, false);
-                bars.classed(dc.constants.DESELECTED_CLASS, true);
-                paths.classed(dc.constants.DESELECTED_CLASS, true);
-            }
-        } else {
-            if (!_chart.brushIsEmpty(extent)) {
-                var start = extent[0];
-                var end = extent[1];
-
-                bars.classed(dc.constants.DESELECTED_CLASS, function (d) {
-                    return d.x < start || d.x >= end;
-                });
-            } else {
-                bars.classed(dc.constants.DESELECTED_CLASS, false);
-            }
+            dc.transition( bars.exit(), _chart.transitionDuration() )
+                    .attr( "height", 0 )
+                    .remove();
         }
-    };
 
-    _chart.elasticYInDomain = function (_) {
-        if (!arguments.length) return _yElasticityInDomain;
-        _yElasticityInDomain = _;
-        return _chart;
-    };
-
-    _chart.plotData = function () {
-        var layers = _chart.chartBodyG().selectAll("g.stack")
-            .data(_chart.data());
-
-        _chart.calculateBarWidth();
-
-        layers
-            .enter()
-            .append("g")
-                .attr( "class", function ( d, i )
+        function onClick( d )
         {
-            return "stack " + "_" + i + " layer" + i;
-        } );
+            _chart.onClick( d.data );
+            if( _callbackOnClick )
+                _callbackOnClick( d.data );
+        }
 
-        layers.each(function (d, i) {
-            var layer = d3.select(this);
+        _chart.fadeDeselectedArea = function ()
+        {
+            var bars = _chart.chartBodyG().selectAll( "rect.bar" );
+            var paths = _chart.chartBodyG().selectAll( "path.bar" );
+            var extent = _chart.brush().extent();
 
-            renderBars(layer, i, d);
-            renderBoxAndWhiskersPlot(layer, d);
-        });
+            if( _chart.isOrdinal() )
+            {
+                if( _chart.hasFilter() )
+                {
+                    bars.classed( dc.constants.SELECTED_CLASS, function ( d )
+                    {
+                        return _chart.hasFilter( d.x );
+                    } );
+                    bars.classed( dc.constants.DESELECTED_CLASS, function ( d )
+                    {
+                        return !_chart.hasFilter( d.x );
+                    } );
+                    paths.classed( dc.constants.DESELECTED_CLASS, function ( d )
+                    {
+                        return !_chart.hasFilter( d.x );
+                    } );
+                }
+                else
+                {
+                    bars.classed( dc.constants.SELECTED_CLASS, false );
+                    bars.classed( dc.constants.DESELECTED_CLASS, true );
+                    paths.classed( dc.constants.DESELECTED_CLASS, true );
+                }
+            }
+            else
+            {
+                if( !_chart.brushIsEmpty( extent ) )
+                {
+                    var start = extent[0];
+                    var end = extent[1];
+
+                    bars.classed( dc.constants.DESELECTED_CLASS, function ( d )
+                    {
+                        return d.x < start || d.x >= end;
+                    } );
+                }
+                else
+                    bars.classed( dc.constants.DESELECTED_CLASS, false );
+            }
+        };
+
+        _chart.elasticYInDomain = function ( _ )
+        {
+            if( !arguments.length ) return _yElasticityInDomain;
+            _yElasticityInDomain = _;
+            return _chart;
+        };
+
+        _chart.plotData = function ()
+        {
+            var layers = _chart.chartBodyG().selectAll( "g.stack" )
+                    .data( _chart.data() );
+
+            _chart.calculateBarWidth();
+
+            layers
+                    .enter()
+                    .append( "g" )
+                    .attr( "class", function ( d, i )
+            {
+                return "stack " + "_" + i + " layer" + i;
+            } );
+
+            layers.each( function ( d, i )
+            {
+                var layer = d3.select( this );
+
+                renderBars( layer, i, d );
+                renderBoxAndWhiskersPlot( layer, d );
+            } );
+        };
+
+
+        return _chart.anchor( parent, chartGroup );
     };
 
-    return _chart.anchor(parent, chartGroup);
-};
 
-
-/**
+    /**
 ## Line Chart
 
 Includes [Stack Mixin](#stack-mixin), [Coordinate Grid Mixin](#coordinate-grid-mixin)
@@ -5438,7 +5467,8 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
         if (isDataLayer(layerIndex)) {
             var regionG = renderRegionG(layerIndex);
 
-            renderPaths(regionG, layerIndex, data);
+            /* CHANGE VMIPSL */
+            _chart.renderPaths(regionG, layerIndex, data);
 
             renderTitle(regionG, layerIndex, data);
         }
@@ -5497,7 +5527,8 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
         return _geoJsons[index];
     }
 
-    function renderPaths(regionG, layerIndex, data) {
+    /* CHANGE VMIPSL */
+    _chart.renderPaths = function(regionG, layerIndex, data) {
         var paths = regionG
             .select("path")
             .attr("fill", function () {
@@ -5513,7 +5544,7 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
         dc.transition(paths, _chart.transitionDuration()).attr("fill", function (d, i) {
             return _chart.getColor(data[geoJson(layerIndex).keyAccessor(d)], i);
         });
-    }
+    };
 
     _chart.onClick = function (d, layerIndex) {
         var selectedRegion = geoJson(layerIndex).keyAccessor(d);
@@ -5693,7 +5724,8 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
             return "g.layer" + layerIndex + " g." + geoJson( layerIndex ).name;
         }
 
-        function renderPaths( regionG, layerIndex, data )
+        /* CHANGE VMIPSL */
+        _chart.renderPaths = function( regionG, layerIndex, data )
         {
             var paths = regionG
                     .select( "path" )

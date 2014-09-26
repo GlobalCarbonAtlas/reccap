@@ -434,7 +434,7 @@ var RCInterface = Class.create( {
 
     createFluxBarChart: function( chartId, width, height, dimension, group, uncertaintyGroup, xDomain, yDomain, useRightYAxis, barCharMargin )
     {
-        var barChart = dc.barChart( chartId )
+        var barChart = dc.customBarChartWithUncertainty( chartId )
                 .height( height )
                 .width( width )
                 .transitionDuration( 750 )

@@ -200,10 +200,10 @@ var RCInterface = Class.create( {
         $.each( globeData, jQuery.proxy( function( i, d )
         {
             if( this.mainFlux.indexOf( i ) != -1 )
-                mainFluxDomain = Math.max( mainFluxDomain, Math.abs( d.value ) );
+                mainFluxDomain = (this.displayUncertainty && d.uncertainty ? Math.max( mainFluxDomain, Math.abs( parseInt(d.value) + parseInt(d.uncertainty)) ) : Math.max( mainFluxDomain, Math.abs( d.value ) ));
             else
             if( this.separatedFlux.indexOf( i ) != -1 )
-                separatedFluxDomain = Math.max( separatedFluxDomain, Math.abs( d.value ) );
+                separatedFluxDomain = (this.displayUncertainty && d.uncertainty ? Math.max( separatedFluxDomain, Math.abs( parseInt(d.value) + parseInt(d.uncertainty)) ) : Math.max( separatedFluxDomain, Math.abs( d.value ) ));
         }, this ) );
         this.yDomainForAllMainFlux = [-mainFluxDomain, mainFluxDomain];
         this.yDomainForAllSeparatedFlux = [-separatedFluxDomain, separatedFluxDomain];

@@ -248,7 +248,7 @@ var RCInterface = Class.create( {
                 .translate( [width / 2,  height / 2] )
                 .scale( [newScale] );
 
-        this.geoChoroplethChart = dc.geoChoroplethChart( chartId )
+        this.geoChoroplethChart = dc.customGeoChoroplethChart( chartId )
                 .width( width )
                 .height( height )
                 .dimension( continentsDimension )

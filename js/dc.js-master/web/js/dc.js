@@ -1755,7 +1755,7 @@ dc.coordinateGridMixin = function (_chart) {
 
     /**
     #### .xUnits([xUnits function])
-    Set or get the xUnits function. xUnits function is the coordinate grid chart uses to calculate nuber of data
+    Set or get the xUnits function. xUnits function is the coordinate grid chart uses to calculate number of data
     projections on x axis such as number bars for a bar chart and number of dots for a line chart. This function is
     expected to return an Javascript array of all data points on x axis. d3 time range functions d3.time.days, d3.time.months,
     and d3.time.years are all valid xUnits function. dc.js also provides a few units function, see [Utilities](#util)
@@ -5293,11 +5293,6 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
     var _projectionFlag;
 
     var _geoJsons = [];
-    var _boolMultipleSelect = false;
-    var _boolSelect = true;
-    var _emptyZoneWithNoData = false;
-    var _callbackOnClick = false;
-    var _displayedRegions = [];
 
     _chart._doRender = function () {
         _chart.resetSvg();
@@ -5397,95 +5392,17 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
                     return currentFill;
                 return "none";
             })
-                .on( "click", function ( d )
-        {
-            /** CHANGE VMIPSL **/
-            if( _emptyZoneWithNoData == d.properties.continent )
-                return;
-            return _chart.onClick( d, layerIndex );
-        } );
+            .on("click", function (d) {
+                return _chart.onClick(d, layerIndex);
+            });
 
         dc.transition(paths, _chart.transitionDuration()).attr("fill", function (d, i) {
             return _chart.getColor(data[geoJson(layerIndex).keyAccessor(d)], i);
         });
     }
 
-    /** CHANGE VMIPSL **/
-    _chart.selectAllRegion = function(regionArray)
-    {
-        _chart.filterAll();
-        $.each(regionArray, function(i,d)
-        {
-            var countriesPath = _chart.svg().selectAll( layerSelector( 0 ) + "." + dc.utils.nameToId( d ) ).select( "path" );
-            if( countriesPath[0][0] )
-                _chart.onClick( countriesPath[0][0].__data__, 0 );
-        });
-    };
-
-    /** CHANGE VMIPSL **/
-    _chart.setMultipleSelect= function( boolValue )
-    {
-        _boolMultipleSelect = boolValue;
-    };
-
-    _chart.getMultipleSelect = function()
-    {
-        return _boolMultipleSelect;
-    };
-
-    _chart.setSelect = function( boolValue )
-    {
-        _boolSelect = boolValue;
-    };
-
-    _chart.getSelect = function()
-    {
-        return _boolSelect;
-    };
-
-    _chart.getDisplayedRegions = function()
-    {
-        return _displayedRegions;
-    };
-
-    _chart.setDisplayedRegions = function( displayRegions )
-    {
-        _displayedRegions = displayRegions;
-    };
-
-    _chart.setEmptyZoneWithNoData = function( value )
-    {
-        _emptyZoneWithNoData = value;
-    };
-
-    _chart.setCallBackOnClick = function( callback )
-    {
-        _callbackOnClick = callback;
-    };
-
     _chart.onClick = function (d, layerIndex) {
-        if(!_boolSelect)
-            return;
-
-        if( !_boolMultipleSelect )
-        {
-            _displayedRegions = [];
-            dc.events.trigger( function ()
-            {
-                _chart.filterAll();
-                _chart.redrawGroup();
-            } );
-        }
-        var selectedRegion = geoJson( layerIndex ).keyAccessor( d );
-        var index = jQuery.inArray( selectedRegion, _displayedRegions ) ;
-        if( index == -1 )
-            _displayedRegions.push( selectedRegion );
-        else
-            _displayedRegions.splice( index, 1 );
-
-        /** CHANGE VMIPSL **/
-        if( _callbackOnClick )
-            _callbackOnClick( d );
+        var selectedRegion = geoJson(layerIndex).keyAccessor(d);
         dc.events.trigger(function () {
             _chart.filter(selectedRegion);
             _chart.redrawGroup();
@@ -5595,7 +5512,143 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
     return _chart.anchor(parent, chartGroup);
 };
 
-/**
+    /**
+     * *******************************************
+     * ## Custom Geo Choropleth Chart
+     * Heritates from Geo Choropleth Chart
+     * Change from VMIPSL
+     * *******************************************
+     **/
+    dc.customGeoChoroplethChart = function ( parent, chartGroup )
+    {
+        var _chart = dc.geoChoroplethChart( parent, chartGroup );
+
+        var _boolMultipleSelect = false;
+        var _boolSelect = true;
+        var _emptyZoneWithNoData = false;
+        var _callbackOnClick = false;
+        var _displayedRegions = [];
+
+        _chart.setMultipleSelect = function( boolValue )
+        {
+            _boolMultipleSelect = boolValue;
+        };
+
+        _chart.getMultipleSelect = function()
+        {
+            return _boolMultipleSelect;
+        };
+
+        _chart.setSelect = function( boolValue )
+        {
+            _boolSelect = boolValue;
+        };
+
+        _chart.getSelect = function()
+        {
+            return _boolSelect;
+        };
+
+        _chart.getDisplayedRegions = function()
+        {
+            return _displayedRegions;
+        };
+
+        _chart.setDisplayedRegions = function( displayRegions )
+        {
+            _displayedRegions = displayRegions;
+        };
+
+        _chart.setEmptyZoneWithNoData = function( value )
+        {
+            _emptyZoneWithNoData = value;
+        };
+
+        _chart.setCallBackOnClick = function( callback )
+        {
+            _callbackOnClick = callback;
+        };
+
+        function geoJson( index )
+        {
+            return _chart.geoJsons()[index];
+        }
+
+        function layerSelector( layerIndex )
+        {
+            return "g.layer" + layerIndex + " g." + geoJson( layerIndex ).name;
+        }
+
+        function renderPaths( regionG, layerIndex, data )
+        {
+            var paths = regionG
+                    .select( "path" )
+                    .attr( "fill", function ()
+            {
+                var currentFill = d3.select( this ).attr( "fill" );
+                if( currentFill )
+                    return currentFill;
+                return "none";
+            } )
+                    .on( "click", function ( d )
+            {
+                if( _emptyZoneWithNoData == d.properties.continent )
+                    return;
+                return _chart.onClick( d, layerIndex );
+            } );
+
+            dc.transition( paths, _chart.transitionDuration() ).attr( "fill", function ( d, i )
+            {
+                return _chart.getColor( data[geoJson( layerIndex ).keyAccessor( d )], i );
+            } );
+        }
+
+        _chart.selectAllRegion = function( regionArray )
+        {
+            _chart.filterAll();
+            $.each( regionArray, function( i, d )
+            {
+                var countriesPath = _chart.svg().selectAll( layerSelector( 0 ) + "." + dc.utils.nameToId( d ) ).select( "path" );
+                if( countriesPath[0][0] )
+                    _chart.onClick( countriesPath[0][0].__data__, 0 );
+            } );
+        };
+
+        _chart.onClick = function ( d, layerIndex )
+        {
+            if( !_boolSelect )
+                return;
+
+            if( !_boolMultipleSelect )
+            {
+                _displayedRegions = [];
+                dc.events.trigger( function ()
+                {
+                    _chart.filterAll();
+                    _chart.redrawGroup();
+                } );
+            }
+            var selectedRegion = geoJson( layerIndex ).keyAccessor( d );
+            var index = jQuery.inArray( selectedRegion, _displayedRegions );
+            if( index == -1 )
+                _displayedRegions.push( selectedRegion );
+            else
+                _displayedRegions.splice( index, 1 );
+
+            if( _callbackOnClick )
+                _callbackOnClick( d );
+            dc.events.trigger( function ()
+            {
+                _chart.filter( selectedRegion );
+                _chart.redrawGroup();
+            } );
+        };
+
+
+        return _chart.anchor( parent, chartGroup );
+    };
+
+    /**
 ## Bubble Overlay Chart
 
 Includes: [Bubble Mixin](#bubble-mixin), [Base Mixin](#base-mixin)
@@ -5827,7 +5880,7 @@ dc.rowChart = function (parent, chartGroup) {
     var _g;
 
     var _labelOffsetX = 10;
-    var _labelOffsetY = 13;
+    var _labelOffsetY = 15;
     var _titleLabelOffsetX = 2;
 
     var _gap = 5;
@@ -5845,7 +5898,6 @@ dc.rowChart = function (parent, chartGroup) {
     var _xAxis = d3.svg.axis().orient("bottom");
 
     var _rowData;
-    var _callbackOnClick = false;
 
     _chart.rowsCap = _chart.cap;
 
@@ -5992,8 +6044,6 @@ dc.rowChart = function (parent, chartGroup) {
     }
 
     function updateLabels(rows) {
-        /* VMIPSL : display values on flux image */
-        $("#dynamicAreasForImageFluxForSynthesis .dynamicArea").empty();
         if (_chart.renderLabel()) {
             var lab = rows.select("text")
                 .attr("x", _labelOffsetX)
@@ -6003,11 +6053,8 @@ dc.rowChart = function (parent, chartGroup) {
                     return _rowCssClass + " _" + i;
                 })
                 .text(function (d) {
-                /* VMIPSL : display values on flux image */
-                var divId = d.key.replace( / /g, "_" );
-                $( "#" + divId + "_value" ).html( d.value );
-                return _chart.label()( d );
-            });
+                    return _chart.label()(d);
+                });
             dc.transition(lab, _chart.transitionDuration())
                 .attr("transform", translateX);
         }
@@ -6028,12 +6075,6 @@ dc.rowChart = function (parent, chartGroup) {
         }
     }
 
-    /** CHANGE VMIPSL **/
-    _chart.setCallBackOnClick = function( callback )
-    {
-        _callbackOnClick = callback;
-    };
-
     /**
     #### .renderTitleLabel(boolean)
     Turn on/off Title label rendering (values) using SVG style of text-anchor 'end'
@@ -6047,8 +6088,6 @@ dc.rowChart = function (parent, chartGroup) {
 
     function onClick(d) {
         _chart.onClick(d);
-        if( _callbackOnClick )
-            _callbackOnClick( d );
     }
 
     function translateX(d) {

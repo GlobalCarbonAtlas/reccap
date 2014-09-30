@@ -180,39 +180,61 @@ var RCInterface = Class.create( {
             return;
 
         var mainFluxDomain = 0;
+        var mainFluxDomainWithUncertainty = 0;
         var separatedFluxDomain = 0;
+        var separatedFluxDomainWithUncertainty = 0;
 
         // Domains for mono region
         $.each( this.filterRecords.top( Infinity ), jQuery.proxy( function( i, d )
         {
             if( this.mainFlux.indexOf( d[this.fluxColName] ) != -1 )
-                mainFluxDomain = (this.displayUncertainty && d[this.uncertaintyColName] ? Math.max( mainFluxDomain, Math.abs( parseInt( d[this.valueColName] ) + parseInt( d[this.uncertaintyColName] ) ) ) : Math.max( mainFluxDomain, Math.abs( d[this.valueColName] ) ));
+            {
+                mainFluxDomain = Math.max( mainFluxDomain, Math.abs( d[this.valueColName] ) );
+                mainFluxDomainWithUncertainty = d[this.uncertaintyColName] ? Math.max( mainFluxDomainWithUncertainty, Math.abs( parseInt( d[this.valueColName] ) + parseInt( d[this.uncertaintyColName] ) ) ) : 0;
+            }
             else
-                separatedFluxDomain = (this.displayUncertainty && d[this.uncertaintyColName] ? Math.max( separatedFluxDomain, Math.abs( parseInt( d[this.valueColName] ) + parseInt( d[this.uncertaintyColName] ) ) ) : Math.max( separatedFluxDomain, Math.abs( d[this.valueColName] ) ));
+            {
+                separatedFluxDomain = Math.max( separatedFluxDomain, Math.abs( d[this.valueColName] ) );
+                separatedFluxDomainWithUncertainty = d[this.uncertaintyColName] ? Math.max( separatedFluxDomainWithUncertainty, Math.abs( parseInt( d[this.valueColName] ) + parseInt( d[this.uncertaintyColName] ) ) ) : 0;
+            }
+//            console.log( d["Region"] + "      " + d[this.fluxColName] + " : " + mainFluxDomain + "/" + mainFluxDomain + ", " + separatedFluxDomain + "+/" + separatedFluxDomainWithUncertainty );
         }, this ) );
         // Add 1% to see complete box and whiskers plot
-        mainFluxDomain += mainFluxDomain * 0.01;
-        separatedFluxDomain += separatedFluxDomain * 0.01;
+        mainFluxDomainWithUncertainty += mainFluxDomainWithUncertainty * 0.01;
+        separatedFluxDomainWithUncertainty += separatedFluxDomainWithUncertainty * 0.01;
         this.yDomainForMainFlux = [-mainFluxDomain, mainFluxDomain];
+        this.yDomainForMainFluxWithUncertainty = [-mainFluxDomainWithUncertainty, mainFluxDomainWithUncertainty];
         this.yDomainForSeparatedFlux = [-separatedFluxDomain, separatedFluxDomain];
+        this.yDomainForSeparatedFluxWithUncertainty = [-separatedFluxDomainWithUncertainty, separatedFluxDomainWithUncertainty];
 
         // Domains for all regions
         mainFluxDomain = 0;
+        mainFluxDomainWithUncertainty = 0;
         separatedFluxDomain = 0;
+        separatedFluxDomainWithUncertainty = 0;
         var globeData = this.transposedData[this.regionsKeys.indexOf( this.globeRegion )];
         $.each( globeData, jQuery.proxy( function( i, d )
         {
             if( this.mainFlux.indexOf( i ) != -1 )
-                mainFluxDomain = (this.displayUncertainty && d.uncertainty ? Math.max( mainFluxDomain, Math.abs( parseInt( d.value ) + parseInt( d.uncertainty ) ) ) : Math.max( mainFluxDomain, Math.abs( d.value ) ));
-            else
-            if( this.separatedFlux.indexOf( i ) != -1 )
-                separatedFluxDomain = (this.displayUncertainty && d.uncertainty ? Math.max( separatedFluxDomain, Math.abs( parseInt( d.value ) + parseInt( d.uncertainty ) ) ) : Math.max( separatedFluxDomain, Math.abs( d.value ) ));
+            {
+                mainFluxDomain = Math.max( mainFluxDomain, Math.abs( d.value ) );
+                mainFluxDomainWithUncertainty = d.uncertainty ? Math.max( mainFluxDomainWithUncertainty, Math.abs( parseInt( d.value ) + parseInt( d.uncertainty ) ) ) : 0;
+            }
+            else if( this.separatedFlux.indexOf( i ) != -1 )
+            {
+                separatedFluxDomain = Math.max( separatedFluxDomain, Math.abs( d.value ) );
+                separatedFluxDomainWithUncertainty = d.uncertainty ? Math.max( separatedFluxDomainWithUncertainty, Math.abs( parseInt( d.value ) + parseInt( d.uncertainty ) ) ) : 0;
+            }
         }, this ) );
         // Add 1% to see complete box and whiskers plot
-        mainFluxDomain += mainFluxDomain * 0.01;
-        separatedFluxDomain += separatedFluxDomain * 0.01;
+        mainFluxDomainWithUncertainty += mainFluxDomainWithUncertainty * 0.01;
+        separatedFluxDomainWithUncertainty += separatedFluxDomainWithUncertainty * 0.01;
         this.yDomainForAllMainFlux = [-mainFluxDomain, mainFluxDomain];
+        this.yDomainForAllMainFluxWithUncertainty = [-mainFluxDomainWithUncertainty, mainFluxDomainWithUncertainty];
         this.yDomainForAllSeparatedFlux = [-separatedFluxDomain, separatedFluxDomain];
+        this.yDomainForAllSeparatedFluxWithUncertainty = [-separatedFluxDomainWithUncertainty, separatedFluxDomainWithUncertainty];
+        console.log( "ICI : " + this.yDomainForMainFlux + " / " + this.yDomainForMainFluxWithUncertainty + ", " + this.yDomainForSeparatedFlux + " / " + this.yDomainForSeparatedFluxWithUncertainty );
+        console.log( "ICI : " + this.yDomainForAllMainFlux + " / " + this.yDomainForAllMainFluxWithUncertainty + ", " + this.yDomainForAllSeparatedFlux + " / " + this.yDomainForAllSeparatedFluxWithUncertainty );
     },
 
 
@@ -275,20 +297,7 @@ var RCInterface = Class.create( {
         $( "#fluxBarChartTitle" ).attr( "data-original-title", translatedRegions );
         $( "#imageFluxForSynthesisTitle" ).html( translatedRegions );
 
-        if( this.geoChoroplethChart.getSelect() && !this.geoChoroplethChart.getMultipleSelect() )
-        {
-            this.fluxBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForMainFlux ) );
-            this.fluxBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForSeparatedFlux ) );
-        }
-        else
-        {
-            this.fluxBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForAllMainFlux ) );
-            this.fluxBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForAllSeparatedFlux ) );
-        }
-
-        d3.selectAll( "#fluxBarChart .grid-line.horizontal line" ).classed( 'zero', false );
-        this.fluxBarChartForMainFlux.redraw();
-        this.fluxBarChartForSeparatedFlux.redraw();
+        this.updateFluxBarCharts();
     },
 
     getDisplayedRegions: function()
@@ -477,6 +486,44 @@ var RCInterface = Class.create( {
             var propertieName = this.getI18nPropertiesKeyFromValue( d );
             return 0 != jQuery.i18n.prop( propertieName + "_shortForAxis" ).indexOf( "[" ) ? jQuery.i18n.prop( propertieName + "_shortForAxis" ) : d;
         }, this ) );
+    },
+
+    updateFluxBarCharts: function()
+    {
+        if( this.geoChoroplethChart.getSelect() && !this.geoChoroplethChart.getMultipleSelect() )
+        {
+            if( this.displayUncertainty )
+            {
+                console.log( "updateFluxBarCharts 1 : " + this.yDomainForMainFluxWithUncertainty + ", " + this.yDomainForSeparatedFluxWithUncertainty);
+                this.fluxBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForMainFluxWithUncertainty ) );
+                this.fluxBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForSeparatedFluxWithUncertainty ) );
+            }
+            else
+            {
+                console.log( "updateFluxBarCharts 2 : " + this.yDomainForMainFlux + ", " + this.yDomainForSeparatedFlux);
+                this.fluxBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForMainFlux ) );
+                this.fluxBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForSeparatedFlux ) );
+            }
+        }
+        else
+        {
+            if( this.displayUncertainty )
+            {
+                console.log( "updateFluxBarCharts 3 : " + this.yDomainForAllMainFluxWithUncertainty + ", " + this.yDomainForAllSeparatedFluxWithUncertainty);
+                this.fluxBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForAllMainFluxWithUncertainty ) );
+                this.fluxBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForAllSeparatedFluxWithUncertainty ) );
+            }
+            else
+            {
+                console.log( "updateFluxBarCharts 4 : " + this.yDomainForAllMainFlux + ", " + this.yDomainForAllSeparatedFlux);
+                this.fluxBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForAllMainFlux ) );
+                this.fluxBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForAllSeparatedFlux ) );
+            }
+        }
+
+        d3.selectAll( "#fluxBarChart .grid-line.horizontal line" ).classed( 'zero', false );
+        this.fluxBarChartForMainFlux.redraw();
+        this.fluxBarChartForSeparatedFlux.redraw();
     },
 
     onClickFluxChart: function( element )
@@ -965,11 +1012,7 @@ var RCInterface = Class.create( {
             }
             this.fluxBarChartForMainFlux.displayBoxAndWhiskersPlot( this.displayUncertainty );
             this.fluxBarChartForSeparatedFlux.displayBoxAndWhiskersPlot( this.displayUncertainty );
-            this.initYDomainsForFluxBarChart();
-            this.fluxBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForAllMainFlux ) );
-            this.fluxBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForAllSeparatedFlux ) );
-            d3.selectAll( "#fluxBarChart .grid-line.horizontal line" ).classed( 'zero', false );
-            dc.redrawAll();
+            this.updateFluxBarCharts();
             this.updateRegionBarChart();
         }, this ) );
 
@@ -977,11 +1020,14 @@ var RCInterface = Class.create( {
         $( "#resetMap" ).on( "click", jQuery.proxy( function()
         {
             this.geoChoroplethChart.filterAll();
-            $( "#fluxBarChartTitle" ).html( i18n.t( "label.allRegions" ) );
-            $( "#imageFluxForSynthesisTitle" ).html( i18n.t( "label.allRegions" ) );
-            this.fluxBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForAllMainFlux ) );
-            this.fluxBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForAllSeparatedFlux ) );
-            d3.selectAll( "#fluxBarChart .grid-line.horizontal line" ).classed( 'zero', false );
+//            $( "#fluxBarChartTitle" ).html( i18n.t( "label.allRegions" ) );
+//            $( "#imageFluxForSynthesisTitle" ).html( i18n.t( "label.allRegions" ) );
+//            this.geoChoroplethChart.getSelect()
+            this.loadRegionAllSelection();
+            this.updateFluxBarCharts();
+//            this.fluxBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForAllMainFlux ) );
+//            this.fluxBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForAllSeparatedFlux ) );
+//            d3.selectAll( "#fluxBarChart .grid-line.horizontal line" ).classed( 'zero', false );
             dc.redrawAll();
         }, this ) );
 

@@ -558,6 +558,7 @@ dc.baseMixin = function (_chart) {
 
     var _renderLabel = false;
 
+    /* CHANGE VMIPSL */
     var _title = function (d) {
 //        return _chart.keyAccessor()(d) + ": " + _chart.valueAccessor()(d);
         return _keyAccessor + " : " + _valueAccessor;
@@ -3651,6 +3652,7 @@ dc.barChart = function (parent, chartGroup) {
 
         if (_chart.isOrdinal())
             bars.on("click", onClick);
+            bars.on("click", onClick);
 
         dc.transition(bars, _chart.transitionDuration())
             .attr("x", function (d) {
@@ -5747,7 +5749,7 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
             {
                 return _chart.getColor( data[geoJson( layerIndex ).keyAccessor( d )], i );
             } );
-        }
+        };
 
         _chart.selectAllRegion = function( regionArray )
         {

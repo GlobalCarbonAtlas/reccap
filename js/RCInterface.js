@@ -71,8 +71,7 @@ var RCInterface = Class.create( {
         this.imageHeight = newImageHeight;
         this.mapImageWidth = this.imageWidth - this.marginLeftForFluxImageAndMap;// - $( "#fluxBarChartForSeparatedFlux" ).css( "margin-left" ).replace( "px", "" );
         this.mapImageHeight = this.imageHeight;
-//        this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".basicCell" ).css( "margin-bottom" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
-        this.barChartHeight = 300;
+        this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".basicCell" ).css( "margin-bottom" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
 
         // Elements positions
         $( "#mapChartAndComment" ).css( "margin-left", this.marginLeftForFluxImageAndMap );
@@ -738,7 +737,7 @@ var RCInterface = Class.create( {
         regionBarRect.exit().remove();
 
         regionBar.transition()
-                .duration( 200 )
+                .duration( 500 )
                 .ease( "linear" )
                 .selectAll( "rect" )
                 .attr( "width", this.regionBarChartx1.rangeBand() )
@@ -782,7 +781,7 @@ var RCInterface = Class.create( {
         regionBarPath.exit().remove();
 
         regionBar.transition()
-                .duration( 200 )
+                .duration( 500 )
                 .ease( "linear" )
                 .selectAll( "path" )
                 .attr( "d", jQuery.proxy( function( d )
@@ -871,7 +870,7 @@ var RCInterface = Class.create( {
                     if( activeClick )
                     {
                         this.initDimensionsForCharts( $( imageId ).height() );
-                        var topPosition = -this.imageHeight / 2 + (this.imageHeight / 2 - $( "#synthesis" ).height()) / 2;
+                        var topPosition = -this.imageHeight / 2 + (this.imageHeight / 2 + $( "#synthesis" ).height()) / 2;
                         $( "#synthesis" ).css( "margin-top", topPosition );
                         $( "#synthesis" ).css( "margin-right", -$( "#synthesis" ).width() );
 

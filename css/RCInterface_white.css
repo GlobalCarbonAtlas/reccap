@@ -66,19 +66,19 @@ body {
 }
 
 /*.basicCell, .bottomBasicCell {*/
-/*border: 1px solid red;*/
+    /*border: 1px solid red;*/
 /*}*/
 
 /*#mapChart, #regionBarChart, #fluxBarChartForMainFlux, #fluxBarChartForSeparatedFlux, #mapster_wrap_0 {*/
-/*border: 1px solid blue;*/
+    /*border: 1px solid blue;*/
 /*}*/
 
 /* ************** LEFT TOOLS ************** */
 .leftTools {
-    /*border: 2px solid #2C3537 !important;*/
-    /*-webkit-border-radius: 10px;*/
-    /*-moz-border-radius: 10px;*/
-    /*border-radius: 10px;*/
+/*border: 2px solid #2C3537 !important;*/
+/*-webkit-border-radius: 10px;*/
+/*-moz-border-radius: 10px;*/
+/*border-radius: 10px;*/
     text-align: center;
     margin: 10px 0 20px;
     float: left;
@@ -292,6 +292,7 @@ body {
 /* ************** MAP ************** */
 #mapChart {
     padding: 0 !important;
+    width: 100%;
 }
 
 #mapChartAndComment {
@@ -370,10 +371,6 @@ g.no_data_for_this_region path {
 
 #dynamicAreasForImageFlux .dynamicArea.selected {
     border: 2px double #DDDDDD;
-}
-
-#dynamicAreasForImageFlux #SCE.selected {
-    border: 1px ridge #f5f5f5;
 }
 
 /* ************** DATA & SYNTHESIS STYLE ************** */

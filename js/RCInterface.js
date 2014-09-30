@@ -36,7 +36,7 @@ var RCInterface = Class.create( {
         this.barCharMargin = {top: 10, right: 0, bottom: 75, left: 35};
         this.color = d3.scale.ordinal().range( JSON.parse( jQuery.i18n.prop( "fluxColors" ) ) );
         this.selectMultipleRegion = false;
-        this.displayUncertainty = true;
+        this.displayUncertainty = false;
 
         // Areas for maps
         this.initDimensionsForImageAndCharts();
@@ -71,7 +71,8 @@ var RCInterface = Class.create( {
         this.imageHeight = newImageHeight;
         this.mapImageWidth = this.imageWidth - this.marginLeftForFluxImageAndMap;// - $( "#fluxBarChartForSeparatedFlux" ).css( "margin-left" ).replace( "px", "" );
         this.mapImageHeight = this.imageHeight;
-        this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".basicCell" ).css( "margin-bottom" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
+//        this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".basicCell" ).css( "margin-bottom" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
+        this.barChartHeight = 300;
 
         // Elements positions
         $( "#mapChartAndComment" ).css( "margin-left", this.marginLeftForFluxImageAndMap );
@@ -452,7 +453,7 @@ var RCInterface = Class.create( {
 
         barChart.setUseRightYAxis( useRightYAxis );
         barChart.yAxis().tickFormat( d3.format( "s" ) );
-        barChart.setUseBoxAndWhiskersPlot( true );
+        barChart.displayBoxAndWhiskersPlot( this.displayUncertainty );
         barChart.setCallBackOnClick( jQuery.proxy( this.onClickFluxChart, [this, chartId] ) );
         barChart.on( "postRedraw", jQuery.proxy( function()
         {
@@ -962,6 +963,13 @@ var RCInterface = Class.create( {
                 $( "#uncertaintyText" ).html( i18n.t( "button.uncertaintyHide" ) );
                 $( "#fluxBarChart" ).addClass( "uncertainty" );
             }
+            this.fluxBarChartForMainFlux.displayBoxAndWhiskersPlot( this.displayUncertainty );
+            this.fluxBarChartForSeparatedFlux.displayBoxAndWhiskersPlot( this.displayUncertainty );
+            this.initYDomainsForFluxBarChart();
+            this.fluxBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForAllMainFlux ) );
+            this.fluxBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForAllSeparatedFlux ) );
+            d3.selectAll( "#fluxBarChart .grid-line.horizontal line" ).classed( 'zero', false );
+            dc.redrawAll();
             this.updateRegionBarChart();
         }, this ) );
 

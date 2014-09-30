@@ -3869,7 +3869,7 @@ dc.barChart = function (parent, chartGroup) {
 
         var _callbackOnClick = false;
         // Use stack to display uncertainty as Box and Whiskers Plot
-        var _useBoxAndWhiskersPlot = false;
+        var _displayBoxAndWhiskersPlot = false;
         var _yElasticityInDomain = false;
 
         _chart.setCallBackOnClick = function( callback )
@@ -3877,9 +3877,9 @@ dc.barChart = function (parent, chartGroup) {
             _callbackOnClick = callback;
         };
 
-        _chart.setUseBoxAndWhiskersPlot = function ( boolValue )
+        _chart.displayBoxAndWhiskersPlot = function ( boolValue )
         {
-            _useBoxAndWhiskersPlot = boolValue;
+            _displayBoxAndWhiskersPlot = boolValue;
         };
 
         function barHeight( d )
@@ -3898,9 +3898,6 @@ dc.barChart = function (parent, chartGroup) {
 
         function renderBoxAndWhiskersPlot( layer, d )
         {
-            if( !_useBoxAndWhiskersPlot )
-                return;
-
             var paths = layer.selectAll( "path" ).data( d.values );
             paths.enter().append( "path" ).attr( "class", "bar" );
             paths.exit().remove();
@@ -3912,7 +3909,7 @@ dc.barChart = function (parent, chartGroup) {
             } )
                     .attr( "d", function( d )
             {
-                if( _chart.xOriginalDomain().indexOf( d.x ) == -1 )
+                if( _chart.xOriginalDomain().indexOf( d.x ) == -1 || !_displayBoxAndWhiskersPlot )
                     return false;
 
                 var x = _chart.x()( d.x );

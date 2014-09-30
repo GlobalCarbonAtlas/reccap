@@ -485,10 +485,10 @@ var RCInterface = Class.create( {
         var chartId = this[1];
         var dynamicAreaDivId = context.getI18nPropertiesKeyFromValue( element.key );
         context.addOrRemoveToRegionBarChart( $( "#" + dynamicAreaDivId ), element.key );
-        if( "#fluxBarChartForMainFlux" == chartId )
-            context.fluxBarChartForSeparatedFlux.onClick( {key: element.key} );
-        else
-            context.fluxBarChartForMainFlux.onClick( {key: element.key} );
+//        if( "#fluxBarChartForMainFlux" == chartId )
+//            context.fluxBarChartForSeparatedFlux.onClick( {key: element.key} );
+//        else
+//            context.fluxBarChartForMainFlux.onClick( {key: element.key} );
     },
 
     onCompleteDisplayFluxChart: function()

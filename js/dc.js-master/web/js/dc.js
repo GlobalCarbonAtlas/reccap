@@ -3905,7 +3905,7 @@ dc.barChart = function (parent, chartGroup) {
             dc.transition( paths, _chart.transitionDuration() )
                     .attr( "id", function( d )
             {
-                return d.x;
+                return "path_" + d.x;
             } )
                     .attr( "d", function( d )
             {

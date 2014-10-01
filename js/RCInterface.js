@@ -961,17 +961,16 @@ var RCInterface = Class.create( {
         $( "#reset" ).on( "click", jQuery.proxy( function()
         {
             $( "#dynamicAreasForImageFlux .dynamicArea" ).removeClass( "selected" );
-            $( "#fluxBarChartTitle" ).html( i18n.t( "label.allRegions" ) );
-            $( "#imageFluxForSynthesisTitle" ).html( i18n.t( "label.allRegions" ) );
             this.displayedVariables = [];
             this.displayUncertainty = false;
-            this.fluxBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForAllMainFlux ) );
-            this.fluxBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForAllSeparatedFlux ) );
+            this.fluxBarChartForMainFlux.displayBoxAndWhiskersPlot( this.displayUncertainty );
+            this.fluxBarChartForSeparatedFlux.displayBoxAndWhiskersPlot( this.displayUncertainty );
 
             dc.filterAll();
             dc.renderAll();
             this.loadRegionOneSelection();
             this.updateToolTipsForCharts();
+            this.updateFluxBarCharts();
             this.updateXAxisForFluxBarChart();
             this.updateRegionBarChart();
 

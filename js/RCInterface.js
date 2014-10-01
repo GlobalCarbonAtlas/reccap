@@ -37,6 +37,7 @@ var RCInterface = Class.create( {
         this.color = d3.scale.ordinal().range( JSON.parse( jQuery.i18n.prop( "fluxColors" ) ) );
         this.selectMultipleRegion = false;
         this.displayUncertainty = false;
+        this.emptyZoneWithNoData = "No data for this region";
 
         // Areas for maps
         this.initDimensionsForImageAndCharts();
@@ -71,8 +72,8 @@ var RCInterface = Class.create( {
         this.imageHeight = newImageHeight;
         this.mapImageWidth = this.imageWidth - this.marginLeftForFluxImageAndMap;// - $( "#fluxBarChartForSeparatedFlux" ).css( "margin-left" ).replace( "px", "" );
         this.mapImageHeight = this.imageHeight;
-//        this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".basicCell" ).css( "margin-bottom" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
-        this.barChartHeight = 300;
+        this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".basicCell" ).css( "margin-bottom" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
+//        this.barChartHeight = 300;
 
         // Elements positions
         $( "#mapChartAndComment" ).css( "margin-left", this.marginLeftForFluxImageAndMap );
@@ -197,7 +198,6 @@ var RCInterface = Class.create( {
                 separatedFluxDomain = Math.max( separatedFluxDomain, Math.abs( d[this.valueColName] ) );
                 separatedFluxDomainWithUncertainty = d[this.uncertaintyColName] ? Math.max( separatedFluxDomainWithUncertainty, Math.abs( parseInt( d[this.valueColName] ) + parseInt( d[this.uncertaintyColName] ) ) ) : 0;
             }
-//            console.log( d["Region"] + "      " + d[this.fluxColName] + " : " + mainFluxDomain + "/" + mainFluxDomain + ", " + separatedFluxDomain + "+/" + separatedFluxDomainWithUncertainty );
         }, this ) );
         // Add 1% to see complete box and whiskers plot
         mainFluxDomainWithUncertainty += mainFluxDomainWithUncertainty * 0.01;
@@ -233,8 +233,6 @@ var RCInterface = Class.create( {
         this.yDomainForAllMainFluxWithUncertainty = [-mainFluxDomainWithUncertainty, mainFluxDomainWithUncertainty];
         this.yDomainForAllSeparatedFlux = [-separatedFluxDomain, separatedFluxDomain];
         this.yDomainForAllSeparatedFluxWithUncertainty = [-separatedFluxDomainWithUncertainty, separatedFluxDomainWithUncertainty];
-        console.log( "ICI : " + this.yDomainForMainFlux + " / " + this.yDomainForMainFluxWithUncertainty + ", " + this.yDomainForSeparatedFlux + " / " + this.yDomainForSeparatedFluxWithUncertainty );
-        console.log( "ICI : " + this.yDomainForAllMainFlux + " / " + this.yDomainForAllMainFluxWithUncertainty + ", " + this.yDomainForAllSeparatedFlux + " / " + this.yDomainForAllSeparatedFluxWithUncertainty );
     },
 
 
@@ -252,6 +250,7 @@ var RCInterface = Class.create( {
 
             this.updateToolTipsForCharts();
             this.updateXAxisForFluxBarChart();
+            this.updateFluxBarCharts();
 
             // Home with selected flux
             $( "#" + jQuery.i18n.prop( "selectedFluxForHomePage" ) ).click();
@@ -286,21 +285,16 @@ var RCInterface = Class.create( {
         } );
 
         this.geoChoroplethChart.setMultipleSelect( this.selectMultipleRegion );
-        this.geoChoroplethChart.setEmptyZoneWithNoData( "No data for this region" );
+        this.geoChoroplethChart.setEmptyZoneWithNoData( this.emptyZoneWithNoData );
         this.geoChoroplethChart.setCallBackOnClick( jQuery.proxy( this.onClickGeoChoroplethChart, this ) );
     },
 
     onClickGeoChoroplethChart: function()
     {
-        var translatedRegions = this.getDisplayedRegions().join( " + " );
-        $( "#fluxBarChartTitle" ).html( translatedRegions );
-        $( "#fluxBarChartTitle" ).attr( "data-original-title", translatedRegions );
-        $( "#imageFluxForSynthesisTitle" ).html( translatedRegions );
-
         this.updateFluxBarCharts();
     },
 
-    getDisplayedRegions: function()
+    getTranslatedDisplayedRegions: function()
     {
         var result = [];
         $.each( this.geoChoroplethChart.getDisplayedRegions(), function( i, d )
@@ -334,7 +328,7 @@ var RCInterface = Class.create( {
 
     loadRegionAllSelection: function()
     {
-        this.geoChoroplethChart.setDisplayedRegions( [] );
+//        this.geoChoroplethChart.setDisplayedRegions( [] );
         this.geoChoroplethChart.selectAllRegion( this.regionsKeys );
 
         this.geoChoroplethChart.setSelect( false );
@@ -404,11 +398,6 @@ var RCInterface = Class.create( {
         }, this );
 
         // group based on carbonBudgets dimension otherwise, a click on a bar hide all others
-//        var budgetAmountGroup = carbonBudgets.group().reduceSum( jQuery.proxy( function ( d )
-//        {
-//            return this.numberFormat( d[this.valueColName] );
-//        }, this ) );
-
         var budgetAmountGroup = carbonBudgets.group().reduce(
             // add
                 jQuery.proxy( function( p, v )
@@ -431,17 +420,12 @@ var RCInterface = Class.create( {
                 }, this )
                 );
 
-        var budgetUncertGroup = carbonBudgets.group().reduceSum( jQuery.proxy( function ( d )
-        {
-            return this.numberFormat( d[this.uncertaintyColName] );
-        }, this ) );
-
-        this.fluxBarChartForMainFlux = this.createFluxBarChart( "#fluxBarChartForMainFlux", $( "#fluxBarChartForMainFlux" ).width(), this.barChartHeight, carbonBudgets, budgetAmountGroup, budgetUncertGroup, this.mainFlux, this.yDomainForAllMainFlux, false, this.barCharMargin );
+        this.fluxBarChartForMainFlux = this.createFluxBarChart( "#fluxBarChartForMainFlux", $( "#fluxBarChartForMainFlux" ).width(), this.barChartHeight, carbonBudgets, budgetAmountGroup, this.mainFlux, this.yDomainForAllMainFlux, false, this.barCharMargin );
         var rightBarChartMargin = {top: this.barCharMargin.top, right: this.barCharMargin.left, bottom: this.barCharMargin.bottom, left: this.barCharMargin.right};
-        this.fluxBarChartForSeparatedFlux = this.createFluxBarChart( "#fluxBarChartForSeparatedFlux", $( "#fluxBarChartForSeparatedFlux" ).width(), this.barChartHeight, carbonBudgets, budgetAmountGroup, budgetUncertGroup, this.separatedFlux, this.yDomainForAllSeparatedFlux, true, rightBarChartMargin );
+        this.fluxBarChartForSeparatedFlux = this.createFluxBarChart( "#fluxBarChartForSeparatedFlux", $( "#fluxBarChartForSeparatedFlux" ).width(), this.barChartHeight, carbonBudgets, budgetAmountGroup, this.separatedFlux, this.yDomainForAllSeparatedFlux, true, rightBarChartMargin );
     },
 
-    createFluxBarChart: function( chartId, width, height, dimension, group, uncertaintyGroup, xDomain, yDomain, useRightYAxis, barCharMargin )
+    createFluxBarChart: function( chartId, width, height, dimension, group, xDomain, yDomain, useRightYAxis, barCharMargin )
     {
         var barChart = dc.customBarChartWithUncertainty( chartId )
                 .height( height )
@@ -471,6 +455,25 @@ var RCInterface = Class.create( {
         return barChart;
     },
 
+    getYDomainForBarChartFlux: function( isMain )
+    {
+        if( (this.geoChoroplethChart.getDisplayedRegions().length == this.geoChoroplethChart.getNumberAllDisplayedRegions())
+                || !(this.geoChoroplethChart.getSelect() && !this.geoChoroplethChart.getMultipleSelect()) )
+        {
+            if( this.displayUncertainty )
+                return isMain ? this.yDomainForAllMainFluxWithUncertainty : this.yDomainForAllSeparatedFluxWithUncertainty;
+            else
+                return isMain ? this.yDomainForAllMainFlux : this.yDomainForAllSeparatedFlux;
+        }
+        else
+        {
+            if( this.displayUncertainty )
+                return isMain ? this.yDomainForMainFluxWithUncertainty : this.yDomainForSeparatedFluxWithUncertainty;
+            else
+                return isMain ? this.yDomainForMainFlux : this.yDomainForSeparatedFlux;
+        }
+    },
+
     updateXAxisForFluxBarChart: function()
     {
         // Flux Bar chart : rotate the x Axis labels
@@ -490,36 +493,25 @@ var RCInterface = Class.create( {
 
     updateFluxBarCharts: function()
     {
-        if( this.geoChoroplethChart.getSelect() && !this.geoChoroplethChart.getMultipleSelect() )
+        // Title
+        var translatedRegions = this.getTranslatedDisplayedRegions().join( " + " );
+        if( this.getTranslatedDisplayedRegions().length == this.geoChoroplethChart.getNumberAllDisplayedRegions() )
         {
-            if( this.displayUncertainty )
-            {
-                console.log( "updateFluxBarCharts 1 : " + this.yDomainForMainFluxWithUncertainty + ", " + this.yDomainForSeparatedFluxWithUncertainty);
-                this.fluxBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForMainFluxWithUncertainty ) );
-                this.fluxBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForSeparatedFluxWithUncertainty ) );
-            }
-            else
-            {
-                console.log( "updateFluxBarCharts 2 : " + this.yDomainForMainFlux + ", " + this.yDomainForSeparatedFlux);
-                this.fluxBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForMainFlux ) );
-                this.fluxBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForSeparatedFlux ) );
-            }
+            $( "#fluxBarChartTitle" ).html( i18n.t( "label.allRegions" ) );
+            $( "#imageFluxForSynthesisTitle" ).html( i18n.t( "label.allRegions" ) );
         }
         else
         {
-            if( this.displayUncertainty )
-            {
-                console.log( "updateFluxBarCharts 3 : " + this.yDomainForAllMainFluxWithUncertainty + ", " + this.yDomainForAllSeparatedFluxWithUncertainty);
-                this.fluxBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForAllMainFluxWithUncertainty ) );
-                this.fluxBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForAllSeparatedFluxWithUncertainty ) );
-            }
-            else
-            {
-                console.log( "updateFluxBarCharts 4 : " + this.yDomainForAllMainFlux + ", " + this.yDomainForAllSeparatedFlux);
-                this.fluxBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForAllMainFlux ) );
-                this.fluxBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForAllSeparatedFlux ) );
-            }
+            $( "#fluxBarChartTitle" ).html( translatedRegions );
+            $( "#imageFluxForSynthesisTitle" ).html( translatedRegions );
         }
+        $( "#fluxBarChartTitle" ).attr( "data-original-title", translatedRegions );
+
+        // Domains
+        var yDomainForMainFlux = this.getYDomainForBarChartFlux( true );
+        var yDomainForSeparatedFlux = this.getYDomainForBarChartFlux( false );
+        this.fluxBarChartForMainFlux.y( d3.scale.linear().domain( yDomainForMainFlux ) );
+        this.fluxBarChartForSeparatedFlux.y( d3.scale.linear().domain( yDomainForSeparatedFlux ) );
 
         d3.selectAll( "#fluxBarChart .grid-line.horizontal line" ).classed( 'zero', false );
         this.fluxBarChartForMainFlux.redraw();
@@ -1020,15 +1012,8 @@ var RCInterface = Class.create( {
         $( "#resetMap" ).on( "click", jQuery.proxy( function()
         {
             this.geoChoroplethChart.filterAll();
-//            $( "#fluxBarChartTitle" ).html( i18n.t( "label.allRegions" ) );
-//            $( "#imageFluxForSynthesisTitle" ).html( i18n.t( "label.allRegions" ) );
-//            this.geoChoroplethChart.getSelect()
-            this.loadRegionAllSelection();
+            this.geoChoroplethChart.redraw();
             this.updateFluxBarCharts();
-//            this.fluxBarChartForMainFlux.y( d3.scale.linear().domain( this.yDomainForAllMainFlux ) );
-//            this.fluxBarChartForSeparatedFlux.y( d3.scale.linear().domain( this.yDomainForAllSeparatedFlux ) );
-//            d3.selectAll( "#fluxBarChart .grid-line.horizontal line" ).classed( 'zero', false );
-            dc.redrawAll();
         }, this ) );
 
         $( "#resetFlux" ).on( "click", jQuery.proxy( function()

@@ -5671,7 +5671,9 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
         var _boolSelect = true;
         var _emptyZoneWithNoData = false;
         var _callbackOnClick = false;
-        var _displayedRegions = [];
+//        var _displayedRegions = [];
+        var _initDisplayRegions = true;
+        var _numberAllDisplayedRegions = 0;
 
         _chart.setMultipleSelect = function( boolValue )
         {
@@ -5695,13 +5697,21 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
 
         _chart.getDisplayedRegions = function()
         {
-            return _displayedRegions;
+            var result = [];
+            var countries = _chart.selectAll( ".country" );
+            $.each( countries[0], function( i, d )
+            {
+                var attributes = d.attributes["class"];
+                if( (attributes.nodeValue.indexOf( "no_data_for_this_region" ) == -1) && (attributes.nodeValue.indexOf( "deselected" ) == -1 ) && jQuery.inArray( d.__data__.properties.continent, result ) == -1 )
+                    result.push( d.__data__.properties.continent );
+            } );
+            return result;
         };
 
-        _chart.setDisplayedRegions = function( displayRegions )
-        {
-            _displayedRegions = displayRegions;
-        };
+//        _chart.setDisplayedRegions = function( displayRegions )
+//        {
+//            _displayedRegions = displayRegions;
+//        };
 
         _chart.setEmptyZoneWithNoData = function( value )
         {
@@ -5711,6 +5721,11 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
         _chart.setCallBackOnClick = function( callback )
         {
             _callbackOnClick = callback;
+        };
+
+        _chart.getNumberAllDisplayedRegions = function()
+        {
+            return _numberAllDisplayedRegions;
         };
 
         function geoJson( index )
@@ -5744,8 +5759,19 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
 
             dc.transition( paths, _chart.transitionDuration() ).attr( "fill", function ( d, i )
             {
+//                if( _initDisplayRegions )
+//                {
+//                    var selectedRegion = geoJson( layerIndex ).keyAccessor( d );
+//                    var index = jQuery.inArray( selectedRegion, _displayedRegions );
+//                    if( index == -1 && _emptyZoneWithNoData != d.properties.continent )
+//                        _displayedRegions.push( selectedRegion );
+//                }
                 return _chart.getColor( data[geoJson( layerIndex ).keyAccessor( d )], i );
             } );
+            if( _initDisplayRegions )
+//                _numberAllDisplayedRegions = _displayedRegions.length;
+            _numberAllDisplayedRegions = _chart.getDisplayedRegions().length;
+            _initDisplayRegions = false;
         };
 
         _chart.selectAllRegion = function( regionArray )
@@ -5766,7 +5792,7 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
 
             if( !_boolMultipleSelect )
             {
-                _displayedRegions = [];
+//                _displayedRegions = [];
                 dc.events.trigger( function ()
                 {
                     _chart.filterAll();
@@ -5774,19 +5800,20 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
                 } );
             }
             var selectedRegion = geoJson( layerIndex ).keyAccessor( d );
-            var index = jQuery.inArray( selectedRegion, _displayedRegions );
-            if( index == -1 )
-                _displayedRegions.push( selectedRegion );
-            else
-                _displayedRegions.splice( index, 1 );
+//            var index = jQuery.inArray( selectedRegion, _displayedRegions );
+//            if( index == -1 )
+//                _displayedRegions.push( selectedRegion );
+//            else
+//                _displayedRegions.splice( index, 1 );
 
-            if( _callbackOnClick )
-                _callbackOnClick( d );
             dc.events.trigger( function ()
             {
                 _chart.filter( selectedRegion );
                 _chart.redrawGroup();
             } );
+
+            if( _callbackOnClick )
+                _callbackOnClick( d );
         };
 
 

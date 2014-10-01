@@ -5671,7 +5671,6 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
         var _boolSelect = true;
         var _emptyZoneWithNoData = false;
         var _callbackOnClick = false;
-//        var _displayedRegions = [];
         var _initDisplayRegions = true;
         var _numberAllDisplayedRegions = 0;
 
@@ -5707,11 +5706,6 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
             } );
             return result;
         };
-
-//        _chart.setDisplayedRegions = function( displayRegions )
-//        {
-//            _displayedRegions = displayRegions;
-//        };
 
         _chart.setEmptyZoneWithNoData = function( value )
         {
@@ -5759,31 +5753,23 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
 
             dc.transition( paths, _chart.transitionDuration() ).attr( "fill", function ( d, i )
             {
-//                if( _initDisplayRegions )
-//                {
-//                    var selectedRegion = geoJson( layerIndex ).keyAccessor( d );
-//                    var index = jQuery.inArray( selectedRegion, _displayedRegions );
-//                    if( index == -1 && _emptyZoneWithNoData != d.properties.continent )
-//                        _displayedRegions.push( selectedRegion );
-//                }
                 return _chart.getColor( data[geoJson( layerIndex ).keyAccessor( d )], i );
             } );
             if( _initDisplayRegions )
-//                _numberAllDisplayedRegions = _displayedRegions.length;
-            _numberAllDisplayedRegions = _chart.getDisplayedRegions().length;
+                _numberAllDisplayedRegions = _chart.getDisplayedRegions().length;
             _initDisplayRegions = false;
         };
 
-        _chart.selectAllRegion = function( regionArray )
-        {
-            _chart.filterAll();
-            $.each( regionArray, function( i, d )
-            {
-                var countriesPath = _chart.svg().selectAll( layerSelector( 0 ) + "." + dc.utils.nameToId( d ) ).select( "path" );
-                if( countriesPath[0][0] )
-                    _chart.onClick( countriesPath[0][0].__data__, 0 );
-            } );
-        };
+//        _chart.selectAllRegion = function( regionArray )
+//        {
+//            _chart.filterAll();
+//            $.each( regionArray, function( i, d )
+//            {
+//                var countriesPath = _chart.svg().selectAll( layerSelector( 0 ) + "." + dc.utils.nameToId( d ) ).select( "path" );
+//                if( countriesPath[0][0] )
+//                    _chart.onClick( countriesPath[0][0].__data__, 0 );
+//            } );
+//        };
 
         _chart.onClick = function ( d, layerIndex )
         {
@@ -5792,7 +5778,6 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
 
             if( !_boolMultipleSelect )
             {
-//                _displayedRegions = [];
                 dc.events.trigger( function ()
                 {
                     _chart.filterAll();
@@ -5800,12 +5785,6 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
                 } );
             }
             var selectedRegion = geoJson( layerIndex ).keyAccessor( d );
-//            var index = jQuery.inArray( selectedRegion, _displayedRegions );
-//            if( index == -1 )
-//                _displayedRegions.push( selectedRegion );
-//            else
-//                _displayedRegions.splice( index, 1 );
-
             dc.events.trigger( function ()
             {
                 _chart.filter( selectedRegion );
@@ -5815,7 +5794,6 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
             if( _callbackOnClick )
                 _callbackOnClick( d );
         };
-
 
         return _chart.anchor( parent, chartGroup );
     };

@@ -328,14 +328,9 @@ var RCInterface = Class.create( {
 
     loadRegionAllSelection: function()
     {
-//        this.geoChoroplethChart.setDisplayedRegions( [] );
-        this.geoChoroplethChart.selectAllRegion( this.regionsKeys );
-
         this.geoChoroplethChart.setSelect( false );
         this.geoChoroplethChart.setMultipleSelect( false );
-
-        $( "#fluxBarChartTitle" ).html( i18n.t( "label.allRegions" ) );
-        $( "#imageFluxForSynthesisTitle" ).html( i18n.t( "label.allRegions" ) );
+        $( "#resetMap" ).click();
 
         $( "#mapChart" ).removeClass( "countryWithPointer" );
         $( "#regionUnActive" ).fadeOut();

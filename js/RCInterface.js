@@ -592,7 +592,7 @@ var RCInterface = Class.create( {
 
         }
         this.displayedVariables.push( {name : fluxValue, color: false} );
-        this.updateRegionBarCharts();
+        this.updateDisplayedVariablesAndRegionBarCharts( fluxValue );
         this.updateToolTipsForCharts();
     },
 
@@ -669,7 +669,7 @@ var RCInterface = Class.create( {
     /**
      * This method update the actual bar chart after an add or a remove of a flux value
      */
-    updateRegionBarCharts: function()
+    updateDisplayedVariablesAndRegionBarCharts: function( fluxValue )
     {
         // Create details for each column
         this.transposedData.forEach( jQuery.proxy( function( d )
@@ -696,16 +696,25 @@ var RCInterface = Class.create( {
             }, this ) );
         }, this ) );
 
-        this.updateRegionBarChartDomains( this.regionBarChartForMainFlux );
-        this.updateRegionBarChartDomains( this.regionBarChartForSeparatedFlux );
-        this.updateRegionBarChartAxes( this.regionBarChartForMainFlux );
-        this.updateRegionBarChartAxes( this.regionBarChartForSeparatedFlux );
-        this.updateRegionBarChartBar( this.regionBarChartForMainFlux );
-        this.updateRegionBarChartBar( this.regionBarChartForSeparatedFlux );
-        this.updateRegionBarChartUncertainty( this.regionBarChartForMainFlux );
-        this.updateRegionBarChartUncertainty( this.regionBarChartForSeparatedFlux );
-        this.updateRegionBarChartLegend( this.regionBarChartForMainFlux );
-        this.updateRegionBarChartLegend( this.regionBarChartForSeparatedFlux );
+        // Update region barcharts
+        if( -1 != this.mainFlux.indexOf( fluxValue ) )
+            this.updateRegionBarChart( this.regionBarChartForMainFlux );
+        else if( -1 != this.separatedFlux.indexOf( fluxValue ) )
+            this.updateRegionBarChart( this.regionBarChartForSeparatedFlux );
+        else
+        {
+            this.updateRegionBarChart( this.regionBarChartForMainFlux );
+            this.updateRegionBarChart( this.regionBarChartForSeparatedFlux );
+        }
+    },
+
+    updateRegionBarChart: function( regionBarChart )
+    {
+        this.updateRegionBarChartDomains( regionBarChart );
+        this.updateRegionBarChartAxes( regionBarChart );
+        this.updateRegionBarChartBar( regionBarChart );
+        this.updateRegionBarChartUncertainty( regionBarChart );
+        this.updateRegionBarChartLegend( regionBarChart );
     },
 
     updateRegionBarChartDomains: function( regionBarChartObject )
@@ -900,7 +909,7 @@ var RCInterface = Class.create( {
         if( 0 > index )
             return;
         this.displayedVariables.splice( index, 1 );
-        this.updateRegionBarCharts();
+        this.updateDisplayedVariablesAndRegionBarCharts( fluxName );
     },
 
 
@@ -1011,7 +1020,7 @@ var RCInterface = Class.create( {
             this.updateToolTipsForCharts();
             this.updateFluxBarCharts();
             this.updateXAxisForFluxBarChart();
-            this.updateRegionBarCharts();
+            this.updateDisplayedVariablesAndRegionBarCharts();
 
             $( "#" + jQuery.i18n.prop( "selectedFluxForHomePage" ) ).click();
         }, this ) );
@@ -1038,7 +1047,7 @@ var RCInterface = Class.create( {
             this.fluxBarChartForMainFlux.displayBoxAndWhiskersPlot( this.displayUncertainty );
             this.fluxBarChartForSeparatedFlux.displayBoxAndWhiskersPlot( this.displayUncertainty );
             this.updateFluxBarCharts();
-            this.updateRegionBarCharts();
+            this.updateDisplayedVariablesAndRegionBarCharts();
         }, this ) );
 
         // Reset filters

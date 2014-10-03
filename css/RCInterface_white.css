@@ -73,13 +73,13 @@ body {
     width: 100%;
 }
 
-.basicCell, .bottomBasicCell {
-    border: 1px solid red;
-}
+/*.basicCell, .bottomBasicCell {*/
+    /*border: 1px solid red;*/
+/*}*/
 
-#mapChart, #regionBarChartForMainFlux, #regionBarChartForSeparatedFlux, #fluxBarChartForMainFlux, #fluxBarChartForSeparatedFlux, #mapster_wrap_0 {
-    border: 1px solid blue;
-}
+/*#mapChart, #regionBarChartForMainFlux, #regionBarChartForSeparatedFlux, #fluxBarChartForMainFlux, #fluxBarChartForSeparatedFlux, #mapster_wrap_0 {*/
+    /*border: 1px solid blue;*/
+/*}*/
 
 /* ************** LEFT TOOLS ************** */
 .leftTools {

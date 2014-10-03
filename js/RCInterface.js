@@ -53,15 +53,15 @@ var RCInterface = Class.create( {
     {
         this.marginLeftForFluxImageAndMap = 34;
         this.barChartWidth = $( "#regionBarChart" ).width();
-        this.imageWidth = this.barChartWidth - this.marginLeftForFluxImageAndMap;
+        this.imageWidth = this.barChartWidth - 2 * this.marginLeftForFluxImageAndMap;
         this.imageHeight = this.imageWidth / 2;
 
         var heightToDisplayGraphs = $( "body" )[0].clientHeight - $( ".bottomBasicCell" ).css( "margin-top" ).replace( "px", "" ) - $( ".container-fluid" ).height();
         if( this.imageHeight > (heightToDisplayGraphs / 2) )
         {
             this.imageHeight = heightToDisplayGraphs / 2;
-            this.imageWidth = heightToDisplayGraphs;
-            this.barChartWidth = this.imageWidth + this.marginLeftForFluxImageAndMap;
+            this.imageWidth = heightToDisplayGraphs - this.marginLeftForFluxImageAndMap;
+            this.barChartWidth = this.imageWidth + 2 * this.marginLeftForFluxImageAndMap;
             $( "#rightCol" ).width( this.barChartWidth );
             $( "#leftCol" ).width( this.barChartWidth );
         }
@@ -70,14 +70,15 @@ var RCInterface = Class.create( {
     initDimensionsForCharts: function( newImageHeight )
     {
         this.imageHeight = newImageHeight;
-        this.mapImageWidth = this.imageWidth - this.marginLeftForFluxImageAndMap;// - $( "#fluxBarChartForSeparatedFlux" ).css( "margin-left" ).replace( "px", "" );
+        this.mapImageWidth = this.imageWidth;// - this.marginLeftForFluxImageAndMap;// - $( "#fluxBarChartForSeparatedFlux" ).css( "margin-left" ).replace( "px", "" );
         this.mapImageHeight = this.imageHeight;
-        this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".basicCell" ).css( "margin-bottom" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 30;
+        this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".basicCell" ).css( "margin-bottom" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 40;
 //        this.barChartHeight = 300;
 
         // Elements positions
         $( "#mapChartAndComment" ).css( "margin-left", this.marginLeftForFluxImageAndMap );
-        $( ".imageFluxCell" ).css( "margin-left", this.marginLeftForFluxImageAndMap );
+        $( "#imageFluxCell" ).css( "margin-left", this.marginLeftForFluxImageAndMap );
+        $( "#resetFlux" ).css( "margin-right", this.marginLeftForFluxImageAndMap );
         $( "#dynamicAreasForImageFlux" ).css( "top", -this.imageHeight );
 
         // Position of "regionSelect" div
@@ -561,7 +562,7 @@ var RCInterface = Class.create( {
         if( isAlreadyAChart )
             this.removeToRegionBarChart( fluxName );
         else
-            this.createOrAddToBarChart( "#regionBarChart", this.barChartWidth, this.barChartHeight, fluxName );
+            this.createOrAddToBarChart( this.barChartWidth, this.barChartHeight, fluxName );
     },
 
     /**
@@ -574,13 +575,32 @@ var RCInterface = Class.create( {
      * @param height
      * @param fluxValue
      */
-    createOrAddToBarChart: function( containerId, width, height, fluxValue )
+    createOrAddToBarChart: function( width, height, fluxValue )
     {
         if( 0 >= $( "#regionBarChartSvg" ).length )
-            this.createRegionBarChart( containerId, width, height );
+        {
+//            this.createRegionBarChartForMainFlux( width * this.mainFlux.length / (this.mainFlux.length + this.separatedFlux.length), height );
+//            this.createRegionBarChartForSeparatedFlux( width * this.separatedFlux.length / (this.mainFlux.length + this.separatedFlux.length), height );
+            var regionBarChartHeight = height - this.barCharMargin.top - this.barCharMargin.bottom;
+            var barChartWidth = width - this.barCharMargin.left - this.barCharMargin.right;
+
+            this.createRegionBarChartForMainFlux( $( "#regionBarChartForMainFlux" ).width() - this.barCharMargin.left, regionBarChartHeight );
+            this.createRegionBarChartForSeparatedFlux( $( "#regionBarChartForSeparatedFlux" ).width() - this.barCharMargin.left, regionBarChartHeight );
+
+        }
         this.displayedVariables.push( {name : fluxValue, color: false} );
-        this.updateRegionBarChart();
+        this.updateRegionBarCharts();
         this.updateToolTipsForCharts();
+    },
+
+    createRegionBarChartForMainFlux: function( width, height )
+    {
+        this.regionBarChartForMainFlux = this.createRegionBarChart( "#regionBarChartForMainFlux", width, height, false );
+    },
+
+    createRegionBarChartForSeparatedFlux: function( width, height )
+    {
+        this.regionBarChartForSeparatedFlux = this.createRegionBarChart( "#regionBarChartForSeparatedFlux", width, height, true );
     },
 
     /**
@@ -589,53 +609,63 @@ var RCInterface = Class.create( {
      * @param width
      * @param height
      */
-    createRegionBarChart: function( containerId, width, height )
+    createRegionBarChart: function( containerId, width, height, useRightYAxis )
     {
-        this.barChartWidth = width - this.barCharMargin.left - this.barCharMargin.right;
-        this.regionBarChartHeight = height - this.barCharMargin.top - this.barCharMargin.bottom;
-
-        this.regionBarChartx0 = d3.scale.ordinal().rangeRoundBands( [0, this.barChartWidth], 0.1 ).domain( this.regionsKeys );
-        this.regionBarChartx1 = d3.scale.ordinal();
-        this.regionBarCharty = d3.scale.linear().range( [this.regionBarChartHeight, 0] );
+        var regionBarChartx0 = d3.scale.ordinal().rangeRoundBands( [0, width], 0.1 ).domain( this.regionsKeys );
+        var regionBarChartx1 = d3.scale.ordinal();
+        var regionBarCharty = d3.scale.linear().range( [height, 0] );
 
         // Axes
-        this.regionBarChartxAxis = d3.svg.axis().scale( this.regionBarChartx0 );
-        this.regionBarChartyAxis = d3.svg.axis()
-                .scale( this.regionBarCharty )
-                .orient( "left" )
+        var regionBarChartxAxis = d3.svg.axis().scale( regionBarChartx0 );
+        var regionBarChartyAxis = d3.svg.axis()
+                .scale( regionBarCharty )
+                .orient( useRightYAxis ? "right" : "left" )
                 .tickFormat( d3.format( ".2s" ) )
-                .tickSize( -this.barChartWidth, 0 );
+                .tickSize( -width, 0 );
 
         $( containerId ).addClass( "dc-chart" );
         // BarChart
-        this.regionBarChartsvg = d3.select( containerId ).append( "svg" )
+        var regionBarChartsvg = d3.select( containerId ).append( "svg" )
                 .attr( "id", "regionBarChartSvg" )
-                .attr( "width", this.barChartWidth + this.barCharMargin.left + this.barCharMargin.right )
-                .attr( "height", this.regionBarChartHeight + this.barCharMargin.top + this.barCharMargin.bottom )
+                .attr( "width", width + this.barCharMargin.left + this.barCharMargin.right )
+                .attr( "height", height + this.barCharMargin.top + this.barCharMargin.bottom )
                 .append( "g" )
-                .attr( "transform", "translate(" + this.barCharMargin.left + "," + this.barCharMargin.top + ")" );
+                .attr( "transform", "translate(" + (useRightYAxis ? 0 : this.barCharMargin.left) + "," + this.barCharMargin.top + ")" );
 
-        this.regionBarChartsvg.append( "g" )
-                .attr( "class", "y axis" )
-                .append( "text" )
+        var bob = regionBarChartsvg.append( "g" )
+                .attr( "class", "y axis" );
+        if( useRightYAxis )
+            bob.attr( "transform", "translate(" + width + ",0)" );
+
+        bob.append( "text" )
                 .attr( "transform", "rotate(-90)" )
                 .attr( "y", 6 )
                 .attr( "dy", ".7em" )
                 .style( "text-anchor", "end" )
                 .text( "" );
 
-        this.regionBarChartsvg.append( "g" )
+        regionBarChartsvg.append( "g" )
                 .attr( "class", "x axis" )
-                .attr( "transform", "translate(0," + this.regionBarChartHeight + ")" );
+                .attr( "transform", "translate(0," + height + ")" );
 
         // xAxis
-        this.regionBarChartsvg.select( '.x.axis' ).call( this.regionBarChartxAxis );
+        regionBarChartsvg.select( '.x.axis' ).call( regionBarChartxAxis );
+
+        var regionBarChartObject = new Object();
+        regionBarChartObject.width = width;
+        regionBarChartObject.x0 = regionBarChartx0;
+        regionBarChartObject.x1 = regionBarChartx1;
+        regionBarChartObject.y = regionBarCharty;
+        regionBarChartObject.xAxis = regionBarChartxAxis;
+        regionBarChartObject.yAxis = regionBarChartyAxis;
+        regionBarChartObject.svg = regionBarChartsvg;
+        return regionBarChartObject;
     },
 
     /**
      * This method update the actual bar chart after an add or a remove of a flux value
      */
-    updateRegionBarChart: function()
+    updateRegionBarCharts: function()
     {
         // Create details for each column
         this.transposedData.forEach( jQuery.proxy( function( d )
@@ -662,31 +692,36 @@ var RCInterface = Class.create( {
             }, this ) );
         }, this ) );
 
-        this.updateRegionBarChartDomains();
-        this.updateRegionBarChartAxes();
-        this.updateRegionBarChartBar();
-        this.updateRegionBarChartUncertainty();
-        this.updateRegionBarChartLegend();
+        this.updateRegionBarChartDomains( this.regionBarChartForMainFlux );
+        this.updateRegionBarChartDomains( this.regionBarChartForSeparatedFlux );
+        this.updateRegionBarChartAxes( this.regionBarChartForMainFlux );
+        this.updateRegionBarChartAxes( this.regionBarChartForSeparatedFlux );
+        this.updateRegionBarChartBar( this.regionBarChartForMainFlux );
+        this.updateRegionBarChartBar( this.regionBarChartForSeparatedFlux );
+        this.updateRegionBarChartUncertainty( this.regionBarChartForMainFlux );
+        this.updateRegionBarChartUncertainty( this.regionBarChartForSeparatedFlux );
+        this.updateRegionBarChartLegend( this.regionBarChartForMainFlux );
+        this.updateRegionBarChartLegend( this.regionBarChartForSeparatedFlux );
     },
 
-    updateRegionBarChartDomains: function()
+    updateRegionBarChartDomains: function( regionBarChartObject )
     {
-        this.regionBarCharty.domain( [d3.min( this.transposedData, function( d )
+        regionBarChartObject.y.domain( [d3.min( this.transposedData, function( d )
         {
             return d.negativeTotal;
         } ), d3.max( this.transposedData, function( d )
         {
             return d.positiveTotal;
         } )] );
-        this.regionBarChartx1.domain( d3.keys( this.displayedVariables ) ).rangeRoundBands( [0, this.regionBarChartx0.rangeBand()] );
+        regionBarChartObject.x1.domain( d3.keys( this.displayedVariables ) ).rangeRoundBands( [0, regionBarChartObject.x0.rangeBand()] );
     },
 
-    updateRegionBarChartAxes: function()
+    updateRegionBarChartAxes: function( regionBarChartObject )
     {
         // Update yAxis
-        this.regionBarChartsvg
+        regionBarChartObject.svg
                 .select( '.y.axis' )
-                .call( this.regionBarChartyAxis )
+                .call( regionBarChartObject.yAxis )
                 .selectAll( 'line' )
                 .filter( function( d )
         {
@@ -695,9 +730,9 @@ var RCInterface = Class.create( {
                 .classed( 'zero', true );
     },
 
-    updateRegionBarChartLegend: function()
+    updateRegionBarChartLegend: function( regionBarChartObject )
     {
-        var legend = this.regionBarChartsvg.selectAll( ".legend" )
+        var legend = regionBarChartObject.svg.selectAll( ".legend" )
                 .data( this.displayedVariables.slice() );
 
         var legendsEnter = legend.enter().append( "g" )
@@ -713,12 +748,12 @@ var RCInterface = Class.create( {
         {
             return "regionBarChartSvg_legendRect_" + i;
         } )
-                .attr( "x", this.barChartWidth - 18 )
+                .attr( "x", regionBarChartObject.barChartWidth - 18 )
                 .attr( "width", 18 )
                 .attr( "height", 18 );
 
         legendsEnter.append( "text" )
-                .attr( "x", this.barChartWidth - 24 )
+                .attr( "x", regionBarChartObject.barChartWidth - 24 )
                 .attr( "y", 9 )
                 .attr( "dy", ".35em" )
                 .style( "text-anchor", "end" );
@@ -745,16 +780,16 @@ var RCInterface = Class.create( {
         }, this ) );
     },
 
-    updateRegionBarChartBar: function()
+    updateRegionBarChartBar: function( regionBarChartObject )
     {
-        var regionBar = this.regionBarChartsvg.selectAll( ".groupedBar" )
+        var regionBar = regionBarChartObject.svg.selectAll( ".groupedBar" )
                 .data( this.transposedData );
 
         var regionBarEnter = regionBar.enter().append( "g" )
                 .attr( "class", "groupedBar" )
                 .attr( "transform", jQuery.proxy( function( d )
         {
-            return "translate(" + this.regionBarChartx0( d[this.fluxColName] ) + ",0)";
+            return "translate(" + regionBarChartObject.x0( d[this.fluxColName] ) + ",0)";
         }, this ) );
 
         var regionBarRect = regionBar.selectAll( "rect" )
@@ -775,18 +810,18 @@ var RCInterface = Class.create( {
                 .duration( 500 )
                 .ease( "linear" )
                 .selectAll( "rect" )
-                .attr( "width", this.regionBarChartx1.rangeBand() )
+                .attr( "width", regionBarChartObject.x1.rangeBand() )
                 .attr( "x", jQuery.proxy( function( d )
         {
-            return this.regionBarChartx1( d.column );
+            return regionBarChartObject.x1( d.column );
         }, this ) )
                 .attr( "y", jQuery.proxy( function( d )
         {
-            return this.regionBarCharty( d.yEnd );
+            return regionBarChartObject.y( d.yEnd );
         }, this ) )
                 .attr( "height", jQuery.proxy( function( d )
         {
-            return this.regionBarCharty( d.yBegin ) - this.regionBarCharty( d.yEnd );
+            return regionBarChartObject.y( d.yBegin ) - regionBarChartObject.y( d.yEnd );
         }, this ) )
                 .style( "fill", jQuery.proxy( function( d )
         {
@@ -801,9 +836,9 @@ var RCInterface = Class.create( {
                 .attr( "transform", "translate(-10,0)rotate(315)" );
     },
 
-    updateRegionBarChartUncertainty: function()
+    updateRegionBarChartUncertainty: function( regionBarChartObject )
     {
-        var regionBar = this.regionBarChartsvg.selectAll( ".groupedBar" )
+        var regionBar = regionBarChartObject.svg.selectAll( ".groupedBar" )
                 .data( this.transposedData );
 
         var regionBarPath = regionBar.selectAll( "path" )
@@ -821,14 +856,14 @@ var RCInterface = Class.create( {
                 .selectAll( "path" )
                 .attr( "d", jQuery.proxy( function( d )
         {
-            var xCenter = this.regionBarChartx1( d.column ) + this.regionBarChartx1.rangeBand() / 2;
-            var lineWidth = this.regionBarChartx1.rangeBand() / 5;
-            var yTop = this.regionBarCharty( parseInt( d.yEnd ) + parseInt( d.uncertainty ) );
-            var yBottom = this.regionBarCharty( parseInt( d.yEnd ) - parseInt( d.uncertainty ) );
+            var xCenter = regionBarChartObject.x1( d.column ) + regionBarChartObject.x1.rangeBand() / 2;
+            var lineWidth = regionBarChartObject.x1.rangeBand() / 5;
+            var yTop = regionBarChartObject.y( parseInt( d.yEnd ) + parseInt( d.uncertainty ) );
+            var yBottom = regionBarChartObject.y( parseInt( d.yEnd ) - parseInt( d.uncertainty ) );
             if( 0 > d.yBegin )
             {
-                yTop = this.regionBarCharty( parseInt( d.yBegin ) + parseInt( d.uncertainty ) );
-                yBottom = this.regionBarCharty( parseInt( d.yBegin ) - parseInt( d.uncertainty ) );
+                yTop = regionBarChartObject.y( parseInt( d.yBegin ) + parseInt( d.uncertainty ) );
+                yBottom = regionBarChartObject.y( parseInt( d.yBegin ) - parseInt( d.uncertainty ) );
             }
 
             if( this.displayUncertainty && d.uncertainty )
@@ -861,7 +896,7 @@ var RCInterface = Class.create( {
         if( 0 > index )
             return;
         this.displayedVariables.splice( index, 1 );
-        this.updateRegionBarChart();
+        this.updateRegionBarCharts();
     },
 
 
@@ -972,7 +1007,7 @@ var RCInterface = Class.create( {
             this.updateToolTipsForCharts();
             this.updateFluxBarCharts();
             this.updateXAxisForFluxBarChart();
-            this.updateRegionBarChart();
+            this.updateRegionBarCharts();
 
             $( "#" + jQuery.i18n.prop( "selectedFluxForHomePage" ) ).click();
         }, this ) );
@@ -999,7 +1034,7 @@ var RCInterface = Class.create( {
             this.fluxBarChartForMainFlux.displayBoxAndWhiskersPlot( this.displayUncertainty );
             this.fluxBarChartForSeparatedFlux.displayBoxAndWhiskersPlot( this.displayUncertainty );
             this.updateFluxBarCharts();
-            this.updateRegionBarChart();
+            this.updateRegionBarCharts();
         }, this ) );
 
         // Reset filters

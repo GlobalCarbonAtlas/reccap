@@ -33,8 +33,7 @@ body {
     color: #2C3537;
     font-size: 36px;
     text-shadow: 2px 2px 2px #CCCCCC;
-    margin: auto;
-    /*width: 900px;*/
+    margin: auto; /*width: 900px;*/
 }
 
 #sourceWrapper .bigTitle {
@@ -65,16 +64,22 @@ body {
 
 .basicCell {
     float: left;
+    width: 100%;
     margin-bottom: 40px;
 }
 
-/*.basicCell, .bottomBasicCell {*/
-/*border: 1px solid red;*/
-/*}*/
+.bottomBasicCell {
+    float: left;
+    width: 100%;
+}
 
-/*#mapChart, #regionBarChart, #fluxBarChartForMainFlux, #fluxBarChartForSeparatedFlux, #mapster_wrap_0 {*/
-/*border: 1px solid blue;*/
-/*}*/
+.basicCell, .bottomBasicCell {
+    border: 1px solid red;
+}
+
+#mapChart, #regionBarChartForMainFlux, #regionBarChartForSeparatedFlux, #fluxBarChartForMainFlux, #fluxBarChartForSeparatedFlux, #mapster_wrap_0 {
+    border: 1px solid blue;
+}
 
 /* ************** LEFT TOOLS ************** */
 .leftTools {
@@ -250,6 +255,27 @@ body {
     stroke-opacity: 0.3;
 }
 
+
+/* ************** BARCHART ************** */
+.barChartUnit {
+    fill: #525252;
+    font: 11px "Futura", sans-serif;
+    margin: -10px 0 0 6px; /*float: left;*/
+}
+
+.barChartTitle {
+    color: #525252;
+    float: left;
+    font: 13px "Futura", sans-serif;
+    margin: -10px 0 0 20%;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 60%;
+}
+
+
 /* ************** FUNCTION BARCHART ************** */
 #fluxBarChartForMainFlux {
     width: 70%;
@@ -265,25 +291,6 @@ body {
     pointer-events: auto;
 }
 
-.fluxBarChartUnit {
-    fill: #525252;
-    font: 11px "Futura", sans-serif;
-    margin: -10px 0 0 6px;
-    float: left;
-}
-
-#fluxBarChartTitle {
-    color: #525252;
-    float: left;
-    font: 13px "Futura", sans-serif;
-    margin: -10px 0 0 20%;
-    overflow: hidden;
-    text-align: center;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 60%;
-}
-
 #fluxBarChart .dc-chart path.deselected {
     stroke: #7A7A7A;
 }
@@ -291,6 +298,15 @@ body {
 /* ************** REGION BARCHART ************** */
 #regionBarChart .legend rect, #regionBarChart .groupedBar rect {
     cursor: pointer;
+}
+
+#regionBarChartForMainFlux {
+    width: 70%;
+}
+
+#regionBarChartForSeparatedFlux {
+    width: 28%;
+    margin-left: 2%;
 }
 
 /* ************** MAP ************** */

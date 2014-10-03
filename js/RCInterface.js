@@ -114,6 +114,9 @@ var RCInterface = Class.create( {
                 else
                     return "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.data.value.value );
             }
+            else if( d.name )
+            // Region barchart legend
+                return "<span class='d3-tipTitle' style='color:" + d.color + "'>" + d.name + "</span>";
             else
                 return "<span class='d3-tipTitle'>" + d + "</span>";
         }, this ) );
@@ -659,6 +662,7 @@ var RCInterface = Class.create( {
         regionBarChartObject.xAxis = regionBarChartxAxis;
         regionBarChartObject.yAxis = regionBarChartyAxis;
         regionBarChartObject.svg = regionBarChartsvg;
+        regionBarChartObject.useRightYAxis = useRightYAxis;
         return regionBarChartObject;
     },
 
@@ -748,12 +752,12 @@ var RCInterface = Class.create( {
         {
             return "regionBarChartSvg_legendRect_" + i;
         } )
-                .attr( "x", regionBarChartObject.barChartWidth - 18 )
+                .attr( "x", regionBarChartObject.width - 18 )
                 .attr( "width", 18 )
                 .attr( "height", 18 );
 
         legendsEnter.append( "text" )
-                .attr( "x", regionBarChartObject.barChartWidth - 24 )
+                .attr( "x", regionBarChartObject.width - 24 )
                 .attr( "y", 9 )
                 .attr( "dy", ".35em" )
                 .style( "text-anchor", "end" );
@@ -905,8 +909,8 @@ var RCInterface = Class.create( {
     /* ******************************************************************** */
     updateToolTipsForCharts: function()
     {
-        d3.selectAll( ".country, #fluxBarChart .bar, #fluxBarChart text, #regionBarChart .groupedBar rect" ).call( this.toolTip );
-        d3.selectAll( ".country, #fluxBarChart .bar, #fluxBarChart text, #regionBarChart .groupedBar rect" )
+        d3.selectAll( ".country, #fluxBarChart .bar, #fluxBarChart text, #regionBarChart .groupedBar rect, #regionBarChartForSeparatedFlux .legend rect" ).call( this.toolTip );
+        d3.selectAll( ".country, #fluxBarChart .bar, #fluxBarChart text, #regionBarChart .groupedBar rect, #regionBarChartForSeparatedFlux .legend rect" )
                 .on( 'mouseover', this.toolTip.show )
                 .on( 'mouseout', this.toolTip.hide );
     },

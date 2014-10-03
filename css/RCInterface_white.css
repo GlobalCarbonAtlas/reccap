@@ -255,7 +255,6 @@ body {
     stroke-opacity: 0.3;
 }
 
-
 /* ************** BARCHART ************** */
 .barChartUnit {
     fill: #525252;
@@ -274,7 +273,6 @@ body {
     white-space: nowrap;
     width: 60%;
 }
-
 
 /* ************** FUNCTION BARCHART ************** */
 #fluxBarChartForMainFlux {
@@ -307,6 +305,10 @@ body {
 #regionBarChartForSeparatedFlux {
     width: 28%;
     margin-left: 2%;
+}
+
+#regionBarChartForSeparatedFlux .legend text {
+    fill: none;
 }
 
 /* ************** MAP ************** */

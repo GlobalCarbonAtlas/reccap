@@ -541,7 +541,7 @@ var RCInterface = Class.create( {
             if( !d.__data__ || !d.__data__.data )
                 return;
             var divId = this.getI18nPropertiesKeyFromValue( d.__data__.data.key );
-            $( "#" + divId + "Value" ).html( d.__data__.data.value );
+            $( "#" + divId + "Value" ).html( d.__data__.data.value.value );
         }, this ) );
     },
 

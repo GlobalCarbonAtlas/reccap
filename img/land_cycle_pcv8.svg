@@ -11,7 +11,7 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="780"
-   height="500.10999"
+   height="400"
    id="svg38477"
    version="1.1"
    inkscape:version="0.47 r22583"
@@ -15508,9 +15508,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7"
-     inkscape:cx="189.77195"
-     inkscape:cy="-4.3109735"
+     inkscape:zoom="1.4"
+     inkscape:cx="421.02679"
+     inkscape:cy="204.8642"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -15520,105 +15520,8 @@
      inkscape:window-x="1280"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     showborder="false"
-     borderlayer="true">
-    <sodipodi:guide
-       position="124.67435,-51.588642"
-       orientation="0,744.09448"
-       id="guide46458" />
-    <sodipodi:guide
-       position="740.1974,-554.44578"
-       orientation="-1052.3622,0"
-       id="guide46460" />
-    <sodipodi:guide
-       position="740.1974,497.91642"
-       orientation="0,-744.09448"
-       id="guide46462" />
-    <sodipodi:guide
-       position="-3.8970838,497.91642"
-       orientation="1052.3622,0"
-       id="guide46464" />
-    <sodipodi:guide
-       position="0,0"
-       orientation="0,763.63446"
-       id="guide47921" />
-    <sodipodi:guide
-       position="763.63446,0"
-       orientation="-491.10843,0"
-       id="guide47923" />
-    <sodipodi:guide
-       position="763.63446,491.10843"
-       orientation="0,-763.63446"
-       id="guide47925" />
-    <sodipodi:guide
-       position="0,491.10843"
-       orientation="491.10843,0"
-       id="guide47927" />
-    <sodipodi:guide
-       position="0,0"
-       orientation="0,763.63446"
-       id="guide47929" />
-    <sodipodi:guide
-       position="763.63446,0"
-       orientation="-491.10843,0"
-       id="guide47931" />
-    <sodipodi:guide
-       position="763.63446,491.10843"
-       orientation="0,-763.63446"
-       id="guide47933" />
-    <sodipodi:guide
-       position="0,491.10843"
-       orientation="491.10843,0"
-       id="guide47935" />
-    <sodipodi:guide
-       position="0,0"
-       orientation="0,763.63446"
-       id="guide47937" />
-    <sodipodi:guide
-       position="763.63446,0"
-       orientation="-500.10999,0"
-       id="guide47939" />
-    <sodipodi:guide
-       position="763.63446,500.10999"
-       orientation="0,-763.63446"
-       id="guide47941" />
-    <sodipodi:guide
-       position="0,500.10999"
-       orientation="500.10999,0"
-       id="guide47943" />
-    <sodipodi:guide
-       position="0,0"
-       orientation="0,770"
-       id="guide10865" />
-    <sodipodi:guide
-       position="770,0"
-       orientation="-500.10999,0"
-       id="guide10867" />
-    <sodipodi:guide
-       position="770,500.10999"
-       orientation="0,-770"
-       id="guide10869" />
-    <sodipodi:guide
-       position="0,500.10999"
-       orientation="500.10999,0"
-       id="guide10871" />
-    <sodipodi:guide
-       position="277.14286,0"
-       orientation="0,780"
-       id="guide10873" />
-    <sodipodi:guide
-       position="780,0"
-       orientation="-500.10999,0"
-       id="guide10875" />
-    <sodipodi:guide
-       position="780,500.10999"
-       orientation="0,-780"
-       id="guide10877" />
-    <sodipodi:guide
-       position="0,500.10999"
-       orientation="500.10999,0"
-       id="guide10879" />
-  </sodipodi:namedview>
+     showborder="true"
+     borderlayer="true" />
   <metadata
      id="metadata38482">
     <rdf:RDF>
@@ -15635,10 +15538,10 @@
      inkscape:label="Calque 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-3.8970838,2.1936073)">
+     transform="translate(-3.8970838,-97.916378)">
     <g
        id="g5699"
-       transform="matrix(1.2873101,0,0,1.3899972,-216.83666,-214.41228)">
+       transform="matrix(1.2873101,0,0,1.3899972,-218.83666,-174.41228)">
       <defs
          id="defs5701">
         <rect
@@ -17841,72 +17744,72 @@
          style="fill:none;stroke:#000000;stroke-width:0.106" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="276.759,398.4 276.759,396.304 274.607,398.371 "
+         points="274.607,398.371 276.759,398.4 276.759,396.304 "
          id="polygon6311"
          style="fill:#d27674" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="276.759,398.4 276.759,396.304 274.607,398.371 "
+         points="274.607,398.371 276.759,398.4 276.759,396.304 "
          id="polygon6313"
          style="fill:none;stroke:#000000;stroke-width:0.106" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="274.531,398.4 274.531,396.304 272.38,398.371 "
+         points="272.38,398.371 274.531,398.4 274.531,396.304 "
          id="polygon6315"
          style="fill:#d27674" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="274.531,398.4 274.531,396.304 272.38,398.371 "
+         points="272.38,398.371 274.531,398.4 274.531,396.304 "
          id="polygon6317"
          style="fill:none;stroke:#000000;stroke-width:0.106" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="272.35,398.4 272.35,396.304 270.199,398.371 "
+         points="270.199,398.371 272.35,398.4 272.35,396.304 "
          id="polygon6319"
          style="fill:#d27674" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="272.35,398.4 272.35,396.304 270.199,398.371 "
+         points="270.199,398.371 272.35,398.4 272.35,396.304 "
          id="polygon6321"
          style="fill:none;stroke:#000000;stroke-width:0.106" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="270.191,398.4 270.191,396.304 268.041,398.371 "
+         points="268.041,398.371 270.191,398.4 270.191,396.304 "
          id="polygon6323"
          style="fill:#d27674" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="270.191,398.4 270.191,396.304 268.041,398.371 "
+         points="268.041,398.371 270.191,398.4 270.191,396.304 "
          id="polygon6325"
          style="fill:none;stroke:#000000;stroke-width:0.106" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="267.962,398.4 267.962,396.304 265.812,398.371 "
+         points="265.812,398.371 267.962,398.4 267.962,396.304 "
          id="polygon6327"
          style="fill:#d27674" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="267.962,398.4 267.962,396.304 265.812,398.371 "
+         points="265.812,398.371 267.962,398.4 267.962,396.304 "
          id="polygon6329"
          style="fill:none;stroke:#000000;stroke-width:0.106" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="265.78,398.4 265.78,396.304 263.633,398.371 "
+         points="263.633,398.371 265.78,398.4 265.78,396.304 "
          id="polygon6331"
          style="fill:#d27674" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="265.78,398.4 265.78,396.304 263.633,398.371 "
+         points="263.633,398.371 265.78,398.4 265.78,396.304 "
          id="polygon6333"
          style="fill:none;stroke:#000000;stroke-width:0.106" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="263.583,398.4 263.583,396.304 261.433,398.371 "
+         points="261.433,398.371 263.583,398.4 263.583,396.304 "
          id="polygon6335"
          style="fill:#d27674" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="263.583,398.4 263.583,396.304 261.433,398.371 "
+         points="261.433,398.371 263.583,398.4 263.583,396.304 "
          id="polygon6337"
          style="fill:none;stroke:#000000;stroke-width:0.106" />
       <rect
@@ -20525,37 +20428,37 @@
          style="fill:#008b4c" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="478.358,413.732 477.958,412.09 477.958,411.151 477.826,409.861 477.958,409.157 478.225,408.688 477.293,408.57 477.023,409.393 477.023,410.096 477.023,410.917 476.759,411.973 476.489,413.381 476.092,414.201 475.959,414.904 478.358,414.904 "
+         points="478.358,414.904 478.358,413.732 477.958,412.09 477.958,411.151 477.826,409.861 477.958,409.157 478.225,408.688 477.293,408.57 477.023,409.393 477.023,410.096 477.023,410.917 476.759,411.973 476.489,413.381 476.092,414.201 475.959,414.904 "
          id="polygon7021"
          style="fill:#bc810f" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="513.58,410.039 512.378,405.017 512.378,402.144 511.978,398.195 512.378,396.043 513.177,394.607 510.377,394.249 509.575,396.762 509.575,398.913 509.575,401.428 508.779,404.656 507.976,408.965 506.774,411.476 506.375,413.627 513.58,413.627 "
+         points="513.58,413.627 513.58,410.039 512.378,405.017 512.378,402.144 511.978,398.195 512.378,396.043 513.177,394.607 510.377,394.249 509.575,396.762 509.575,398.913 509.575,401.428 508.779,404.656 507.976,408.965 506.774,411.476 506.375,413.627 "
          id="polygon7023"
          style="fill:#99781c" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="470.581,413.167 469.963,411.059 469.963,409.855 469.759,408.2 469.963,407.297 470.375,406.694 468.935,406.545 468.523,407.599 468.523,408.502 468.523,409.556 468.112,410.909 467.699,412.715 467.081,413.771 466.876,414.672 470.581,414.672 "
+         points="470.581,414.672 470.581,413.167 469.963,411.059 469.963,409.855 469.759,408.2 469.963,407.297 470.375,406.694 468.935,406.545 468.523,407.599 468.523,408.502 468.523,409.556 468.112,410.909 467.699,412.715 467.081,413.771 466.876,414.672 "
          id="polygon7025"
          style="fill:#99781c" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="476.417,411.196 476.015,410.255 476.015,409.716 475.887,408.975 476.015,408.569 476.284,408.301 475.35,408.233 475.083,408.705 475.083,409.109 475.083,409.581 474.816,410.188 474.549,410.995 474.147,411.466 474.015,411.87 476.417,411.87 "
+         points="476.417,411.87 476.417,411.196 476.015,410.255 476.015,409.716 475.887,408.975 476.015,408.569 476.284,408.301 475.35,408.233 475.083,408.705 475.083,409.109 475.083,409.581 474.816,410.188 474.549,410.995 474.147,411.466 474.015,411.87 "
          id="polygon7027"
          style="fill:#bc810f" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="482.624,411.762 482.156,409.183 482.156,407.705 482.001,405.678 482.156,404.571 482.468,403.833 481.379,403.648 481.065,404.94 481.065,406.047 481.065,407.336 480.755,408.996 480.441,411.209 479.977,412.5 479.82,413.605 482.624,413.605 "
+         points="482.624,413.605 482.624,411.762 482.156,409.183 482.156,407.705 482.001,405.678 482.156,404.571 482.468,403.833 481.379,403.648 481.065,404.94 481.065,406.047 481.065,407.336 480.755,408.996 480.441,411.209 479.977,412.5 479.82,413.605 "
          id="polygon7029"
          style="fill:#99781c" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="457.788,409.574 457.788,407.007 459.787,407.007 459.787,408.841 459.389,412.143 460.187,414.712 457.788,415.078 458.186,412.879 "
+         points="459.389,412.143 460.187,414.712 457.788,415.078 458.186,412.879 457.788,409.574 457.788,407.007 459.787,407.007 459.787,408.841 "
          id="polygon7031"
          style="fill:#bc810f" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="452.184,406.301 452.184,403.902 454.187,403.902 454.187,405.617 453.783,408.701 454.585,411.101 452.184,411.44 452.584,409.386 "
+         points="453.783,408.701 454.585,411.101 452.184,411.44 452.584,409.386 452.184,406.301 452.184,403.902 454.187,403.902 454.187,405.617 "
          id="polygon7033"
          style="fill:#bc810f" />
       <path
@@ -20570,7 +20473,7 @@
          style="fill:#5d9a5f" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="503.825,393.466 505.712,396.761 505.712,400.058 503.825,404.013 500.055,405.99 498.165,407.969 494.397,409.946 495.542,411.669 494.323,412.851 498.165,412.582 511.367,412.582 517.553,414.115 525.627,410.97 522.824,407.647 519.225,403.453 519.945,393.896 518.424,382.995 513.965,378.143 513.255,375.668 505.712,382.259 507.599,386.216 "
+         points="505.712,400.058 503.825,404.013 500.055,405.99 498.165,407.969 494.397,409.946 495.542,411.669 494.323,412.851 498.165,412.582 511.367,412.582 517.553,414.115 525.627,410.97 522.824,407.647 519.225,403.453 519.945,393.896 518.424,382.995 513.965,378.143 513.255,375.668 505.712,382.259 507.599,386.216 503.825,393.466 505.712,396.761 "
          id="polygon7039"
          style="fill:#007832" />
       <path
@@ -20660,27 +20563,27 @@
          style="fill:#00824a" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="437.366,412.662 434.73,410.991 434.73,410.036 433.859,408.723 434.73,408.006 436.492,407.527 430.348,407.408 428.601,408.245 428.601,408.961 428.601,409.797 426.841,410.871 425.086,412.305 422.451,413.143 421.574,413.857 437.366,413.857 "
+         points="437.366,413.857 437.366,412.662 434.73,410.991 434.73,410.036 433.859,408.723 434.73,408.006 436.492,407.527 430.348,407.408 428.601,408.245 428.601,408.961 428.601,409.797 426.841,410.871 425.086,412.305 422.451,413.143 421.574,413.857 "
          id="polygon7075"
          style="fill:#bc810f" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="553.088,419.261 552.684,415.386 552.684,413.179 552.555,410.133 552.684,408.479 552.953,407.371 552.021,407.097 551.75,409.031 551.75,410.686 551.75,412.624 551.481,415.114 551.218,418.432 550.819,420.367 550.684,422.023 553.088,422.023 "
+         points="553.088,422.023 553.088,419.261 552.684,415.386 552.684,413.179 552.555,410.133 552.684,408.479 552.953,407.371 552.021,407.097 551.75,409.031 551.75,410.686 551.75,412.624 551.481,415.114 551.218,418.432 550.819,420.367 550.684,422.023 "
          id="polygon7077"
          style="fill:#bc810f" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="441.396,408.648 441.396,405.55 443.395,405.55 443.395,407.763 442.995,411.747 443.796,414.844 441.396,415.288 441.794,412.633 "
+         points="442.995,411.747 443.796,414.844 441.396,415.288 441.794,412.633 441.396,408.648 441.396,405.55 443.395,405.55 443.395,407.763 "
          id="polygon7079"
          style="fill:#bc810f" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="452.36,406.033 452.36,402.564 454.36,402.564 454.36,405.044 453.965,409.501 454.764,412.967 452.36,413.461 452.758,410.487 "
+         points="453.965,409.501 454.764,412.967 452.36,413.461 452.758,410.487 452.36,406.033 452.36,402.564 454.36,402.564 454.36,405.044 "
          id="polygon7081"
          style="fill:#bc810f" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="433.514,407.372 433.514,405.656 434.64,405.656 434.64,406.882 434.413,409.089 434.865,410.806 433.514,411.052 433.739,409.581 "
+         points="434.413,409.089 434.865,410.806 433.514,411.052 433.739,409.581 433.514,407.372 433.514,405.656 434.64,405.656 434.64,406.882 "
          id="polygon7083"
          style="fill:#bc810f" />
       <path
@@ -21105,7 +21008,7 @@
          style="fill:none;stroke:#009634;stroke-width:0.25;stroke-linecap:round" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="564.84,418.929 565.766,420.048 565.766,421.167 564.84,422.509 562.988,423.182 562.062,423.853 560.211,424.524 560.772,425.108 560.174,425.511 562.062,425.419 568.544,425.419 571.579,425.938 575.545,424.871 574.169,423.744 572.4,422.319 572.754,419.075 572.007,415.375 569.816,413.728 569.471,412.887 565.766,415.125 566.693,416.468 "
+         points="565.766,421.167 564.84,422.509 562.988,423.182 562.062,423.853 560.211,424.524 560.772,425.108 560.174,425.511 562.062,425.419 568.544,425.419 571.579,425.938 575.545,424.871 574.169,423.744 572.4,422.319 572.754,419.075 572.007,415.375 569.816,413.728 569.471,412.887 565.766,415.125 566.693,416.468 564.84,418.929 565.766,420.048 "
          id="polygon7253"
          style="fill:#007832" />
       <path
@@ -21115,22 +21018,22 @@
          style="fill:#00824a" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="445.435,411.02 444.881,409.805 444.881,409.11 444.694,408.155 444.881,407.635 445.249,407.287 443.959,407.199 443.588,407.809 443.588,408.328 443.588,408.937 443.218,409.718 442.849,410.76 442.295,411.368 442.109,411.889 445.435,411.889 "
+         points="445.435,411.889 445.435,411.02 444.881,409.805 444.881,409.11 444.694,408.155 444.881,407.635 445.249,407.287 443.959,407.199 443.588,407.809 443.588,408.328 443.588,408.937 443.218,409.718 442.849,410.76 442.295,411.368 442.109,411.889 "
          id="polygon7257"
          style="fill:#bc810f" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="455.513,405.691 455.513,403.465 454.253,403.465 454.253,405.057 454.505,407.922 454,410.151 455.513,410.469 455.261,408.559 "
+         points="454.505,407.922 454,410.151 455.513,410.469 455.261,408.559 455.513,405.691 455.513,403.465 454.253,403.465 454.253,405.057 "
          id="polygon7259"
          style="fill:#bc810f" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="423.716,410.339 424.78,409.777 424.78,409.458 425.136,409.017 424.78,408.775 424.072,408.616 426.556,408.576 427.268,408.856 427.268,409.098 427.268,409.377 427.976,409.738 428.687,410.219 429.754,410.499 430.106,410.739 423.716,410.739 "
+         points="423.716,410.739 423.716,410.339 424.78,409.777 424.78,409.458 425.136,409.017 424.78,408.775 424.072,408.616 426.556,408.576 427.268,408.856 427.268,409.098 427.268,409.377 427.976,409.738 428.687,410.219 429.754,410.499 430.106,410.739 "
          id="polygon7261"
          style="fill:#bc810f" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="461.033,408.779 461.033,407.656 459.607,407.656 459.607,408.46 459.887,409.901 459.322,411.025 461.033,411.185 460.748,410.223 "
+         points="459.887,409.901 459.322,411.025 461.033,411.185 460.748,410.223 461.033,408.779 461.033,407.656 459.607,407.656 459.607,408.46 "
          id="polygon7263"
          style="fill:#bc810f" />
       <polyline
@@ -21350,7 +21253,7 @@
          style="fill:none;stroke:#009634;stroke-width:0.25;stroke-linecap:round" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="447.566,405.789 446.369,406.271 445.567,406.753 445.567,407.137 445.567,407.618 449.168,407.329 447.966,406.944 447.966,406.367 449.168,405.886 450.364,405.693 451.964,405.21 452.362,404.537 450.765,404.056 449.381,403.871 447.169,403.573 449.965,404.634 449.168,405.21 "
+         points="451.964,405.21 452.362,404.537 450.765,404.056 449.381,403.871 447.169,403.573 449.965,404.634 449.168,405.21 447.566,405.789 446.369,406.271 445.567,406.753 445.567,407.137 445.567,407.618 449.168,407.329 447.966,406.944 447.966,406.367 449.168,405.886 450.364,405.693 "
          id="polygon7351"
          style="fill:#ffdd00" />
       <path
@@ -22219,22 +22122,22 @@
          style="fill:none;stroke:#000000;stroke-width:0.141" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="457.864,410.245 457.185,408.986 457.185,408.269 456.96,407.278 457.185,406.738 457.639,406.379 456.055,406.289 455.604,406.919 455.604,407.458 455.604,408.087 455.15,408.896 454.697,409.977 454.018,410.606 453.792,411.145 457.864,411.145 "
+         points="457.864,411.145 457.864,410.245 457.185,408.986 457.185,408.269 456.96,407.278 457.185,406.738 457.639,406.379 456.055,406.289 455.604,406.919 455.604,407.458 455.604,408.087 455.15,408.896 454.697,409.977 454.018,410.606 453.792,411.145 "
          id="polygon7617"
          style="fill:#804926" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="472.618,398.15 474.472,399.229 475.707,400.309 475.707,401.172 475.707,402.252 470.15,401.605 472,400.742 472,399.446 470.15,398.366 468.297,397.934 465.825,396.854 465.208,395.34 467.68,394.261 469.816,393.847 473.235,393.182 468.915,395.558 470.15,396.854 "
+         points="465.825,396.854 465.208,395.34 467.68,394.261 469.816,393.847 473.235,393.182 468.915,395.558 470.15,396.854 472.618,398.15 474.472,399.229 475.707,400.309 475.707,401.172 475.707,402.252 470.15,401.605 472,400.742 472,399.446 470.15,398.366 468.297,397.934 "
          id="polygon7619"
          style="fill:#e76733" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="475.854,398.473 474.981,399.553 474.398,400.634 474.398,401.497 474.398,402.576 477.016,401.929 476.146,401.063 476.146,399.767 477.016,398.688 477.886,398.257 479.049,397.177 479.342,395.665 478.178,394.586 477.173,394.172 475.562,393.507 477.597,395.882 477.016,397.177 "
+         points="479.049,397.177 479.342,395.665 478.178,394.586 477.173,394.172 475.562,393.507 477.597,395.882 477.016,397.177 475.854,398.473 474.981,399.553 474.398,400.634 474.398,401.497 474.398,402.576 477.016,401.929 476.146,401.063 476.146,399.767 477.016,398.688 477.886,398.257 "
          id="polygon7621"
          style="fill:#f7af4c" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="472.403,395.558 473.602,397.177 474.398,398.796 474.398,400.092 474.398,401.713 470.805,400.74 472,399.446 472,397.5 470.805,395.882 469.603,395.232 468.008,393.613 467.606,391.346 469.205,389.727 470.585,389.104 472.802,388.105 470.004,391.668 470.805,393.613 "
+         points="468.008,393.613 467.606,391.346 469.205,389.727 470.585,389.104 472.802,388.105 470.004,391.668 470.805,393.613 472.403,395.558 473.602,397.177 474.398,398.796 474.398,400.092 474.398,401.713 470.805,400.74 472,399.446 472,397.5 470.805,395.882 469.603,395.232 "
          id="polygon7623"
          style="fill:#ed9234" />
       <path
@@ -22304,7 +22207,7 @@
          style="fill:#8d7d72" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="472.705,404.304 470.596,406.232 469.192,408.162 469.192,409.706 469.192,411.638 475.52,410.478 473.415,408.937 473.415,406.618 475.52,404.688 477.636,403.914 480.443,401.986 481.15,399.284 478.336,397.354 475.906,396.613 472.004,395.423 476.93,399.668 475.52,401.986 "
+         points="480.443,401.986 481.15,399.284 478.336,397.354 475.906,396.613 472.004,395.423 476.93,399.668 475.52,401.986 472.705,404.304 470.596,406.232 469.192,408.162 469.192,409.706 469.192,411.638 475.52,410.478 473.415,408.937 473.415,406.618 475.52,404.688 477.636,403.914 "
          id="polygon7651"
          style="fill:#d74c39" />
       <path
@@ -22374,7 +22277,7 @@
          style="fill:#8d7d72" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="436.607,409.183 436.607,408.582 437.733,408.582 437.733,409.012 437.507,409.784 437.959,410.385 436.607,410.471 436.833,409.956 "
+         points="437.507,409.784 437.959,410.385 436.607,410.471 436.833,409.956 436.607,409.183 436.607,408.582 437.733,408.582 437.733,409.012 "
          id="polygon7679"
          style="fill:#bc810f" />
       <path
@@ -22824,7 +22727,7 @@
          style="fill:#bc810f" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="615.245,428.817 615.906,429.4 615.906,429.981 615.245,430.681 613.923,431.029 613.262,431.379 611.94,431.729 612.341,432.032 611.914,432.241 613.262,432.193 617.889,432.193 620.056,432.464 622.887,431.909 621.904,431.322 620.642,430.581 620.895,428.894 620.361,426.97 618.798,426.112 618.551,425.675 615.906,426.839 616.568,427.537 "
+         points="615.906,429.981 615.245,430.681 613.923,431.029 613.262,431.379 611.94,431.729 612.341,432.032 611.914,432.241 613.262,432.193 617.889,432.193 620.056,432.464 622.887,431.909 621.904,431.322 620.642,430.581 620.895,428.894 620.361,426.97 618.798,426.112 618.551,425.675 615.906,426.839 616.568,427.537 615.245,428.817 615.906,429.4 "
          id="polygon7859"
          style="fill:#007832" />
       <path
@@ -23267,7 +23170,7 @@
          style="fill:#8d7d72" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="485.002,394.271 486.668,395.834 489.002,397.396 "
+         points="489.002,397.396 485.002,394.271 486.668,395.834 "
          id="polygon8035"
          style="fill:#8d7d72" />
       <path
@@ -23302,12 +23205,12 @@
          style="fill:#899a34" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="484.785,388.072 485.269,389.227 485.589,390.381 485.589,391.305 485.589,392.461 484.142,391.768 484.623,390.845 484.623,389.457 484.142,388.304 483.657,387.84 483.016,386.686 482.854,385.069 483.496,383.915 484.053,383.471 484.945,382.759 483.818,385.299 484.142,386.686 "
+         points="483.016,386.686 482.854,385.069 483.496,383.915 484.053,383.471 484.945,382.759 483.818,385.299 484.142,386.686 484.785,388.072 485.269,389.227 485.589,390.381 485.589,391.305 485.589,392.461 484.142,391.768 484.623,390.845 484.623,389.457 484.142,388.304 483.657,387.84 "
          id="polygon8049"
          style="fill:#ed9234" />
       <polygon
          clip-path="url(#SVGID_2_)"
-         points="484.907,393.42 484.057,394.602 483.492,395.785 483.492,396.731 483.492,397.915 486.041,397.204 485.193,396.26 485.193,394.839 486.041,393.655 486.893,393.182 488.024,391.999 488.309,390.343 487.175,389.16 486.196,388.706 484.625,387.976 486.608,390.578 486.041,391.999 "
+         points="488.024,391.999 488.309,390.343 487.175,389.16 486.196,388.706 484.625,387.976 486.608,390.578 486.041,391.999 484.907,393.42 484.057,394.602 483.492,395.785 483.492,396.731 483.492,397.915 486.041,397.204 485.193,396.26 485.193,394.839 486.041,393.655 486.893,393.182 "
          id="polygon8051"
          style="fill:#d74c39" />
       <path
@@ -23821,7 +23724,7 @@
     </g>
     <g
        id="g8249"
-       transform="translate(-4.3446014,11.007587)">
+       transform="translate(-6.3446014,51.007587)">
       <defs
          id="defs8251">
         <rect
@@ -23847,162 +23750,162 @@
     <text
        transform="scale(1.0177769,0.9825336)"
        id="text8257"
-       x="381.37042"
-       y="407.8764"
-       style="font-size:15.99999999px;-inkscape-font-specification:DejaVu Sans;font-family:DejaVu Sans;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%"
+       x="379.40536"
+       y="448.58746"
+       style="font-size:13.99999999px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
        sodipodi:linespacing="125%">
       <tspan
-         x="381.37042"
-         y="407.8764"
+         x="379.40536"
+         y="448.58746"
          font-size="13"
          id="tspan8259"
-         style="font-size:15.99999999px;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">S</tspan>
+         style="font-size:13.99999999px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">S</tspan>
       <tspan
-         x="392.18439"
-         y="407.8764"
+         x="390.21933"
+         y="448.58746"
          font-size="13"
          id="tspan8261"
-         style="font-size:15.99999999px;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">oils</tspan>
+         style="font-size:13.99999999px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">oils</tspan>
     </text>
     <text
        transform="scale(1.0177769,0.9825336)"
        id="text8263"
-       x="427.23395"
-       y="360.20471"
-       style="font-size:15.99999999px;-inkscape-font-specification:DejaVu Sans;font-family:DejaVu Sans;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%"
+       x="425.26889"
+       y="400.91577"
+       style="font-size:13.99999999px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
        sodipodi:linespacing="125%">
       <tspan
-         x="427.23395"
-         y="360.20471"
+         x="425.26889"
+         y="400.91577"
          font-size="13"
          id="tspan8265"
-         style="font-size:15.99999999px;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">P</tspan>
+         style="font-size:13.99999999px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">P</tspan>
       <tspan
-         x="437.07465"
-         y="360.20471"
+         x="435.10959"
+         y="400.91577"
          font-size="13"
          id="tspan8267"
-         style="font-size:15.99999999px;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">la</tspan>
+         style="font-size:13.99999999px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">la</tspan>
       <tspan
-         x="452.6817"
-         y="360.20471"
+         x="450.71664"
+         y="400.91577"
          font-size="13"
          id="tspan8269"
-         style="font-size:15.99999999px;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">n</tspan>
+         style="font-size:13.99999999px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">n</tspan>
       <tspan
-         x="462.71063"
-         y="360.20471"
+         x="460.74557"
+         y="400.91577"
          font-size="13"
          id="tspan8271"
-         style="font-size:15.99999999px;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">ts</tspan>
+         style="font-size:13.99999999px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">ts</tspan>
     </text>
     <text
        id="text8273"
-       x="26.728792"
-       y="118.24983"
+       x="24.650555"
+       y="172.14172"
        transform="scale(0.9623535,1.0391192)"
-       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       style="font-size:14.00000001px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
        sodipodi:linespacing="125%">
       <tspan
-         x="26.728792"
-         y="118.24983"
+         x="24.650555"
+         y="172.14172"
          font-size="12"
          id="tspan8275"
-         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">F</tspan>
+         style="font-size:14.00000001px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">F</tspan>
       <tspan
-         x="34.407013"
-         y="118.24983"
+         x="32.328773"
+         y="172.14172"
          font-size="12"
          id="tspan8277"
-         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">ossil</tspan>
+         style="font-size:14.00000001px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">ossil</tspan>
       <tspan
-         x="30.54117"
-         y="137.51227"
+         x="28.462933"
+         y="191.40414"
          font-size="12"
          id="tspan8279"
-         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans" />
+         style="font-size:14.00000001px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans" />
       <tspan
-         x="35.494537"
-         y="137.51227"
+         x="33.416298"
+         y="191.40414"
          font-size="12"
          id="tspan8281"
-         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">f</tspan>
+         style="font-size:14.00000001px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">f</tspan>
       <tspan
-         x="39.714874"
-         y="137.51227"
+         x="37.636635"
+         y="191.40414"
          font-size="12"
          id="tspan8283"
-         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">uel</tspan>
+         style="font-size:14.00000001px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">uel</tspan>
       <tspan
-         x="12.070588"
-         y="156.77469"
+         x="9.9923487"
+         y="210.66656"
          font-size="12"
          id="tspan8285"
-         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">emissions</tspan>
+         style="font-size:14.00000001px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">emissions</tspan>
     </text>
     <text
        transform="scale(0.92405975,1.0821811)"
        id="text8287"
-       x="208.25005"
-       y="113.48766"
-       style="font-size:16.00000003px;-inkscape-font-specification:DejaVu Sans;font-family:DejaVu Sans;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%"
+       x="206.08568"
+       y="165.23492"
+       style="font-size:14.00000002px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
        sodipodi:linespacing="125%">
       <tspan
-         x="208.25005"
-         y="113.48766"
+         x="206.08568"
+         y="165.23492"
          font-size="12"
          id="tspan8289"
-         style="font-size:16.00000003px;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">Crop</tspan>
+         style="font-size:14.00000002px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">Crop</tspan>
       <tspan
-         x="198.21092"
-         y="131.98354"
+         x="196.04655"
+         y="183.7308"
          font-size="12"
          id="tspan8291"
-         style="font-size:16.00000003px;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">products</tspan>
+         style="font-size:14.00000002px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">products</tspan>
       <tspan
-         x="184.68449"
-         y="150.47951"
+         x="182.52013"
+         y="202.22679"
          font-size="12"
          id="tspan8293"
-         style="font-size:16.00000003px;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">consumption</tspan>
+         style="font-size:14.00000002px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">consumption</tspan>
     </text>
     <text
        transform="scale(1.0149065,0.98531245)"
        id="text8295"
-       x="276.71033"
-       y="122.99999"
-       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="274.73972"
+       y="179.83479"
+       style="font-size:13.99999993px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
        sodipodi:linespacing="125%">
       <tspan
-         x="276.71033"
-         y="122.99999"
+         x="274.73972"
+         y="179.83479"
          font-size="12"
          id="tspan8297"
-         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">Land</tspan>
+         style="font-size:13.99999993px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">Land</tspan>
       <tspan
-         x="285.08295"
-         y="143.3143"
+         x="283.11234"
+         y="200.14911"
          font-size="12"
          id="tspan8299"
-         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">use</tspan>
+         style="font-size:13.99999993px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">use</tspan>
       <tspan
-         x="269.68204"
-         y="163.62866"
+         x="267.71143"
+         y="220.46347"
          font-size="12"
          id="tspan8301"
-         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">change</tspan>
+         style="font-size:13.99999993px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">change</tspan>
     </text>
     <text
        font-size="13"
        id="text8303"
-       x="368.83047"
-       y="138.004"
-       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="366.75223"
+       y="191.89587"
+       style="font-size:14.00000001px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
        transform="scale(0.9623535,1.0391192)"
        sodipodi:linespacing="125%">Fires</text>
     <g
        id="g8305"
-       transform="matrix(1.2873101,0,0,1.3899972,-216.83666,-214.41228)">
+       transform="matrix(1.2873101,0,0,1.3899972,-218.83666,-174.41228)">
       <defs
          id="defs8307">
         <rect
@@ -24047,7 +23950,7 @@
     </g>
     <g
        id="g8321"
-       transform="matrix(1.2873106,0,0,1.3893485,-216.83692,-214.09992)">
+       transform="matrix(1.2873106,0,0,1.3893485,-218.83692,-174.09992)">
       <defs
          id="defs8323">
         <rect
@@ -24132,25 +24035,25 @@
     <text
        font-size="11"
        id="text8349"
-       x="687.88147"
-       y="126.46523"
-       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="685.80322"
+       y="180.35713"
+       style="font-size:14.00000001px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:100%;writing-mode:lr;text-anchor:middle;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
        transform="scale(0.9623535,1.0391192)"
-       sodipodi:linespacing="125%">
+       sodipodi:linespacing="100%">
       <tspan
          sodipodi:role="line"
          id="tspan14960"
-         x="687.88147"
-         y="126.46523">Freshwater</tspan>
+         x="685.80322"
+         y="180.35713">Freshwater</tspan>
       <tspan
          sodipodi:role="line"
          id="tspan14962"
-         x="687.88147"
-         y="146.46524">outgassing</tspan>
+         x="685.80322"
+         y="200.35713">outgassing</tspan>
     </text>
     <g
        id="g8359"
-       transform="translate(-4.3446014,11.007587)">
+       transform="translate(-6.3446014,51.007587)">
       <defs
          id="defs8361">
         <rect
@@ -24175,7 +24078,7 @@
     </g>
     <g
        id="g8367"
-       transform="matrix(1.2873101,0,0,1.3899972,-216.83666,-214.41228)">
+       transform="matrix(1.2873101,0,0,1.3899972,-218.83666,-174.41228)">
       <defs
          id="defs8369">
         <rect
@@ -24219,24 +24122,24 @@
     <text
        transform="scale(0.92074655,1.0860752)"
        id="text8383"
-       x="587.84668"
-       y="120.75686"
-       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
-       sodipodi:linespacing="125%">
+       x="585.67419"
+       y="172.31865"
+       style="font-size:14.00000005px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:100%;writing-mode:lr;text-anchor:middle;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       sodipodi:linespacing="100%">
       <tspan
          sodipodi:role="line"
          id="tspan14956"
-         x="587.84668"
-         y="120.75686">Heterotrophic</tspan>
+         x="585.67419"
+         y="172.31865">Heterotrophic</tspan>
       <tspan
          sodipodi:role="line"
          id="tspan14958"
-         x="587.84668"
-         y="140.75687">respiration</tspan>
+         x="585.67419"
+         y="192.31865">respiration</tspan>
     </text>
     <g
        id="g8411"
-       transform="translate(-4.3446014,11.007587)">
+       transform="translate(-6.3446014,51.007587)">
       <defs
          id="defs8413">
         <rect
@@ -24261,65 +24164,65 @@
     </g>
     <text
        id="text8419"
-       x="572.71259"
-       y="414.00467"
+       x="570.63434"
+       y="452.49884"
        transform="scale(0.9623535,1.0391192)"
-       style="font-size:16.00000001px;-inkscape-font-specification:DejaVu Sans;font-family:DejaVu Sans;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%"
+       style="font-size:14.00000001px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
        sodipodi:linespacing="125%">
       <tspan
-         x="572.71259"
-         y="414.00467"
+         x="570.63434"
+         y="452.49884"
          font-size="11"
          id="tspan8421"
-         style="font-size:16.00000001px;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">Soil C</tspan>
+         style="font-size:14.00000001px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">Soil C</tspan>
       <tspan
-         x="572.71259"
-         y="431.66183"
+         x="570.63434"
+         y="470.15601"
          font-size="11"
          id="tspan8423"
-         style="font-size:16.00000001px;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">export</tspan>
+         style="font-size:14.00000001px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">export</tspan>
     </text>
     <text
        id="text8425"
-       x="758.65619"
-       y="374.21945"
+       x="756.57794"
+       y="412.71362"
        transform="scale(0.9623535,1.0391192)"
-       style="font-size:16.00000001px;-inkscape-font-specification:DejaVu Sans;font-family:DejaVu Sans;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%"
+       style="font-size:14.00000001px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
        sodipodi:linespacing="125%">
       <tspan
-         x="758.65619"
-         y="374.21945"
+         x="756.57794"
+         y="412.71362"
          font-size="11"
          id="tspan8427"
-         style="font-size:16.00000001px;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">Export</tspan>
+         style="font-size:14.00000001px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">Export</tspan>
       <tspan
-         x="774.08624"
-         y="391.87668"
+         x="772.008"
+         y="430.37085"
          font-size="11"
          id="tspan8429"
-         style="font-size:16.00000001px;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">to</tspan>
+         style="font-size:14.00000001px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">to</tspan>
       <tspan
-         x="760.12103"
-         y="409.53391"
+         x="758.04279"
+         y="448.02808"
          font-size="11"
          id="tspan8431"
-         style="font-size:16.00000001px;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">o</tspan>
+         style="font-size:14.00000001px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">o</tspan>
       <tspan
-         x="768.96564"
-         y="409.53391"
+         x="766.88739"
+         y="448.02808"
          font-size="11"
          id="tspan8433"
-         style="font-size:16.00000001px;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">c</tspan>
+         style="font-size:14.00000001px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">c</tspan>
       <tspan
-         x="775.88934"
-         y="409.53391"
+         x="773.8111"
+         y="448.02808"
          font-size="11"
          id="tspan8435"
-         style="font-size:16.00000001px;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">ean</tspan>
+         style="font-size:14.00000001px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">ean</tspan>
     </text>
     <g
        id="g8437"
-       transform="translate(-4.3446014,11.007587)">
+       transform="translate(-6.3446014,51.007587)">
       <defs
          id="defs8439">
         <rect
@@ -24345,87 +24248,87 @@
     <text
        transform="scale(0.9769192,1.0236261)"
        id="text8445"
-       x="187.5838"
-       y="368.38651"
-       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="189.63106"
+       y="407.46323"
+       style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
        sodipodi:linespacing="125%">
       <tspan
-         x="187.5838"
-         y="368.38651"
+         x="189.63106"
+         y="407.46323"
          font-size="9"
          id="tspan8447"
-         style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">Wood</tspan>
+         style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">Wood</tspan>
       <tspan
-         x="180.10303"
-         y="383.05191"
+         x="182.15028"
+         y="422.12863"
          font-size="9"
          id="tspan8449"
-         style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">products</tspan>
+         style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">products</tspan>
     </text>
     <path
-       d="m 384.60613,264.99081 c -1.0839,-27.50109 -4.5635,-52.80738 -5.9847,-59.27783"
+       d="m 382.60613,304.99081 c -1.0839,-27.50109 -4.5635,-52.80738 -5.9847,-59.27783"
        id="path8451"
        style="fill:none;stroke:#e20026;stroke-width:2.67533731" />
     <path
-       d="m 694.25953,411.4715 c -3.8992,-54.54627 1.6504,-110.07944 -5.2972,-166.8511 -0.923,-9.57012 -1.7791,-17.89066 -2.5232,-24.71276 -0.7543,-6.81239 -1.3941,-12.13468 -1.882,-15.7042"
+       d="m 692.25953,451.4715 c -3.8992,-54.54627 1.6504,-110.07944 -5.2972,-166.8511 -0.923,-9.57012 -1.7791,-17.89066 -2.5232,-24.71276 -0.7543,-6.81239 -1.3941,-12.13468 -1.882,-15.7042"
        id="path8453"
        style="fill:none;stroke:#43231e;stroke-width:2.5648458" />
     <text
        font-size="13"
        id="text8455"
-       x="444.45047"
-       y="137.99307"
-       style="font-size:16.00000001px;fill:#43231e;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%"
+       x="442.37222"
+       y="191.88496"
+       style="font-size:14.00000001px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#43231e;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
        transform="scale(0.9623535,1.0391192)"
        sodipodi:linespacing="125%">NPP</text>
     <text
        transform="scale(0.90502168,1.1049459)"
        id="text8457"
-       x="120.63364"
-       y="110.96393"
-       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+       x="118.42374"
+       y="161.64513"
+       style="font-size:14.00000004px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
        sodipodi:linespacing="125%">
       <tspan
-         x="120.63364"
-         y="110.96393"
+         x="118.42374"
+         y="161.64513"
          font-size="12"
          id="tspan8459"
-         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">Wood</tspan>
+         style="font-size:14.00000004px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">Wood</tspan>
       <tspan
-         x="111.05797"
-         y="129.07884"
+         x="108.84808"
+         y="179.76006"
          font-size="12"
          id="tspan8461"
-         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">products</tspan>
+         style="font-size:14.00000004px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">products</tspan>
       <tspan
-         x="121.61861"
-         y="147.19371"
+         x="119.40871"
+         y="197.87492"
          font-size="12"
          id="tspan8463"
-         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">decay</tspan>
+         style="font-size:14.00000004px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans">decay</tspan>
     </text>
     <path
-       d="m 511.13713,389.54152 c -0.8766,8.98216 5.3591,14.98001 10.153,20.88748 5.6243,6.93192 12.6788,7.51295 18.8115,12.47245"
+       d="m 509.13713,429.54152 c -0.8766,8.98216 5.3591,14.98001 10.153,20.88748 5.6243,6.93192 12.6788,7.51295 18.8115,12.47245"
        id="path8465"
        style="fill:none;stroke:#4b4b4d;stroke-width:2.67533731" />
     <path
-       d="m 605.10953,432.63143 c 17.591,-0.0431 33.1096,-6.64557 48.3668,0.46565"
+       d="m 603.10953,472.63143 c 17.591,-0.0431 33.1096,-6.64557 48.3668,0.46565"
        id="path8467"
        style="fill:none;stroke:#4b4b4d;stroke-width:3.24598646" />
     <path
-       d="m 725.08683,437.06135 c 8.6095,9.07807 17.6168,-0.65192 26.3525,7.09595"
+       d="m 723.08683,477.06135 c 8.6095,9.07807 17.6168,-0.65192 26.3525,7.09595"
        id="path8469"
        style="fill:none;stroke:#4b4b4d;stroke-width:2.67533731" />
     <line
-       x1="161.66212"
-       y1="44.822239"
-       x2="275.13077"
-       y2="44.822239"
+       x1="159.66212"
+       y1="110.82224"
+       x2="273.13077"
+       y2="110.82224"
        id="line8471"
        style="fill:none" />
     <g
        id="g8473"
-       transform="matrix(1.2873101,0,0,1.3899972,-216.83666,-214.41228)">
+       transform="matrix(1.2873101,0,0,1.3899972,-218.83666,-140.41228)">
       <g
          id="g8475">
         <line
@@ -24476,19 +24379,30 @@
        font-size="14"
        id="text8489"
        x="407.62283"
-       y="38.429428"
-       style="font-size:16.00000001px;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%"
+       y="119.26707"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#e53517;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
        transform="scale(0.9623535,1.0391192)"
        sodipodi:linespacing="125%">NEE</text>
     <flowRoot
        xml:space="preserve"
        id="flowRoot10881"
-       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Bitstream Vera Sans;font-style:normal;font-weight:normal;font-size:40px"><flowRegion
+       style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       transform="translate(1.897084,37.806393)"><flowRegion
          id="flowRegion10883"><rect
            id="rect10885"
            width="54.285713"
            height="45.714287"
            x="17.142857"
            y="114.3957" /></flowRegion><flowPara
-         id="flowPara10887"></flowPara></flowRoot>  </g>
+         id="flowPara10887"></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot14972"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:DejaVu Sans;font-style:normal;font-weight:normal;font-size:18px;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%;-inkscape-font-specification:DejaVu Sans;font-stretch:normal;font-variant:normal"><flowRegion
+         id="flowRegion14974"><rect
+           id="rect14976"
+           width="134.28572"
+           height="227.14285"
+           x="-168.57143"
+           y="98.571426" /></flowRegion><flowPara
+         id="flowPara14978"></flowPara></flowRoot>  </g>
 </svg>

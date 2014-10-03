@@ -5701,7 +5701,7 @@ dc.geoChoroplethChart = function (parent, chartGroup) {
             $.each( countries[0], function( i, d )
             {
                 var attributes = d.attributes["class"];
-                if( (attributes.nodeValue.indexOf( "no_data_for_this_region" ) == -1) && (attributes.nodeValue.indexOf( "deselected" ) == -1 ) && jQuery.inArray( d.__data__.properties.continent, result ) == -1 )
+                if( (attributes.value.indexOf( "no_data_for_this_region" ) == -1) && (attributes.value.indexOf( "deselected" ) == -1 ) && jQuery.inArray( d.__data__.properties.continent, result ) == -1 )
                     result.push( d.__data__.properties.continent );
             } );
             return result;

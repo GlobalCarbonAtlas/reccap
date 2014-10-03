@@ -23,7 +23,10 @@ body {
 }
 
 #sourceWrapper .titleDiv {
-    margin: 19px 0 0 220px;
+/*margin: 19px 0 0 220px;*/
+    margin-top: 19px;
+    float: left;
+    width: 74%;
 }
 
 #sourceWrapper .title {
@@ -31,7 +34,7 @@ body {
     font-size: 36px;
     text-shadow: 2px 2px 2px #CCCCCC;
     margin: auto;
-    width: 900px;
+    /*width: 900px;*/
 }
 
 #sourceWrapper .bigTitle {
@@ -66,11 +69,11 @@ body {
 }
 
 /*.basicCell, .bottomBasicCell {*/
-    /*border: 1px solid red;*/
+/*border: 1px solid red;*/
 /*}*/
 
 /*#mapChart, #regionBarChart, #fluxBarChartForMainFlux, #fluxBarChartForSeparatedFlux, #mapster_wrap_0 {*/
-    /*border: 1px solid blue;*/
+/*border: 1px solid blue;*/
 /*}*/
 
 /* ************** LEFT TOOLS ************** */
@@ -82,7 +85,8 @@ body {
     text-align: center;
     margin: 10px 0 20px;
     float: left;
-    width: 255px;
+    min-width: 255px;
+    width: 25%;
     font: 11px "Lato", Arial;
     color: #333333;
 }
@@ -157,7 +161,7 @@ body {
     margin: 47px 0 0 -26px;
     position: absolute;
     text-align: center;
-    width: 90px;
+    width: 97px;
 }
 
 #resetFlux {

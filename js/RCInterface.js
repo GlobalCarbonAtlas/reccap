@@ -905,7 +905,7 @@ var RCInterface = Class.create( {
                     if( activeClick )
                     {
                         this.initDimensionsForCharts( $( imageId ).height() );
-                        var topPosition = -this.imageHeight / 2 + (this.imageHeight / 2 + $( "#synthesis" ).height()) / 2;
+                        var topPosition = -this.imageHeight / 2 + (this.imageHeight / 2 + $( "#synthesis" ).height()) / 2 - 10;
                         $( "#synthesis" ).css( "margin-top", topPosition );
                         $( "#synthesis" ).css( "margin-right", -$( "#synthesis" ).width() );
 

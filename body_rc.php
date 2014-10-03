@@ -78,17 +78,17 @@
                 <div class="basicCell imageFluxCell">
                     <img id="imageFlux" src="img/land_cycle_pcv8.svg" usemap="#mapForImageFlux" alt="Image for flux"/>
                     <map id="mapForImageFlux" name="mapForImageFlux">
-                            <area shape="rect" alt="NEE" coords="380,19,429,50" href="" target=""/>
-                            <area shape="rect" alt="FFE" coords="4,108,89,170" href="" target=""/>
-                            <area shape="rect" alt="WPD" coords="94,108,163,170" href="" target=""/>
-                            <area shape="rect" alt="CPC" coords="165,108,264,170" href="" target=""/>
-                            <area shape="rect" alt="LUC" coords="266,108,332,170" href="" target=""/>
-                            <area shape="rect" alt="Fires" coords="346,108,394,170" href="" target=""/>
-                            <area shape="rect" alt="NPP" coords="417,108,461,170" href="" target=""/>
-                            <area shape="rect" alt="HR" coords="480,108,590,170" href="" target=""/>
-                            <area shape="rect" alt="FO" coords="607,108,704,170" href="" target=""/>
-                            <area shape="rect" alt="SCE" coords="540,415,602,459" href="" target=""/>
-                            <area shape="rect" alt="ETO" coords="718,372,781,433" href="" target=""/>
+                            <area shape="rect" alt="NEE" coords="380,8,429,33" href="" target=""/>
+                            <area shape="rect" alt="FFE" coords="2,61,77,130" href="" target=""/>
+                            <area shape="rect" alt="WPD" coords="89,61,153,130" href="" target=""/>
+                            <area shape="rect" alt="CPC" coords="161,61,252,130" href="" target=""/>
+                            <area shape="rect" alt="LUC" coords="264,61,325,130" href="" target=""/>
+                            <area shape="rect" alt="Fires" coords="344,61,385,130" href="" target=""/>
+                            <area shape="rect" alt="NPP" coords="417,61,454,130" href="" target=""/>
+                            <area shape="rect" alt="HR" coords="484,61,582,130" href="" target=""/>
+                            <area shape="rect" alt="FO" coords="612,61,698,130" href="" target=""/>
+                            <area shape="rect" alt="SCE" coords="540,355,593,400" href="" target=""/>
+                            <area shape="rect" alt="ETO" coords="718,313,775,376" href="" target=""/>
                             <!-- Created by Online Image Map Editor (http://www.maschek.hu/imagemap/index) -->
                     </map>
 

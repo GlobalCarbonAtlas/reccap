@@ -72,8 +72,8 @@ var RCInterface = Class.create( {
         this.imageHeight = newImageHeight;
         this.mapImageWidth = this.imageWidth;// - this.marginLeftForFluxImageAndMap;// - $( "#fluxBarChartForSeparatedFlux" ).css( "margin-left" ).replace( "px", "" );
         this.mapImageHeight = this.imageHeight;
-//        this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".basicCell" ).css( "margin-bottom" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 40;
-        this.barChartHeight = 300;
+        this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".basicCell" ).css( "margin-bottom" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 40;
+//        this.barChartHeight = 300;
 
         // Elements positions
         $( "#mapChartAndComment" ).css( "margin-left", this.marginLeftForFluxImageAndMap );
@@ -579,7 +579,7 @@ var RCInterface = Class.create( {
      */
     createOrAddToBarChart: function( width, height, fluxValue )
     {
-        if( 0 >= $( "#regionBarChartSvg" ).length )
+        if( 0 >= $( "#regionBarChart div svg" ).length )
         {
 //            this.createRegionBarChartForMainFlux( width * this.mainFlux.length / (this.mainFlux.length + this.separatedFlux.length), height );
 //            this.createRegionBarChartForSeparatedFlux( width * this.separatedFlux.length / (this.mainFlux.length + this.separatedFlux.length), height );
@@ -617,7 +617,7 @@ var RCInterface = Class.create( {
         $( containerId ).addClass( "dc-chart" );
         // BarChart
         var regionBarChartsvg = d3.select( containerId ).append( "svg" )
-                .attr( "id", "regionBarChartSvg" )
+//                .attr( "id", "regionBarChartSvg" )
                 .attr( "width", width + this.barCharMargin.left + this.barCharMargin.right )
                 .attr( "height", height + this.barCharMargin.top + this.barCharMargin.bottom )
                 .append( "g" )
@@ -704,16 +704,30 @@ var RCInterface = Class.create( {
         this.regionBarChartForMainFlux.transposedData = this.transposedDataForMainFlux;
         this.regionBarChartForSeparatedFlux.transposedData = this.transposedDataForSeparatedFlux;
 
-        // Update region barcharts
-        if( -1 != this.mainFlux.indexOf( fluxValue ) )
-            this.updateRegionBarChart( this.regionBarChartForMainFlux );
-        else if( -1 != this.separatedFlux.indexOf( fluxValue ) )
-            this.updateRegionBarChart( this.regionBarChartForSeparatedFlux );
-        else
+
+        this.updateRegionBarChart( this.regionBarChartForMainFlux );
+        this.updateRegionBarChart( this.regionBarChartForSeparatedFlux );
+
+        if( 0 == this.regionBarChartForSeparatedFlux.transposedData[0].columnDetails.length )
         {
-            this.updateRegionBarChart( this.regionBarChartForMainFlux );
-            this.updateRegionBarChart( this.regionBarChartForSeparatedFlux );
+            d3.select( "#regionBarChartForSeparatedFlux svg" )
+                    .attr( "width", 0 );
         }
+
+        if( 0 == this.regionBarChartForMainFlux.transposedData[0].columnDetails.length )
+        {
+            d3.select( "#regionBarChartForMainFlux svg" )
+                    .attr( "width", 0 );
+        }
+
+        // Update region barcharts
+//        if( -1 != this.mainFlux.indexOf( fluxValue ) )
+//            this.updateRegionBarChart( this.regionBarChartForMainFlux );
+//        else if( -1 != this.separatedFlux.indexOf( fluxValue ) )
+//            this.updateRegionBarChart( this.regionBarChartForSeparatedFlux );
+//        else
+//        {
+//        }
     },
 
     updateRegionBarChart: function( regionBarChart )

@@ -90,9 +90,9 @@ var RCInterface = Class.create( {
     {
         // Tooltips for charts
         this.toolTip = d3.tip()
-                .attr( 'class', 'd3-tip' )
-                .offset( {"Russia": [0, this.imageWidth / 4], "*":[-10,0]} )
-                .html( jQuery.proxy( function ( d )
+            .attr( 'class', 'd3-tip' )
+            .offset( {"Russia": [0, this.imageWidth / 4], "*":[-10,0]} )
+            .html( jQuery.proxy( function ( d )
         {
             if( d.properties )
             // Choropleth
@@ -146,15 +146,15 @@ var RCInterface = Class.create( {
             this.data = crossfilter( csv );
             // Filter on Globe region
             this.filterRecords = this.data.dimension(
-                    jQuery.proxy( function( d )
-                    {
-                        return d[this.regionColName];
-                    }, this ) ).filter(
-                    jQuery.proxy( function( d )
-                    {
-                        if( this.globeRegion != d )
-                            return d;
-                    }, this ) );
+                jQuery.proxy( function( d )
+                {
+                    return d[this.regionColName];
+                }, this ) ).filter(
+                jQuery.proxy( function( d )
+                {
+                    if( this.globeRegion != d )
+                        return d;
+                }, this ) );
 
             // Update y domains for flux bar chart
             this.initYDomainsForFluxBarChart();
@@ -270,23 +270,23 @@ var RCInterface = Class.create( {
     {
         var newScale = this.initMapScale * width / this.initMapWidth;
         var projection = d3.geo.equirectangular()
-                .translate( [width / 2,  height / 2] )
-                .scale( [newScale] );
+            .translate( [width / 2,  height / 2] )
+            .scale( [newScale] );
 
         this.geoChoroplethChart = dc.customGeoChoroplethChart( chartId )
-                .width( width )
-                .height( height )
-                .dimension( continentsDimension )
-                .group( continentsGroup )
-                .projection( projection )
-                .overlayGeoJson( countries.features, "country", function( d )
-        {
-            return d.properties.continent;
-        } )
-                .title( function ( d )
-        {
-            return "";
-        } );
+            .width( width )
+            .height( height )
+            .dimension( continentsDimension )
+            .group( continentsGroup )
+            .projection( projection )
+            .overlayGeoJson( countries.features, "country", function( d )
+            {
+                return d.properties.continent;
+            } )
+            .title( function ( d )
+            {
+                return "";
+            } );
 
         this.geoChoroplethChart.setMultipleSelect( this.selectMultipleRegion );
         this.geoChoroplethChart.setEmptyZoneWithNoData( this.emptyZoneWithNoData );
@@ -349,17 +349,17 @@ var RCInterface = Class.create( {
     createDataTable: function( countId, tableId, allD, allG, tableD )
     {
         dc.dataCount( countId )
-                .dimension( allD )
-                .group( allG );
+            .dimension( allD )
+            .group( allG );
 
         dc.dataTable( tableId )
-                .dimension( tableD )
-                .group( jQuery.proxy( function( d )
+            .dimension( tableD )
+            .group( jQuery.proxy( function( d )
         {
             return d[this.regionColName];
         }, this ) )
-                .size( allG.value() )
-                .columns( [
+            .size( allG.value() )
+            .columns( [
             jQuery.proxy( function( d )
             {
                 return d[this.fluxColName];
@@ -369,10 +369,10 @@ var RCInterface = Class.create( {
                 return d[this.valueColName];
             }, this )
         ] ).
-                renderlet( function ( table )
-        {
-            table.selectAll( ".dc-table-group" ).classed( "info", true );
-        } );
+            renderlet( function ( table )
+            {
+                table.selectAll( ".dc-table-group" ).classed( "info", true );
+            } );
     },
 
 
@@ -399,25 +399,25 @@ var RCInterface = Class.create( {
         // group based on carbonBudgets dimension otherwise, a click on a bar hide all others
         var budgetAmountGroup = carbonBudgets.group().reduce(
             // add
-                jQuery.proxy( function( p, v )
-                {
-                    p.value += parseInt( this.numberFormat( v[this.valueColName] ) );
-                    p.uncertainty += parseInt( this.numberFormat( v[this.uncertaintyColName] ) );
-                    return p;
-                }, this ),
+            jQuery.proxy( function( p, v )
+            {
+                p.value += parseInt( this.numberFormat( v[this.valueColName] ) );
+                p.uncertainty += parseInt( this.numberFormat( v[this.uncertaintyColName] ) );
+                return p;
+            }, this ),
             // remove
-                jQuery.proxy( function( p, v )
-                {
-                    p.value -= parseInt( this.numberFormat( v[this.valueColName] ) );
-                    p.uncertainty -= parseInt( this.numberFormat( v[this.uncertaintyColName] ) );
-                    return p;
-                }, this ),
+            jQuery.proxy( function( p, v )
+            {
+                p.value -= parseInt( this.numberFormat( v[this.valueColName] ) );
+                p.uncertainty -= parseInt( this.numberFormat( v[this.uncertaintyColName] ) );
+                return p;
+            }, this ),
             // init
-                jQuery.proxy( function( p, v )
-                {
-                    return {value: 0, uncertainty: 0};
-                }, this )
-                );
+            jQuery.proxy( function( p, v )
+            {
+                return {value: 0, uncertainty: 0};
+            }, this )
+        );
 
         this.fluxBarChartForMainFlux = this.createFluxBarChart( "#fluxBarChartForMainFlux", $( "#fluxBarChartForMainFlux" ).width(), this.barChartHeight, carbonBudgets, budgetAmountGroup, this.mainFlux, this.yDomainForAllMainFlux, false, this.barCharMargin );
         var rightBarChartMargin = {top: this.barCharMargin.top, right: this.barCharMargin.left, bottom: this.barCharMargin.bottom, left: this.barCharMargin.right};
@@ -427,21 +427,21 @@ var RCInterface = Class.create( {
     createFluxBarChart: function( chartId, width, height, dimension, group, xDomain, yDomain, useRightYAxis, barCharMargin )
     {
         var barChart = dc.customBarChartWithUncertainty( chartId )
-                .height( height )
-                .width( width )
-                .transitionDuration( 750 )
-                .margins( barCharMargin )
-                .dimension( dimension )
-                .group( group, "groupLayer" )
-                .brushOn( false )
-                .gap( 0 )
-                .elasticY( false )
-                .elasticYInDomain( true )
-                .colors( this.color )
-                .xUnits( dc.units.ordinal )
-                .x( d3.scale.ordinal().domain( xDomain ) )
-                .y( d3.scale.linear().domain( yDomain ) )
-                .renderHorizontalGridLines( true );
+            .height( height )
+            .width( width )
+            .transitionDuration( 750 )
+            .margins( barCharMargin )
+            .dimension( dimension )
+            .group( group, "groupLayer" )
+            .brushOn( false )
+            .gap( 0 )
+            .elasticY( false )
+            .elasticYInDomain( true )
+            .colors( this.color )
+            .xUnits( dc.units.ordinal )
+            .x( d3.scale.ordinal().domain( xDomain ) )
+            .y( d3.scale.linear().domain( yDomain ) )
+            .renderHorizontalGridLines( true );
 
         barChart.setUseRightYAxis( useRightYAxis );
         barChart.yAxis().tickFormat( d3.format( "s" ) );
@@ -457,7 +457,7 @@ var RCInterface = Class.create( {
     getYDomainForBarChartFlux: function( isMain )
     {
         if( (this.geoChoroplethChart.getDisplayedRegions().length == this.geoChoroplethChart.getNumberAllDisplayedRegions())
-                || !(this.geoChoroplethChart.getSelect() && !this.geoChoroplethChart.getMultipleSelect()) )
+            || !(this.geoChoroplethChart.getSelect() && !this.geoChoroplethChart.getMultipleSelect()) )
         {
             if( this.displayUncertainty )
                 return isMain ? this.yDomainForAllMainFluxWithUncertainty : this.yDomainForAllSeparatedFluxWithUncertainty;
@@ -477,13 +477,13 @@ var RCInterface = Class.create( {
     {
         // Flux Bar chart : rotate the x Axis labels
         d3.selectAll( "#fluxBarChart g.x g text" )
-                .style( "text-anchor", "end" )
-                .attr( "title", function( d )
-        {
-            return d;
-        } )
-                .attr( "transform", "translate(-10,0)rotate(315)" )
-                .text( jQuery.proxy( function( d )
+            .style( "text-anchor", "end" )
+            .attr( "title", function( d )
+            {
+                return d;
+            } )
+            .attr( "transform", "translate(-10,0)rotate(315)" )
+            .text( jQuery.proxy( function( d )
         {
             var propertieName = this.getI18nPropertiesKeyFromValue( d );
             return 0 != jQuery.i18n.prop( propertieName + "_shortForAxis" ).indexOf( "[" ) ? jQuery.i18n.prop( propertieName + "_shortForAxis" ) : d;
@@ -533,11 +533,11 @@ var RCInterface = Class.create( {
     {
         // Update zero axis
         d3.selectAll( "#fluxBarChart .grid-line.horizontal line" )
-                .filter( function( d )
-        {
-            return !d
-        } )
-                .classed( 'zero', true );
+            .filter( function( d )
+            {
+                return !d
+            } )
+            .classed( 'zero', true );
 
         // Update synthesis values
         $.each( d3.selectAll( "#fluxBarChart .layer0 .bar" )[0], jQuery.proxy( function( i, d )
@@ -584,7 +584,7 @@ var RCInterface = Class.create( {
 //            this.createRegionBarChartForMainFlux( width * this.mainFlux.length / (this.mainFlux.length + this.separatedFlux.length), height );
 //            this.createRegionBarChartForSeparatedFlux( width * this.separatedFlux.length / (this.mainFlux.length + this.separatedFlux.length), height );
             var regionBarChartHeight = height - this.barCharMargin.top - this.barCharMargin.bottom;
-            var barChartWidth = width - this.barCharMargin.left - this.barCharMargin.right;
+//            var barChartWidth = width - this.barCharMargin.left - this.barCharMargin.right;
 
             this.regionBarChartForMainFlux = this.createRegionBarChart( "#regionBarChartForMainFlux", $( "#regionBarChartForMainFlux" ).width() - this.barCharMargin.left, regionBarChartHeight, false, true );
             this.regionBarChartForSeparatedFlux = this.createRegionBarChart( "#regionBarChartForSeparatedFlux", $( "#regionBarChartForSeparatedFlux" ).width() - this.barCharMargin.left, regionBarChartHeight, true, false );
@@ -609,35 +609,35 @@ var RCInterface = Class.create( {
         // Axes
         var regionBarChartxAxis = d3.svg.axis().scale( regionBarChartx0 );
         var regionBarChartyAxis = d3.svg.axis()
-                .scale( regionBarCharty )
-                .orient( useRightYAxis ? "right" : "left" )
-                .tickFormat( d3.format( ".2s" ) )
-                .tickSize( -width, 0 );
+            .scale( regionBarCharty )
+            .orient( useRightYAxis ? "right" : "left" )
+            .tickFormat( d3.format( ".2s" ) )
+            .tickSize( -width, 0 );
 
         $( containerId ).addClass( "dc-chart" );
         // BarChart
         var regionBarChartsvg = d3.select( containerId ).append( "svg" )
 //                .attr( "id", "regionBarChartSvg" )
-                .attr( "width", width + this.barCharMargin.left + this.barCharMargin.right )
-                .attr( "height", height + this.barCharMargin.top + this.barCharMargin.bottom )
-                .append( "g" )
-                .attr( "transform", "translate(" + (useRightYAxis ? 0 : this.barCharMargin.left) + "," + this.barCharMargin.top + ")" );
+            .attr( "width", width + this.barCharMargin.left + this.barCharMargin.right )
+            .attr( "height", height + this.barCharMargin.top + this.barCharMargin.bottom )
+            .append( "g" )
+            .attr( "transform", "translate(" + (useRightYAxis ? 0 : this.barCharMargin.left) + "," + this.barCharMargin.top + ")" );
 
         var regionBarChartsvgG = regionBarChartsvg.append( "g" )
-                .attr( "class", "y axis" );
+            .attr( "class", "y axis" );
         if( useRightYAxis )
             regionBarChartsvgG.attr( "transform", "translate(" + width + ",0)" );
 
         regionBarChartsvgG.append( "text" )
-                .attr( "transform", "rotate(-90)" )
-                .attr( "y", 6 )
-                .attr( "dy", ".7em" )
-                .style( "text-anchor", "end" )
-                .text( "" );
+            .attr( "transform", "rotate(-90)" )
+            .attr( "y", 6 )
+            .attr( "dy", ".7em" )
+            .style( "text-anchor", "end" )
+            .text( "" );
 
         regionBarChartsvg.append( "g" )
-                .attr( "class", "x axis" )
-                .attr( "transform", "translate(0," + height + ")" );
+            .attr( "class", "x axis" )
+            .attr( "transform", "translate(0," + height + ")" );
 
         // xAxis
         regionBarChartsvg.select( '.x.axis' ).call( regionBarChartxAxis );
@@ -704,22 +704,24 @@ var RCInterface = Class.create( {
         this.regionBarChartForMainFlux.transposedData = this.transposedDataForMainFlux;
         this.regionBarChartForSeparatedFlux.transposedData = this.transposedDataForSeparatedFlux;
 
-
-        this.updateRegionBarChart( this.regionBarChartForMainFlux );
-        this.updateRegionBarChart( this.regionBarChartForSeparatedFlux );
-
-        if( 0 == this.regionBarChartForSeparatedFlux.transposedData[0].columnDetails.length )
-        {
-            d3.select( "#regionBarChartForSeparatedFlux svg" )
-                    .attr( "width", 0 );
-        }
-
-        if( 0 == this.regionBarChartForMainFlux.transposedData[0].columnDetails.length )
-        {
-            d3.select( "#regionBarChartForMainFlux svg" )
-                    .attr( "width", 0 );
-        }
-
+//        if( 0 == this.regionBarChartForSeparatedFlux.transposedData[0].columnDetails.length )
+//            this.changeSvgWidth("#regionBarChartForSeparatedFlux svg","#regionBarChartForMainFlux svg", this.barChartWidth, this.regionBarChartForMainFlux);
+//        else if( 0 == this.regionBarChartForMainFlux.transposedData[0].columnDetails.length )
+//            this.changeSvgWidth("#regionBarChartForMainFlux svg","#regionBarChartForSeparatedFlux svg", this.barChartWidth, this.regionBarChartForMainFlux);
+//        else
+//        {
+//            d3.select( "#regionBarChartForMainFlux svg" )
+//                .transition()
+//                .duration( 1000 )
+//                .ease( "linear" )
+//                .attr( "width", $("#regionBarChartForMainFlux").width() );
+//
+//            d3.select( "#regionBarChartForSeparatedFlux svg" )
+//                .transition()
+//                .duration( 1000 )
+//                .ease( "linear" )
+//                .attr( "width", $("#regionBarChartForSeparatedFlux").width());
+//        }
         // Update region barcharts
 //        if( -1 != this.mainFlux.indexOf( fluxValue ) )
 //            this.updateRegionBarChart( this.regionBarChartForMainFlux );
@@ -727,7 +729,38 @@ var RCInterface = Class.create( {
 //            this.updateRegionBarChart( this.regionBarChartForSeparatedFlux );
 //        else
 //        {
+            this.updateRegionBarChart( this.regionBarChartForMainFlux );
+            this.updateRegionBarChart( this.regionBarChartForSeparatedFlux );
 //        }
+    },
+
+    changeSvgWidth: function(svgToRemove, svgToAugment, width, regionBarChartObject)
+    {
+        d3.select( svgToRemove )
+            .transition()
+            .duration( 1000 )
+            .ease( "linear" )
+            .attr( "width", 0 )
+            .each("end", jQuery.proxy(function()
+        {
+            d3.select(svgToAugment)
+                .transition()
+                .duration( 1000 )
+                .ease( "linear" )
+                .attr( "width", width + this.barCharMargin.left + this.barCharMargin.right );
+
+            width -= this.barCharMargin.left;
+            regionBarChartObject.width = width;
+            regionBarChartObject.x0 = d3.scale.ordinal().rangeRoundBands( [0, width], 0.1 ).domain( this.regionsKeys );
+            regionBarChartObject.xAxis = d3.svg.axis().scale( regionBarChartObject.x0 );
+            regionBarChartObject.svg.select( '.x.axis' )
+                .transition()
+                .duration( 1000 )
+                .ease( "linear" )
+                .call( regionBarChartObject.xAxis );
+
+            this.updateRegionBarChart(regionBarChartObject );
+        }, this));
     },
 
     updateRegionBarChart: function( regionBarChart )
@@ -755,82 +788,82 @@ var RCInterface = Class.create( {
     {
         // Update yAxis
         regionBarChartObject.svg
-                .select( '.y.axis' )
-                .call( regionBarChartObject.yAxis )
-                .selectAll( 'line' )
-                .filter( function( d )
-        {
-            return !d
-        } )
-                .classed( 'zero', true );
+            .select( '.y.axis' )
+            .call( regionBarChartObject.yAxis )
+            .selectAll( 'line' )
+            .filter( function( d )
+            {
+                return !d
+            } )
+            .classed( 'zero', true );
 
         // Rotate the x Axis labels
         if( regionBarChartObject.useRightYAxis )
             regionBarChartObject.svg.selectAll( "g.x g text" )
-                    .style( "text-anchor", "start" )
-                    .attr( "transform", "translate(10,0)rotate(45)" );
+                .style( "text-anchor", "start" )
+                .attr( "transform", "translate(10,0)rotate(45)" );
         else
             regionBarChartObject.svg.selectAll( "g.x g text" )
-                    .style( "text-anchor", "end" )
-                    .attr( "transform", "translate(-10,0)rotate(315)" );
+                .style( "text-anchor", "end" )
+                .attr( "transform", "translate(-10,0)rotate(315)" );
     },
 
     updateRegionBarChartLegend: function( regionBarChartObject )
     {
         var legend = regionBarChartObject.svg.selectAll( ".legend" )
-                .data( jQuery.proxy( function()
+            .data( jQuery.proxy( function()
         {
             this.displayedVariables.slice();
             var result = new Array();
             $.each( this.displayedVariables, jQuery.proxy( function( i, d )
             {
                 if( (regionBarChartObject.isForMainFlux && (-1 != this.mainFlux.indexOf( d.name ) ))
-                        || (!regionBarChartObject.isForMainFlux && (-1 != this.separatedFlux.indexOf( d.name ) )) )
+                    || (!regionBarChartObject.isForMainFlux && (-1 != this.separatedFlux.indexOf( d.name ) )) )
                     result.push( d );
             }, this ) );
             return result;
         }, this ) );
 
         var legendsEnter = legend.enter().append( "g" )
-                .attr( "class", "legend" )
-                .attr( "transform",
-                function( d, i )
-                {
-                    return "translate(0," + i * 20 + ")";
-                } );
+            .attr( "class", "legend" )
+            .attr( "transform",
+            function( d, i )
+            {
+                return "translate(0," + i * 20 + ")";
+            } );
 
         legendsEnter.append( "rect" )
-                .attr( "id", function( d, i )
-        {
-            return "regionBarChartSvg_legendRect_" + i;
-        } )
-                .attr( "x", regionBarChartObject.width - 18 )
-                .attr( "width", 18 )
-                .attr( "height", 18 );
+            .attr( "id", function( d, i )
+            {
+                return "regionBarChartSvg_legendRect_" + i;
+            } )
+            .attr( "x", regionBarChartObject.width - 18 )
+            .attr( "width", 18 )
+            .attr( "height", 18 );
 
         legendsEnter.append( "text" )
-                .attr( "x", regionBarChartObject.width - 24 )
-                .attr( "y", 9 )
-                .attr( "dy", ".35em" )
-                .style( "text-anchor", "end" );
+            .attr( "x", regionBarChartObject.width - 24 )
+            .attr( "y", 9 )
+            .attr( "dy", ".35em" )
+            .style( "text-anchor", "end" );
         legend.exit().remove();
 
         // When remove bar
         legend.select( "text" )
-                .text( function( d )
-        {
-            return jQuery.i18n.prop( d.name ).replace( "[", "" ).replace( "]", "" );
-        } );
+            .text( function( d )
+            {
+                return jQuery.i18n.prop( d.name ).replace( "[", "" ).replace( "]", "" );
+            } );
 
         legend.select( "rect" )
-                .style( "fill", jQuery.proxy( function( d )
+            .style( "fill", jQuery.proxy( function( d )
         {
             if( !d.color )
                 d.color = this.color( d.name );
             return d.color;
         }, this ) )
-                .style( "stroke", "#2C3537" )
-                .on( "click", jQuery.proxy( function( d )
+            .style( "stroke", "#2C3537" )
+            .on( "click", jQuery.proxy( function( d )
         {
             this.onClickRegionBarChart( d );
         }, this ) );
@@ -839,23 +872,23 @@ var RCInterface = Class.create( {
     updateRegionBarChartBar: function( regionBarChartObject )
     {
         var regionBar = regionBarChartObject.svg.selectAll( ".groupedBar" )
-                .data( regionBarChartObject.transposedData );
+            .data( regionBarChartObject.transposedData );
 
         var regionBarEnter = regionBar.enter().append( "g" )
-                .attr( "class", "groupedBar" )
-                .attr( "transform", jQuery.proxy( function( d )
+            .attr( "class", "groupedBar" )
+            .attr( "transform", jQuery.proxy( function( d )
         {
             return "translate(" + regionBarChartObject.x0( d[this.fluxColName] ) + ",0)";
         }, this ) );
 
         var regionBarRect = regionBar.selectAll( "rect" )
-                .data( jQuery.proxy( function( d )
+            .data( jQuery.proxy( function( d )
         {
             return d.columnDetails;
         }, this ) );
 
         regionBarRect.enter().append( "rect" )
-                .on( "click", jQuery.proxy( function( d )
+            .on( "click", jQuery.proxy( function( d )
         {
             this.onClickRegionBarChart( d );
         }, this ) );
@@ -863,23 +896,23 @@ var RCInterface = Class.create( {
         regionBarRect.exit().remove();
 
         regionBar.transition()
-                .duration( 500 )
-                .ease( "linear" )
-                .selectAll( "rect" )
-                .attr( "width", regionBarChartObject.x1.rangeBand() )
-                .attr( "x", jQuery.proxy( function( d )
+            .duration( 500 )
+            .ease( "linear" )
+            .selectAll( "rect" )
+            .attr( "width", regionBarChartObject.x1.rangeBand() )
+            .attr( "x", jQuery.proxy( function( d )
         {
             return regionBarChartObject.x1( d.column );
         }, this ) )
-                .attr( "y", jQuery.proxy( function( d )
+            .attr( "y", jQuery.proxy( function( d )
         {
             return regionBarChartObject.y( d.yEnd );
         }, this ) )
-                .attr( "height", jQuery.proxy( function( d )
+            .attr( "height", jQuery.proxy( function( d )
         {
             return regionBarChartObject.y( d.yBegin ) - regionBarChartObject.y( d.yEnd );
         }, this ) )
-                .style( "fill", jQuery.proxy( function( d )
+            .style( "fill", jQuery.proxy( function( d )
         {
             if( !d.color )
                 d.color = this.color( d.name );
@@ -890,10 +923,10 @@ var RCInterface = Class.create( {
     updateRegionBarChartUncertainty: function( regionBarChartObject )
     {
         var regionBar = regionBarChartObject.svg.selectAll( ".groupedBar" )
-                .data( regionBarChartObject.transposedData );
+            .data( regionBarChartObject.transposedData );
 
         var regionBarPath = regionBar.selectAll( "path" )
-                .data( jQuery.proxy( function( d )
+            .data( jQuery.proxy( function( d )
         {
             return d.columnDetails;
         }, this ) );
@@ -902,10 +935,10 @@ var RCInterface = Class.create( {
         regionBarPath.exit().remove();
 
         regionBar.transition()
-                .duration( 500 )
-                .ease( "linear" )
-                .selectAll( "path" )
-                .attr( "d", jQuery.proxy( function( d )
+            .duration( 500 )
+            .ease( "linear" )
+            .selectAll( "path" )
+            .attr( "d", jQuery.proxy( function( d )
         {
             var xCenter = regionBarChartObject.x1( d.column ) + regionBarChartObject.x1.rangeBand() / 2;
             var lineWidth = regionBarChartObject.x1.rangeBand() / 5;
@@ -919,17 +952,17 @@ var RCInterface = Class.create( {
 
             if( this.displayUncertainty && d.uncertainty )
                 return "M" + (xCenter - lineWidth) + "," + yBottom + "L" + (xCenter + lineWidth) + "," + yBottom + "M" + xCenter + "," + yBottom +
-                        "L" + xCenter + "," + yTop + "M" + (xCenter - lineWidth) + "," + yTop + "L" + (xCenter + lineWidth) + "," + yTop;
+                    "L" + xCenter + "," + yTop + "M" + (xCenter - lineWidth) + "," + yTop + "L" + (xCenter + lineWidth) + "," + yTop;
             else
                 return false;
         }, this ) )
-                .attr( "stroke", jQuery.proxy( function( d )
+            .attr( "stroke", jQuery.proxy( function( d )
         {
             if( !d.color )
                 d.color = this.color( d.name );
             return ColorLuminance( d.color, -0.3 );
         }, this ) )
-                .attr( "stroke-width", "2" );
+            .attr( "stroke-width", "2" );
     },
 
     onClickRegionBarChart: function( element )
@@ -958,8 +991,8 @@ var RCInterface = Class.create( {
     {
         d3.selectAll( ".country, #fluxBarChart .bar, #fluxBarChart text, #regionBarChart .groupedBar rect, #regionBarChartForSeparatedFlux .legend rect" ).call( this.toolTip );
         d3.selectAll( ".country, #fluxBarChart .bar, #fluxBarChart text, #regionBarChart .groupedBar rect, #regionBarChartForSeparatedFlux .legend rect" )
-                .on( 'mouseover', this.toolTip.show )
-                .on( 'mouseout', this.toolTip.hide );
+            .on( 'mouseover', this.toolTip.show )
+            .on( 'mouseout', this.toolTip.hide );
     },
 
 
@@ -981,28 +1014,28 @@ var RCInterface = Class.create( {
 
         // Create "areas" divs
         $.waitUntil(
-                function()
+            function()
+            {
+                return width == $( imageId ).width();
+            },
+            jQuery.proxy( function()
+            {
+                this.createAreas( mapId, activeClick, dynamicAreasId );
+                if( activeClick )
                 {
-                    return width == $( imageId ).width();
-                },
-                jQuery.proxy( function()
-                {
-                    this.createAreas( mapId, activeClick, dynamicAreasId );
-                    if( activeClick )
-                    {
-                        this.initDimensionsForCharts( $( imageId ).height() );
-                        var topPosition = -this.imageHeight / 2 + (this.imageHeight / 2 + $( "#synthesis" ).height()) / 2 - 10;
-                        $( "#synthesis" ).css( "margin-top", topPosition );
-                        $( "#synthesis" ).css( "margin-right", -$( "#synthesis" ).width() );
+                    this.initDimensionsForCharts( $( imageId ).height() );
+                    var topPosition = -this.imageHeight / 2 + (this.imageHeight / 2 + $( "#synthesis" ).height()) / 2 - 10;
+                    $( "#synthesis" ).css( "margin-top", topPosition );
+                    $( "#synthesis" ).css( "margin-right", -$( "#synthesis" ).width() );
 
-                        $( "#dynamicAreasForImageFlux .dynamicArea" ).tooltip( {
-                            placement: "bottom",
-                            container:'body'} );
-                        this.initFileValuesAndCreateDCObjects();
-                    }
-                }, this ),
-                null
-                );
+                    $( "#dynamicAreasForImageFlux .dynamicArea" ).tooltip( {
+                        placement: "bottom",
+                        container:'body'} );
+                    this.initFileValuesAndCreateDCObjects();
+                }
+            }, this ),
+            null
+        );
     },
 
     createAreas : function( mapId, activeClick, dynamicAreasId )
@@ -1280,10 +1313,10 @@ function print_filter( filter )
     if( "undefined" != typeof(f.dimension) )
     {
         f = f.dimension(
-                function( d )
-                {
-                    return "";
-                } ).top( Infinity );
+            function( d )
+            {
+                return "";
+            } ).top( Infinity );
     }
 
     else

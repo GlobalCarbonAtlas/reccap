@@ -749,6 +749,16 @@ var RCInterface = Class.create( {
             return !d
         } )
                 .classed( 'zero', true );
+
+        // Rotate the x Axis labels
+        if( regionBarChartObject.useRightYAxis )
+            regionBarChartObject.svg.selectAll( "g.x g text" )
+                    .style( "text-anchor", "start" )
+                    .attr( "transform", "translate(10,0)rotate(45)" );
+        else
+            regionBarChartObject.svg.selectAll( "g.x g text" )
+                    .style( "text-anchor", "end" )
+                    .attr( "transform", "translate(-10,0)rotate(315)" );
     },
 
     updateRegionBarChartLegend: function( regionBarChartObject )
@@ -861,11 +871,6 @@ var RCInterface = Class.create( {
                 d.color = this.color( d.name );
             return d.color;
         }, this ) );
-
-        // Grouped Bar chart : rotate the x Axis labels
-        d3.selectAll( "#regionBarChartSvg g.x g text" )
-                .style( "text-anchor", "end" )
-                .attr( "transform", "translate(-10,0)rotate(315)" );
     },
 
     updateRegionBarChartUncertainty: function( regionBarChartObject )

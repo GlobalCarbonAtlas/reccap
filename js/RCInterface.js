@@ -652,6 +652,8 @@ var RCInterface = Class.create( {
         regionBarChartObject.svg = regionBarChartsvg;
         regionBarChartObject.useRightYAxis = useRightYAxis;
         regionBarChartObject.isForMainFlux = isForMainFlux;
+
+        this.updateRegionBarChartAxes(regionBarChartObject);
         return regionBarChartObject;
     },
 

@@ -1,6 +1,9 @@
 @media print {
 }
 
+svg {
+    background-color: red;
+}
 /* To see bootstrap col */
 /*[class*="col"] { background: #EEF; }*/
 /*[class*="col"] [class*="col"] { background: #FEE; }*/
@@ -31,7 +34,8 @@ body {
 
 #sourceWrapper .title {
     color: #2C3537;
-    font-size: 36px;
+    /*font-size: 36px;*/
+    font-size: 3vw;
     text-shadow: 2px 2px 2px #CCCCCC;
     margin: auto; /*width: 900px;*/
 }
@@ -224,7 +228,7 @@ body {
 
 .dc-chart .legend text {
     fill: #525252;
-    font: 12px "Futura", sans-serif;
+    font: 11px "Futura", sans-serif;
 }
 
 .y.axis path, .x.axis path {

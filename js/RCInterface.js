@@ -72,8 +72,8 @@ var RCInterface = Class.create( {
         this.imageHeight = newImageHeight;
         this.mapImageWidth = this.imageWidth;// - this.marginLeftForFluxImageAndMap;// - $( "#fluxBarChartForSeparatedFlux" ).css( "margin-left" ).replace( "px", "" );
         this.mapImageHeight = this.imageHeight;
-//        this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".basicCell" ).css( "margin-bottom" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 40;
-        this.barChartHeight = 300;
+        this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".basicCell" ).css( "margin-bottom" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 40;
+//        this.barChartHeight = 300;
 
         // Elements positions
         $( "#mapChartAndComment" ).css( "margin-left", this.marginLeftForFluxImageAndMap );
@@ -819,7 +819,17 @@ var RCInterface = Class.create( {
         if( !regionBarChartObject.useRightYAxis )
             regionBarChartObject.svg.selectAll( "g.x g text" )
                 .style( "text-anchor", "end" )
-                .attr( "transform", "translate(-10,0)rotate(315)" );
+                .attr( "transform", "translate(-10,0)rotate(315)" )
+                .text( function(d,i)
+                {
+                    return (i+1)+"."+d;
+                });
+        else
+            regionBarChartObject.svg.selectAll( "g.x g text" )
+                .text( function(d,i)
+                {
+                    return i+1;
+                });
     },
 
     updateRegionBarChartLegend: function( regionBarChartObject )

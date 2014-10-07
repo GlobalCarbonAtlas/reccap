@@ -1,9 +1,9 @@
 @media print {
 }
 
-svg {
-    background-color: red;
-}
+/*svg {*/
+    /*background-color: red;*/
+/*}*/
 /* To see bootstrap col */
 /*[class*="col"] { background: #EEF; }*/
 /*[class*="col"] [class*="col"] { background: #FEE; }*/

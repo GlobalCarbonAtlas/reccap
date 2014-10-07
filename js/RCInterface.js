@@ -102,9 +102,9 @@ var RCInterface = Class.create( {
                 // Region bar chart axis
                 var value = (0 != d.yBegin ? d.yBegin : 0 != d.yEnd ? d.yEnd : 0);
                 if( this.displayUncertainty && d.uncertainty )
-                    return "<span class='d3-tipTitle'>" + d.name + " : </span>" + this.numberFormat( value ) + " (" + i18n.t( "label.uncertainty" ) + " : " + this.numberFormat( d.uncertainty ) + ")";
+                    return "<span class='d3-tipTitle'>" + d.region+" - "+ d.name + " : </span>" + this.numberFormat( value ) + " (" + i18n.t( "label.uncertainty" ) + " : " + this.numberFormat( d.uncertainty ) + ")";
                 else
-                    return "<span class='d3-tipTitle'>" + d.name + " : </span>" + this.numberFormat( value );
+                    return "<span class='d3-tipTitle'>" + d.region+" - "+ d.name + " : </span>" + this.numberFormat( value );
             }
             else if( d.data )
             {
@@ -676,7 +676,7 @@ var RCInterface = Class.create( {
             {
                 if( d[element.name] )
                 {
-                    var result = {name: element.name, column: index.toString(), yBegin: (0 > d[element.name].value ? d[element.name].value : 0), yEnd: (0 < d[element.name].value ? d[element.name].value : 0), uncertainty: d[element.name].uncertainty, color:false};
+                    var result = {name: element.name, column: index.toString(), yBegin: (0 > d[element.name].value ? d[element.name].value : 0), yEnd: (0 < d[element.name].value ? d[element.name].value : 0), uncertainty: d[element.name].uncertainty, color:false, region:d.Name};
                     index++;
                     return result;
                 }
@@ -1017,8 +1017,8 @@ var RCInterface = Class.create( {
     /* ******************************************************************** */
     updateToolTipsForCharts: function()
     {
-        d3.selectAll( ".country, #fluxBarChart .bar, #fluxBarChart text, #regionBarChart .groupedBar rect, #regionBarChartForSeparatedFlux .legend rect" ).call( this.toolTip );
-        d3.selectAll( ".country, #fluxBarChart .bar, #fluxBarChart text, #regionBarChart .groupedBar rect, #regionBarChartForSeparatedFlux .legend rect" )
+        d3.selectAll( ".country, #fluxBarChart .bar, #fluxBarChart text, #regionBarChart .groupedBar rect, #regionBarChartForSeparatedFlux .x.axis text, #regionBarChartForSeparatedFlux .legend rect" ).call( this.toolTip );
+        d3.selectAll( ".country, #fluxBarChart .bar, #fluxBarChart text, #regionBarChart .groupedBar rect, #regionBarChartForSeparatedFlux .x.axis text, #regionBarChartForSeparatedFlux .legend rect" )
             .on( 'mouseover', this.toolTip.show )
             .on( 'mouseout', this.toolTip.hide );
     },

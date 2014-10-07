@@ -222,6 +222,7 @@ body {
 
 /* DO NOT CHANGE !! STYLE USE IN "getTextWidth" */
 .dc-chart .axis text {
+    pointer-events: auto !important;
     fill: #525252;
     font: 12px "Futura", sans-serif;
 }

@@ -1,9 +1,6 @@
 @media print {
 }
 
-/*svg {*/
-    /*background-color: red;*/
-/*}*/
 /* To see bootstrap col */
 /*[class*="col"] { background: #EEF; }*/
 /*[class*="col"] [class*="col"] { background: #FEE; }*/
@@ -26,7 +23,6 @@ body {
 }
 
 #sourceWrapper .titleDiv {
-/*margin: 19px 0 0 220px;*/
     margin-top: 19px;
     float: left;
     width: 74%;
@@ -34,10 +30,9 @@ body {
 
 #sourceWrapper .title {
     color: #2C3537;
-    /*font-size: 36px;*/
     font-size: 3vw;
     text-shadow: 2px 2px 2px #CCCCCC;
-    margin: auto; /*width: 900px;*/
+    margin: auto;
 }
 
 #sourceWrapper .bigTitle {
@@ -57,13 +52,13 @@ body {
 
 #leftCol {
     float: left;
-    width: 48%;
+    width: 45%;
 }
 
 #rightCol {
     float: right;
     margin-right: 10px;
-    width: 48%;
+    width: 53%;
 }
 
 .basicCell {
@@ -81,16 +76,12 @@ body {
     /*border: 1px solid red;*/
 /*}*/
 
-/*#mapChart, #regionBarChartForMainFlux, #regionBarChartForSeparatedFlux, #fluxBarChartForMainFlux, #fluxBarChartForSeparatedFlux, #mapster_wrap_0 {*/
+/*#mapChart, #regionBarChartForMainFlux, #regionBarChartForSeparatedFlux, #fluxBarChartForMainFlux, #fluxBarChartForSeparatedFlux, #mapster_wrap_0, #mapChartAndRegionSelect {*/
     /*border: 1px solid blue;*/
 /*}*/
 
 /* ************** LEFT TOOLS ************** */
 .leftTools {
-/*border: 2px solid #2C3537 !important;*/
-/*-webkit-border-radius: 10px;*/
-/*-moz-border-radius: 10px;*/
-/*border-radius: 10px;*/
     text-align: center;
     margin: 10px 0 20px;
     float: left;
@@ -324,6 +315,11 @@ body {
 
 #mapChartAndComment {
     float: left;
+}
+
+#mapChartAndRegionSelect {
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .countryWithPointer g.country {

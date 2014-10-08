@@ -20,6 +20,7 @@ body {
 
 #pageWrapper {
     float: left;
+    min-width: 1015px;
 }
 
 #sourceWrapper .titleDiv {
@@ -73,11 +74,11 @@ body {
 }
 
 /*.basicCell, .bottomBasicCell {*/
-    /*border: 1px solid red;*/
+/*border: 1px solid red;*/
 /*}*/
 
 /*#mapChart, #regionBarChartForMainFlux, #regionBarChartForSeparatedFlux, #fluxBarChartForMainFlux, #fluxBarChartForSeparatedFlux, #mapster_wrap_0, #mapChartAndRegionSelect {*/
-    /*border: 1px solid blue;*/
+/*border: 1px solid blue;*/
 /*}*/
 
 /* ************** LEFT TOOLS ************** */

@@ -56,15 +56,11 @@ var RCInterface = Class.create( {
         this.imageHeight = this.imageWidth / 2;
 
         var heightToDisplayGraphs = $( "body" )[0].clientHeight - $( ".bottomBasicCell" ).css( "margin-top" ).replace( "px", "" ) - $( ".container-fluid" ).height();
-//        if( this.imageHeight > (heightToDisplayGraphs / 2) )
-//        {
-//            var barChartWidth = $( "#regionBarChart" ).width();
-//            this.imageHeight = heightToDisplayGraphs / 2;
-//            this.imageWidth = heightToDisplayGraphs - this.marginLeftForFluxImageAndMap;
-//            barChartWidth = this.imageWidth + 2 * this.marginLeftForFluxImageAndMap;
-//            $( "#rightCol" ).width( barChartWidth );
-//            $( "#leftCol" ).width( barChartWidth );
-//        }
+        if( this.imageHeight > (heightToDisplayGraphs / 2) )
+        {
+            this.imageHeight = heightToDisplayGraphs / 2;
+            this.imageWidth = heightToDisplayGraphs - 2 * this.marginLeftForFluxImageAndMap;
+        }
     },
 
     initDimensionsForCharts: function( newImageHeight )

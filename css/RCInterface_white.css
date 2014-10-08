@@ -52,13 +52,13 @@ body {
 
 #leftCol {
     float: left;
-    width: 45%;
+    width: 40%;
 }
 
 #rightCol {
     float: right;
     margin-right: 10px;
-    width: 53%;
+    width: 58%;
 }
 
 .basicCell {

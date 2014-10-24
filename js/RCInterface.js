@@ -38,6 +38,7 @@ var RCInterface = Class.create( {
         this.selectMultipleRegion = false;
         this.displayUncertainty = false;
         this.emptyZoneWithNoData = "No data for this region";
+        this.allFluxIdToSelectHomePage = "#" + jQuery.i18n.prop( "selectedFluxForHomePage" ).split( "," ).join( ", #" );
 
         // Areas for maps
         this.initDimensionsForImageAndCharts();
@@ -253,7 +254,7 @@ var RCInterface = Class.create( {
             this.updateFluxBarCharts();
 
             // Home with selected flux
-            $( "#" + jQuery.i18n.prop( "selectedFluxForHomePage" ) ).click();
+            $( this.allFluxIdToSelectHomePage ).click();
         }, this ) );
     },
 
@@ -1108,7 +1109,7 @@ var RCInterface = Class.create( {
             this.updateXAxisForFluxBarChart();
             this.updateDisplayedVariablesAndRegionBarCharts();
 
-            $( "#" + jQuery.i18n.prop( "selectedFluxForHomePage" ) ).click();
+            $( this.allFluxIdToSelectHomePage ).click();
         }, this ) );
 
         // Help button

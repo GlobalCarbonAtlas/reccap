@@ -135,7 +135,7 @@ var RCInterface = Class.create( {
     initFileValuesAndCreateDCObjects:function()
     {
         // To set ',' in separator for .csv file, save first in .ods then in .csv and then fill the asked fiels
-        d3.csv( this.dataFilePath, jQuery.proxy( function ( error, csv )
+        d3.tsv( this.dataFilePath, jQuery.proxy( function ( error, csv )
         {
             // Init this.transposedData & this.regionsKeys
             this.transposeDataFromFile( csv );
@@ -191,13 +191,13 @@ var RCInterface = Class.create( {
         {
             if( this.mainFlux.indexOf( d[this.fluxColName] ) != -1 )
             {
-                mainFluxDomain = Math.max( mainFluxDomain, Math.abs( d[this.valueColName] ) );
-                mainFluxDomainWithUncertainty = d[this.uncertaintyColName] ? Math.max( mainFluxDomainWithUncertainty, Math.abs( parseInt( d[this.valueColName] ) + parseInt( d[this.uncertaintyColName] ) ) ) : 0;
+                mainFluxDomain = !isNaN( d[this.valueColName] ) ? Math.max( mainFluxDomain, Math.abs( parseFloat( d[this.valueColName] ) ) ) : mainFluxDomain;
+                mainFluxDomainWithUncertainty = d[this.uncertaintyColName] && !isNaN( d[this.valueColName] ) && !isNaN( d[this.uncertaintyColName] ) ? Math.max( mainFluxDomainWithUncertainty, Math.abs( parseFloat( d[this.valueColName] ) + parseFloat( d[this.uncertaintyColName] ) ) ) : mainFluxDomainWithUncertainty;
             }
             else
             {
-                separatedFluxDomain = Math.max( separatedFluxDomain, Math.abs( d[this.valueColName] ) );
-                separatedFluxDomainWithUncertainty = d[this.uncertaintyColName] ? Math.max( separatedFluxDomainWithUncertainty, Math.abs( parseInt( d[this.valueColName] ) + parseInt( d[this.uncertaintyColName] ) ) ) : 0;
+                separatedFluxDomain = !isNaN( d[this.valueColName] ) ? Math.max( separatedFluxDomain, Math.abs( parseFloat( d[this.valueColName] ) ) ) : separatedFluxDomain;
+                separatedFluxDomainWithUncertainty = d[this.uncertaintyColName] && !isNaN( d[this.valueColName] ) && !isNaN( d[this.uncertaintyColName] ) ? Math.max( separatedFluxDomainWithUncertainty, Math.abs( parseFloat( d[this.valueColName] ) + parseFloat( d[this.uncertaintyColName] ) ) ) : separatedFluxDomainWithUncertainty;
             }
         }, this ) );
         // Add 1% to see complete box and whiskers plot
@@ -218,13 +218,13 @@ var RCInterface = Class.create( {
         {
             if( this.mainFlux.indexOf( i ) != -1 )
             {
-                mainFluxDomain = Math.max( mainFluxDomain, Math.abs( d.value ) );
-                mainFluxDomainWithUncertainty = d.uncertainty ? Math.max( mainFluxDomainWithUncertainty, Math.abs( parseInt( d.value ) + parseInt( d.uncertainty ) ) ) : 0;
+                mainFluxDomain = !isNaN( d.value ) ? Math.max( mainFluxDomain, Math.abs( parseFloat( d.value ) ) ) : mainFluxDomain;
+                mainFluxDomainWithUncertainty = d.uncertainty && !isNaN( d.value ) && !isNaN( d.uncertainty ) ? Math.max( mainFluxDomainWithUncertainty, Math.abs( parseFloat( d.value ) + parseFloat( d.uncertainty ) ) ) : mainFluxDomainWithUncertainty;
             }
             else if( this.separatedFlux.indexOf( i ) != -1 )
             {
-                separatedFluxDomain = Math.max( separatedFluxDomain, Math.abs( d.value ) );
-                separatedFluxDomainWithUncertainty = d.uncertainty ? Math.max( separatedFluxDomainWithUncertainty, Math.abs( parseInt( d.value ) + parseInt( d.uncertainty ) ) ) : 0;
+                separatedFluxDomain = !isNaN( d.value ) ? Math.max( separatedFluxDomain, Math.abs( parseFloat( d.value ) ) ) : separatedFluxDomain;
+                separatedFluxDomainWithUncertainty = d.uncertainty && !isNaN( d.value ) && !isNaN( d.uncertainty ) ? Math.max( separatedFluxDomainWithUncertainty, Math.abs( parseFloat( d.value ) + parseFloat( d.uncertainty ) ) ) : mainFluxDomainWithUncertainty;
             }
         }, this ) );
         // Add 1% to see complete box and whiskers plot

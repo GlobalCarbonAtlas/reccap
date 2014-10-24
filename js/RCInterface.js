@@ -856,10 +856,12 @@ var RCInterface = Class.create( {
 
         // When remove bar
         legend.select( "text" )
-                .text( function( d )
+                .text( jQuery.proxy( function( d )
         {
-            return jQuery.i18n.prop( d.name ).replace( "[", "" ).replace( "]", "" );
-        } );
+            var propertieName = this.getI18nPropertiesKeyFromValue( d.name );
+            return (0 != jQuery.i18n.prop( propertieName + "_shortForAxis" ).indexOf( "[" )
+                    && -1 != jQuery.i18n.prop( "separatedFlux" ).indexOf( d.name )) ? jQuery.i18n.prop( propertieName + "_shortForAxis" ) : d.name;
+        }, this ) );
 
         legend.select( "rect" )
                 .style( "fill", jQuery.proxy( function( d )

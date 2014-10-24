@@ -304,9 +304,9 @@ body {
     margin-left: 2%;
 }
 
-#regionBarChartForSeparatedFlux .legend text {
-    fill: none;
-}
+/*#regionBarChartForSeparatedFlux .legend text {*/
+    /*fill: none;*/
+/*}*/
 
 /* ************** MAP ************** */
 #mapChart {

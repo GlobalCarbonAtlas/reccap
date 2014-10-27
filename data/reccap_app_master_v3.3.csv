@@ -85,7 +85,7 @@ Europe	NEE	2000-2007  ill-defined	-215	146	Propagated	sink	Mass balance : Change
 Europe	Land use change	2003-2007	-2	1	Schulze et al. GCB 2010 - Fig 3	sink	Schulze et al. GCB 2010 - Fig 3 ; EU only
 Europe	NPP	undefined	-2519	-504	Assumed	sink	Schulze et al. GCB 2010 - Fig 3 for geographic Europe scaled by area of Europe defined as in Luyssaert et al. BG 2012 (Fig. 1)
 Europe	Soil Heterotrophic Respiration	undefined	1783	535	Propagated	source	Mass balance
-Euro	NPP-RH	undefined	-736				
+Europe	NPP-RH	undefined	-736				
 Europe	Fire	1997-2009	4	2	Luyssaert et al. BG 2012	source	Luyssaert et al. BG 2012
 Europe	Wood product decay	2004	38	19	Eggers et al. 2002	source	Eggers et al. 2002
 Europe	Wood export	2004	-14	3	Assumed	lateral	Peters

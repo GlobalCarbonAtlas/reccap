@@ -59,6 +59,7 @@ var RCInterface = Class.create( {
         var heightToDisplayGraphs = $( "body" )[0].clientHeight - $( ".bottomBasicCell" ).css( "margin-top" ).replace( "px", "" ) - $( ".container-fluid" ).height();
         if( this.imageHeight > (heightToDisplayGraphs / 2) )
         {
+            console.log( "Change dimensions : imageHeight > (heightToDisplayGraphs / 2)" );
             this.imageHeight = heightToDisplayGraphs / 2;
             this.imageWidth = heightToDisplayGraphs - 2 * this.marginLeftForFluxImageAndMap;
         }

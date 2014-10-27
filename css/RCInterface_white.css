@@ -173,8 +173,7 @@ body {
 }
 
 #synthesis {
-    position: absolute;
-    margin-left: 30px;
+    float: right;
 }
 
 #synthesis img {
@@ -187,10 +186,10 @@ body {
 #synthesisComment {
     color: #333333;
     font: 11px "Lato", Arial;
-    margin: 3px 0 0 -32px;
+    margin-top: 3px;
     position: absolute;
     text-align: center;
-    width: 132px;
+    width: 73px;
 }
 
 /* ************** Texts ************** */
@@ -305,7 +304,7 @@ body {
 }
 
 /*#regionBarChartForSeparatedFlux .legend text {*/
-    /*fill: none;*/
+/*fill: none;*/
 /*}*/
 
 /* ************** MAP ************** */

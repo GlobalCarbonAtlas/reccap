@@ -409,6 +409,7 @@ var RCInterface = Class.create( {
             // remove
             jQuery.proxy( function( p, v )
             {
+                // TODO : remove empty line
                 p.value -= parseInt( this.numberFormat( v[this.valueColName] ) );
                 p.uncertainty -= parseInt( this.numberFormat( v[this.uncertaintyColName] ) );
                 p.comment = p.comment.replace(v[this.commentColName], '').replace(v[this.regionColName] + " : ", '').replace("<BR/>", '');

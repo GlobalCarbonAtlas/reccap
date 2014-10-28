@@ -568,6 +568,7 @@ g.no_data_for_this_region path {
     font-weight: bold;
     line-height: 1;
     padding: 12px;
+    max-width: 300px;
 }
 
 .d3-tip:after {

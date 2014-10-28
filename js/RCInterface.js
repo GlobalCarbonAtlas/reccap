@@ -403,7 +403,7 @@ var RCInterface = Class.create( {
             {
                 p.value += parseInt( this.numberFormat( v[this.valueColName] ) );
                 p.uncertainty += parseInt( this.numberFormat( v[this.uncertaintyColName] ) );
-                p.comment += v[this.commentColName];
+                p.comment += "<span class='d3-tipRegion'>"+v[this.regionColName] + " : </span>"+v[this.commentColName] + "<BR/>";
                 return p;
             }, this ),
             // remove
@@ -411,7 +411,7 @@ var RCInterface = Class.create( {
             {
                 p.value -= parseInt( this.numberFormat( v[this.valueColName] ) );
                 p.uncertainty -= parseInt( this.numberFormat( v[this.uncertaintyColName] ) );
-                p.comment = p.comment.replace(v[this.commentColName], '');
+                p.comment = p.comment.replace(v[this.commentColName], '').replace(v[this.regionColName] + " : ", '').replace("<BR/>", '');
                 return p;
             }, this ),
             // init

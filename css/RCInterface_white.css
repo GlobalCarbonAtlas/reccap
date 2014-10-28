@@ -568,7 +568,7 @@ g.no_data_for_this_region path {
     font-weight: bold;
     line-height: 1;
     padding: 12px;
-    max-width: 300px;
+    max-width: 350px;
 }
 
 .d3-tip:after {
@@ -592,6 +592,9 @@ g.no_data_for_this_region path {
     color: #FF7F0E;
 }
 
+.d3-tipRegion {
+    color: #09C5CE;
+}
 /* ************** MENU-TIP ************** */
 .tooltip-inner {
     padding: 12px;

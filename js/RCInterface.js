@@ -852,12 +852,7 @@ var RCInterface = Class.create( {
         }, this ) );
 
         var legendsEnter = legend.enter().append( "g" )
-                .attr( "class", "legend" )
-                .attr( "transform",
-                function( d, i )
-                {
-                    return "translate(0," + i * 15 + ")";
-                } );
+                .attr( "class", "legend" );
 
         legendsEnter.append( "rect" )
                 .attr( "id", function( d, i )
@@ -900,6 +895,16 @@ var RCInterface = Class.create( {
 
         legend.select( "text" ).transition().duration( 1000 ).ease( "linear" )
                 .attr( "x", regionBarChartObject.width - 24 );
+
+        legend.attr( "transform",
+                jQuery.proxy( function( d, i )
+                {
+                    var zeroLineTranslateValue = d3.select( "#regionBarChartForSeparatedFlux g.y.axis g line.zero" )[0][0];
+                    if( !regionBarChartObject.isForMainFlux && zeroLineTranslateValue && zeroLineTranslateValue.parentNode.attributes.transform.value && -1 != zeroLineTranslateValue.parentNode.attributes.transform.value.indexOf( "0,0" ) )
+                        return "translate(0," + (this.barChartHeight - this.barCharMargin.bottom - this.barCharMargin.top * 3 + i * 15) + ")";
+                    else
+                        return "translate(0," + i * 15 + ")";
+                }, this ) );
     },
 
     updateRegionBarChartBar: function( regionBarChartObject )

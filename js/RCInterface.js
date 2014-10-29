@@ -71,8 +71,8 @@ var RCInterface = Class.create( {
         this.imageHeight = newImageHeight;
         this.mapImageWidth = $( "#fluxBarChart" ).width() - 2 * this.marginLeftForFluxImageAndMap;
         this.mapImageHeight = this.mapImageWidth / 2;
-//        this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".basicCell" ).css( "margin-bottom" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 40;
-        this.barChartHeight = 300;
+        this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".basicCell" ).css( "margin-bottom" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 40;
+//        this.barChartHeight = 300;
 
         // Elements positions
         $( "#mapChartAndComment" ).css( "margin-left", this.marginLeftForFluxImageAndMap );
@@ -90,7 +90,14 @@ var RCInterface = Class.create( {
         // Tooltips for charts
         this.toolTip = d3.tip()
                 .attr( 'class', 'd3-tip' )
-                .offset( {"Russia": [0, this.imageWidth / 4], "*":[-10,0]} )
+                .offset( { "*":[-10,0],
+                             "others": [
+                                 {property:"properties.name", name:"Russia", value: [0, this.imageWidth / 5]},
+                                 {property:"x", name:"Fossil fuel CO2 emissions", value: [0, 110]},
+                                 {property:"x", name:"∆C", value: [0, 90]},
+                                 {property:"x", name:"NEE", value: [0, 70]},
+                                 {property:"x", name:"Land use change", value: [0, 50]},
+                             ]} )
                 .html( jQuery.proxy( function ( d )
         {
             if( d.properties )

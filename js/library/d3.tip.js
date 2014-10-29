@@ -153,10 +153,22 @@ d3.tip = function()
     function getOffset( arguments )
     {
         var allOffSet = offset.apply( this, arguments );
-        var country = arguments[0].properties ? arguments[0].properties.name : false;
-        if( country && allOffSet[country] )
-            return allOffSet[country];
-        else return allOffSet["*"] ? allOffSet["*"] : allOffSet;
+        var element = arguments[0];
+        var result = allOffSet["*"] ? allOffSet["*"] : allOffSet;
+        $.each( allOffSet["others"], function( i, d )
+        {
+            var elementProperty = element;
+            $.each( d.property.split("."), function( ii, dd )
+            {
+                elementProperty = elementProperty[dd] ? elementProperty[dd] : false;
+            } );
+            if( elementProperty == d.name )
+            {
+                result = d.value;
+                return false;
+            }
+        } );
+        return result;
     }
 
     function d3_tip_html()

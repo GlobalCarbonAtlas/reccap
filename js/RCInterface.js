@@ -108,17 +108,17 @@ var RCInterface = Class.create( {
                 // Region bar chart axis
                 var value = (0 != d.yBegin ? d.yBegin : 0 != d.yEnd ? d.yEnd : 0);
                 if( this.displayUncertainty && d.uncertainty && !isNaN( d.uncertainty ) )
-                    return "<span class='d3-tipTitle'>" + d.region + " - " + d.name + " : </span>" + this.numberFormat( value ) + " (" + i18n.t( "label.uncertainty" ) + " : " + this.numberFormat( d.uncertainty ) + ")";
+                    return "<center><span class='d3-tipTitle'>" + d.region + " - " + d.name + " : </span>" + this.numberFormat( value ) + "<BR/>(" + i18n.t( "label.uncertainty" ) + " : " + this.numberFormat( d.uncertainty ) + ")</center>";
                 else
                     return "<span class='d3-tipTitle'>" + d.region + " - " + d.name + " : </span>" + this.numberFormat( value );
             }
             else if( d.data )
             {
                 // Bar chart
-                var result = "<span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.data.value.value );
+                var result = "<center><span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.data.value.value );
                 if( this.displayUncertainty )
-                    result += " (" + i18n.t( "label.uncertainty" ) + " : " + this.numberFormat( d.data.value.uncertainty ) + ")";
-                result += "<BR/>" + d.data.value.comment;
+                    result += "<BR/>(" + i18n.t( "label.uncertainty" ) + " : " + this.numberFormat( d.data.value.uncertainty ) + ")";
+                result += "</center><BR/>" + d.data.value.comment;
                 return result;
             }
             else if( d.name )

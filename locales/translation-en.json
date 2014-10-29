@@ -25,7 +25,7 @@
         "data": "get data",
         "help": "help",
         "region": "regions selection : single / multiple",
-        "synthesis": "display image for the region selected on the left",
+        "synthesis": "display image for the regions selected on the left",
         "uncertaintyHide":"hide uncertainty",
         "uncertaintyDisplay":"plot uncertainty"
     },

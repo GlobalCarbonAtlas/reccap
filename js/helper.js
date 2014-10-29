@@ -196,3 +196,15 @@ function ColorLuminance( hex, lum )
     return rgb;
 }
 
+// **************************************************************
+// ********************** MAP / ARRAY ***************************
+// **************************************************************
+function getMaxValueInArrayMap( arrayMap )
+{
+    var values = $.map( arrayMap, function( value, key )
+    {
+        return value;
+    } );
+    return Math.max.apply( Math, values );
+
+}

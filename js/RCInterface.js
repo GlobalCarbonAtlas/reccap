@@ -193,23 +193,31 @@ var RCInterface = Class.create( {
 
         var mainFluxDomain = 0;
         var mainFluxDomainWithUncertainty = 0;
+        var mainAllFluxDomainArray = {};
+        var mainAllFluxDomainWithUncertaintyArray = {};
         var separatedFluxDomain = 0;
         var separatedFluxDomainWithUncertainty = 0;
+        var separatedAllFluxDomainArray = {};
+        var separatedAllFluxDomainWithUncertaintyArray = {};
 
-        // Domains for mono region
         $.each( this.filterRecords.top( Infinity ), jQuery.proxy( function( i, d )
         {
             if( this.mainFlux.indexOf( d[this.fluxColName] ) != -1 )
             {
                 mainFluxDomain = !isNaN( d[this.valueColName] ) ? Math.max( mainFluxDomain, Math.abs( parseFloat( d[this.valueColName] ) ) ) : mainFluxDomain;
-                mainFluxDomainWithUncertainty = d[this.uncertaintyColName] && !isNaN( d[this.valueColName] ) && !isNaN( d[this.uncertaintyColName] ) ? Math.max( mainFluxDomainWithUncertainty, Math.abs( parseFloat( d[this.valueColName] ) + parseFloat( d[this.uncertaintyColName] ) ) ) : mainFluxDomainWithUncertainty;
+                mainFluxDomainWithUncertainty = d[this.uncertaintyColName] && !isNaN( d[this.valueColName] ) && !isNaN( d[this.uncertaintyColName] ) ? Math.max( mainFluxDomainWithUncertainty, Math.abs( parseFloat( d[this.valueColName] ) ) + Math.abs( parseFloat( d[this.uncertaintyColName] ) ) ) : mainFluxDomainWithUncertainty;
+                mainAllFluxDomainArray = this.setValueInArrayMap( mainAllFluxDomainArray, d[this.fluxColName], d[this.valueColName] );
+                mainAllFluxDomainWithUncertaintyArray = this.setValueInArrayMap( mainAllFluxDomainWithUncertaintyArray, d[this.fluxColName], d[this.valueColName], d[this.uncertaintyColName] );
             }
             else
             {
                 separatedFluxDomain = !isNaN( d[this.valueColName] ) ? Math.max( separatedFluxDomain, Math.abs( parseFloat( d[this.valueColName] ) ) ) : separatedFluxDomain;
-                separatedFluxDomainWithUncertainty = d[this.uncertaintyColName] && !isNaN( d[this.valueColName] ) && !isNaN( d[this.uncertaintyColName] ) ? Math.max( separatedFluxDomainWithUncertainty, Math.abs( parseFloat( d[this.valueColName] ) + parseFloat( d[this.uncertaintyColName] ) ) ) : separatedFluxDomainWithUncertainty;
+                separatedFluxDomainWithUncertainty = d[this.uncertaintyColName] && !isNaN( d[this.valueColName] ) && !isNaN( d[this.uncertaintyColName] ) ? Math.max( separatedFluxDomainWithUncertainty, Math.abs( parseFloat( d[this.valueColName] ) ) + Math.abs( parseFloat( d[this.uncertaintyColName] ) ) ) : separatedFluxDomainWithUncertainty;
+                separatedAllFluxDomainArray = this.setValueInArrayMap( separatedAllFluxDomainArray, d[this.fluxColName], d[this.valueColName] );
+                separatedAllFluxDomainWithUncertaintyArray = this.setValueInArrayMap( separatedAllFluxDomainWithUncertaintyArray, d[this.fluxColName], d[this.valueColName], d[this.uncertaintyColName] );
             }
         }, this ) );
+        // Domains for mono region
         // Add 1% to see complete box and whiskers plot
         mainFluxDomainWithUncertainty += mainFluxDomainWithUncertainty * 0.01;
         separatedFluxDomainWithUncertainty += separatedFluxDomainWithUncertainty * 0.01;
@@ -219,31 +227,27 @@ var RCInterface = Class.create( {
         this.yDomainForSeparatedFluxWithUncertainty = [-separatedFluxDomainWithUncertainty, separatedFluxDomainWithUncertainty];
 
         // Domains for all regions
-        mainFluxDomain = 0;
-        mainFluxDomainWithUncertainty = 0;
-        separatedFluxDomain = 0;
-        separatedFluxDomainWithUncertainty = 0;
-        var globeData = this.transposedData[this.regionsKeys.indexOf( this.globeRegion )];
-        $.each( globeData, jQuery.proxy( function( i, d )
-        {
-            if( this.mainFlux.indexOf( i ) != -1 )
-            {
-                mainFluxDomain = !isNaN( d.value ) ? Math.max( mainFluxDomain, Math.abs( parseFloat( d.value ) ) ) : mainFluxDomain;
-                mainFluxDomainWithUncertainty = d.uncertainty && !isNaN( d.value ) && !isNaN( d.uncertainty ) ? Math.max( mainFluxDomainWithUncertainty, Math.abs( parseFloat( d.value ) + parseFloat( d.uncertainty ) ) ) : mainFluxDomainWithUncertainty;
-            }
-            else if( this.separatedFlux.indexOf( i ) != -1 )
-            {
-                separatedFluxDomain = !isNaN( d.value ) ? Math.max( separatedFluxDomain, Math.abs( parseFloat( d.value ) ) ) : separatedFluxDomain;
-                separatedFluxDomainWithUncertainty = d.uncertainty && !isNaN( d.value ) && !isNaN( d.uncertainty ) ? Math.max( separatedFluxDomainWithUncertainty, Math.abs( parseFloat( d.value ) + parseFloat( d.uncertainty ) ) ) : mainFluxDomainWithUncertainty;
-            }
-        }, this ) );
-        // Add 1% to see complete box and whiskers plot
-        mainFluxDomainWithUncertainty += mainFluxDomainWithUncertainty * 0.01;
-        separatedFluxDomainWithUncertainty += separatedFluxDomainWithUncertainty * 0.01;
-        this.yDomainForAllMainFlux = [-mainFluxDomain, mainFluxDomain];
-        this.yDomainForAllMainFluxWithUncertainty = [-mainFluxDomainWithUncertainty, mainFluxDomainWithUncertainty];
-        this.yDomainForAllSeparatedFlux = [-separatedFluxDomain, separatedFluxDomain];
-        this.yDomainForAllSeparatedFluxWithUncertainty = [-separatedFluxDomainWithUncertainty, separatedFluxDomainWithUncertainty];
+        var mainAllFluxDomain = getMaxValueInArrayMap( mainAllFluxDomainArray );
+        var mainAllFluxDomainWithUncertainty = getMaxValueInArrayMap( mainAllFluxDomainWithUncertaintyArray );
+        mainAllFluxDomainWithUncertainty += mainAllFluxDomainWithUncertainty * 0.01;
+        this.yDomainForAllMainFlux = [-mainAllFluxDomain, mainAllFluxDomain];
+        this.yDomainForAllMainFluxWithUncertainty = [-mainAllFluxDomainWithUncertainty, mainAllFluxDomainWithUncertainty];
+        var separatedAllFluxDomain = getMaxValueInArrayMap( separatedAllFluxDomainArray );
+        var separatedAllFluxDomainWithUncertainty = getMaxValueInArrayMap( separatedAllFluxDomainWithUncertaintyArray );
+        separatedAllFluxDomainWithUncertainty += separatedAllFluxDomainWithUncertainty * 0.01;
+        this.yDomainForAllSeparatedFlux = [-separatedAllFluxDomain, separatedAllFluxDomain];
+        this.yDomainForAllSeparatedFluxWithUncertainty = [-separatedAllFluxDomainWithUncertainty, separatedAllFluxDomainWithUncertainty];
+    },
+
+    setValueInArrayMap: function( arrayMap, key, value, uncertaintyValue )
+    {
+        if( !arrayMap[key] )
+            arrayMap[key] = 0;
+        if( !isNaN( value ) )
+            arrayMap[key] += Math.abs( value );
+        if( uncertaintyValue && !isNaN( uncertaintyValue ) )
+            arrayMap[key] += Math.abs( uncertaintyValue );
+        return arrayMap;
     },
 
 

@@ -71,8 +71,8 @@ var RCInterface = Class.create( {
         this.imageHeight = newImageHeight;
         this.mapImageWidth = $( "#fluxBarChart" ).width() - 2 * this.marginLeftForFluxImageAndMap;
         this.mapImageHeight = this.mapImageWidth / 2;
-//        this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".basicCell" ).css( "margin-bottom" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 40;
-        this.barChartHeight = 300;
+        this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".basicCell" ).css( "margin-bottom" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 40;
+//        this.barChartHeight = 300;
 
         // Elements positions
         $( "#mapChartAndComment" ).css( "margin-left", this.marginLeftForFluxImageAndMap );
@@ -133,12 +133,13 @@ var RCInterface = Class.create( {
             placement: "bottom",
             container:'body'} );
 
-        $( "#resetFlux, #resetMap" ).tooltip( {
-            placement: "left",
-            container:'body'} );
-
         $( ".toolButton, #exportData .exportButton, #exportSynthesis .exportButton" ).tooltip( { //#dataPNGExport/
             placement: "right",
+            container:'body'} );
+
+// TODO : revoir tooltip synthesis
+        $( "#resetFlux, #resetMap, #synthesis" ).tooltip( {
+            placement: "left",
             container:'body'} );
     },
 

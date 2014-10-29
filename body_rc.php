@@ -184,16 +184,20 @@
             <img id="imageFluxForSynthesis" src="img/land_cycle_pcv6PC1.svg" usemap="#mapForImageFluxForSynthesis" alt="Synthesis for flux"/>
             <map id="mapForImageFluxForSynthesis" name="mapForImageFluxForSynthesis">
                 <area shape="rect" alt="NEEValue" coords="420,17,470,42" href="" target="" isRed/>
-                <area shape="rect" alt="FFEValue" coords="30,170,80,195" href="" target="" isRed/>
-                <area shape="rect" alt="WPDValue" coords="127,170,177,195" href="" target="" isRed/>
-                <area shape="rect" alt="CPCValue" coords="205,170,255,195" href="" target="" isRed/>
-                <area shape="rect" alt="LUCValue" coords="305,160,355,185" href="" target="" isRed/>
-                <area shape="rect" alt="FiresValue" coords="370,160,420,185" href="" target="" isRed/>
-                <area shape="rect" alt="NPPValue" coords="425,170,475,195" href="" target=""/>
-                <area shape="rect" alt="HRValue" coords="477,170,527,195" href="" target=""/>
-                <area shape="rect" alt="FOValue" coords="677,187,727,195" href="" target=""/>
-                <area shape="rect" alt="SCEValue" coords="545,400,595,425" href="" target=""/>
-                <area shape="rect" alt="ETOValue" coords="730,405,780,430" href="" target=""/>
+                <area shape="rect" alt="FFEValue" coords="70,170,120,195" href="" target="" isRed/>
+                <area shape="rect" alt="WPDValue" coords="150,170,200,195" href="" target="" isRed/>
+                <area shape="rect" alt="CPCValue" coords="208,170,258,195" href="" target="" isRed/>
+                <area shape="rect" alt="LUCValue" coords="285,170,335,195" href="" target="" isRed/>
+                <area shape="rect" alt="FiresValue" coords="335,170,385,195" href="" target="" isRed/>
+                <area shape="rect" alt="NPPValue" coords="415,145,465,165" href="" target=""/>
+                <area shape="rect" alt="HRValue" coords="450,170,500,195" href="" target=""/>
+                <area shape="rect" alt="FOValue" coords="610,170,660,195" href="" target=""/>
+
+                <area shape="rect" alt="CEValue" coords="100,300,150,325" href="" target=""/>
+                <area shape="rect" alt="WEValue" coords="100,375,150,400" href="" target=""/>
+                <area shape="rect" alt="CValue" coords="435,414,485,439" href="" target=""/>
+                <area shape="rect" alt="SCEValue" coords="677,320,727,345" href="" target=""/>
+                <area shape="rect" alt="ETOValue" coords="492,320,527,345" href="" target=""/>
                 <!-- Created by Online Image Map Editor (http://www.maschek.hu/imagemap/imgmap) -->
             </map>
 

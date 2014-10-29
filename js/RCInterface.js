@@ -71,8 +71,8 @@ var RCInterface = Class.create( {
         this.imageHeight = newImageHeight;
         this.mapImageWidth = $( "#fluxBarChart" ).width() - 2 * this.marginLeftForFluxImageAndMap;
         this.mapImageHeight = this.mapImageWidth / 2;
-        this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".basicCell" ).css( "margin-bottom" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 40;
-//        this.barChartHeight = 300;
+//        this.barChartHeight = $( "#pageWrapper" ).height() - this.imageHeight - $( ".basicCell" ).css( "margin-bottom" ).replace( "px", "" ) - $( ".container-fluid" ).height() - 40;
+        this.barChartHeight = 300;
 
         // Elements positions
         $( "#mapChartAndComment" ).css( "margin-left", this.marginLeftForFluxImageAndMap );
@@ -408,8 +408,10 @@ var RCInterface = Class.create( {
             // add
                 jQuery.proxy( function( p, v )
                 {
-                    p.value += parseInt( this.numberFormat( v[this.valueColName] ) );
-                    p.uncertainty += parseInt( this.numberFormat( v[this.uncertaintyColName] ) );
+                    if( parseFloat( v[this.valueColName] ) && !isNaN( this.numberFormat( v[this.valueColName] ) ) )
+                        p.value += parseFloat( this.numberFormat( v[this.valueColName] ) );
+                    if( parseFloat( v[this.uncertaintyColName] ) && !isNaN( this.numberFormat( v[this.uncertaintyColName] ) ) )
+                        p.uncertainty += parseFloat( this.numberFormat( v[this.uncertaintyColName] ) );
                     if( v[this.commentColName] )
                         p.comment += "<span class='d3-tipRegion'>" + v[this.regionColName] + " : </span>" + v[this.commentColName] + "<BR/>";
                     return p;
@@ -417,8 +419,10 @@ var RCInterface = Class.create( {
             // remove
                 jQuery.proxy( function( p, v )
                 {
-                    p.value -= parseInt( this.numberFormat( v[this.valueColName] ) );
-                    p.uncertainty -= parseInt( this.numberFormat( v[this.uncertaintyColName] ) );
+                    if( parseFloat( v[this.valueColName] ) && !isNaN( this.numberFormat( v[this.valueColName] ) ) )
+                        p.value -= parseFloat( this.numberFormat( v[this.valueColName] ) );
+                    if( parseFloat( v[this.uncertaintyColName] ) && !isNaN( this.numberFormat( v[this.uncertaintyColName] ) ) )
+                        p.uncertainty -= parseFloat( this.numberFormat( v[this.uncertaintyColName] ) );
                     p.comment = p.comment.replace( "<span class='d3-tipRegion'>" + v[this.regionColName] + " : </span>" + v[this.commentColName] + "<BR/>", '' );
                     return p;
                 }, this ),
@@ -685,17 +689,17 @@ var RCInterface = Class.create( {
             d.negativeTotal = d3.min( d.columnDetails, jQuery.proxy( function( d )
             {
                 if( this.displayUncertainty && d.uncertainty )
-                    return d ? parseInt( d.yBegin ) + parseInt( d.uncertainty ) : 0;
+                    return d ? parseFloat( d.yBegin ) + parseFloat( d.uncertainty ) : 0;
                 else
-                    return d ? parseInt( d.yBegin ) : 0;
+                    return d ? parseFloat( d.yBegin ) : 0;
             }, this ) );
 
             d.positiveTotal = d3.max( d.columnDetails, jQuery.proxy( function( d )
             {
                 if( this.displayUncertainty && d.uncertainty )
-                    return d ? parseInt( d.yEnd ) + parseInt( d.uncertainty ) : 0;
+                    return d ? parseFloat( d.yEnd ) + parseFloat( d.uncertainty ) : 0;
                 else
-                    return d ? parseInt( d.yEnd ) : 0;
+                    return d ? parseFloat( d.yEnd ) : 0;
             }, this ) );
         }, this ) );
     },
@@ -967,12 +971,12 @@ var RCInterface = Class.create( {
         {
             var xCenter = regionBarChartObject.x1( d.column ) + regionBarChartObject.x1.rangeBand() / 2;
             var lineWidth = regionBarChartObject.x1.rangeBand() / 5;
-            var yTop = regionBarChartObject.y( parseInt( d.yEnd ) + parseInt( d.uncertainty ) );
-            var yBottom = regionBarChartObject.y( parseInt( d.yEnd ) - parseInt( d.uncertainty ) );
+            var yTop = regionBarChartObject.y( parseFloat( d.yEnd ) + parseFloat( d.uncertainty ) );
+            var yBottom = regionBarChartObject.y( parseFloat( d.yEnd ) - parseFloat( d.uncertainty ) );
             if( 0 > d.yBegin )
             {
-                yTop = regionBarChartObject.y( parseInt( d.yBegin ) + parseInt( d.uncertainty ) );
-                yBottom = regionBarChartObject.y( parseInt( d.yBegin ) - parseInt( d.uncertainty ) );
+                yTop = regionBarChartObject.y( parseFloat( d.yBegin ) + parseFloat( d.uncertainty ) );
+                yBottom = regionBarChartObject.y( parseFloat( d.yBegin ) - parseFloat( d.uncertainty ) );
             }
 
             if( this.displayUncertainty && d.uncertainty )
@@ -1281,8 +1285,8 @@ var RCInterface = Class.create( {
 
         var parameters = new Object();
 
-        var barRectHeight = $( "#fluxBarChartForMainFlux_rect_0" )[0].attributes.height ? parseInt( $( "#fluxBarChartForMainFlux_rect_0" )[0].attributes.height.value ) : 0;
-        var barRectWidth = $( "#fluxBarChartForMainFlux_rect_0" )[0].attributes.width ? parseInt( $( "#fluxBarChartForMainFlux_rect_0" )[0].attributes.width.value ) : 0;
+        var barRectHeight = $( "#fluxBarChartForMainFlux_rect_0" )[0].attributes.height ? parseFloat( $( "#fluxBarChartForMainFlux_rect_0" )[0].attributes.height.value ) : 0;
+        var barRectWidth = $( "#fluxBarChartForMainFlux_rect_0" )[0].attributes.width ? parseFloat( $( "#fluxBarChartForMainFlux_rect_0" )[0].attributes.width.value ) : 0;
 
         parameters.helpArray = [
             {linkType:"right", divToHelpId:"reset", text:i18n.t( "help.reset" ), marginTop:31, marginLeft:15, stage: 4},

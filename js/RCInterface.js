@@ -107,7 +107,7 @@ var RCInterface = Class.create( {
             {
                 // Region bar chart axis
                 var value = (0 != d.yBegin ? d.yBegin : 0 != d.yEnd ? d.yEnd : 0);
-                if( this.displayUncertainty && d.uncertainty )
+                if( this.displayUncertainty && d.uncertainty && !isNaN( d.uncertainty ) )
                     return "<span class='d3-tipTitle'>" + d.region + " - " + d.name + " : </span>" + this.numberFormat( value ) + " (" + i18n.t( "label.uncertainty" ) + " : " + this.numberFormat( d.uncertainty ) + ")";
                 else
                     return "<span class='d3-tipTitle'>" + d.region + " - " + d.name + " : </span>" + this.numberFormat( value );
@@ -692,7 +692,7 @@ var RCInterface = Class.create( {
 
             d.negativeTotal = d3.min( d.columnDetails, jQuery.proxy( function( d )
             {
-                if( this.displayUncertainty && d.uncertainty )
+                if( this.displayUncertainty && d.uncertainty && !isNaN( parseFloat( d.uncertainty ) ) )
                     return d ? parseFloat( d.yBegin ) + parseFloat( d.uncertainty ) : 0;
                 else
                     return d ? parseFloat( d.yBegin ) : 0;
@@ -700,7 +700,7 @@ var RCInterface = Class.create( {
 
             d.positiveTotal = d3.max( d.columnDetails, jQuery.proxy( function( d )
             {
-                if( this.displayUncertainty && d.uncertainty )
+                if( this.displayUncertainty && d.uncertainty && !isNaN( parseFloat( d.uncertainty ) ) )
                     return d ? parseFloat( d.yEnd ) + parseFloat( d.uncertainty ) : 0;
                 else
                     return d ? parseFloat( d.yEnd ) : 0;

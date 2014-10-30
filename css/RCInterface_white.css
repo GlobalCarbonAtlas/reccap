@@ -215,12 +215,12 @@ body {
 .dc-chart .axis text {
     pointer-events: auto !important;
     fill: #525252;
-    font: 12px "Futura", sans-serif;
+    font: 13px "Futura", sans-serif;
 }
 
 .dc-chart .legend text {
     fill: #525252;
-    font: 11px "Futura", sans-serif;
+    font: 12px "Futura", sans-serif;
 }
 
 .y.axis path, .x.axis path {

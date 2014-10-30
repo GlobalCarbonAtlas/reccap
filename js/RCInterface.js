@@ -1443,8 +1443,8 @@ function callbackForExportSynthesisBeforeCanvg( isToAdd )
     // Add GCA logo
     if( isToAdd )
     {
-        var height = $( "#synthesisDivData" ).height() - 75;
-        $( "#dynamicAreasForImageFluxForSynthesis" ).append( "<div class='exportLogo' style='margin-top:" + (height - 20) + "px'><img src='img/GCA_logo.png' width='150px'></div>" );
+        var left = $( "#synthesisDivData" ).width() - 170;
+        $( "#dynamicAreasForImageFluxForSynthesis" ).append( "<div class='exportLogo' style='margin-top:-10px; margin-left:"+ left+"px;'><img src='img/GCA_logo.png' width='150px'></div>" );
     }
     else
         $( "#dynamicAreasForImageFluxForSynthesis .exportLogo" ).remove();

@@ -530,9 +530,9 @@ g.no_data_for_this_region path {
 .imageFluxForSynthesis {
     margin: auto;
     background-color: #FFFFFF;
-    height: 580px;
+    height: 535px;
     width: 930px;
-    padding: 30px 0 10px 9px;
+    padding: 30px 0 10px 15px;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;

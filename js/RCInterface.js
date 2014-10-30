@@ -1082,7 +1082,7 @@ var RCInterface = Class.create( {
                         this.initDimensionsForCharts( $( imageId ).height() );
                         var topPosition = -2 * this.imageHeight / 3;// + (this.imageHeight / 2 + $( "#synthesis" ).height()) / 2 - 10;
                         $( "#synthesis" ).css( "margin-top", topPosition );
-                        var right = ($( "#regionBarChart" ).width() - $( imageId ).width() -  $( "#synthesis" ).width()) / 2;
+                        var right = $( "#regionBarChart" ).width() - $( imageId ).width() -  2*$( "#synthesis" ).width();
                         $( "#synthesis" ).css( "margin-right", right);
                         $( "#mapChartAndRegionSelect" ).height( $( "#imageFluxCell" ).height() );
 

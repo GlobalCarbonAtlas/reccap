@@ -97,6 +97,10 @@ var RCInterface = Class.create( {
                                  {property:"x", name:"∆C", value: [0, 90]},
                                  {property:"x", name:"NEE", value: [0, 70]},
                                  {property:"x", name:"Land use change", value: [0, 50]},
+                                 {property:"data.key", name:"Fossil fuel CO2 emissions", value: [0, 150]},
+                                 {property:"data.key", name:"∆C", value: [0, 130]},
+                                 {property:"data.key", name:"NEE", value: [0, 110]},
+                                 {property:"data.key", name:"Land use change", value: [0, 90]}
                              ]} )
                 .html( jQuery.proxy( function ( d )
         {

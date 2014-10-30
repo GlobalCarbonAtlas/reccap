@@ -3938,6 +3938,10 @@ dc.barChart = function (parent, chartGroup) {
 
             bars.enter()
                     .append( "rect" )
+                    .attr("id", function(d)
+                {
+                    return "bar_"+d.data.value.id;
+                })
                     .attr( "class", "bar" )
                     .attr( "fill", function( d )
             {

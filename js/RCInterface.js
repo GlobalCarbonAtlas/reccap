@@ -114,6 +114,8 @@ var RCInterface = Class.create( {
             }
             else if( d.data )
             {
+                if(!d.data.key)
+                    d.data=d[0][0].__data__.data;
                 // Bar chart
                 var result = "<center><span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.data.value.value );
                 if( this.displayUncertainty )
@@ -419,6 +421,8 @@ var RCInterface = Class.create( {
                         p.uncertainty += parseFloat( this.numberFormat( v[this.uncertaintyColName] ) );
                     if( v[this.commentColName] )
                         p.comment += "<span class='d3-tipRegion'>" + v[this.regionColName] + " : </span>" + v[this.commentColName] + "<BR/>";
+
+                    p.id = (this.getI18nPropertiesKeyFromValue( v[this.fluxColName] ) && 0 != this.getI18nPropertiesKeyFromValue( v[this.fluxColName] ).indexOf( "[" )) ? this.getI18nPropertiesKeyFromValue( v[this.fluxColName] ) : v[this.fluxColName];
                     return p;
                 }, this ),
             // remove
@@ -434,7 +438,7 @@ var RCInterface = Class.create( {
             // init
                 jQuery.proxy( function( p, v )
                 {
-                    return {value: 0, uncertainty: 0, comment : ""};
+                    return {value: 0, uncertainty: 0, comment : "", id:""};
                 }, this )
                 );
 
@@ -504,9 +508,14 @@ var RCInterface = Class.create( {
                 .attr( "transform", "translate(-10,0)rotate(315)" )
                 .text( jQuery.proxy( function( d )
         {
-            var propertieName = this.getI18nPropertiesKeyFromValue( d );
-            return 0 != jQuery.i18n.prop( propertieName + "_shortForAxis" ).indexOf( "[" ) ? jQuery.i18n.prop( propertieName + "_shortForAxis" ) : d;
-        }, this ) );
+            var propertyName = this.getI18nPropertiesKeyFromValue( d );
+            return 0 != jQuery.i18n.prop( propertyName + "_shortForAxis" ).indexOf( "[" ) ? jQuery.i18n.prop( propertyName + "_shortForAxis" ) : d;
+        }, this ) )
+            .on("click", jQuery.proxy(function(d,i)
+            {
+                var propertyName = 0 != this.getI18nPropertiesKeyFromValue( d ).indexOf( "[" ) ? this.getI18nPropertiesKeyFromValue( d ) : d;
+                d3.select("#fluxBarChartForMainFlux #bar_"+propertyName).call( this.toolTip.show );
+            }, this));
     },
 
     updateFluxBarCharts: function()
@@ -875,9 +884,9 @@ var RCInterface = Class.create( {
         legend.select( "text" )
                 .text( jQuery.proxy( function( d )
         {
-            var propertieName = this.getI18nPropertiesKeyFromValue( d.name );
-            return (0 != jQuery.i18n.prop( propertieName + "_shortForAxis" ).indexOf( "[" )
-                    && -1 != jQuery.i18n.prop( "separatedFlux" ).indexOf( d.name )) ? jQuery.i18n.prop( propertieName + "_shortForAxis" ) : d.name;
+            var propertyName = this.getI18nPropertiesKeyFromValue( d.name );
+            return (0 != jQuery.i18n.prop( propertyName + "_shortForAxis" ).indexOf( "[" )
+                    && -1 != jQuery.i18n.prop( "separatedFlux" ).indexOf( d.name )) ? jQuery.i18n.prop( propertyName + "_shortForAxis" ) : d.name;
         }, this ) );
 
         legend.select( "rect" )

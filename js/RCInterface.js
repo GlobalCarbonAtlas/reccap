@@ -139,13 +139,12 @@ var RCInterface = Class.create( {
             placement: "bottom",
             container:'body'} );
 
-        $( ".toolButton, #exportData .exportButton, #exportSynthesis .exportButton" ).tooltip( { //#dataPNGExport/
-            placement: "right",
-            container:'body'} );
-
-// TODO : revoir tooltip synthesis
         $( "#resetFlux, #resetMap, #synthesis" ).tooltip( {
             placement: "left",
+            container:'body'} );
+
+        $( ".toolButton, #exportData .exportButton, #exportSynthesis .exportButton" ).tooltip( { //#dataPNGExport/
+            placement: "right",
             container:'body'} );
     },
 
@@ -1083,7 +1082,8 @@ var RCInterface = Class.create( {
                         this.initDimensionsForCharts( $( imageId ).height() );
                         var topPosition = -2 * this.imageHeight / 3;// + (this.imageHeight / 2 + $( "#synthesis" ).height()) / 2 - 10;
                         $( "#synthesis" ).css( "margin-top", topPosition );
-                        $( "#synthesis" ).css( "margin-right", $( "#synthesis" ).width() );
+                        var right = ($( "#regionBarChart" ).width() - $( imageId ).width() -  $( "#synthesis" ).width()) / 2;
+                        $( "#synthesis" ).css( "margin-right", right);
                         $( "#mapChartAndRegionSelect" ).height( $( "#imageFluxCell" ).height() );
 
                         $( "#dynamicAreasForImageFlux .dynamicArea" ).tooltip( {

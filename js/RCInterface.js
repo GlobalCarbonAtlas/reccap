@@ -1318,7 +1318,7 @@ var RCInterface = Class.create( {
             {linkType:"simple", divToHelpId:"uncertaintyDiv", text:i18n.t( "help.uncertainty" ), marginTop:7, marginLeft: -6},
             {linkType:"middle", divToHelpId:"mapChart", text:i18n.t( "label.clickRegion" ), marginTop:$( "#mapChart" ).height() / 2, marginLeft: $( "#mapChart" ).width() / 2},
             {linkType:"right", divToHelpId:"resetMap", text:i18n.t( "help.resetMap" ), marginTop:15, marginLeft: 8, stage:1},
-            {linkType:"simple", divToHelpId:"synthesis", text:i18n.t( "help.synthesis" ), marginTop:10, marginLeft: -10, textLengthByLine: 45, stage:1},
+            {linkType:"left", divToHelpId:"synthesis", text:i18n.t( "help.synthesis" ), marginTop:60, marginLeft: 45, textLengthByLine: 45, stage:1},
             {linkType:"simpleLeft", divToHelpId:"resetFlux", text:i18n.t( "help.resetFlux" ), marginTop:4, marginLeft: 28, stage:1},
             {linkType:"middle", divToHelpId:"LUC", text:i18n.t( "label.clickFlux" ), marginTop:25, marginLeft: 30},
 

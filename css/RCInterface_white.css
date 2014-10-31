@@ -393,11 +393,11 @@ g.no_data_for_this_region path {
     -moz-border-radius: 6px;
     border-radius: 6px;
     margin-left: 0;
-    border: 2px dashed #DDDDDD;
+    border: 2px dashed #AAAAAA;
 }
 
 #dynamicAreasForImageFlux .dynamicArea.selected {
-    border: 2px double #DDDDDD;
+    border: 2px double #AAAAAA;
 }
 
 /* ************** DATA & SYNTHESIS STYLE ************** */

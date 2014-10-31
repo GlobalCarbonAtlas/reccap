@@ -118,8 +118,8 @@ var RCInterface = Class.create( {
             }
             else if( d.data )
             {
-                if(!d.data.key)
-                    d.data=d[0][0].__data__.data;
+                if( !d.data.key )
+                    d.data = d[0][0].__data__.data;
                 // Bar chart
                 var result = "<center><span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat( d.data.value.value );
                 if( this.displayUncertainty )
@@ -514,11 +514,11 @@ var RCInterface = Class.create( {
             var propertyName = this.getI18nPropertiesKeyFromValue( d );
             return 0 != jQuery.i18n.prop( propertyName + "_shortForAxis" ).indexOf( "[" ) ? jQuery.i18n.prop( propertyName + "_shortForAxis" ) : d;
         }, this ) )
-            .on("click", jQuery.proxy(function(d,i)
-            {
-                var propertyName = 0 != this.getI18nPropertiesKeyFromValue( d ).indexOf( "[" ) ? this.getI18nPropertiesKeyFromValue( d ) : d;
-                d3.select("#fluxBarChartForMainFlux #bar_"+propertyName).call( this.toolTip.show );
-            }, this));
+                .on( "click", jQuery.proxy( function( d, i )
+        {
+            var propertyName = 0 != this.getI18nPropertiesKeyFromValue( d ).indexOf( "[" ) ? this.getI18nPropertiesKeyFromValue( d ) : d;
+            d3.select( "#fluxBarChartForMainFlux #bar_" + propertyName ).call( this.toolTip.show );
+        }, this ) );
     },
 
     updateFluxBarCharts: function()
@@ -1082,10 +1082,9 @@ var RCInterface = Class.create( {
                         this.initDimensionsForCharts( $( imageId ).height() );
                         var topPosition = -2 * this.imageHeight / 3;// + (this.imageHeight / 2 + $( "#synthesis" ).height()) / 2 - 10;
                         $( "#synthesis" ).css( "margin-top", topPosition );
-                        var right = $( "#regionBarChart" ).width() - $( imageId ).width() -  2*$( "#synthesis" ).width();
-                        $( "#synthesis" ).css( "margin-right", right);
+                        var right = ($( "#regionBarChart" ).width() - $( imageId ).width() < $( "#synthesisComment" ).width()) ? 20 : ($( "#regionBarChart" ).width() - $( imageId ).width() - $( "#synthesisComment" ).width()) / 2;
+                        $( "#synthesis" ).css( "margin-right", right );
                         $( "#mapChartAndRegionSelect" ).height( $( "#imageFluxCell" ).height() );
-
                         $( "#dynamicAreasForImageFlux .dynamicArea" ).tooltip( {
                             placement: "bottom",
                             container:'body'} );
@@ -1444,7 +1443,7 @@ function callbackForExportSynthesisBeforeCanvg( isToAdd )
     if( isToAdd )
     {
         var left = $( "#synthesisDivData" ).width() - 170;
-        $( "#dynamicAreasForImageFluxForSynthesis" ).append( "<div class='exportLogo' style='margin-top:-10px; margin-left:"+ left+"px;'><img src='img/GCA_logo.png' width='150px'></div>" );
+        $( "#dynamicAreasForImageFluxForSynthesis" ).append( "<div class='exportLogo' style='margin-top:-10px; margin-left:" + left + "px;'><img src='img/GCA_logo.png' width='150px'></div>" );
     }
     else
         $( "#dynamicAreasForImageFluxForSynthesis .exportLogo" ).remove();

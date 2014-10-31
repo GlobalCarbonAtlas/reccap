@@ -54,16 +54,14 @@ var RCInterface = Class.create( {
     initDimensionsForImageAndCharts: function()
     {
         this.marginLeftForFluxImageAndMap = 34;
-        this.imageWidth = $( "#regionBarChart" ).width() - 2 * this.marginLeftForFluxImageAndMap;
-        this.imageHeight = this.imageWidth / 2;
+        var imageHeight = $( "#imageFlux" ).height();
+        var imageWidth = $( "#imageFlux" ).width();
+        this.imageWidth = parseInt( $( "#regionBarChart" ).width() - 2 * this.marginLeftForFluxImageAndMap );
+        var newImageHeight = parseInt( this.imageWidth * imageHeight / imageWidth );
 
-        var heightToDisplayGraphs = $( "body" )[0].clientHeight - $( ".bottomBasicCell" ).css( "margin-top" ).replace( "px", "" ) - $( ".container-fluid" ).height();
-        if( this.imageHeight > (heightToDisplayGraphs / 2) )
-        {
-            console.log( "Change dimensions : imageHeight > (heightToDisplayGraphs / 2)" );
-            this.imageHeight = heightToDisplayGraphs / 2;
-            this.imageWidth = heightToDisplayGraphs - 2 * this.marginLeftForFluxImageAndMap;
-        }
+        var heightToDisplayGraphs = parseInt( $( "body" )[0].clientHeight - $( ".bottomBasicCell" ).css( "margin-top" ).replace( "px", "" ) - $( ".container-fluid" ).height() );
+        if( newImageHeight > parseInt( heightToDisplayGraphs / 2 ) )
+            this.imageWidth = parseInt( (newImageHeight * imageWidth / imageHeight ) - 2 * this.marginLeftForFluxImageAndMap );
     },
 
     initDimensionsForCharts: function( newImageHeight )
@@ -1072,7 +1070,7 @@ var RCInterface = Class.create( {
         $.waitUntil(
                 function()
                 {
-                    return width == $( imageId ).width();
+                    return parseInt( width ) == parseInt( $( imageId ).width() );
                 },
                 jQuery.proxy( function()
                 {

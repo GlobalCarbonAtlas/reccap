@@ -120,15 +120,15 @@
    guidetolerance="10"
    inkscape:pageopacity="0"
    inkscape:pageshadow="2"
-   inkscape:window-width="1280"
-   inkscape:window-height="949"
+   inkscape:window-width="1680"
+   inkscape:window-height="1025"
    id="namedview8573"
    showgrid="false"
    inkscape:zoom="1.3342372"
-   inkscape:cx="484.70148"
+   inkscape:cx="336.30208"
    inkscape:cy="203.18206"
-   inkscape:window-x="0"
-   inkscape:window-y="25"
+   inkscape:window-x="1280"
+   inkscape:window-y="0"
    inkscape:window-maximized="1"
    inkscape:current-layer="Calque_1"
    inkscape:snap-page="true"
@@ -8607,6 +8607,7 @@
      x="82.667534"
      y="41.826622">emissions</tspan></text>
 
+
 <text
    font-size="13"
    id="text8311"
@@ -8616,6 +8617,7 @@
    transform="scale(1.0099988,0.99010019)"><tspan
      style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial"
      id="tspan5962">Fires</tspan></text>
+
 
 <path
    inkscape:connector-curvature="0"
@@ -8790,8 +8792,9 @@
    x="381.82806"
    y="88.479942"
    transform="scale(1.0099988,0.99010019)"><tspan
-     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial"
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;fill:#006400;fill-opacity:1"
      id="tspan5960">NPP</tspan></text>
+
 
 <path
    d="m 628.82391,302.72969 c 22.10166,6.4604 45.22714,-0.46394 67.65715,5.04982"
@@ -8844,6 +8847,7 @@
    transform="scale(1.0099988,0.99010019)"><tspan
      style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#ff5555;font-family:Arial;-inkscape-font-specification:Arial"
      id="tspan6002">NEE</tspan></text>
+
 
 <line
    x1="454.32574"
@@ -8947,8 +8951,9 @@
    y="379.56329"
    style="font-size:13.86173344px;fill:#43231e;font-family:Futura-Medium"
    transform="scale(1.0099988,0.99010019)"><tspan
-     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial"
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;fill:#784421"
      id="tspan6048">∆C</tspan></text>
+
 
 <flowRoot
    xml:space="preserve"
@@ -8985,12 +8990,13 @@
      id="tspan5956"
      x="658.16669"
      y="276.10474"
-     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial">export</tspan><tspan
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;fill:#4682b4;fill-opacity:1">export</tspan><tspan
      sodipodi:role="line"
      x="658.16669"
      y="291.10474"
      id="tspan5958"
-     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial">to ocean</tspan></text>
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;fill:#4682b4;fill-opacity:1">to ocean</tspan></text>
+
 
 <text
    xml:space="preserve"
@@ -9015,6 +9021,7 @@
      id="tspan5970"
      style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;fill:#ff2a2a;font-family:Arial;-inkscape-font-specification:Arial">change</tspan></text>
 
+
 <text
    xml:space="preserve"
    style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -9037,6 +9044,7 @@
      y="101.48272"
      id="tspan5978"
      style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;fill:#ff2a2a;font-family:Arial;-inkscape-font-specification:Arial">consumption</tspan></text>
+
 
 <text
    xml:space="preserve"
@@ -9061,6 +9069,7 @@
      id="tspan5986"
      style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;fill:#ff2a2a;font-family:Arial;-inkscape-font-specification:Arial">decay</tspan></text>
 
+
 <text
    xml:space="preserve"
    style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -9072,17 +9081,18 @@
      id="tspan5990"
      x="473.39355"
      y="82.192719"
-     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial">Heterotrophic</tspan><tspan
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial;fill:#32cd1e;fill-opacity:1">Heterotrophic</tspan><tspan
      sodipodi:role="line"
      x="473.39355"
      y="97.192719"
      id="tspan5992"
-     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial">respiration</tspan><tspan
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial;fill:#32cd1e;fill-opacity:1">respiration</tspan><tspan
      sodipodi:role="line"
      x="473.39355"
      y="112.19272"
      style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial"
      id="tspan6000" /></text>
+
 
 <text
    xml:space="preserve"
@@ -9095,12 +9105,13 @@
      id="tspan5996"
      x="578.75958"
      y="82.817451"
-     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial">Freshwater</tspan><tspan
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial;fill:#77b5fe;fill-opacity:1">Freshwater</tspan><tspan
      sodipodi:role="line"
      x="578.75958"
      y="97.817451"
      id="tspan5998"
-     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial">outgassing</tspan></text>
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial;fill:#77b5fe;fill-opacity:1">outgassing</tspan></text>
+
 
 <text
    xml:space="preserve"
@@ -9113,12 +9124,13 @@
      id="tspan6006"
      x="41.764874"
      y="263.22845"
-     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial">Crop products</tspan><tspan
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial;fill:#784421">Crop products</tspan><tspan
      sodipodi:role="line"
      x="41.764874"
      y="278.22845"
      id="tspan6008"
-     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial">net trade</tspan></text>
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial;fill:#784421">net trade</tspan></text>
+
 
 <text
    xml:space="preserve"
@@ -9131,12 +9143,13 @@
      id="tspan6020"
      x="43.932133"
      y="334.61633"
-     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial">Wood products</tspan><tspan
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial;fill:#784421">Wood products</tspan><tspan
      sodipodi:role="line"
      x="43.932133"
      y="349.61633"
      id="tspan6022"
-     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial">net trade</tspan></text>
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial;fill:#784421">net trade</tspan></text>
+
 
 <text
    xml:space="preserve"
@@ -9156,6 +9169,7 @@
      id="tspan6028"
      style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial">products stocks</tspan></text>
 
+
 <text
    xml:space="preserve"
    style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -9167,12 +9181,13 @@
      id="tspan6032"
      x="306.95563"
      y="263.68689"
-     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial">Crop</tspan><tspan
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial;fill:#784421">Crop</tspan><tspan
      sodipodi:role="line"
      x="306.95563"
      y="278.68689"
      id="tspan6034"
-     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial">harvest</tspan></text>
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial;fill:#784421">harvest</tspan></text>
+
 
 <text
    xml:space="preserve"
@@ -9185,12 +9200,13 @@
      id="tspan6038"
      x="306.39014"
      y="333.69949"
-     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial">Wood</tspan><tspan
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial;fill:#784421">Wood</tspan><tspan
      sodipodi:role="line"
      x="306.39014"
      y="348.69949"
      id="tspan6040"
-     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial">harvest</tspan></text>
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial;fill:#784421">harvest</tspan></text>
+
 
 <text
    xml:space="preserve"
@@ -9210,6 +9226,7 @@
      id="tspan6046"
      style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial">carbon stocks</tspan></text>
 
+
 <text
    xml:space="preserve"
    style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
@@ -9221,12 +9238,13 @@
      id="tspan6052"
      x="486.26135"
      y="275.31372"
-     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial">Soil C</tspan><tspan
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial;fill:#784421">Soil C</tspan><tspan
      sodipodi:role="line"
      x="486.26135"
      y="290.31372"
      id="tspan6054"
-     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial">export</tspan></text>
+     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial;fill:#784421">export</tspan></text>
+
 
 <text
    xml:space="preserve"
@@ -9245,6 +9263,7 @@
      y="313.8595"
      id="tspan6060"
      style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial">carbon stocks</tspan></text>
+
 
 <path
    style="opacity:0.7;fill:none;stroke:#43231e;stroke-width:1.00997472;stroke-miterlimit:4;stroke-dasharray:none"

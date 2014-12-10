@@ -115,58 +115,6 @@ function getStyleSheetsPropertyValue( selectorText, propertyName, cssFile )
 
 
 // **************************************************************
-// ************************* EXPORT *****************************
-// **************************************************************
-//http://stackoverflow.com/questions/754607/can-jquery-get-all-css-styles-associated-with-an-element
-/*
- * getStyleObject Plugin for jQuery JavaScript Library
- * From: http://upshots.org/?p=112
- */
-(function( $ )
-{
-    $.fn.getStyleObject = function( listStyleToGet )
-    {
-        var dom = this.get( 0 );
-        if( !dom )
-            return;
-        var style;
-        var returns = {};
-        if( window.getComputedStyle )
-        {
-            var camelize = function( a, b )
-            {
-                return b.toUpperCase();
-            };
-            style = window.getComputedStyle( dom, null );
-            for( var i = 0, l = style.length; i < l; i++ )
-            {
-                var prop = style[i];
-                if( !listStyleToGet || listStyleToGet.indexOf( prop ) != -1 )
-                {
-                    var camel = prop.replace( /\-([a-z])/g, camelize );
-                    returns[camel] = style.getPropertyValue( prop );
-                }
-            }
-            ;
-            return returns;
-        }
-        ;
-        if( style = dom.currentStyle )
-        {
-            for( var prop in style )
-            {
-                returns[prop] = style[prop];
-            }
-            ;
-            return returns;
-        }
-        ;
-        return this.css();
-    }
-})( jQuery );
-
-
-// **************************************************************
 // ************************* COLOR ******************************
 // **************************************************************
 /**

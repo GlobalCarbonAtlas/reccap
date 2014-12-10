@@ -45,6 +45,7 @@ var RCInterface = Class.create( {
         this.initDimensionsForImageAndCharts();
         this.createDynamicAreasForResponsiveMap( "#imageFlux", "#mapForImageFlux", "#dynamicAreasForImageFlux", this.imageWidth, true );
         this.createDynamicAreasForResponsiveMap( "#imageFluxForSynthesis", "#mapForImageFluxForSynthesis", "#dynamicAreasForImageFluxForSynthesis", 900, false );
+        this.initFileValuesAndCreateDCObjects();
 
         this.initToolTips();
 //        this.initOthers();
@@ -178,6 +179,15 @@ var RCInterface = Class.create( {
             // Create DC Objects
             this.createFluxBarCharts();
             this.createDataTable( "#data-count", "#data-table", this.data, this.data.groupAll(), this.continents );
+            dc.renderAll();
+
+            this.updateToolTipsForCharts();
+            this.updateXAxisForFluxBarChart();
+            this.updateFluxBarCharts();
+
+            // Home with selected flux
+            $( this.allFluxIdToSelectHomePage ).click();
+
             this.createMapAndUpdateAllAfterRender();
         }, this ) );
     },
@@ -270,9 +280,6 @@ var RCInterface = Class.create( {
             this.updateToolTipsForCharts();
             this.updateXAxisForFluxBarChart();
             this.updateFluxBarCharts();
-
-            // Home with selected flux
-            $( this.allFluxIdToSelectHomePage ).click();
         }, this ) );
     },
 
@@ -315,6 +322,9 @@ var RCInterface = Class.create( {
 
     getTranslatedDisplayedRegions: function()
     {
+        if( !this.geoChoroplethChart )
+            return;
+
         var result = [];
         $.each( this.geoChoroplethChart.getDisplayedRegions(), function( i, d )
         {
@@ -521,6 +531,9 @@ var RCInterface = Class.create( {
 
     updateFluxBarCharts: function()
     {
+        if( !this.getTranslatedDisplayedRegions() )
+            return;
+
         // Title
         var translatedRegions = this.getTranslatedDisplayedRegions().join( " + " );
         if( this.getTranslatedDisplayedRegions().length == this.geoChoroplethChart.getNumberAllDisplayedRegions() )
@@ -1086,7 +1099,7 @@ var RCInterface = Class.create( {
                         $( "#dynamicAreasForImageFlux .dynamicArea" ).tooltip( {
                             placement: "bottom",
                             container:'body'} );
-                        this.initFileValuesAndCreateDCObjects();
+//                        this.initFileValuesAndCreateDCObjects();
                     }
                 }, this ),
                 null

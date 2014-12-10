@@ -1376,23 +1376,19 @@ function print_filter( filter )
 <!-- ******************************************** -->
 
 <!-- ********** EXPORT ALL ************ -->
-function exportAll( exportDivId, fileType )
+function exportAll( fileType )
 {
-    $( "#" + exportDivId ).empty();
     $( "#sourceWrapper" ).fadeOut( 1000 );
-
-    $( "#" + exportDivId ).append( $( "#sourceWrapper #pageWrapper" ).clone() );
-    $( "#" + exportDivId + " #mapChartAndComment" ).width( $( "#" + exportDivId + " #mapChart" ).width() );
 
     // File name with date
     var exportDate = $.datepicker.formatDate( 'yy_mm_dd', new Date() );
     var fileName = "GCAExportImage_" + exportDate;
 
     // Export
-    $( '#' + exportDivId ).exportAll( {
-        sourceDivId:"sourceWrapper",
-        callbackBeforeCanvg:{name: callbackForExportAllBeforeCanvg, arguments: exportDivId},
-        callbackOnRendered: {name: callbackForExportAllOnRendered, arguments: exportDivId},
+    $( '#pageWrapper' ).exportAll( {
+        targetExportContainerId: "exportDiv",
+        callbackBeforeCanvg:{name: callbackForExportAllBeforeCanvg, arguments: "pageWrapper"},
+        callbackOnRendered: {name: callbackForExportAllOnRendered, arguments: "pageWrapper"},
         fileName: fileName,
         fileType: fileType,
         windowTitle: i18n.t( "label.exportAllTitle" ),
@@ -1402,47 +1398,42 @@ function exportAll( exportDivId, fileType )
     } );
 }
 
-function callbackForExportAllBeforeCanvg( exportDivId )
+function callbackForExportAllBeforeCanvg( exportDivId, targetExportDivId )
 {
-    $( "#" + exportDivId + " .leftTools, #" + exportDivId + " .comment, #" + exportDivId + " #regionSelect, #" + exportDivId + " #resetFlux" ).remove();
-    $( "#" + exportDivId + " #resetMap, #" + exportDivId + " #synthesis" ).remove();
-    $( "#" + exportDivId + " #hiddenDiv, #" + exportDivId + " #dataDiv, #" + exportDivId + " .synthesisDiv" ).remove();
+    $( "#" + targetExportDivId + " .leftTools, #" + targetExportDivId + " .comment, #" + targetExportDivId + " #regionSelect, #" + targetExportDivId + " #resetFlux" ).remove();
+    $( "#" + targetExportDivId + " #resetMap, #" + targetExportDivId + " #synthesis, #" + targetExportDivId + " #imageFlux" ).remove();
+    $( "#" + targetExportDivId + " #hiddenDiv, #" + targetExportDivId + " #dataDiv, #" + targetExportDivId + " .synthesisDiv" ).remove();
 
     // Add GCA logo
-    $( "#" + exportDivId ).append( "<div class='exportLogo'><img src='img/GCA_logo_white.png' width='150px'></div>" );
+    $( "#" + targetExportDivId ).append( "<div class='exportLogo'><img src='img/GCA_logo_white.png' width='150px'></div>" );
 }
 
-function callbackForExportAllOnRendered( exportDivId )
+function callbackForExportAllOnRendered( exportDivId, targetExportDivId )
 {
-    $( "#" + exportDivId ).empty();
     $( "#sourceWrapper" ).fadeIn();
 }
 
 <!-- ********** EXPORT SYNTHESIS ************ -->
-function exportSynthesis( exportDivId, fileType )
+function exportSynthesis( fileType )
 {
     // File name with date
     var exportDate = $.datepicker.formatDate( 'yy_mm_dd', new Date() );
     var fileName = "GCAExportImage_" + exportDate;
 
     // Export
-    $( '#' + exportDivId ).exportAll( {
-        callbackBeforeCanvg:{name: callbackForExportSynthesisBeforeCanvg, arguments:true},
-        callbackOnRendered: {name: callbackForExportSynthesisBeforeCanvg, arguments: false},
+    $( '#synthesisDivData' ).exportAll( {
+        targetExportContainerId: "exportDiv",
+        callbackBeforeCanvg:{name: callbackForExportSynthesisBeforeCanvg},
         fileName: fileName,
         fileType: fileType,
         windowTitle: i18n.t( "label.exportSynthesisTitle" )
     } );
 }
 
-function callbackForExportSynthesisBeforeCanvg( isToAdd )
+function callbackForExportSynthesisBeforeCanvg( targetExportDivId )
 {
+    $( "#" + targetExportDivId + " #imageFluxForSynthesis" ).remove();
+
     // Add GCA logo
-    if( isToAdd )
-    {
-        var left = $( "#synthesisDivData" ).width() - 170;
-        $( "#dynamicAreasForImageFluxForSynthesis" ).append( "<div class='exportLogo' style='margin-top:-10px; margin-left:" + left + "px;'><img src='img/GCA_logo.png' width='150px'></div>" );
-    }
-    else
-        $( "#dynamicAreasForImageFluxForSynthesis .exportLogo" ).remove();
+    $( "#" + targetExportDivId ).append( "<div class='exportLogo'><img src='img/GCA_logo_white.png' width='130px'></div>" );
 }

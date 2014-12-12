@@ -125,7 +125,7 @@
     function html2CanvasLaunch()
     {
         html2canvas( $( "#" + targetContainerId ), {
-//            useCORS: true,
+            useCORS: true,
             onrendered: function( canvas )
             {
                 if( options.callbackOnRendered && options.callbackOnRendered.arguments )
@@ -133,8 +133,9 @@
                 else if( options.callbackOnRendered )
                     options.callbackOnRendered.name( targetContainerId );
 
+                console.log("ici1 "+canvas);
                 var data = canvas.toDataURL( "image/" + options.fileType );
-
+                console.log("ici2 "+data);
                 // Remove target export container
                 $( "#" + targetContainerId ).remove();
 

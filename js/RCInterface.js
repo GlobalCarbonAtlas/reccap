@@ -45,7 +45,6 @@ var RCInterface = Class.create( {
         this.initDimensionsForImageAndCharts();
         this.createDynamicAreasForResponsiveMap( "#imageFlux", "#mapForImageFlux", "#dynamicAreasForImageFlux", this.imageWidth, true );
         this.createDynamicAreasForResponsiveMap( "#imageFluxForSynthesis", "#mapForImageFluxForSynthesis", "#dynamicAreasForImageFluxForSynthesis", 900, false );
-        this.initFileValuesAndCreateDCObjects();
 
         this.initToolTips();
 //        this.initOthers();
@@ -179,15 +178,6 @@ var RCInterface = Class.create( {
             // Create DC Objects
             this.createFluxBarCharts();
             this.createDataTable( "#data-count", "#data-table", this.data, this.data.groupAll(), this.continents );
-            dc.renderAll();
-
-            this.updateToolTipsForCharts();
-            this.updateXAxisForFluxBarChart();
-            this.updateFluxBarCharts();
-
-            // Home with selected flux
-            $( this.allFluxIdToSelectHomePage ).click();
-
             this.createMapAndUpdateAllAfterRender();
         }, this ) );
     },
@@ -280,6 +270,9 @@ var RCInterface = Class.create( {
             this.updateToolTipsForCharts();
             this.updateXAxisForFluxBarChart();
             this.updateFluxBarCharts();
+
+            // Home with selected flux
+            $( this.allFluxIdToSelectHomePage ).click();
         }, this ) );
     },
 
@@ -635,11 +628,11 @@ var RCInterface = Class.create( {
      */
     createRegionBarChart: function( containerId, width, height, useRightYAxis, isForMainFlux )
     {
-        var regionsNames = new Array();
-        $.each( this.regionsKeys, function( i, d )
-        {
-            isForMainFlux ? regionsNames.push( (i + 1) + "." + d ) : regionsNames.push( i + 1 );
-        } );
+//        var regionsNames = new Array();
+//        $.each( this.regionsKeys, function( i, d )
+//        {
+//            isForMainFlux ? regionsNames.push( (i + 1) + "." + d ) : regionsNames.push( i + 1 );
+//        } );
         var regionBarChartx0 = d3.scale.ordinal().rangeRoundBands( [0, width], 0.1 ).domain( this.regionsKeys );
         var regionBarChartx1 = d3.scale.ordinal();
         var regionBarCharty = d3.scale.linear().range( [height, 0] );
@@ -1099,7 +1092,7 @@ var RCInterface = Class.create( {
                         $( "#dynamicAreasForImageFlux .dynamicArea" ).tooltip( {
                             placement: "bottom",
                             container:'body'} );
-//                        this.initFileValuesAndCreateDCObjects();
+                        this.initFileValuesAndCreateDCObjects();
                     }
                 }, this ),
                 null

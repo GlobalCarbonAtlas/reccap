@@ -50,7 +50,7 @@
         <div class="basicCell">
             <div id="mapChartAndComment">
                 <div id="mapChartAndRegionSelect">
-                    <div id="mapChart"></div>
+                    <div id="mapChart"><img class="loader" src="img/ajax-loader.gif"/></div>
                     <div id="regionSelect">
                         <div id="globeActive" class="toolButton labelI18n" data-i18n="[title]tooltip.regionAll"><img src="img/Globe_Connected.png" width="35px"/></div>
                         <div id="regionUnActive" class="toolButton labelI18n" data-i18n="[title]tooltip.regionOne"><img src="img/Globe_Disconnected.png" width="35px"/></div>
@@ -69,7 +69,7 @@
             <div class="barChartUnit labelI18n" data-i18n="label.unit"></div>
             <div id="fluxBarChartTitle" class="barChartTitle labelI18n">&nbsp;</div>
             <div id="fluxBarChart">
-                <div id="fluxBarChartForMainFlux"></div>
+                <div id="fluxBarChartForMainFlux"><img class="loader" src="img/ajax-loader.gif"/></div>
                 <div id="fluxBarChartForSeparatedFlux"></div>
             </div>
         </div>
@@ -114,7 +114,7 @@
             <div class="barChartUnit labelI18n" data-i18n="label.unit"></div>
             <div class="barChartTitle">&nbsp;</div>
             <div id="regionBarChart">
-                <div id="regionBarChartForMainFlux"></div>
+                <div id="regionBarChartForMainFlux"><img class="loader" src="img/ajax-loader.gif"/></div>
                 <div id="regionBarChartForSeparatedFlux"></div>
             </div>
         </div>

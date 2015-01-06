@@ -5,6 +5,7 @@
  Vanessa.Maigne@lsce.ipsl.fr    for Global Carbon Atlas
  PLEASE DO NOT COPY OR DISTRIBUTE WITHOUT PERMISSION
  ##########################################################################
+ For the loader images : http://ajaxload.info/
 -->
 
 <HEAD>

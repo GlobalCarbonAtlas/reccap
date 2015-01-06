@@ -262,6 +262,9 @@ var RCInterface = Class.create({
             var countries = topojson.feature(world, world.objects.countries);
             this.createChoroplethMap("#mapChart", this.mapImageWidth, this.mapImageHeight, countries, this.continents, this.continents.group());
             $("#mapChart").addClass("countryWithPointer");
+            $("#mapChart").empty();
+            $("#fluxBarChartForMainFlux").empty();
+            $("#fluxBarChartForSeparatedFlux").empty();
             dc.renderAll();
 
             this.updateToolTipsForCharts();
@@ -283,7 +286,6 @@ var RCInterface = Class.create({
         var projection = d3.geo.equirectangular()
                 .translate([width / 2,  height / 2])
                 .scale([newScale]);
-        $(chartId).empty();
 
         this.geoChoroplethChart = dc.customGeoChoroplethChart(chartId)
                 .width(width)
@@ -431,8 +433,6 @@ var RCInterface = Class.create({
     },
 
     createFluxBarChart: function(chartId, width, height, dimension, group, xDomain, yDomain, useRightYAxis, barCharMargin) {
-        $(chartId).empty();
-
         var barChart = dc.customBarChartWithUncertainty(chartId)
                 .height(height)
                 .width(width)
@@ -595,7 +595,6 @@ var RCInterface = Class.create({
 //            isForMainFlux ? regionsNames.push( (i + 1) + "." + d ) : regionsNames.push( i + 1 );
 //        } );
 
-        $(containerId).empty();
         var regionBarChartx0 = d3.scale.ordinal().rangeRoundBands([0, width], 0.1).domain(this.regionsKeys);
         var regionBarChartx1 = d3.scale.ordinal();
         var regionBarCharty = d3.scale.linear().range([height, 0]);
@@ -609,6 +608,8 @@ var RCInterface = Class.create({
                 .tickSize(-width, 0);
 
         $(containerId).addClass("dc-chart");
+        $(containerId).empty();
+
         // BarChart
         var regionBarChartsvg = d3.select(containerId).append("svg")
                 .attr("width", width + this.barCharMargin.left + this.barCharMargin.right)

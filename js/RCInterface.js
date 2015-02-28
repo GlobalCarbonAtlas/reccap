@@ -119,11 +119,12 @@ var RCInterface = Class.create({
             else if (d.column && d.name) {
                 // Region bar chart axis
                 var value = (0 != d.yBegin ? d.yBegin : 0 != d.yEnd ? d.yEnd : 0);
-                var fluxName = "NPP" == d.name ? "-"+d.name : d.name;
+                var fluxValue = "NPP" == d.name ? -this.numberFormat(value) : this.numberFormat(value);
+                var fluxUncertaintyValue = "NPP" == d.name ? -this.numberFormat(d.uncertainty) : this.numberFormat(d.uncertainty);
                 if (this.displayUncertainty && d.uncertainty && !isNaN(d.uncertainty))
-                    return "<center><span class='d3-tipTitle'>" + d.region + ", " + fluxName + " : </span>" + this.numberFormat(value) + "<BR/>(" + i18n.t("label.uncertainty") + " : " + this.numberFormat(d.uncertainty) + ")</center>";
+                    return "<center><span class='d3-tipTitle'>" + d.region + ", " + d.name + " : </span>" + fluxValue + "<BR/>(" + i18n.t("label.uncertainty") + " : " + fluxUncertaintyValue + ")</center>";
                 else
-                    return "<span class='d3-tipTitle'>" + d.region + ", " + fluxName + " : </span>" + this.numberFormat(value);
+                    return "<span class='d3-tipTitle'>" + d.region + ", " + d.name + " : </span>" + fluxValue;
             }
             else if (d.data) {
                 if (!d.data.key)

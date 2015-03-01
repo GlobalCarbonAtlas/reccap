@@ -130,9 +130,11 @@ var RCInterface = Class.create({
                 if (!d.data.key)
                     d.data = d[0][0].__data__.data;
                 // Bar chart
-                var result = "<center><span class='d3-tipTitle'>" + d.data.key + " : </span>" + this.numberFormat(d.data.value.value);
+                var fluxValue = "NPP" == d.data.key ? -this.numberFormat(d.data.value.value) : this.numberFormat(d.data.value.value);
+                var fluxUncertaintyValue = "NPP" == d.data.key ? -this.numberFormat(d.data.value.uncertainty) : this.numberFormat(d.data.value.uncertainty);
+                var result = "<center><span class='d3-tipTitle'>" + d.data.key + " : </span>" + fluxValue;
                 if (this.displayUncertainty)
-                    result += "<BR/>(" + i18n.t("label.uncertainty") + " : " + this.numberFormat(d.data.value.uncertainty) + ")";
+                    result += "<BR/>(" + i18n.t("label.uncertainty") + " : " + fluxUncertaintyValue + ")";
                 result += "</center><BR/>" + d.data.value.comment;
                 return result;
             }
@@ -405,9 +407,9 @@ var RCInterface = Class.create({
             // add
             jQuery.proxy(function(p, v) {
                 if (parseFloat(v[this.valueColName]) && !isNaN(this.numberFormat(v[this.valueColName])))
-                    p.value += parseFloat(this.numberFormat(v[this.valueColName]));
+                    p.value += "NPP" != v[this.fluxColName] ? parseFloat(this.numberFormat(v[this.valueColName])) : -parseFloat(this.numberFormat(v[this.valueColName]));
                 if (parseFloat(v[this.uncertaintyColName]) && !isNaN(this.numberFormat(v[this.uncertaintyColName])))
-                    p.uncertainty += parseFloat(this.numberFormat(v[this.uncertaintyColName]));
+                    p.uncertainty += "NPP" != v[this.fluxColName] ? parseFloat(this.numberFormat(v[this.uncertaintyColName])) : -parseFloat(this.numberFormat(v[this.uncertaintyColName]));
                 if (v[this.commentColName])
                     p.comment += "<span class='d3-tipRegion'>" + v[this.regionColName] + " : </span>" + v[this.commentColName] + "<BR/>";
 
@@ -417,9 +419,9 @@ var RCInterface = Class.create({
             // remove
             jQuery.proxy(function(p, v) {
                 if (parseFloat(v[this.valueColName]) && !isNaN(this.numberFormat(v[this.valueColName])))
-                    p.value -= parseFloat(this.numberFormat(v[this.valueColName]));
+                    p.value -= "NPP" != v[this.fluxColName] ? parseFloat(this.numberFormat(v[this.valueColName])) : -parseFloat(this.numberFormat(v[this.valueColName]));
                 if (parseFloat(v[this.uncertaintyColName]) && !isNaN(this.numberFormat(v[this.uncertaintyColName])))
-                    p.uncertainty -= parseFloat(this.numberFormat(v[this.uncertaintyColName]));
+                    p.uncertainty -= "NPP" != v[this.fluxColName] ? parseFloat(this.numberFormat(v[this.uncertaintyColName])) : -parseFloat(this.numberFormat(v[this.uncertaintyColName]));
                 p.comment = p.comment.replace("<span class='d3-tipRegion'>" + v[this.regionColName] + " : </span>" + v[this.commentColName] + "<BR/>", '');
                 return p;
             }, this),
@@ -488,7 +490,8 @@ var RCInterface = Class.create({
             .attr("transform", "translate(-10,0)rotate(315)")
             .text(jQuery.proxy(function(d) {
             var propertyName = this.getI18nPropertiesKeyFromValue(d);
-            return 0 != jQuery.i18n.prop(propertyName + "_shortForAxis").indexOf("[") ? jQuery.i18n.prop(propertyName + "_shortForAxis") : d;
+            var legendName = 0 != jQuery.i18n.prop(propertyName + "_shortForAxis").indexOf("[") ? jQuery.i18n.prop(propertyName + "_shortForAxis") : d;
+            return "NPP" == propertyName ? "-"+legendName : legendName;
         }, this))
             .on("click", jQuery.proxy(function(d, i) {
             var propertyName = 0 != this.getI18nPropertiesKeyFromValue(d).indexOf("[") ? this.getI18nPropertiesKeyFromValue(d) : d;

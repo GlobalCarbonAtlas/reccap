@@ -105,22 +105,21 @@ South America	Soil C export to rivers	undefined	434	145	Propagated	lateral	Mass 
 South America	Bedrock C export to rivers	undefined	7	3	Hartmann et al., 2009	lateral	Hartmann et al., 2009
 South America	Freshwater outgasing	2000s	719	360	Assumed 20% (see Methods)  ; note Dolman p 5327 report 5% error	source	Raymond et al. 2014 Nature
 South America	River export to ocean	undefined	141	33	Propagated	lateral	Calculated as C fluxes to estuaries - estuarine outgasing
-Australia	Fossil fuel CO2 emissions	1990-2011	98	6	CDIAC	source	
-Australia	∆C	1990-2011	-37	36	Haverd et al. BG 2013 + Propagated	gain	
-Australia	NEE	1990-2011	-45	36	Propagated	sink	
-Australia	Land use change	1990-2011	18	7	Haverd et al. BG 2013	source	
-Australia	NPP	1990-2011	-2210	316	Haverd et al. BG 2013	sink	
-Australia	Soil Heterotrophic Respiration	1990-2011	1997	319	Propagated	source	
-Australia	NPP-RH	1990-2011	-213				
-Australia	Fire	1997-2009	127	22	Haverd et al. BG 2013	source	
-Australia	Wood product decay	2004	5	2,5	Assumed	source	
-Australia	Wood export	2004	-0,3	0	Assumed	lateral	
-Australia	Crop product consumption	2004	9	2	Assumed	source	
-Australia	Crop export	2004	11	2	Assumed	lateral	
-Australia	Soil C export to rivers	undefined	22	8	Propagated	lateral	
-Australia	Bedrock C export to rivers	undefined	0		Hartmann et al., 2009	lateral	
-Australia	Freshwater outgasing	2000s	16	8	Assumed	source	
-Australia	River export to ocean	undefined	7	1	Assumed	lateral	
+Australia	Fossil fuel CO2 emissions	1990-2011	98	2	Andres et al. Tellus 2014 (calculated by R. Andres for the region considered - dependent countries uncertainty assumed)	source	CDIAC
+Australia	∆C	1990-2011	-60	36	Haverd et al. BG 2013 + Propagated	gain	Haverd et al. BG 2013 ; Change of territorial C stocks (biosphere + wood products)
+Australia	NEE	1990-2011	-71	36	Propagated	sink	Mass balance : Change of territorial C stocks +  lateral exports -  livestock export 1 TgC yr-1 - dust export 1 TgC yr-1 Note : livestock export and dust only included for this regionMass balance : Change of territorial C stocks +  lateral exports -  livestock export 1 TgC yr-1 - dust export 1 TgC yr-1 Note : livestock export and dust only included for this region
+Australia	Land use change	1990-2011	18	7	Haverd et al. BG 2013	source	Haverd et al. BG 2013
+Australia	NPP	2000-2009	-1792	358	Assumed 20% (see Methods)	sink	Running et al. 2004 and Zhao et al. 2005 MOD17A3.005
+Australia	Soil Heterotrophic Respiration	1990-2011	1461	363	Propagated	source	Mass balance - rivers outgassing Raymond et al.
+Australia	Fire	1997-2009	113	35	From IAV	source	GFED4  only non deforestation and non agricultural fires. Note : Haverd et al. BG 2013 had 104 TgC y-1 over 1997-2009
+Australia	Wood product decay	2004	5	3	Assumed	source	Haverd et al. BG 2013
+Australia	Wood export	2004	-0,3	0,06	Assumed	lateral	Haverd et al. BG 2013
+Australia	Crop product consumption	2004	9	2	Assumed	source	Haverd et al. BG 2013
+Australia	Crop export	2004	11	2	Assumed	lateral	Haverd et al. BG 2013
+Australia	Soil C export to rivers	undefined	12	3	Propagated	lateral	Haverd et al. BG 2013
+Australia	Bedrock C export to rivers	undefined	0	0	Hartmann et al., 2009	lateral	Hartmann et al., 2009
+Australia	Freshwater outgasing	2000s	13	7	Assumed	source	Raymond et al.  Nature 2014
+Australia	River export to ocean	undefined	-1	4	Propagated	lateral	Calculated as C fluxes to estuaries - estuarine outgasing
 Africa	Fossil fuel CO2 emissions	2000-2009	258			source	
 Africa	∆C	2000-2007	28	292	Pan et al. 2011 + Valentini et al. 2014	loss	
 Africa	NEE	2000-2007 (inconsistent)	-11	292	Valentini et al. 2014	sink	

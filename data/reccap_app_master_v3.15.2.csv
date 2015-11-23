@@ -44,22 +44,21 @@ East Asia	Soil C export to rivers	undefined	62	17	Propagated	lateral	Mass balanc
 East Asia	Bedrock C export to rivers	undefined	5	3	Hartmann et al., 2009	lateral	Hartmann et al., 2009
 East Asia	Freshwater outgasing	2000s	164	82	Assumed	source	Raymond et al.  Nature 2014
 East Asia	River export to ocean	undefined	31	9	Propagated	lateral	Calculated as C fluxes to estuaries - estuarine outgasing
-SouthEast Asia	Fossil fuel CO2 emissions	2000-2009	258			source	
-SouthEast Asia	∆C	undefined	-262	100	tbc	sink	
-SouthEast Asia	NEE	undefined	-447	186	tbc	source	
-SouthEast Asia	Land use change	undefined	194	39	Assumed 20%	source	
-SouthEast Asia	NPP	undefined	-5125	1025	Assumed 20%	sink	
-SouthEast Asia	Soil Heterotrophic Respiration	undefined	3868	1038	Propagated	source	
-SouthEast Asia	NPP-RH	undefined	-1257				
-SouthEast Asia	Fire	2000-2009	119	24	Assumed 20% like Africa & S America	source	
-SouthEast Asia	Wood product decay	2004	31	15	Assumed	source	
-SouthEast Asia	Wood export	2004	13	3	Asumed	lateral	
-SouthEast Asia	Crop product consumption	2004	153	31	Assumed	source	
-SouthEast Asia	Crop export	2004	68	14	Assumed	lateral	
-SouthEast Asia	Soil C export to rivers	undefined	611	122	Propagated	lateral	
-SouthEast Asia	Bedrock C export to rivers	undefined	18	4	Hartmann et al., 2009	lateral	
-SouthEast Asia	Freshwater outgasing	2000s	507	254	Assumed	source	
-SouthEast Asia	River export to ocean	undefined	122	48	Assumed	lateral	
+SouthEast Asia	Fossil fuel CO2 emissions	2000-2009	258	20	Andres et al. Tellus 2014 (calculated by R. Andres for the region considered - dependent countries uncertainty assumed)	source	CDIAC
+SouthEast Asia	∆C	2000-2009	69	199	Half the range between two methods for ∆C based on VOD	loss	After Liu et al 2015 NCC recalculated in this study ;  biomass + soil
+SouthEast Asia	NEE	undefined	-97	186	Propagated	source	Mass balance
+SouthEast Asia	Land use change	undefined	59	12	Liu et al. NCC	source	Liu et al. only over LUC affected grid cells
+SouthEast Asia	NPP	2000-2009	-3283	657	Assumed 20% (see Methods)	sink	Running et al. 2004 and Zhao et al. 2005 MOD17A3.005
+SouthEast Asia	Soil Heterotrophic Respiration	2000-2009	2118	731	Propagated	source	Mass balance - rivers outgassing Raymond et al.
+SouthEast Asia	Fire	2000-2009	102	49	IAV	source	GFED4 only non deforestation and non agricultural fires
+SouthEast Asia	Wood product decay	2004	31	15	Assumed	source	Peters (22,1 - 14,5 +1,8 ) x decay function from Earles
+SouthEast Asia	Wood export	2004	13	3	Asumed	lateral	Peters et al. BG 2012
+SouthEast Asia	Crop product consumption	2004	153	31	Assumed	source	Peters et al. BG 2012
+SouthEast Asia	Crop export	2004	68	14	Assumed	lateral	Peters et al. BG 2012
+SouthEast Asia	Soil C export to rivers	undefined	188	38	Propagated	lateral	mass balance (ignoring burial)
+SouthEast Asia	Bedrock C export to rivers	undefined	18	4	Hartmann et al., 2009	lateral	Hartmann et al., 2009
+SouthEast Asia	Freshwater outgasing	2000s	507	254	Assumed	source	Raymond et al. 2014 Nature
+SouthEast Asia	River export to ocean	undefined	103	48	Propagated	lateral	Calculated as C fluxes to estuaries - estuarine outgasing
 Russia	Fossil fuel CO2 emissions	2000-2009	439	33	Andres et al. Tellus 2014 (calculated by R. Andres for the region considered - dependent countries uncertainty assumed)	source	CDIAC
 Russia	∆C	2009 (representative)	-542	218	1-sigma from Dolman pp.5335  196 TgC yr-1 uncertainty 90% CI plus 120 TgC yr-1 additional uncertainty added to account for the fact that only 2007-09 is estimated	gain	Dolman et al. Table 5 (includes LUC) estimate for year 2009 corrected to period 2007-2009 using same IIASA LEA C accounting system (Shvidenko pers. Com.)
 Russia	NEE	2009 (representative)	-600	224	Propagated	sink	Mass balance
@@ -135,19 +134,19 @@ Africa	Soil C export to rivers	undefined	199	70	Propagated	lateral	mass balance 
 Africa	Bedrock C export to rivers	undefined	6	3	Hartmann et al., 2009	lateral	Hartmann et al., 2009
 Africa	Freshwater outgasing	2000s	147	74	Assumed	source	Raymond et al. 2014 Nature
 Africa	River export to ocean	undefined	52	15	Propagated	lateral	Calculated as C fluxes to estuaries - estuarine outgasing
-Globe	Fossil fuel CO2 emissions	2000-2009	6709	400	Propagated	source
-Globe	∆C	2000-2009 (inconsistent)	-1733	#VALEUR !	Propagated	gain
-Globe	NEE	2000-2009 (inconsistent)	#VALEUR !	#VALEUR !	Propagated	sink
-Globe	Land use change	2000-2009 (inconsistent)	1055	#VALEUR !	Propagated	source
-Globe	NPP	2000-2009 (inconsistent)	-55983	#VALEUR !	Propagated	sink
-Globe	Soil Heterotrophic Respiration	2000-2009 (inconsistent)	47675	#VALEUR !	Propagated	source
-Globe	NPP-RH	2000-2009 (inconsistent)	-8308
-Globe	Fire	2000-2009 (inconsistent)	1878	#VALEUR !	Propagated	source
-Globe	Wood product decay	2004	385	#VALEUR !	Propagated	source
-Globe	Wood export	2004	4	#VALEUR !	Propagated	lateral
-Globe	Crop product consumption	2004	1542	#VALEUR !	Propagated	source
-Globe	Crop export	2004	46	#VALEUR !	Propagated	lateral
-Globe	Soil C export to rivers	undefined	2716	#VALEUR !	Propagated	lateral
-Globe	Bedrock C export to rivers	undefined	70		Hartmann et al., 2009	lateral	Hartmann et al., 2009
-Globe	Freshwater outgasing	2000s	2112	#VALEUR !	Propagated	source
-Globe	River export to ocean	undefined	613	#VALEUR !	Propagated	lateral
+Globe	Fossil fuel CO2 emissions	2000-2009					
+Globe	∆C	2000-2009 (inconsistent)					
+Globe	NEE	2000-2009 (inconsistent)					
+Globe	Land use change	2000-2009 (inconsistent)					
+Globe	NPP	2000-2009 (inconsistent)					
+Globe	Soil Heterotrophic Respiration	2000-2009 (inconsistent)					
+Globe	NPP-RH	2000-2009 (inconsistent)					
+Globe	Fire	2000-2009 (inconsistent)					
+Globe	Wood product decay	2004					
+Globe	Wood export	2004					
+Globe	Crop product consumption	2004					
+Globe	Crop export	2004					
+Globe	Soil C export to rivers	undefined					
+Globe	Bedrock C export to rivers	undefined					
+Globe	Freshwater outgasing	2000s					
+Globe	River export to ocean	undefined					

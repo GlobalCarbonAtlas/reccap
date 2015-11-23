@@ -10,10 +10,10 @@ North America	Wood product decay	2004	10	5	Assumed	source	SOCCR 2007 p91 (define
 North America	Wood export	2004	-5	36	Assumed	lateral	Peters et al. BG 2012
 North America	Crop product consumption	2004	182	36	Assumed	source	SOCCR 2007 p88 for crop production (217) minus SOCCR2007 crop trade net export (35)
 North America	Crop export	2004	35	7	Assumed	lateral	SOCCR2007 crop trade net export (35  Note : Peters et al. BG 2012 give 38.4 Tg C yr-1
-North America	Soil C export to rivers		113	26	Propagated	lateral	Mass balance =  outgas + export to ocean Note :  including report of  burial = 20 Tg yr-1 (  SOCCR 2007 p 36  )
-North America	Bedrock C export to rivers		15	8	Propagated	lateral	
+North America	Soil C export to rivers	undefined	113	26	Propagated	lateral	Mass balance =  outgas + export to ocean Note :  including report of  burial = 20 Tg yr-1 (  SOCCR 2007 p 36  )
+North America	Bedrock C export to rivers	undefined	15	8	Propagated	lateral	
 North America	Freshwater outgasing	2000s	219	110	Assumed	source	Raymond et al. 2014 Nature
-North America	River export to ocean		55	24	Assumed	lateral	Calculated as C fluxes to estuaries - estuarine outgasing
+North America	River export to ocean	undefined	55	24	Assumed	lateral	Calculated as C fluxes to estuaries - estuarine outgasing
 South Asia	Fossil fuel CO2 emissions	2000-2009	448	29	Andres et al. Tellus 2014 (calculated by R. Andres for the region considered - dependent countries uncertainty assumed)	source	CDIAC
 South Asia	∆C	2000-2009	-59	33	Half the range between two methods for ∆C based on VOD	gain	After Liu et al 2015 NCC recalculated in this study ;  biomass + soil
 South Asia	NEE	2000-2009	-86	34	Propagated	source	Mass balance
@@ -25,10 +25,10 @@ South Asia	Wood product decay	2004	32	16	Assumed	source	Peters (7,6 - 0,8 +2,8) 
 South Asia	Wood export	2004	-2	0,4	Assumed	lateral	Peters et al. BG 2012
 South Asia	Crop product consumption	2004	213	43	Assumed	source	Peters et al. BG 2012
 South Asia	Crop export	2004	-5	1	Assumed	lateral	Peters et al. BG 2012
-South Asia	Soil C export to rivers		76	20	Propagated	lateral	mass balance (ignoring burial)
-South Asia	Bedrock C export to rivers		1	0	Hartmann et al., 2009	lateral	Hartmann et al., 2009
+South Asia	Soil C export to rivers	undefined	76	20	Propagated	lateral	mass balance (ignoring burial)
+South Asia	Bedrock C export to rivers	undefined	1	0	Hartmann et al., 2009	lateral	Hartmann et al., 2009
 South Asia	Freshwater outgasing	2000s	40	20	Assumed	source	Raymond et al. 2014 Nature
-South Asia	River export to ocean		35	9	Propagated	lateral	Calculated as C fluxes to estuaries - estuarine outgasing
+South Asia	River export to ocean	undefined	35	9	Propagated	lateral	Calculated as C fluxes to estuaries - estuarine outgasing
 East Asia	Fossil fuel CO2 emissions	2000-2009	1967	136	Andres et al. Tellus 2014 (calculated by R. Andres for the region considered - dependent countries uncertainty assumed)	source	CDIAC
 East Asia	∆C	2000-2009	-293	33	Piao et al. 2012 BG	gain	Piao et al. 2012 BG, based on inventory and satelite approach
 East Asia	NEE	2000-2009	-256	35	Propagated	sink	Mass balance
@@ -40,10 +40,10 @@ East Asia	Wood product decay	2004	128	64	Assumed	source	Peters et al. BG 2012 (2
 East Asia	Wood export	2004	-17	3	Assumed	lateral	Peters et al. BG 2012
 East Asia	Crop product consumption	2004	375	75	Assumed	source	Peters et al. BG 2012
 East Asia	Crop export	2004	-46	9	Assumed	lateral	Peters et al. BG 2012
-East Asia	Soil C export to rivers		62	17	Propagated	lateral	Mass balance (ignoring burial)
-East Asia	Bedrock C export to rivers		5	3	Hartmann et al., 2009	lateral	Hartmann et al., 2009
+East Asia	Soil C export to rivers	undefined	62	17	Propagated	lateral	Mass balance (ignoring burial)
+East Asia	Bedrock C export to rivers	undefined	5	3	Hartmann et al., 2009	lateral	Hartmann et al., 2009
 East Asia	Freshwater outgasing	2000s	164	82	Assumed	source	Raymond et al.  Nature 2014
-East Asia	River export to ocean		31	9	Propagated	lateral	Calculated as C fluxes to estuaries - estuarine outgasing
+East Asia	River export to ocean	undefined	31	9	Propagated	lateral	Calculated as C fluxes to estuaries - estuarine outgasing
 SouthEast Asia	Fossil fuel CO2 emissions	2000-2009	258			source	
 SouthEast Asia	∆C	undefined	-262	100	tbc	sink	
 SouthEast Asia	NEE	undefined	-447	186	tbc	source	
@@ -60,22 +60,21 @@ SouthEast Asia	Soil C export to rivers	undefined	611	122	Propagated	lateral
 SouthEast Asia	Bedrock C export to rivers	undefined	18	4	Hartmann et al., 2009	lateral	
 SouthEast Asia	Freshwater outgasing	2000s	507	254	Assumed	source	
 SouthEast Asia	River export to ocean	undefined	122	48	Assumed	lateral	
-Russia	Fossil fuel CO2 emissions	2000-2009	439	32	7.4% 1 sigma from Andres et al. Tellus 2014 (USSR)	source	
-Russia	∆C	2009 (representative)	-662	98	1-sigma Dolman pp.5335 have 196 TgC yr-1 at 90% CI	gain	
-Russia	NEE	2009 (representative)	-738	109	Propagated	sink	
-Russia	Land use change	1990-2006	-34	2	Dolman pp.5334	sink	
-Russia	NPP	2009 (representative)	-4763	953	Assumed 20%  ; note Dolman p 5327 report 5% error	sink	
-Russia	Soil Heterotrophic Respiration	2009 (representative)	3685	959	Propagated  ; note Dolman p 5327 report 10% error	source	
-Russia	NPP-RH	2009 (representative)	-1078				
-Russia	Fire	1998-2010	97	22	Dolman pp.5328	source	
-Russia	Wood product decay	2003-2010	28	14	Assumed	source	
-Russia	Wood export	undefined	20	10	Assumed	lateral	
-Russia	Crop product consumption	2003-2010	60	12	Assumed	source	
-Russia	Crop export	undefined	18	4	Assumed	lateral	
-Russia	Soil C export to rivers	undefined	192	38	Propagated	lateral	
-Russia	Bedrock C export to rivers	undefined	7		Hartmann et al., 2009	lateral	
-Russia	Freshwater outgasing	2000s	134	67	Assumed	source	
-Russia	River export to ocean	undefined	45	48	Assumed	lateral	
+Russia	Fossil fuel CO2 emissions	2000-2009	439	33	Andres et al. Tellus 2014 (calculated by R. Andres for the region considered - dependent countries uncertainty assumed)	source	CDIAC
+Russia	∆C	2009 (representative)	-542	218	1-sigma from Dolman pp.5335  196 TgC yr-1 uncertainty 90% CI plus 120 TgC yr-1 additional uncertainty added to account for the fact that only 2007-09 is estimated	gain	Dolman et al. Table 5 (includes LUC) estimate for year 2009 corrected to period 2007-2009 using same IIASA LEA C accounting system (Shvidenko pers. Com.)
+Russia	NEE	2009 (representative)	-600	224	Propagated	sink	Mass balance
+Russia	Land use change	1990-2006	-34	2	Dolman pp.5334	sink	Dolman et al. BG 2012 Table 5
+Russia	NPP	2000-2009	-5109	1022	Assumed 20% (see Methods)	sink	Running et al. 2004 and Zhao et al. 2005 MOD17A3.005
+Russia	Soil Heterotrophic Respiration	2000-2009	4122	1051	Propagated  ; note Dolman et al. BG 2012 p 5327 report 10% error	source	Mass balance - rivers outgassing Raymond et al. ; Note Dolman et al. BG 2012 Table 2 gives 3463 TgC y-1 from different numbersMass balance - rivers outgassing Raymond et al. ; Note Dolman et al. BG 2012 Table 2 gives 3463 TgC y-1 from different numbers
+Russia	Fire	2000-2009	114	75	From IAV	source	GFED4 only non deforestation and non agricultural fires ; Note : Dolman et al. BG 2012 p 5328 from LEA IIASA estimate intheir  Table 5 is 97 ± 22 for 1998-2010 (estimate not used) - Note : additional insect (table 5 in Dolman et al.) 51  TgC y-1 not added
+Russia	Wood product decay	2003-2010	28	14	Assumed	source	Peters et al. BG 2012
+Russia	Wood export	undefined	20	10	Assumed	lateral	Dolman et al. BG 2012 et al. pp. 5332 ;  Note : Peters give 17 Tg C y-1
+Russia	Crop product consumption	2003-2010	60	12	Assumed	source	"Dolman et al. BG 2012 Table 2 minus """"net export"""" in Table 5  (18 ) ; Note Peters et al. had 16.6 TgC y-1"
+Russia	Crop export	undefined	18	4	Assumed	lateral	Dolman et al. BG 2012  Table 5 ; Note : Peters et al. have 4.2 TgC y-1
+Russia	Soil C export to rivers	undefined	75	15	Propagated	lateral	mass balance Note :  including burial = 20 ± 18 TgC yr-1 (H159Dolman et al. BG 2012 pp 5332 )
+Russia	Bedrock C export to rivers	undefined	7	4	Hartmann et al., 2009	lateral	Hartmann et al., 2009
+Russia	Freshwater outgasing	2000s	134	67	Assumed	source	Raymond et al. 2014 Nature ;  Note : Dolman et al. BG 2012 Table 1 has 11.8 TgC y-1  but definition is not clear (burial or outgas ?)
+Russia	River export to ocean	undefined	27	49	Propagated	lateral	Calculated as C fluxes to estuaries - estuarine outgasing
 Europe	Fossil fuel CO2 emissions	2000-2009	1189	40	Andres et al. Tellus 2014 ; only 1-sigma error for France used by default, needs to be redone	source	
 Europe	∆C	2000-2007  ill-defined	-275	137	Luyssaert et al. BG 2012	gain	
 Europe	NEE	2000-2007  ill-defined	-215	146	Propagated	sink	

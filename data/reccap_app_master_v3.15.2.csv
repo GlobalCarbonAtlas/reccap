@@ -90,22 +90,21 @@ Europe	Soil C export to rivers	undefined	112	56	Propagated	lateral	Mass balance.
 Europe	Bedrock C export to rivers	undefined	11	5	Hartmann et al., 2009	lateral	Hartmann et al., 2009
 Europe	Freshwater outgasing	2000s	166	83	Assumed	source	Raymond et al. 2014 ; Note Luyssaert et al. BG 2012 report 73 Tg C y-1 (1a Luyssaert et al 2012) estimate not used; Note : Schulze et al. GCB 2010 - Fig 3have 80 TgC yr-1 for geographic EuropeRaymond et al. 2014 ; Note Luyssaert et al. BG 2012 report 73 Tg C y-1 (1a Luyssaert et al 2012) estimate not used; Note : Schulze et al. GCB 2010 - Fig 3have 80 TgC yr-1 for geographic EuropeRaymond et al. 2014 ; Note Luyssaert et al. BG 2012 report 73 Tg C y-1 (1a Luyssaert et al 2012) estimate not used; Note : Schulze et al. GCB 2010 - Fig 3have 80 TgC yr-1 for geographic Europe
 Europe	River export to ocean	undefined	26	49	Propagated	lateral	Calculated as C fluxes to estuaries - estuarine outgasing
-South America	Fossil fuel CO2 emissions	2000-2009	243		CDIAC	source	
-South America	∆C	2000-2009	225	282	Gloor et al. Table 12	loss	
-South America	NEE	2000-2009	-6	284	Propagated	sink	
-South America	Land use change	1990-2012	525	131	Gloor et al. pp. 5418	source	
-South America	NPP	1997-2009	-14796	2959	Assumed	sink	
-South America	Soil Heterotrophic Respiration	1997-2009	13652	2995	Propagated	source	
-South America	NPP-RH	1997-2009	-1144				
-South America	Fire	1997-2009	293	59	Loosely from van der Werf 2010 Fig 14	source	
-South America	Wood product decay	2004	30	14,8	Assumed	source	
-South America	Wood export	2004	8	2	Assumed	lateral	
-South America	Crop product consumption	2004	96	19	Assumed	source	
-South America	Crop export	2004	71	14	Assumed	lateral	
-South America	Soil C export to rivers	undefined	870	361	Propagated	lateral	
-South America	Bedrock C export to rivers	undefined	7		Hartmann et al., 2009	lateral	
-South America	Freshwater outgasing	2000s	719	360	Assumed 20%  ; note Dolman p 5327 report 5% error	source	
-South America	River export to ocean	undefined	158	32	Assumed	lateral	
+South America	Fossil fuel CO2 emissions	2000-2009	243	22	Andres et al. Tellus 2014 (calculated by R. Andres for the region considered - dependent countries uncertainty assumed)	source	CDIAC
+South America	∆C	2000-2009	225	282	Gloor et al. Uncertainty in ∆C forest biomass (Table 12) and LUC  added in quadrature ; average of 2000-2004 + 2005-2009 errors	loss	Gloor et al. BG 2012 Table 12 + LUC induced ∆C
+South America	NEE	2000-2009	11	284	Propagated	sink	Mass balance : Change of territorial C stocks +  lateral exports
+South America	Land use change	1990-2012	525	130	Gloor et al. pp. 5425 average of 2000-2004 + 2005-2009 uncertainties	source	Gloor et al. BG 2012 Table 12
+South America	NPP	2000-2009	-12774	2555	Assumed 20% (see Methods)	sink	Running et al. 2004 and Zhao et al. 2005 MOD17A3.005
+South America	Soil Heterotrophic Respiration	1997-2009	10625	2601	Propagated	source	Mass balance - rivers outgassing Raymond et al.
+South America	Fire	2000-2009	159	51	From IAV	source	GFED4 only non deforestation and non agricultural fires
+South America	Wood product decay	2004	30	15	Assumed	source	Peters et al. BG 2012  (37,9 - 9,3 +1) x decay function from Earles
+South America	Wood export	2004	8	2	Assumed	lateral	Peters et al. BG 2012
+South America	Crop product consumption	2004	96	19	Assumed	source	Peters et al. BG 2012
+South America	Crop export	2004	71	14	Assumed	lateral	Peters et al. BG 2012
+South America	Soil C export to rivers	undefined	434	145	Propagated	lateral	Mass balance (ignoring burial)
+South America	Bedrock C export to rivers	undefined	7	3	Hartmann et al., 2009	lateral	Hartmann et al., 2009
+South America	Freshwater outgasing	2000s	719	360	Assumed 20% (see Methods)  ; note Dolman p 5327 report 5% error	source	Raymond et al. 2014 Nature
+South America	River export to ocean	undefined	141	33	Propagated	lateral	Calculated as C fluxes to estuaries - estuarine outgasing
 Australia	Fossil fuel CO2 emissions	1990-2011	98	6	CDIAC	source	
 Australia	∆C	1990-2011	-37	36	Haverd et al. BG 2013 + Propagated	gain	
 Australia	NEE	1990-2011	-45	36	Propagated	sink	

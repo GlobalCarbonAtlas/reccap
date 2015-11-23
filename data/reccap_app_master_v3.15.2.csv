@@ -134,19 +134,18 @@ Africa	Soil C export to rivers	undefined	199	70	Propagated	lateral	mass balance 
 Africa	Bedrock C export to rivers	undefined	6	3	Hartmann et al., 2009	lateral	Hartmann et al., 2009
 Africa	Freshwater outgasing	2000s	147	74	Assumed	source	Raymond et al. 2014 Nature
 Africa	River export to ocean	undefined	52	15	Propagated	lateral	Calculated as C fluxes to estuaries - estuarine outgasing
-Globe	Fossil fuel CO2 emissions	2000-2009					
-Globe	∆C	2000-2009 (inconsistent)					
-Globe	NEE	2000-2009 (inconsistent)					
-Globe	Land use change	2000-2009 (inconsistent)					
-Globe	NPP	2000-2009 (inconsistent)					
-Globe	Soil Heterotrophic Respiration	2000-2009 (inconsistent)					
-Globe	NPP-RH	2000-2009 (inconsistent)					
-Globe	Fire	2000-2009 (inconsistent)					
-Globe	Wood product decay	2004					
-Globe	Wood export	2004					
-Globe	Crop product consumption	2004					
-Globe	Crop export	2004					
-Globe	Soil C export to rivers	undefined					
-Globe	Bedrock C export to rivers	undefined					
-Globe	Freshwater outgasing	2000s					
-Globe	River export to ocean	undefined					
+Globe	Fossil fuel CO2 emissions	2000-2009	6709	400	Propagated	source	sum - Note CDIAC over  globe =7900 , the difference from countries in non-RECCAP regions (mainly Middle East) and Bunker fuels emissions
+Globe	∆C	2000-2009	-1287	601	Propagated	gain	sum
+Globe	NEE	2000-2009 	-1740	604	Propagated	sink	sum
+Globe	Land use change	2000-2009 	919	184	Propagated	source	sum
+Globe	NPP	2000-2009	-47448	3875	Propagated	sink	sum
+Globe	Soil Heterotrophic Respiration	2000-2009 	36388	3962	Propagated	source	sum
+Globe	Fire	2000-2009	1649	125	Propagated	source	sum
+Globe	Wood product decay	2004	357	74	Propagated	source	sum
+Globe	Wood export	2004	4	38	Propagated	lateral	sum
+Globe	Crop product consumption	2004	1542	120	Propagated	source	sum
+Globe	Crop export	2004	46	29	Propagated	lateral	sum
+Globe	Soil C export to rivers	undefined	1269	179	Propagated	lateral	sum
+Globe	Bedrock C export to rivers	undefined	64	12	Propagated	lateral	sum
+Globe	Freshwater outgasing	2000s	2109	479	Propagated	source	sum
+Globe	River export to ocean	undefined	469	95	Propagated	lateral	sum

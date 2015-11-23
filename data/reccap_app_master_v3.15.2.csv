@@ -5,7 +5,7 @@ North America	NEE	2000-2009	-418	288	King et al. 2014 BGD	sink	Mass balance : Ch
 North America	Land use change	2000s	-130	60	From SOCCR reported uncertainty on each term converted from 95% CI to 1 sigma by dividing by two	sink	SOCCR 2007 Note :  LUC is defined by the sum of agriculuiral soil C balance + woody encroachement in SOCCR Table ES.I pp. 6
 North America	NPP	2000-2009	-7461	1492	Assumed 20% (see Methods)	sink	Running et al. 2004 and Zhao et al. 2005 MOD17A3.005
 North America	Soil Heterotrophic Respiration	2000-2009	6376	1526	Propagated	source	Mass balance - rivers outgassing Raymond et al.
-North America	Fire	2000-2009	88	33	IAV	source	GFED4  only non deforestation and non agricultural fires Note Turner et al. GCB 2012 for year 2004 had 142 ± 45 (estimate not used)GFED4  only non deforestation and non agricultural fires Note Turner et al. GCB 2012 for year 2004 had 142 ± 45 (estimate not used)
+North America	Fire emissions	2000-2009	88	33	IAV	source	GFED4  only non deforestation and non agricultural fires Note Turner et al. GCB 2012 for year 2004 had 142 ± 45 (estimate not used)GFED4  only non deforestation and non agricultural fires Note Turner et al. GCB 2012 for year 2004 had 142 ± 45 (estimate not used)
 North America	Wood product decay	2004	10	5	Assumed	source	SOCCR 2007 p91 (defined from landfills wood products emissions - includes emisions as CH4 and no data from Mexico)- Note : inconsistent with  production (SOCCR p110) -export - wood product storage change (King pers. Com - email 2013) = 128 - 61 - 68 = -1 Tg C ; Note a forest harvest removal of 165 TgC y-1  (Hayes et al. Table 6.6)SOCCR 2007 p91 (defined from landfills wood products emissions - includes emisions as CH4 and no data from Mexico)- Note : inconsistent with  production (SOCCR p110) -export - wood product storage change (King pers. Com - email 2013) = 128 - 61 - 68 = -1 Tg C ; Note a forest harvest removal of 165 TgC y-1  (Hayes et al. Table 6.6)
 North America	Wood export	2004	-5	36	Assumed	lateral	Peters et al. BG 2012
 North America	Crop product consumption	2004	182	36	Assumed	source	SOCCR 2007 p88 for crop production (217) minus SOCCR2007 crop trade net export (35)
@@ -20,7 +20,7 @@ South Asia	NEE	2000-2009	-86	34	Propagated	source	Mass balance
 South Asia	Land use change	2000-2009	-14	50	Patra et al. BG 2013	sink	Patra et al. BG 2013
 South Asia	NPP	2000-2009	-1290	258	Assumed 20% (see Methods)	sink	Running et al. 2004 and Zhao et al. 2005 MOD17A3.005
 South Asia	Soil Heterotrophic Respiration	2000-2009	622	272	Patra et al. BG 2013	source	Mass balance - rivers outgassing Raymond et al.
-South Asia	Fire	2000-2009	9	3	From IAV	source	GFED4 only non deforestation and non agricultural fires ; Note : Patra et al. BG 2013 had 22 ± 14 TgC y-1
+South Asia	Fire emissions	2000-2009	9	3	From IAV	source	GFED4 only non deforestation and non agricultural fires ; Note : Patra et al. BG 2013 had 22 ± 14 TgC y-1
 South Asia	Wood product decay	2004	32	16	Assumed	source	Peters (7,6 - 0,8 +2,8) x decay function from Earles
 South Asia	Wood export	2004	-2	0,4	Assumed	lateral	Peters et al. BG 2012
 South Asia	Crop product consumption	2004	213	43	Assumed	source	Peters et al. BG 2012
@@ -35,7 +35,7 @@ East Asia	NEE	2000-2009	-256	35	Propagated	sink	Mass balance
 East Asia	Land use change	2000-2009	-13	29	Piao et al. 2012 BG	sink	Piao et al. 2009 Nature
 East Asia	NPP	2000-2009	-2895	579	Assumed 20% (see Methods)	sink	Running et al. 2004 and Zhao et al. 2005 MOD17A3.005
 East Asia	Soil Heterotrophic Respiration	2000-2009	1646	596	Propagated	source	Mass balance - rivers outgassing Raymond et al.
-East Asia	Fire	2000-2009	20	5	From IAV	source	GFED4 only non deforestation and non agricultural fires ;  note = Piao et al. BG 2012 had 18±10 (estimate not used)
+East Asia	Fire emissions	2000-2009	20	5	From IAV	source	GFED4 only non deforestation and non agricultural fires ;  note = Piao et al. BG 2012 had 18±10 (estimate not used)
 East Asia	Wood product decay	2004	128	64	Assumed	source	Peters et al. BG 2012 (25,5 - 8,5+25,2 ) x decay function from Earles
 East Asia	Wood export	2004	-17	3	Assumed	lateral	Peters et al. BG 2012
 East Asia	Crop product consumption	2004	375	75	Assumed	source	Peters et al. BG 2012
@@ -50,7 +50,7 @@ SouthEast Asia	NEE	undefined	-97	186	Propagated	source	Mass balance
 SouthEast Asia	Land use change	undefined	59	12	Liu et al. NCC	source	Liu et al. only over LUC affected grid cells
 SouthEast Asia	NPP	2000-2009	-3283	657	Assumed 20% (see Methods)	sink	Running et al. 2004 and Zhao et al. 2005 MOD17A3.005
 SouthEast Asia	Soil Heterotrophic Respiration	2000-2009	2118	731	Propagated	source	Mass balance - rivers outgassing Raymond et al.
-SouthEast Asia	Fire	2000-2009	102	49	IAV	source	GFED4 only non deforestation and non agricultural fires
+SouthEast Asia	Fire emissions	2000-2009	102	49	IAV	source	GFED4 only non deforestation and non agricultural fires
 SouthEast Asia	Wood product decay	2004	31	15	Assumed	source	Peters (22,1 - 14,5 +1,8 ) x decay function from Earles
 SouthEast Asia	Wood export	2004	13	3	Asumed	lateral	Peters et al. BG 2012
 SouthEast Asia	Crop product consumption	2004	153	31	Assumed	source	Peters et al. BG 2012
@@ -65,7 +65,7 @@ Russia	NEE	2009 (representative)	-600	224	Propagated	sink	Mass balance
 Russia	Land use change	1990-2006	-34	2	Dolman pp.5334	sink	Dolman et al. BG 2012 Table 5
 Russia	NPP	2000-2009	-5109	1022	Assumed 20% (see Methods)	sink	Running et al. 2004 and Zhao et al. 2005 MOD17A3.005
 Russia	Soil Heterotrophic Respiration	2000-2009	4122	1051	Propagated  ; note Dolman et al. BG 2012 p 5327 report 10% error	source	Mass balance - rivers outgassing Raymond et al. ; Note Dolman et al. BG 2012 Table 2 gives 3463 TgC y-1 from different numbersMass balance - rivers outgassing Raymond et al. ; Note Dolman et al. BG 2012 Table 2 gives 3463 TgC y-1 from different numbers
-Russia	Fire	2000-2009	114	75	From IAV	source	GFED4 only non deforestation and non agricultural fires ; Note : Dolman et al. BG 2012 p 5328 from LEA IIASA estimate intheir  Table 5 is 97 ± 22 for 1998-2010 (estimate not used) - Note : additional insect (table 5 in Dolman et al.) 51  TgC y-1 not added
+Russia	Fire emissions	2000-2009	114	75	From IAV	source	GFED4 only non deforestation and non agricultural fires ; Note : Dolman et al. BG 2012 p 5328 from LEA IIASA estimate intheir  Table 5 is 97 ± 22 for 1998-2010 (estimate not used) - Note : additional insect (table 5 in Dolman et al.) 51  TgC y-1 not added
 Russia	Wood product decay	2003-2010	28	14	Assumed	source	Peters et al. BG 2012
 Russia	Wood export	undefined	20	10	Assumed	lateral	Dolman et al. BG 2012 et al. pp. 5332 ;  Note : Peters give 17 Tg C y-1
 Russia	Crop product consumption	2003-2010	60	12	Assumed	source	"Dolman et al. BG 2012 Table 2 minus """"net export"""" in Table 5  (18 ) ; Note Peters et al. had 16.6 TgC y-1"
@@ -80,7 +80,7 @@ Europe	NEE	2000-2007  ill-defined	-234	166	Propagated	sink	Mass balance : Change
 Europe	Land use change	2003-2007	-2	1	Schulze et al. GCB 2010 - Fig 3	sink	Schulze et al. GCB 2010 - Fig 3 ; Note : for EU countries only
 Europe	NPP	2000-2009	-2967	593	Assumed 20% (see Methods)	sink	Running et al. 2004 and Zhao et al. 2005 MOD17A3.005
 Europe	Soil Heterotrophic Respiration	2000-2009	2044	625	Propagated	source	Mass balance - rivers outgassing Raymond et al.
-Europe	Fire	2000-2009	4	2	IAV	source	GFED4  only non deforestation and non agricultural fires Note : Luyssaert et al. BG 2012 had 4 ± 2 (estimate not used)GFED4  only non deforestation and non agricultural fires Note : Luyssaert et al. BG 2012 had 4 ± 2 (estimate not used)GFED4  only non deforestation and non agricultural fires Note : Luyssaert et al. BG 2012 had 4 ± 2 (estimate not used)
+Europe	Fire emissions	2000-2009	4	2	IAV	source	GFED4  only non deforestation and non agricultural fires Note : Luyssaert et al. BG 2012 had 4 ± 2 (estimate not used)GFED4  only non deforestation and non agricultural fires Note : Luyssaert et al. BG 2012 had 4 ± 2 (estimate not used)GFED4  only non deforestation and non agricultural fires Note : Luyssaert et al. BG 2012 had 4 ± 2 (estimate not used)
 Europe	Wood product decay	2004	38	19	Eggers et al. 2002	source	Eggers et al. 2002
 Europe	Wood export	2004	-14	3	Assumed	lateral	Peters et al. BG 2012
 Europe	Crop product consumption	2004	272	54	Assumed	source	Peters et al. BG 2012  (Europe and Eastern Europe); Note :Peters et al. report a small  harvest of 188 TgC yr-1 only. Schulze et al. GCB 2010 report a huge harvest of 838 Tg C yr-1 (probably includes residues - estimate not used) ; Luyssaert et al. BG 2012 report 378 TgC yr-1 in table 1 from Haberl and KrausmannPeters et al. BG 2012  (Europe and Eastern Europe); Note :Peters et al. report a small  harvest of 188 TgC yr-1 only. Schulze et al. GCB 2010 report a huge harvest of 838 Tg C yr-1 (probably includes residues - estimate not used) ; Luyssaert et al. BG 2012 report 378 TgC yr-1 in table 1 from Haberl and KrausmannPeters et al. BG 2012  (Europe and Eastern Europe); Note :Peters et al. report a small  harvest of 188 TgC yr-1 only. Schulze et al. GCB 2010 report a huge harvest of 838 Tg C yr-1 (probably includes residues - estimate not used) ; Luyssaert et al. BG 2012 report 378 TgC yr-1 in table 1 from Haberl and Krausmann
@@ -95,7 +95,7 @@ South America	NEE	2000-2009	11	284	Propagated	sink	Mass balance : Change of terr
 South America	Land use change	1990-2012	525	130	Gloor et al. pp. 5425 average of 2000-2004 + 2005-2009 uncertainties	source	Gloor et al. BG 2012 Table 12
 South America	NPP	2000-2009	-12774	2555	Assumed 20% (see Methods)	sink	Running et al. 2004 and Zhao et al. 2005 MOD17A3.005
 South America	Soil Heterotrophic Respiration	1997-2009	10625	2601	Propagated	source	Mass balance - rivers outgassing Raymond et al.
-South America	Fire	2000-2009	159	51	From IAV	source	GFED4 only non deforestation and non agricultural fires
+South America	Fire emissions	2000-2009	159	51	From IAV	source	GFED4 only non deforestation and non agricultural fires
 South America	Wood product decay	2004	30	15	Assumed	source	Peters et al. BG 2012  (37,9 - 9,3 +1) x decay function from Earles
 South America	Wood export	2004	8	2	Assumed	lateral	Peters et al. BG 2012
 South America	Crop product consumption	2004	96	19	Assumed	source	Peters et al. BG 2012
@@ -110,7 +110,7 @@ Australia	NEE	1990-2011	-71	36	Propagated	sink	Mass balance : Change of territor
 Australia	Land use change	1990-2011	18	7	Haverd et al. BG 2013	source	Haverd et al. BG 2013
 Australia	NPP	2000-2009	-1792	358	Assumed 20% (see Methods)	sink	Running et al. 2004 and Zhao et al. 2005 MOD17A3.005
 Australia	Soil Heterotrophic Respiration	1990-2011	1461	363	Propagated	source	Mass balance - rivers outgassing Raymond et al.
-Australia	Fire	1997-2009	113	35	From IAV	source	GFED4  only non deforestation and non agricultural fires. Note : Haverd et al. BG 2013 had 104 TgC y-1 over 1997-2009
+Australia	Fire emissions	1997-2009	113	35	From IAV	source	GFED4  only non deforestation and non agricultural fires. Note : Haverd et al. BG 2013 had 104 TgC y-1 over 1997-2009
 Australia	Wood product decay	2004	5	3	Assumed	source	Haverd et al. BG 2013
 Australia	Wood export	2004	-0,3	0,06	Assumed	lateral	Haverd et al. BG 2013
 Australia	Crop product consumption	2004	9	2	Assumed	source	Haverd et al. BG 2013
@@ -125,7 +125,7 @@ Africa	NEE	2000-2007 (inconsistent)	12	292	Valentini et al. 2014	sink	Mass balan
 Africa	Land use change	1990-2009	510	100	Valentini et al. 2014 (table 11)	source	Valentini et al. 2014 table 11 Note : based on Houghton plus  a new estimate of  degradation carbon lossValentini et al. 2014 table 11 Note : based on Houghton plus  a new estimate of  degradation carbon lossValentini et al. 2014 table 11 Note : based on Houghton plus  a new estimate of  degradation carbon lossValentini et al. 2014 table 11 Note : based on Houghton plus  a new estimate of  degradation carbon loss
 Africa	NPP	2000-2009	-9877	1975	Assumed 20% (see Methods)	sink	Running et al. 2004 and Zhao et al. 2005 MOD17A3.005
 Africa	Soil Heterotrophic Respiration	2000s	7374	2003	Propagated	source	Mass balance - rivers outgassing Raymond et al.
-Africa	Fire	2000-2009	1040	52	IAV	source	GFED4 only non deforestation and non agricultural fires
+Africa	Fire emissions	2000-2009	1040	52	IAV	source	GFED4 only non deforestation and non agricultural fires
 Africa	Wood product decay	2004	56	11	Assumed	source	Peters (18,6 -4,1 +2,6) x decay function from Earles
 Africa	Wood export	2004	2	0,3	Assumed	lateral	Peters et al. BG 2012
 Africa	Crop product consumption	2004	182	36	Assumed	source	Peters et al. BG 2012
@@ -140,7 +140,7 @@ Globe	NEE	2000-2009 	-1740	604	Propagated	sink	sum
 Globe	Land use change	2000-2009 	919	184	Propagated	source	sum
 Globe	NPP	2000-2009	-47448	3875	Propagated	sink	sum
 Globe	Soil Heterotrophic Respiration	2000-2009 	36388	3962	Propagated	source	sum
-Globe	Fire	2000-2009	1649	125	Propagated	source	sum
+Globe	Fire emissions	2000-2009	1649	125	Propagated	source	sum
 Globe	Wood product decay	2004	357	74	Propagated	source	sum
 Globe	Wood export	2004	4	38	Propagated	lateral	sum
 Globe	Crop product consumption	2004	1542	120	Propagated	source	sum

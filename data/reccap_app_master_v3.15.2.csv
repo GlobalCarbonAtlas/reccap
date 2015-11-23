@@ -5,7 +5,7 @@ North America	NEE	2000-2009	-418	288	King et al. 2014 BGD	sink	Mass balance : Ch
 North America	Land use change	2000s	-130	60	From SOCCR reported uncertainty on each term converted from 95% CI to 1 sigma by dividing by two	sink	SOCCR 2007 Note :  LUC is defined by the sum of agriculuiral soil C balance + woody encroachement in SOCCR Table ES.I pp. 6
 North America	NPP	2000-2009	-7461	1492	Assumed 20% (see Methods)	sink	Running et al. 2004 and Zhao et al. 2005 MOD17A3.005
 North America	Soil Heterotrophic Respiration	2000-2009	6376	1526	Propagated	source	Mass balance - rivers outgassing Raymond et al.
-North America	Fire emissions	2000-2009	88	33	IAV	source	GFED4  only non deforestation and non agricultural fires Note Turner et al. GCB 2012 for year 2004 had 142 ± 45 (estimate not used)GFED4  only non deforestation and non agricultural fires Note Turner et al. GCB 2012 for year 2004 had 142 ± 45 (estimate not used)
+North America	Fire	2000-2009	88	33	IAV	source	GFED4  only non deforestation and non agricultural fires Note Turner et al. GCB 2012 for year 2004 had 142 ± 45 (estimate not used)GFED4  only non deforestation and non agricultural fires Note Turner et al. GCB 2012 for year 2004 had 142 ± 45 (estimate not used)
 North America	Wood product decay	2004	10	5	Assumed	source	SOCCR 2007 p91 (defined from landfills wood products emissions - includes emisions as CH4 and no data from Mexico)- Note : inconsistent with  production (SOCCR p110) -export - wood product storage change (King pers. Com - email 2013) = 128 - 61 - 68 = -1 Tg C ; Note a forest harvest removal of 165 TgC y-1  (Hayes et al. Table 6.6)SOCCR 2007 p91 (defined from landfills wood products emissions - includes emisions as CH4 and no data from Mexico)- Note : inconsistent with  production (SOCCR p110) -export - wood product storage change (King pers. Com - email 2013) = 128 - 61 - 68 = -1 Tg C ; Note a forest harvest removal of 165 TgC y-1  (Hayes et al. Table 6.6)
 North America	Wood export	2004	-5	36	Assumed	lateral	Peters et al. BG 2012
 North America	Crop product consumption	2004	182	36	Assumed	source	SOCCR 2007 p88 for crop production (217) minus SOCCR2007 crop trade net export (35)
@@ -14,147 +14,146 @@ North America	Soil C export to rivers		113	26	Propagated	lateral	Mass balance = 
 North America	Bedrock C export to rivers		15	8	Propagated	lateral	
 North America	Freshwater outgasing	2000s	219	110	Assumed	source	Raymond et al. 2014 Nature
 North America	River export to ocean		55	24	Assumed	lateral	Calculated as C fluxes to estuaries - estuarine outgasing
-South Asia	Fossil fuel CO2 emissions	2000-2009	448			source	
-South Asia	∆C	2000-2009	-110	188	Patra et al. BG 2013 + Propagated	gain	
-South Asia	NEE	2000-2009	-143	186	Patra et al. BG 2013	source	
-South Asia	Land use change	2000-2009	-14	50	Patra et al. BG 2013	sink	
-South Asia	NPP	2000-2009	-2213	358	Patra et al. BG 2013	sink	
-South Asia	Soil Heterotrophic Respiration	2000-2009	1742	408	Patra et al. BG 2013	source	
-South Asia	NPP-RH	2000-2009	-471				
-South Asia	Fire	2000-2009	44	13,7	Patra et al. BG 2013	source	
-South Asia	Wood product decay	2004	32	16	Assumed	source	
-South Asia	Wood export	2004	-2	0	Assumed	lateral	
-South Asia	Crop product consumption	2004	213	43	Assumed	source	
-South Asia	Crop export	2004	-5	1	Assumed	lateral	
-South Asia	Soil C export to rivers	undefined	80	22	Propagated	lateral	
-South Asia	Bedrock C export to rivers	undefined	1		Hartmann et al., 2009	lateral	
-South Asia	Freshwater outgasing	2000s	40	20	Assumed	source	
-South Asia	River export to ocean	undefined	41	8	Assumed	lateral	
-East Asia	Fossil fuel CO2 emissions	2000-2009	1967	172	8.75% 1 sigma from Andres et al. 2014	source	
-East Asia	∆C	2000-2009	-293	33	Piao et al. 2012 BG	gain	
-East Asia	NEE	2000-2009	-264	35	Propagated	sink	
-East Asia	Land use change	2000-2009	-13	29	Piao et al. 2012 BG	sink	
-East Asia	NPP	2000-2009	-3837	553	Piao et al. 2012 BG	sink	
-East Asia	Soil Heterotrophic Respiration	2000-2009	2886	569	Propagated	source	
-East Asia	NPP-RH	2000-2009	-951			sink	
-East Asia	Fire	2000-2009	20	10	Piao et al. 2009 Nature check ?	source	
-East Asia	Wood product decay	2004	128	64	Assumed	source	
-East Asia	Wood export	2004	-17	3	Assumed	lateral	
-East Asia	Crop product consumption	2004	375	75	Assumed	source	
-East Asia	Crop export	2004	-46	9	Assumed	lateral	
-East Asia	Soil C export to rivers	undefined	197	82	Propagated	lateral	
-East Asia	Bedrock C export to rivers	undefined	5		Hartmann et al., 2009	lateral	
-East Asia	Freshwater outgasing	2000s	164	82	Assumed	source	
-East Asia	River export to ocean	undefined	38	8	Assumed	lateral	
-SouthEast Asia	Fossil fuel CO2 emissions	2000-2009	258			source	
-SouthEast Asia	∆C	undefined	-262	100	tbc	sink	
-SouthEast Asia	NEE	undefined	-447	186	tbc	source	
-SouthEast Asia	Land use change	undefined	194	39	Assumed 20%	source	
-SouthEast Asia	NPP	undefined	-5125	1025	Assumed 20%	sink	
-SouthEast Asia	Soil Heterotrophic Respiration	undefined	3868	1038	Propagated	source	
-SouthEast Asia	NPP-RH	undefined	-1257				
-SouthEast Asia	Fire	2000-2009	119	24	Assumed 20% like Africa & S America	source	
-SouthEast Asia	Wood product decay	2004	31	15	Assumed	source	
-SouthEast Asia	Wood export	2004	13	3	Asumed	lateral	
-SouthEast Asia	Crop product consumption	2004	153	31	Assumed	source	
-SouthEast Asia	Crop export	2004	68	14	Assumed	lateral	
-SouthEast Asia	Soil C export to rivers	undefined	611	122	Propagated	lateral	
-SouthEast Asia	Bedrock C export to rivers	undefined	18	4	Hartmann et al., 2009	lateral	
-SouthEast Asia	Freshwater outgasing	2000s	507	254	Assumed	source	
-SouthEast Asia	River export to ocean	undefined	122	48	Assumed	lateral	
-Russia	Fossil fuel CO2 emissions	2000-2009	439	32	7.4% 1 sigma from Andres et al. Tellus 2014 (USSR)	source	
-Russia	∆C	2009 (representative)	-662	98	1-sigma Dolman pp.5335 have 196 TgC yr-1 at 90% CI	gain	
-Russia	NEE	2009 (representative)	-738	109	Propagated	sink	
-Russia	Land use change	1990-2006	-34	2	Dolman pp.5334	sink	
-Russia	NPP	2009 (representative)	-4763	953	Assumed 20%  ; note Dolman p 5327 report 5% error	sink	
-Russia	Soil Heterotrophic Respiration	2009 (representative)	3685	959	Propagated  ; note Dolman p 5327 report 10% error	source	
-Russia	NPP-RH	2009 (representative)	-1078				
-Russia	Fire	1998-2010	97	22	Dolman pp.5328	source	
-Russia	Wood product decay	2003-2010	28	14	Assumed	source	
-Russia	Wood export	undefined	20	10	Assumed	lateral	
-Russia	Crop product consumption	2003-2010	60	12	Assumed	source	
-Russia	Crop export	undefined	18	4	Assumed	lateral	
-Russia	Soil C export to rivers	undefined	192	38	Propagated	lateral	
-Russia	Bedrock C export to rivers	undefined	7		Hartmann et al., 2009	lateral	
-Russia	Freshwater outgasing	2000s	134	67	Assumed	source	
-Russia	River export to ocean	undefined	45	48	Assumed	lateral	
-Europe	Fossil fuel CO2 emissions	2000-2009	1189	40	Andres et al. Tellus 2014 ; only 1-sigma error for France used by default, needs to be redone	source	
-Europe	∆C	2000-2007  ill-defined	-275	137	Luyssaert et al. BG 2012	gain	
-Europe	NEE	2000-2007  ill-defined	-215	146	Propagated	sink	
-Europe	Land use change	2003-2007	-2	1	Schulze et al. GCB 2010 - Fig 3	sink	
-Europe	NPP	undefined	-2519	-504	Assumed	sink	
-Europe	Soil Heterotrophic Respiration	undefined	1783	535	Propagated	source	
-Europe	NPP-RH	undefined	-736				
-Europe	Fire	1997-2009	4	2	Luyssaert et al. BG 2012	source	
-Europe	Wood product decay	2004	38	19	Eggers et al. 2002	source	
-Europe	Wood export	2004	-14	3	Assumed	lateral	
-Europe	Crop product consumption	2004	272	54	Assumed	source	
-Europe	Crop export	2004	-83	17	Assumed	lateral	
-Europe	Soil C export to rivers	undefined	244	98	Propagated	lateral	
-Europe	Bedrock C export to rivers	undefined	11		Hartmann et al., 2009	lateral	
-Europe	Freshwater outgasing	2000s	166	83	Assumed	source	
-Europe	River export to ocean	undefined	48	48	Assumed	lateral	
-South America	Fossil fuel CO2 emissions	2000-2009	243		CDIAC	source	
-South America	∆C	2000-2009	225	282	Gloor et al. Table 12	loss	
-South America	NEE	2000-2009	-6	284	Propagated	sink	
-South America	Land use change	1990-2012	525	131	Gloor et al. pp. 5418	source	
-South America	NPP	1997-2009	-14796	2959	Assumed	sink	
-South America	Soil Heterotrophic Respiration	1997-2009	13652	2995	Propagated	source	
-South America	NPP-RH	1997-2009	-1144				
-South America	Fire	1997-2009	293	59	Loosely from van der Werf 2010 Fig 14	source	
-South America	Wood product decay	2004	30	14,8	Assumed	source	
-South America	Wood export	2004	8	2	Assumed	lateral	
-South America	Crop product consumption	2004	96	19	Assumed	source	
-South America	Crop export	2004	71	14	Assumed	lateral	
-South America	Soil C export to rivers	undefined	870	361	Propagated	lateral	
-South America	Bedrock C export to rivers	undefined	7		Hartmann et al., 2009	lateral	
-South America	Freshwater outgasing	2000s	719	360	Assumed 20%  ; note Dolman p 5327 report 5% error	source	
-South America	River export to ocean	undefined	158	32	Assumed	lateral	
-Australia	Fossil fuel CO2 emissions	1990-2011	98	6	CDIAC	source	
-Australia	∆C	1990-2011	-37	36	Haverd et al. BG 2013 + Propagated	gain	
-Australia	NEE	1990-2011	-45	36	Propagated	sink	
-Australia	Land use change	1990-2011	18	7	Haverd et al. BG 2013	source	
-Australia	NPP	1990-2011	-2210	316	Haverd et al. BG 2013	sink	
-Australia	Soil Heterotrophic Respiration	1990-2011	1997	319	Propagated	source	
-Australia	NPP-RH	1990-2011	-213				
-Australia	Fire	1997-2009	127	22	Haverd et al. BG 2013	source	
-Australia	Wood product decay	2004	5	2,5	Assumed	source	
-Australia	Wood export	2004	-0,3	0	Assumed	lateral	
-Australia	Crop product consumption	2004	9	2	Assumed	source	
-Australia	Crop export	2004	11	2	Assumed	lateral	
-Australia	Soil C export to rivers	undefined	22	8	Propagated	lateral	
-Australia	Bedrock C export to rivers	undefined	0		Hartmann et al., 2009	lateral	
-Australia	Freshwater outgasing	2000s	16	8	Assumed	source	
-Australia	River export to ocean	undefined	7	1	Assumed	lateral	
-Africa	Fossil fuel CO2 emissions	2000-2009	258			source	
-Africa	∆C	2000-2007	28	292	Pan et al. 2011 + Valentini et al. 2014	loss	
-Africa	NEE	2000-2007 (inconsistent)	-11	292	Valentini et al. 2014	sink	
-Africa	Land use change	1990-2009	510	100	Valentini et al. 2014	source	
-Africa	NPP	2000s	-14300	3700	Valentini et al. 2014	sink	
-Africa	Soil Heterotrophic Respiration	2000s	12873	3719	Propagated	source	
-Africa	NPP-RH	2000s	-1427				
-Africa	Fire	1997-2011	1031	220	Valentini et al. 2014	source (close to neutral for net - most of these fires are savannas fires - regrowth included in NPP)	
-Africa	Wood product decay	2004	56	11	Assumed	source	
-Africa	Wood export	2004	2	0,3	Assumed	lateral	
-Africa	Crop product consumption	2004	182	36	Assumed	source	
-Africa	Crop export	2004	-24	5	Assumed	lateral	
-Africa	Soil C export to rivers	undefined	208	75	Propagated	lateral	
-Africa	Bedrock C export to rivers	undefined	6		Hartmann et al., 2009	lateral	
-Africa	Freshwater outgasing	2000s	147	74	Assumed	source	
-Africa	River export to ocean	undefined	67	13	Assumed	lateral	
-Globe	Fossil fuel CO2 emissions	2000-2009	6709	400	Propagated	source	
-Globe	∆C	2000-2009 (inconsistent)	-1733	#VALEUR !	Propagated	gain	
-Globe	NEE	2000-2009 (inconsistent)	#VALEUR !	#VALEUR !	Propagated	sink	
-Globe	Land use change	2000-2009 (inconsistent)	1055	#VALEUR !	Propagated	source	
-Globe	NPP	2000-2009 (inconsistent)	-55983	#VALEUR !	Propagated	sink	
-Globe	Soil Heterotrophic Respiration	2000-2009 (inconsistent)	47675	#VALEUR !	Propagated	source	
-Globe	NPP-RH	2000-2009 (inconsistent)	-8308				
-Globe	Fire	2000-2009 (inconsistent)	1878	#VALEUR !	Propagated	source	
-Globe	Wood product decay	2004	385	#VALEUR !	Propagated	source	
-Globe	Wood export	2004	4	#VALEUR !	Propagated	lateral	
-Globe	Crop product consumption	2004	1542	#VALEUR !	Propagated	source	
-Globe	Crop export	2004	46	#VALEUR !	Propagated	lateral	
-Globe	Soil C export to rivers	undefined	2716	#VALEUR !	Propagated	lateral	
+South Asia	Fossil fuel CO2 emissions	2000-2009	448	29	Andres et al. Tellus 2014 (calculated by R. Andres for the region considered - dependent countries uncertainty assumed)	source	CDIAC
+South Asia	∆C	2000-2009	-59	33	Half the range between two methods for ∆C based on VOD	gain	After Liu et al 2015 NCC recalculated in this study ;  biomass + soil
+South Asia	NEE	2000-2009	-86	34	Propagated	source	Mass balance
+South Asia	Land use change	2000-2009	-14	50	Patra et al. BG 2013	sink	Patra et al. BG 2013
+South Asia	NPP	2000-2009	-1290	258	Assumed 20% (see Methods)	sink	Running et al. 2004 and Zhao et al. 2005 MOD17A3.005
+South Asia	Soil Heterotrophic Respiration	2000-2009	622	272	Patra et al. BG 2013	source	Mass balance - rivers outgassing Raymond et al.
+South Asia	Fire	2000-2009	9	3	From IAV	source	GFED4 only non deforestation and non agricultural fires ; Note : Patra et al. BG 2013 had 22 ± 14 TgC y-1
+South Asia	Wood product decay	2004	32	16	Assumed	source	Peters (7,6 - 0,8 +2,8) x decay function from Earles
+South Asia	Wood export	2004	-2	0,4	Assumed	lateral	Peters et al. BG 2012
+South Asia	Crop product consumption	2004	213	43	Assumed	source	Peters et al. BG 2012
+South Asia	Crop export	2004	-5	1	Assumed	lateral	Peters et al. BG 2012
+South Asia	Soil C export to rivers		76	20	Propagated	lateral	mass balance (ignoring burial)
+South Asia	Bedrock C export to rivers		1	0	Hartmann et al., 2009	lateral	Hartmann et al., 2009
+South Asia	Freshwater outgasing	2000s	40	20	Assumed	source	Raymond et al. 2014 Nature
+South Asia	River export to ocean		35	9	Propagated	lateral	Calculated as C fluxes to estuaries - estuarine outgasing
+East Asia	Fossil fuel CO2 emissions	2000-2009	1967	172	8.75% 1 sigma from Andres et al. 2014	source
+East Asia	∆C	2000-2009	-293	33	Piao et al. 2012 BG	gain
+East Asia	NEE	2000-2009	-264	35	Propagated	sink
+East Asia	Land use change	2000-2009	-13	29	Piao et al. 2012 BG	sink
+East Asia	NPP	2000-2009	-3837	553	Piao et al. 2012 BG	sink
+East Asia	Soil Heterotrophic Respiration	2000-2009	2886	569	Propagated	source
+East Asia	NPP-RH	2000-2009	-951			sink
+East Asia	Fire	2000-2009	20	10	Piao et al. 2009 Nature check ?	source
+East Asia	Wood product decay	2004	128	64	Assumed	source
+East Asia	Wood export	2004	-17	3	Assumed	lateral
+East Asia	Crop product consumption	2004	375	75	Assumed	source
+East Asia	Crop export	2004	-46	9	Assumed	lateral
+East Asia	Soil C export to rivers	undefined	197	82	Propagated	lateral
+East Asia	Bedrock C export to rivers	undefined	5		Hartmann et al., 2009	lateral
+East Asia	Freshwater outgasing	2000s	164	82	Assumed	source
+East Asia	River export to ocean	undefined	38	8	Assumed	lateral
+SouthEast Asia	Fossil fuel CO2 emissions	2000-2009	258			source
+SouthEast Asia	∆C	undefined	-262	100	tbc	sink
+SouthEast Asia	NEE	undefined	-447	186	tbc	source
+SouthEast Asia	Land use change	undefined	194	39	Assumed 20%	source
+SouthEast Asia	NPP	undefined	-5125	1025	Assumed 20%	sink
+SouthEast Asia	Soil Heterotrophic Respiration	undefined	3868	1038	Propagated	source
+SouthEast Asia	NPP-RH	undefined	-1257
+SouthEast Asia	Fire	2000-2009	119	24	Assumed 20% like Africa & S America	source
+SouthEast Asia	Wood product decay	2004	31	15	Assumed	source
+SouthEast Asia	Wood export	2004	13	3	Asumed	lateral
+SouthEast Asia	Crop product consumption	2004	153	31	Assumed	source
+SouthEast Asia	Crop export	2004	68	14	Assumed	lateral
+SouthEast Asia	Soil C export to rivers	undefined	611	122	Propagated	lateral
+SouthEast Asia	Bedrock C export to rivers	undefined	18	4	Hartmann et al., 2009	lateral
+SouthEast Asia	Freshwater outgasing	2000s	507	254	Assumed	source
+SouthEast Asia	River export to ocean	undefined	122	48	Assumed	lateral
+Russia	Fossil fuel CO2 emissions	2000-2009	439	32	7.4% 1 sigma from Andres et al. Tellus 2014 (USSR)	source
+Russia	∆C	2009 (representative)	-662	98	1-sigma Dolman pp.5335 have 196 TgC yr-1 at 90% CI	gain
+Russia	NEE	2009 (representative)	-738	109	Propagated	sink
+Russia	Land use change	1990-2006	-34	2	Dolman pp.5334	sink
+Russia	NPP	2009 (representative)	-4763	953	Assumed 20%  ; note Dolman p 5327 report 5% error	sink
+Russia	Soil Heterotrophic Respiration	2009 (representative)	3685	959	Propagated  ; note Dolman p 5327 report 10% error	source
+Russia	NPP-RH	2009 (representative)	-1078
+Russia	Fire	1998-2010	97	22	Dolman pp.5328	source
+Russia	Wood product decay	2003-2010	28	14	Assumed	source
+Russia	Wood export	undefined	20	10	Assumed	lateral
+Russia	Crop product consumption	2003-2010	60	12	Assumed	source
+Russia	Crop export	undefined	18	4	Assumed	lateral
+Russia	Soil C export to rivers	undefined	192	38	Propagated	lateral
+Russia	Bedrock C export to rivers	undefined	7		Hartmann et al., 2009	lateral
+Russia	Freshwater outgasing	2000s	134	67	Assumed	source
+Russia	River export to ocean	undefined	45	48	Assumed	lateral
+Europe	Fossil fuel CO2 emissions	2000-2009	1189	40	Andres et al. Tellus 2014 ; only 1-sigma error for France used by default, needs to be redone	source
+Europe	∆C	2000-2007  ill-defined	-275	137	Luyssaert et al. BG 2012	gain
+Europe	NEE	2000-2007  ill-defined	-215	146	Propagated	sink
+Europe	Land use change	2003-2007	-2	1	Schulze et al. GCB 2010 - Fig 3	sink
+Europe	NPP	undefined	-2519	-504	Assumed	sink
+Europe	Soil Heterotrophic Respiration	undefined	1783	535	Propagated	source
+Europe	NPP-RH	undefined	-736
+Europe	Fire	1997-2009	4	2	Luyssaert et al. BG 2012	source
+Europe	Wood product decay	2004	38	19	Eggers et al. 2002	source
+Europe	Wood export	2004	-14	3	Assumed	lateral
+Europe	Crop product consumption	2004	272	54	Assumed	source
+Europe	Crop export	2004	-83	17	Assumed	lateral
+Europe	Soil C export to rivers	undefined	244	98	Propagated	lateral
+Europe	Bedrock C export to rivers	undefined	11		Hartmann et al., 2009	lateral
+Europe	Freshwater outgasing	2000s	166	83	Assumed	source
+Europe	River export to ocean	undefined	48	48	Assumed	lateral
+South America	Fossil fuel CO2 emissions	2000-2009	243		CDIAC	source
+South America	∆C	2000-2009	225	282	Gloor et al. Table 12	loss
+South America	NEE	2000-2009	-6	284	Propagated	sink
+South America	Land use change	1990-2012	525	131	Gloor et al. pp. 5418	source
+South America	NPP	1997-2009	-14796	2959	Assumed	sink
+South America	Soil Heterotrophic Respiration	1997-2009	13652	2995	Propagated	source
+South America	NPP-RH	1997-2009	-1144
+South America	Fire	1997-2009	293	59	Loosely from van der Werf 2010 Fig 14	source
+South America	Wood product decay	2004	30	14,8	Assumed	source
+South America	Wood export	2004	8	2	Assumed	lateral
+South America	Crop product consumption	2004	96	19	Assumed	source
+South America	Crop export	2004	71	14	Assumed	lateral
+South America	Soil C export to rivers	undefined	870	361	Propagated	lateral
+South America	Bedrock C export to rivers	undefined	7		Hartmann et al., 2009	lateral
+South America	Freshwater outgasing	2000s	719	360	Assumed 20%  ; note Dolman p 5327 report 5% error	source
+South America	River export to ocean	undefined	158	32	Assumed	lateral
+Australia	Fossil fuel CO2 emissions	1990-2011	98	6	CDIAC	source
+Australia	∆C	1990-2011	-37	36	Haverd et al. BG 2013 + Propagated	gain
+Australia	NEE	1990-2011	-45	36	Propagated	sink
+Australia	Land use change	1990-2011	18	7	Haverd et al. BG 2013	source
+Australia	NPP	1990-2011	-2210	316	Haverd et al. BG 2013	sink
+Australia	Soil Heterotrophic Respiration	1990-2011	1997	319	Propagated	source
+Australia	NPP-RH	1990-2011	-213
+Australia	Fire	1997-2009	127	22	Haverd et al. BG 2013	source
+Australia	Wood product decay	2004	5	2,5	Assumed	source
+Australia	Wood export	2004	-0,3	0	Assumed	lateral
+Australia	Crop product consumption	2004	9	2	Assumed	source
+Australia	Crop export	2004	11	2	Assumed	lateral
+Australia	Soil C export to rivers	undefined	22	8	Propagated	lateral
+Australia	Bedrock C export to rivers	undefined	0		Hartmann et al., 2009	lateral
+Australia	Freshwater outgasing	2000s	16	8	Assumed	source
+Australia	River export to ocean	undefined	7	1	Assumed	lateral
+Africa	Fossil fuel CO2 emissions	2000-2009	258			source
+Africa	∆C	2000-2007	28	292	Pan et al. 2011 + Valentini et al. 2014	loss
+Africa	NEE	2000-2007 (inconsistent)	-11	292	Valentini et al. 2014	sink
+Africa	Land use change	1990-2009	510	100	Valentini et al. 2014	source
+Africa	NPP	2000s	-14300	3700	Valentini et al. 2014	sink
+Africa	Soil Heterotrophic Respiration	2000s	12873	3719	Propagated	source
+Africa	NPP-RH	2000s	-1427
+Africa	Fire	1997-2011	1031	220	Valentini et al. 2014	source (close to neutral for net - most of these fires are savannas fires - regrowth included in NPP)
+Africa	Wood product decay	2004	56	11	Assumed	source
+Africa	Wood export	2004	2	0,3	Assumed	lateral
+Africa	Crop product consumption	2004	182	36	Assumed	source
+Africa	Crop export	2004	-24	5	Assumed	lateral
+Africa	Soil C export to rivers	undefined	208	75	Propagated	lateral
+Africa	Bedrock C export to rivers	undefined	6		Hartmann et al., 2009	lateral
+Africa	Freshwater outgasing	2000s	147	74	Assumed	source
+Africa	River export to ocean	undefined	67	13	Assumed	lateral
+Globe	Fossil fuel CO2 emissions	2000-2009	6709	400	Propagated	source
+Globe	∆C	2000-2009 (inconsistent)	-1733	#VALEUR !	Propagated	gain
+Globe	NEE	2000-2009 (inconsistent)	#VALEUR !	#VALEUR !	Propagated	sink
+Globe	Land use change	2000-2009 (inconsistent)	1055	#VALEUR !	Propagated	source
+Globe	NPP	2000-2009 (inconsistent)	-55983	#VALEUR !	Propagated	sink
+Globe	Soil Heterotrophic Respiration	2000-2009 (inconsistent)	47675	#VALEUR !	Propagated	source
+Globe	NPP-RH	2000-2009 (inconsistent)	-8308
+Globe	Fire	2000-2009 (inconsistent)	1878	#VALEUR !	Propagated	source
+Globe	Wood product decay	2004	385	#VALEUR !	Propagated	source
+Globe	Wood export	2004	4	#VALEUR !	Propagated	lateral
+Globe	Crop product consumption	2004	1542	#VALEUR !	Propagated	source
+Globe	Crop export	2004	46	#VALEUR !	Propagated	lateral
+Globe	Soil C export to rivers	undefined	2716	#VALEUR !	Propagated	lateral
 Globe	Bedrock C export to rivers	undefined	70		Hartmann et al., 2009	lateral	Hartmann et al., 2009
-Globe	Freshwater outgasing	2000s	2112	#VALEUR !	Propagated	source	
-Globe	River export to ocean	undefined	613	#VALEUR !	Propagated	lateral	
+Globe	Freshwater outgasing	2000s	2112	#VALEUR !	Propagated	source
+Globe	River export to ocean	undefined	613	#VALEUR !	Propagated	lateral

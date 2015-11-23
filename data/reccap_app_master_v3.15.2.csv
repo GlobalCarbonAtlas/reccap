@@ -75,22 +75,21 @@ Russia	Soil C export to rivers	undefined	75	15	Propagated	lateral	mass balance N
 Russia	Bedrock C export to rivers	undefined	7	4	Hartmann et al., 2009	lateral	Hartmann et al., 2009
 Russia	Freshwater outgasing	2000s	134	67	Assumed	source	Raymond et al. 2014 Nature ;  Note : Dolman et al. BG 2012 Table 1 has 11.8 TgC y-1  but definition is not clear (burial or outgas ?)
 Russia	River export to ocean	undefined	27	49	Propagated	lateral	Calculated as C fluxes to estuaries - estuarine outgasing
-Europe	Fossil fuel CO2 emissions	2000-2009	1189	40	Andres et al. Tellus 2014 ; only 1-sigma error for France used by default, needs to be redone	source	
-Europe	∆C	2000-2007  ill-defined	-275	137	Luyssaert et al. BG 2012	gain	
-Europe	NEE	2000-2007  ill-defined	-215	146	Propagated	sink	
-Europe	Land use change	2003-2007	-2	1	Schulze et al. GCB 2010 - Fig 3	sink	
-Europe	NPP	undefined	-2519	-504	Assumed	sink	
-Europe	Soil Heterotrophic Respiration	undefined	1783	535	Propagated	source	
-Europe	NPP-RH	undefined	-736				
-Europe	Fire	1997-2009	4	2	Luyssaert et al. BG 2012	source	
-Europe	Wood product decay	2004	38	19	Eggers et al. 2002	source	
-Europe	Wood export	2004	-14	3	Assumed	lateral	
-Europe	Crop product consumption	2004	272	54	Assumed	source	
-Europe	Crop export	2004	-83	17	Assumed	lateral	
-Europe	Soil C export to rivers	undefined	244	98	Propagated	lateral	
-Europe	Bedrock C export to rivers	undefined	11		Hartmann et al., 2009	lateral	
-Europe	Freshwater outgasing	2000s	166	83	Assumed	source	
-Europe	River export to ocean	undefined	48	48	Assumed	lateral	
+Europe	Fossil fuel CO2 emissions	2000-2009	1189	42	Andres et al. Tellus 2014 (calculated by R. Andres for the region considered - dependent countries uncertainty assumed)	source	CDIAC
+Europe	∆C	2000-2007  ill-defined	-316	158	Luyssaert et al. BG 2012	gain	Luyssaert et al. BG 2012 Change in stocks 9a to j + 10a,b + 11ab + LUC + burial ; Change in forest stocks  for period  2000-2007 ; other periods for other land use types
+Europe	NEE	2000-2007  ill-defined	-234	166	Propagated	sink	Mass balance : Change of territorial C stocks +  lateral exports
+Europe	Land use change	2003-2007	-2	1	Schulze et al. GCB 2010 - Fig 3	sink	Schulze et al. GCB 2010 - Fig 3 ; Note : for EU countries only
+Europe	NPP	2000-2009	-2967	593	Assumed 20% (see Methods)	sink	Running et al. 2004 and Zhao et al. 2005 MOD17A3.005
+Europe	Soil Heterotrophic Respiration	2000-2009	2044	625	Propagated	source	Mass balance - rivers outgassing Raymond et al.
+Europe	Fire	2000-2009	4	2	IAV	source	GFED4  only non deforestation and non agricultural fires Note : Luyssaert et al. BG 2012 had 4 ± 2 (estimate not used)GFED4  only non deforestation and non agricultural fires Note : Luyssaert et al. BG 2012 had 4 ± 2 (estimate not used)GFED4  only non deforestation and non agricultural fires Note : Luyssaert et al. BG 2012 had 4 ± 2 (estimate not used)
+Europe	Wood product decay	2004	38	19	Eggers et al. 2002	source	Eggers et al. 2002
+Europe	Wood export	2004	-14	3	Assumed	lateral	Peters et al. BG 2012
+Europe	Crop product consumption	2004	272	54	Assumed	source	Peters et al. BG 2012  (Europe and Eastern Europe); Note :Peters et al. report a small  harvest of 188 TgC yr-1 only. Schulze et al. GCB 2010 report a huge harvest of 838 Tg C yr-1 (probably includes residues - estimate not used) ; Luyssaert et al. BG 2012 report 378 TgC yr-1 in table 1 from Haberl and KrausmannPeters et al. BG 2012  (Europe and Eastern Europe); Note :Peters et al. report a small  harvest of 188 TgC yr-1 only. Schulze et al. GCB 2010 report a huge harvest of 838 Tg C yr-1 (probably includes residues - estimate not used) ; Luyssaert et al. BG 2012 report 378 TgC yr-1 in table 1 from Haberl and KrausmannPeters et al. BG 2012  (Europe and Eastern Europe); Note :Peters et al. report a small  harvest of 188 TgC yr-1 only. Schulze et al. GCB 2010 report a huge harvest of 838 Tg C yr-1 (probably includes residues - estimate not used) ; Luyssaert et al. BG 2012 report 378 TgC yr-1 in table 1 from Haberl and Krausmann
+Europe	Crop export	2004	-83	17	Assumed	lateral	Peters et al. BG 2012 ; Note Luyssaert et al. Report -142 TgC y-1 (estimate not used)Peters et al. BG 2012 ; Note Luyssaert et al. Report -142 TgC y-1 (estimate not used)
+Europe	Soil C export to rivers	undefined	112	56	Propagated	lateral	Mass balance. Note : includes burial =  41 TgC yr-1 (  # 9j in Luyssaert et al.BG 2012 )Mass balance. Note : includes burial =  41 TgC yr-1 (  # 9j in Luyssaert et al.BG 2012 )
+Europe	Bedrock C export to rivers	undefined	11	5	Hartmann et al., 2009	lateral	Hartmann et al., 2009
+Europe	Freshwater outgasing	2000s	166	83	Assumed	source	Raymond et al. 2014 ; Note Luyssaert et al. BG 2012 report 73 Tg C y-1 (1a Luyssaert et al 2012) estimate not used; Note : Schulze et al. GCB 2010 - Fig 3have 80 TgC yr-1 for geographic EuropeRaymond et al. 2014 ; Note Luyssaert et al. BG 2012 report 73 Tg C y-1 (1a Luyssaert et al 2012) estimate not used; Note : Schulze et al. GCB 2010 - Fig 3have 80 TgC yr-1 for geographic EuropeRaymond et al. 2014 ; Note Luyssaert et al. BG 2012 report 73 Tg C y-1 (1a Luyssaert et al 2012) estimate not used; Note : Schulze et al. GCB 2010 - Fig 3have 80 TgC yr-1 for geographic Europe
+Europe	River export to ocean	undefined	26	49	Propagated	lateral	Calculated as C fluxes to estuaries - estuarine outgasing
 South America	Fossil fuel CO2 emissions	2000-2009	243		CDIAC	source	
 South America	∆C	2000-2009	225	282	Gloor et al. Table 12	loss	
 South America	NEE	2000-2009	-6	284	Propagated	sink	
